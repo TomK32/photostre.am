@@ -1,0 +1,13 @@
+Das Photowall is a webapplication using Ruby on Rails that allows you to:
+
+* aggregate your images from all kinds of sources like flickr.com or lomo.com
+* display them whatever style you want
+* display your favourite images from other people too
+
+
+Installation
+
+  rake db:migrate
+  git submodule init
+  git submodule update
+
