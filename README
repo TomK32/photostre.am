@@ -8,6 +8,4 @@ Das Photowall is a webapplication using Ruby on Rails that allows you to:
 Installation
 
   rake db:migrate
-  git submodule init
-  git submodule update
-
+  sudo rake gems:install

@@ -12,7 +12,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
 
-  config.gem "commonthread-flickr-fu", :version => '0.1.6', :source => 'http://gems.github.com'
+  config.gem "commonthread-flickr_fu", :source => 'http://gems.github.com'
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
