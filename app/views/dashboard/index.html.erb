@@ -1,0 +1,22 @@
+
+<div>
+  <h2><%= link_to( pluralize(@user.sources.count, 'photo'), photos_url) %></h2>
+  <% if @user.photos.count > 0 %>
+  <%= pluralize @user.photos.count, 'photo' %>
+  <ul id="photos">
+  <% @user.photos.active.recent(:limit => 8).each do |photo| %>
+    <li id="photo-<%= photo.id %>"><%= link_to photo.title, photo_url(photo) %></li>
+  <% end; end %>
+</div>
+
+
+<div>
+  <h2><%= link_to( pluralize(@user.sources.count, 'source'), sources_url) %></h2>
+  <% if @user.sources.count > 0 %>
+  <ul id="sources">
+  <% @user.sources.active.recent(:limit => 5).each do |source| %>
+    <li id="source-<%= source.id %>"><%= link_to source.title, source_url(source) %></li>
+  <% end; end %>
+  <%= link_to 'Add new source', new_source_url %>
+</div>
+
