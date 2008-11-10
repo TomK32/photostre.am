@@ -1,0 +1,10 @@
+<p>
+  We successfully authenticated you with your OpenID <em><%= @identity.identity_url %></em>
+  but some information are missing to create an account for you.
+</p>
+<% form_for :user, @user, :url => users_url do |form| %>
+  <%= render :partial => 'users/form', :object => form %>
+<p>
+  <%= submit_tag 'Create account', :disable_with => "Signing in" %>
+</p>
+<% end %>

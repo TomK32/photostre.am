@@ -1,0 +1,27 @@
+<% form_tag(sessions_url) do %>
+  <%= image_tag 'openid-logo.gif', :id => 'openid_logo' %>
+  <p>
+  You can signup only with OpenID which is basically one global account.
+  The helps you to reduce the overhead of maintaining various accounts.
+  </p>
+  <p>
+  <% if logged_in? %>
+    As you are already logged in we will simple add the OpenID profile you
+    type in below to your current user account. 
+  <% else %>
+    If you don't have an OpenID yet you may <%= link_to 'signup at MyOpenID', 'https://www.myopenid.com/signup'  %> or any other <%= link_to 'OpenID provider', 'http://openid.net/get/' %>. If you already use Flickr you can type in:   <em>www.flickr.com/photos/<strong>username</strong></em>.
+  </p>
+  <p>
+    If you already signed up here and want to add another OpenID to your account,
+    you must login with your first OpenID and then with other ones.
+  <% end %>
+  </p>
+  <p>
+    <label for="openid_identifier">OpenID:</label>
+    <%= text_field_tag "openid_identifier", 'http://www.flickr.com/photos/username' %>
+  </p>
+  
+  <p>
+    <%= submit_tag 'Sign in', :disable_with => "Signing in" %>
+  </p>
+<% end %>
