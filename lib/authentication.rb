@@ -3,6 +3,8 @@ module Authentication
     base.send(:helper_method, :current_user)
     base.send(:helper_method, :logged_in?)
   end
+  
+  private
 
   def authenticated
     unless logged_in?
