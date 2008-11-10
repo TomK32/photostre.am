@@ -9,3 +9,5 @@ Installation
 
   rake db:migrate
   sudo rake gems:install
+  git submodule init
+  git submodule update
