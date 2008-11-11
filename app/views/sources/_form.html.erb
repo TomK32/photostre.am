@@ -2,13 +2,13 @@
 <p>
   <%= form.select :source_type, Source::ACTIVE_TYPES %>
 </p>
-<p>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+<p class="for-source-flickr">
+  For flickr it is enough to type in your username. You will then be redirected to
+  flickr to allow access to your data.
 </p>
 <p>
-  <%= form.label :feed_url %>
-  <%= form.text_field :feed_url %>
+  <%= form.label :username %>
+  <%= form.text_field :username %>
 </p>
 
 <p>

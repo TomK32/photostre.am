@@ -10,7 +10,14 @@ class SourcesController < ApplicationController
   end
 
   def create
-    @source = current_user.sources.new(params[:source])
+    source_type = params[:source][:source_type]
+    if source_type.blank? or ! Source::ACTIVE_TYPES.include?(source_type)
+      @source = source_type.constantize.new({:website_id => current_website.id}.merge(params[:source]))
+    else
+      @source = Source.new(params[:source])
+      render :action => :new and return
+    end
+    @source.user = current_user
     if @source.save
       redirect_to source_url(@source)
     else
