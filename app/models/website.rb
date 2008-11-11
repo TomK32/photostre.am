@@ -1,0 +1,4 @@
+class Website < ActiveRecord::Base
+  validates_presence_of :domain
+  has_and_belongs_to_many :users
+end
