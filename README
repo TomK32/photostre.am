@@ -4,10 +4,27 @@ Das Photowall is a webapplication using Ruby on Rails that allows you to:
 * display them whatever style you want
 * display your favourite images from other people too
 
+http://github.com/TomK32/das-photowall
 
-Installation
 
+== Installation
+
+  git clone git://github.com/TomK32/das-photowall.git
   rake db:migrate
   sudo rake gems:install
   git submodule init
   git submodule update
+
+
+== Plugins used (thanks everybody :)
+
+* acts_as_statemachine
+* acts_as_tree
+* OpenIdAuthentication
+* WillPaginate
+* Workling
+
+
+== Authors
+
+* Thomas R. Koll, tomk32@gmx.de, http://ananasblau.com
