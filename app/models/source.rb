@@ -2,7 +2,7 @@ class Source < ActiveRecord::Base
   has_many :photos
   belongs_to :user
   
-  ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', Flickr]]
+  ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', 'Flickr']]
   
   validates_presence_of :type
   validates_presence_of :user_id
