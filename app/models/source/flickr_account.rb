@@ -7,17 +7,27 @@ class Source::FlickrAccount < Source
   after_save :call_worker
   
   def validate
+    errors.add 'username', 'not a flickr account' unless set_username_to_nsid
+  end
+
+  def set_nsid
     begin
-      user = flickr.people.find_by_username(self.username)
+      flickr_user = flickr.people.find_by_username(self.username)
     rescue Flickr::Errors::UserNotFound
+      logger.debug "didn't find user by username, testing as email"
       begin
-        user = flickr.people.find_by_id(self.username)
+        flickr_user = flickr.people.find_by_email(self.username)
       rescue Flickr::Errors::UserNotFound
-        errors.add 'username', 'not a flickr account'
+        logger.debug "didn't find user by email, testing as id"
+        begin
+          flickr_user = flickr.people.find_by_id(self.username)
+        rescue Flickr::Errors::UserNotFound
+          logger.debug "cannot find user by id"
+        end
       end
-      errors.add 'username', 'not a flickr account'
     end
-    username = user.nsid if user
+    return self.flickr_nsid = flickr_user.nsid if user
+    return false
   end
 
   def flickr
@@ -43,10 +53,11 @@ class Source::FlickrAccount < Source
   end
   
   def call_worker
-    SourceFlickrWorker.asynch_update_data(:id => self.id, :username => self.username) if self.active?
+    SourceFlickrAccountWorker.asynch_update_data(:id => self.id) if self.active?
   end
 
   def update_data
+    logger.debug "updating data for %s: %s" % [source_title, username]
   end
 
 end
