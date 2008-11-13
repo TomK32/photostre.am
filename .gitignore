@@ -5,3 +5,5 @@ tmp/**/*
 .DS_Store
 public/cache/*
 public/**/cache/*
+config/flickr.yml
+config/database.yml
