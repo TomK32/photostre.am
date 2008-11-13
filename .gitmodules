@@ -13,3 +13,6 @@
 [submodule "vendor/plugins/workling"]
 	path = vendor/plugins/workling
 	url = git://github.com/purzelrakete/workling.git
+[submodule "vendor/plugins/flickr_fu"]
+	path = vendor/plugins/flickr_fu
+	url = git@github.com:TomK32/flickr_fu.git
