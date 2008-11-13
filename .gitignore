@@ -7,3 +7,4 @@ public/cache/*
 public/**/cache/*
 config/flickr.yml
 config/database.yml
+tmp/token.yml
