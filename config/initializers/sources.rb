@@ -1,0 +1,1 @@
+FLICKR_CONFIG = RAILS_ROOT + '/config/flickr.yml'

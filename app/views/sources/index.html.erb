@@ -1,0 +1,6 @@
+
+<% @sources.each do |source| %>
+<div id="source-<=% source.id">
+  <%= source.username %> on <%= source.source_title %> is <%= source.active? ? 'active' : 'inactive' %> and was added at <%= source.created_at.to_s(:short) %>.
+</div>
+<% end %>
