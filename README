@@ -15,6 +15,11 @@ http://github.com/TomK32/das-photowall
   git submodule init
   git submodule update
 
+Rename config/database.dist.yml to database.yml and also rename
+config/flickr.dist.yml to flickr.yml
+
+In config/fickr.yml add your flickr API key and secret.
+
 
 == Plugins used (thanks everybody :)
 
@@ -24,6 +29,12 @@ http://github.com/TomK32/das-photowall
 * WillPaginate
 * Workling
 
+
+== Similar Software
+
+Some of this software has been inspiration, some an example for what das-photowall shouldn't be like.
+
+* http://www.bananr.com/99884191@N00
 
 == Authors
 
