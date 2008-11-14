@@ -1,15 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
-  
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
 
   map.resources :photos
-  map.resources :sources
+  map.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
   map.resources :users
   map.resources :sessions
   map.logout 'logout', :controller => "sessions", :action => "delete"
   map.login 'login', :controller => "sessions", :action => "new"
 
-  map.connect 'dashboard', :controller => 'dashboard'
+  map.dashboard 'dashboard', :controller => 'dashboard'
 
   map.root :controller => 'photos'
 

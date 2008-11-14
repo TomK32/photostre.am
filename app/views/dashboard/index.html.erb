@@ -3,7 +3,7 @@
   Please <%= link_to 'add a new source', new_source_url %>.</p>
 <% else %>
 <div>
-  <h2><%= link_to( pluralize(@user.sources.count, 'photo'), photos_url) %></h2>
+  <h2><%= link_to( pluralize(@user.photos.count, 'photo'), photos_url) %></h2>
   <% if @user.photos.count > 0 %>
   <%= pluralize @user.photos.count, 'photo' %>
   <ul id="photos">
