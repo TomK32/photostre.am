@@ -1,12 +1,13 @@
 class SourcesController < ApplicationController
   before_filter :authenticated
 
+  before_filter :current_source, :only => [:show, :reauthenticate]
+
   def index
     @sources = current_user.sources
   end
 
   def show
-    @source = current_user.sources.find_by_id(params[:id])
     if @source.nil?
       flash[:error] = "Source either does not exist or not belong to you"
       redirect_to :action => :index and return
@@ -35,10 +36,11 @@ class SourcesController < ApplicationController
     end
   end
 
+  def reauthenticate
+    send("create_" + @source[:type].demodulize.underscore)
+  end
 
   def authenticate_flickr_account
-    # as one user can have multiple flickr accounts and we respect this,
-    # we have to walk through all of them :(
     current_user.sources.find(:all, :order => 'updated_at DESC').each do |source|
       return true if source.authenticate(params[:frob])
     end
@@ -50,5 +52,8 @@ class SourcesController < ApplicationController
     if @source.save
       redirect_to @source.authentication_url and return
     end
+  end
+  def current_source
+    @source = current_user.sources.find(params[:id])
   end
 end
