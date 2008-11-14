@@ -8,12 +8,15 @@ class Source < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :title
   
+  named_scope :active, :conditions => {:active => true }
+  named_scope :recent, :order => 'last_updated_at DESC'
+  
   def source_type=(source_type)
-    self.type = source_type if AVAILABLE_TYPES.collect{|t|t[0]}.include?(source_type)
+    self[:type] = source_type if AVAILABLE_TYPES.collect{|t|t[0]}.include?(source_type)
   end
 
   def source_type
-    self.class.to_s
+    self[:type].to_s
   end
   def source_title
     AVAILABLE_TYPES.each do |source_t|
