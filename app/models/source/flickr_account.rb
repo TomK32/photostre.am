@@ -26,7 +26,10 @@ class Source::FlickrAccount < Source
         end
       end
     end
-    return self.flickr_nsid = flickr_user.nsid if user
+    if user
+      self.username = flickr_user.username
+      return self.flickr_nsid = flickr_user.nsid
+    end
     return false
   end
 
@@ -44,9 +47,12 @@ class Source::FlickrAccount < Source
   end
   
   def authenticate(frob)
-    flickr.frob = frob
+    flickr.auth.frob = frob
     if flickr.auth.token
-      self.update_attribute :token, flickr.token
+      logger.debug ("authenticated %s: %s with frob: %s" % [self.source_type, self.username, frob])
+      self.token = flickr.auth.token.token
+      self.authenticated_at = Time.now
+      save
       return true
     end
     return false

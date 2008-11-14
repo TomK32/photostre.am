@@ -42,7 +42,10 @@ class SourcesController < ApplicationController
 
   def authenticate_flickr_account
     current_user.sources.find(:all, :order => 'updated_at DESC').each do |source|
-      return true if source.authenticate(params[:frob])
+      unless source.authenticate(params[:frob])
+        flash[:error] = "Can't find the account that this frob might belong to. Please retry"
+      end
+      redirect_to sources_url and return
     end
   end
   
