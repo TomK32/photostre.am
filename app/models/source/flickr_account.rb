@@ -53,11 +53,12 @@ class Source::FlickrAccount < Source
   end
   
   def call_worker
-    SourceFlickrAccountWorker.asynch_update_data(:id => self.id) if self.active?
+    SourceFlickrAccountWorker.asynch_update_data(:id => self.id) if active? and authenticated?
   end
 
   def update_data
     logger.debug "updating data for %s: %s" % [source_title, username]
+    
   end
 
 end
