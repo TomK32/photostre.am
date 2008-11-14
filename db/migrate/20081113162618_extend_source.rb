@@ -6,6 +6,6 @@ class ExtendSource < ActiveRecord::Migration
 
   def self.down
     remove_column :sources, :last_updated_at
-    remove_column :sources, :authenticed_at
+    remove_column :sources, :authenticated_at
   end
 end
