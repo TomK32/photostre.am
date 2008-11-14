@@ -7,7 +7,7 @@ class Source::FlickrAccount < Source
   after_save :call_worker
   
   def validate
-    errors.add 'username', 'not a flickr account' unless set_username_to_nsid
+    errors.add 'username', 'not a flickr account' unless set_nsid
   end
 
   def set_nsid
