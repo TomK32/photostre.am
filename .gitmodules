@@ -19,3 +19,6 @@
 [submodule "vendor/plugins/is_taggable"]
 	path = vendor/plugins/is_taggable
 	url = git://github.com/citrusbyte/is_taggable.git
+[submodule "vendor/plugins/permalink_fu"]
+	path = vendor/plugins/permalink_fu
+	url = git://github.com/technoweenie/permalink_fu.git
