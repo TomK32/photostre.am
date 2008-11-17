@@ -16,3 +16,6 @@
 [submodule "vendor/plugins/flickr_fu"]
 	path = vendor/plugins/flickr_fu
 	url = git@github.com:TomK32/flickr_fu.git
+[submodule "vendor/plugins/is_taggable"]
+	path = vendor/plugins/is_taggable
+	url = git://github.com/citrusbyte/is_taggable.git
