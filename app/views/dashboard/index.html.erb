@@ -6,10 +6,11 @@
   <h2><%= link_to( pluralize(@user.photos.count, 'photo'), photos_url) %></h2>
   <% if @user.photos.count > 0 %>
   <%= pluralize @user.photos.count, 'photo' %>
-  <ul id="photos">
-  <% @user.photos.active.recent(:limit => 8).each do |photo| %>
-    <li id="photo-<%= photo.id %>"><%= link_to photo.title, photo_url(photo) %></li>
+  <div id="photos">
+  <% @user.photos.recent.all(:limit => 8).each do |photo| %>
+    <%= link_to image_tag(photo.icon_url), photo_url(photo) %>
   <% end; end %>
+  </div>
 </div>
 
 
@@ -18,7 +19,7 @@
   <% if @user.sources.count > 0 %>
   <ul id="sources">
   <% @user.sources.active.recent(:limit => 5).each do |source| %>
-    <li id="source-<%= source.id %>"><%= link_to source.title, source_url(source) %></li>
+    <li id="source-<%= source.id %>"><%= source.source_title %>: <%= link_to source.title, source_url(source) %> (<%= link_to 'photostream', source.photostream_url %>, <%= link_to 'profile', source.profile_url %>)</li>
   <% end; end %>
   <%= link_to 'Add new source', new_source_url %>
 </div>
