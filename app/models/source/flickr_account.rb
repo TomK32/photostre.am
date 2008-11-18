@@ -2,7 +2,6 @@ require 'flickr_fu'
 
 class Source::FlickrAccount < Source
 
-
   validates_presence_of :username
   after_save :call_worker
   
@@ -34,7 +33,13 @@ class Source::FlickrAccount < Source
   end
 
   def flickr
-    @flickr ||= Flickr.new(FLICKR_CONFIG)
+    options = FLICKR_CONFIG
+    options.merge!({:token => Flickr::Auth::Token.new( token)}) unless token.blank?
+    @flickr ||= Flickr.new(options)
+  end
+  
+  def person
+    @person ||= flickr.people.find_by_id(self.flickr_nsid)
   end
 
   def before_validation
@@ -46,6 +51,10 @@ class Source::FlickrAccount < Source
     flickr.auth.url(:write)
   end
   
+  def authenticated?
+    ! (token.blank? or authenticated_at.blank?) 
+  end
+  
   def authenticate(frob)
     flickr.auth.frob = frob
     if flickr.auth.token
@@ -53,6 +62,7 @@ class Source::FlickrAccount < Source
       self.token = flickr.auth.token.token
       self.authenticated_at = Time.now
       save
+      @flickr = nil # to create a new with the right token
       return true
     end
     return false
@@ -63,8 +73,31 @@ class Source::FlickrAccount < Source
   end
 
   def update_data
+    return unless authenticated?
+    errors = []
     logger.debug "updating data for %s: %s" % [source_title, username]
-    
+    person.public_photos.each do |photo|
+      next if photo.media != 'photo'
+      local_photo = self.photos.find_by_remote_id(photo.id) || self.photos.new
+      next unless local_photo.new_record?
+      local_photo.attributes = {
+        :title => photo.title,
+        :remote_id => photo.id,
+        :description => photo.description,
+        :tag_list => photo.tags,
+        :machine_tag_list => photo.machine_tags,
+        :web_url => photo.url_photopage,
+        :photo_url => photo.url(:original),
+        :thumbnail_url => photo.url(:thumbnail),
+        :username => photo.owner_name,
+        :user_id => user_id,
+        :public => photo.is_public == '1'
+      }
+      unless local_photo.save(false)
+        logger.debug("Couldn't save photo %s: %s" % [photo.id, photo.url_photopage])
+        errors << local_photo.errors
+      end
+    end
+    return errors
   end
-
 end

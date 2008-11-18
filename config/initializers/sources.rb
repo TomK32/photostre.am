@@ -1,1 +1,1 @@
-FLICKR_CONFIG = RAILS_ROOT + '/config/flickr.yml'
+FLICKR_CONFIG = YAML.load_file(RAILS_ROOT + '/config/flickr.yml')
