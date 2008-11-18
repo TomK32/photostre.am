@@ -76,27 +76,37 @@ class Source::FlickrAccount < Source
     return unless authenticated?
     errors = []
     logger.debug "updating data for %s: %s" % [source_title, username]
-    person.public_photos.each do |photo|
-      next if photo.media != 'photo'
-      local_photo = self.photos.find_by_remote_id(photo.id) || self.photos.new
-      next unless local_photo.new_record?
-      local_photo.attributes = {
-        :title => photo.title,
-        :remote_id => photo.id,
-        :description => photo.description,
-        :tag_list => photo.tags,
-        :machine_tag_list => photo.machine_tags,
-        :web_url => photo.url_photopage,
-        :photo_url => photo.url(:original),
-        :thumbnail_url => photo.url(:thumbnail),
-        :username => photo.owner_name,
-        :user_id => user_id,
-        :public => photo.is_public == '1'
-      }
-      unless local_photo.save(false)
-        logger.debug("Couldn't save photo %s: %s" % [photo.id, photo.url_photopage])
-        errors << local_photo.errors
+    page = 0
+    per_page = 200
+    while (page <= (person.photo_count / per_page))
+      logger.debug "getting image %s to %s for %s" % [page * per_page, page + 1 * per_page, username]
+      flickr_photos = person.public_photos(:per_page => per_page, :page => page)
+      existing_photos = Photo.find(:all, :conditions => {:remote_id => flickr_photos.collect{|p| p.id }}, :select => :remote_id).collect{|p| p.remote_id }
+      flickr_photos.reject!{|p| existing_photos.include?(p.id)}
+      flickr_photos.each do |photo|
+        # TODO break if there's no new image
+        next if photo.media != 'photo'
+        local_photo = self.photos.find_by_remote_id(photo.id) || self.photos.new
+        next unless local_photo.new_record?
+        local_photo.attributes = {
+          :title => photo.title,
+          :remote_id => photo.id,
+          :description => photo.description,
+          :tag_list => photo.tags,
+          :machine_tag_list => photo.machine_tags,
+          :web_url => photo.url_photopage,
+          :photo_url => photo.url(:original),
+          :thumbnail_url => photo.url(:thumbnail),
+          :username => photo.owner_name,
+          :user_id => user_id,
+          :public => photo.is_public == '1'
+        }
+        unless local_photo.save(false)
+          logger.debug("Couldn't save photo %s: %s" % [photo.id, photo.url_photopage])
+          errors << local_photo.errors
+        end
       end
+      page += 1
     end
     return errors
   end
