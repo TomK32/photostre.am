@@ -1,0 +1,9 @@
+<% if @photos.blank? %>
+  <p class="error">No photos yet</p>
+<% else %>
+<% @photos.each do |photo| %>
+  <%= image_tag photo.thumbnail_url, :title => photo.title %>
+<% end %>
+
+<% end %>
+<%= will_paginate @photos %>

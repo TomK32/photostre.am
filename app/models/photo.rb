@@ -10,6 +10,9 @@ class Photo < ActiveRecord::Base
   
   is_taggable :tags, :machine_tags
   has_permalink :title
+
+  cattr_reader :per_page
+  @@per_page = 10
   
   validates_uniqueness_of :remote_id, :scope => :source_id
   
