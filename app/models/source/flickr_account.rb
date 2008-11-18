@@ -76,10 +76,10 @@ class Source::FlickrAccount < Source
     return unless authenticated?
     errors = []
     logger.debug "updating data for %s: %s" % [source_title, username]
-    page = 0
+    page = 1
     per_page = 200
-    while (page <= (person.photo_count / per_page))
-      logger.debug "getting image %s to %s for %s" % [page * per_page, page + 1 * per_page, username]
+    while (page <= (person.photo_count / per_page) + 1)
+#      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
       flickr_photos = person.public_photos(:per_page => per_page, :page => page)
       existing_photos = Photo.find(:all, :conditions => {:remote_id => flickr_photos.collect{|p| p.id }}, :select => :remote_id).collect{|p| p.remote_id }
       flickr_photos.reject!{|p| existing_photos.include?(p.id)}
