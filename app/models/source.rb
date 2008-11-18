@@ -24,6 +24,6 @@ class Source < ActiveRecord::Base
     end
   end
   def authenticated?
-    ! authenticated_at.nil?
+    ! authenticated_at.blank?
   end
 end
