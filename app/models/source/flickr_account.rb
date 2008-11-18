@@ -38,6 +38,14 @@ class Source::FlickrAccount < Source
     @flickr ||= Flickr.new(options)
   end
   
+  def photostream_url
+    "http://flickr.com/photos/%s" % username
+  end
+
+  def profile_url
+    "http://flickr.com/people/%s" % username
+  end
+
   def person
     @person ||= flickr.people.find_by_id(self.flickr_nsid)
   end
@@ -45,7 +53,6 @@ class Source::FlickrAccount < Source
   def before_validation
     self.title ||= self.username
   end
-  
   
   def authentication_url
     flickr.auth.url(:write)
@@ -97,6 +104,8 @@ class Source::FlickrAccount < Source
           :web_url => photo.url_photopage,
           :photo_url => photo.url(:original),
           :thumbnail_url => photo.url(:thumbnail),
+          :medium_url => photo.url(:medium),
+          :icon_url => photo.url(:square),
           :username => photo.owner_name,
           :user_id => user_id,
           :public => photo.is_public == '1'

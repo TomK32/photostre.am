@@ -6,7 +6,8 @@ class Photo < ActiveRecord::Base
   belongs_to :source
   belongs_to :user
   
-  named_scope :active
+  named_scope :published, :conditions => {:public => true}
+  named_scope :recent, :order => 'id DESC'
   
   is_taggable :tags, :machine_tags
   has_permalink :title

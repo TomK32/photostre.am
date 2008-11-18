@@ -26,4 +26,7 @@ class Source < ActiveRecord::Base
   def authenticated?
     ! authenticated_at.blank?
   end
+  
+  def photostream_url; end
+  def profile_url; end
 end
