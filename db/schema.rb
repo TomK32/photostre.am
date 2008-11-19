@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081113162618) do
+ActiveRecord::Schema.define(:version => 20081118170112) do
 
   create_table "albums", :force => true do |t|
     t.datetime "created_at"
@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20081113162618) do
   end
 
   create_table "identities", :force => true do |t|
-    t.string   "identity_url", :null => false
+    t.string   "identity_url", :default => "", :null => false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -32,34 +32,40 @@ ActiveRecord::Schema.define(:version => 20081113162618) do
     t.string  "assoc_type"
     t.binary  "server_url"
     t.binary  "secret"
-    t.integer "user_id"
   end
 
-  add_index "open_id_authentication_associations", ["handle", "user_id"], :name => "index_open_id_authentication_associations_on_handle_and_user_id", :unique => true
   add_index "open_id_authentication_associations", ["handle"], :name => "index_open_id_authentication_associations_on_handle"
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",  :null => false
+    t.integer "timestamp",                  :null => false
     t.string  "server_url"
-    t.string  "salt",       :null => false
+    t.string  "salt",       :default => "", :null => false
   end
 
   create_table "photos", :force => true do |t|
     t.integer  "source_id",                       :null => false
     t.string   "title"
     t.string   "description"
-    t.string   "web_url",                         :null => false
-    t.string   "photo_url",                       :null => false
-    t.string   "thumbnail_url",                   :null => false
+    t.string   "web_url",       :default => "",   :null => false
+    t.string   "photo_url",     :default => "",   :null => false
+    t.string   "thumbnail_url", :default => "",   :null => false
     t.string   "username"
     t.integer  "user_id"
     t.boolean  "public",        :default => true
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remote_id"
+    t.datetime "taken_at"
+    t.datetime "uploaded_at"
+    t.string   "icon_url"
+    t.string   "medium_url"
   end
 
   add_index "photos", ["permalink"], :name => "index_photos_on_permalink", :unique => true
+  add_index "photos", ["remote_id", "source_id"], :name => "index_photos_on_remote_id_and_source_id", :unique => true
+  add_index "photos", ["title"], :name => "index_photos_on_title"
+  add_index "photos", ["description"], :name => "index_photos_on_description"
 
   create_table "sources", :force => true do |t|
     t.string   "feed_url"
@@ -67,19 +73,37 @@ ActiveRecord::Schema.define(:version => 20081113162618) do
     t.string   "api_key"
     t.string   "secret"
     t.string   "token"
-    t.string   "title"
-    t.integer  "user_id"
-    t.integer  "website_id",                        :null => false
-    t.boolean  "active",          :default => true
+    t.string   "title",            :default => "",       :null => false
+    t.integer  "user_id",                                :null => false
+    t.integer  "website_id",                             :null => false
+    t.boolean  "active",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "flickr_nsid"
-    t.datetime "authenticed_at"
+    t.datetime "authenticated_at"
     t.datetime "last_updated_at"
+    t.string   "type",             :default => "Source", :null => false
   end
 
+  add_index "sources", ["type"], :name => "index_sources_on_type"
+
+  create_table "taggings", :force => true do |t|
+    t.string   "tagger_type"
+    t.integer  "tagger_id"
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.string   "tag"
+    t.string   "normalized"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["taggable_id", "taggable_type", "context", "normalized"], :name => "taggable_and_context_and_normalized"
+
   create_table "users", :force => true do |t|
-    t.string   "login",      :limit => 40,                         :null => false
+    t.string   "login",      :limit => 40,  :default => "",        :null => false
     t.string   "name",       :limit => 100, :default => ""
     t.string   "email",      :limit => 100
     t.string   "state",                     :default => "passive"

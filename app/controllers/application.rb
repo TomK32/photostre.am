@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   
   private
   def set_website
-    @website = Website.find_by_domain(request.host)
+    @website ||= Website.find_by_domain(request.host)
     @website ||= Website.first
   end
   def current_website
