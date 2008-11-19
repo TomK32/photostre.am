@@ -1,0 +1,20 @@
+<p>
+  <%= form.label :title %>
+  <%= form.text_field :title, :class => 'title' %>
+</p>
+
+<p>
+  <%= form.label :description %>
+  <%= form.text_area :description, :class => 'description' %>
+</p>
+
+<p>
+  <%= form.label :tag_list, "tags (flower,cat,blue)" %>
+  <%= form.text_field :tag_list, :class => 'tags' %>
+</p>
+
+<p>
+  <%= form.check_box :public %>
+  <%= form.label :public, "everyone can see" %>
+</p>
+
