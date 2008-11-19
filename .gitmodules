@@ -22,3 +22,6 @@
 [submodule "vendor/plugins/permalink_fu"]
 	path = vendor/plugins/permalink_fu
 	url = git://github.com/technoweenie/permalink_fu.git
+[submodule "vendor/plugins/acts_as_list"]
+	path = vendor/plugins/acts_as_list
+	url = git://github.com/rails/acts_as_list.git
