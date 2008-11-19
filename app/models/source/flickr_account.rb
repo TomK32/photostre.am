@@ -5,7 +5,7 @@ class Source::FlickrAccount < Source
   validates_presence_of :username
   after_save :call_worker
   
-  def validate
+  def validate_on_create
     errors.add 'username', 'not a flickr account' unless set_nsid
   end
 
@@ -64,7 +64,7 @@ class Source::FlickrAccount < Source
   
   def authenticate(frob)
     flickr.auth.frob = frob
-    if flickr.auth.token
+    unless flickr.auth.token.token.blank?
       logger.debug ("authenticated %s: %s with frob: %s" % [self.source_type, self.username, frob])
       self.token = flickr.auth.token.token
       self.authenticated_at = Time.now
@@ -91,6 +91,7 @@ class Source::FlickrAccount < Source
       existing_photos = Photo.find(:all, :conditions => {:remote_id => flickr_photos.collect{|p| p.id }}, :select => :remote_id).collect{|p| p.remote_id }
       flickr_photos.reject!{|p| existing_photos.include?(p.id)}
       flickr_photos.each do |photo|
+
         # TODO break if there's no new image
         next if photo.media != 'photo'
         local_photo = self.photos.find_by_remote_id(photo.id) || self.photos.new
@@ -99,8 +100,8 @@ class Source::FlickrAccount < Source
           :title => photo.title,
           :remote_id => photo.id,
           :description => photo.description,
-          :tag_list => photo.tags,
-          :machine_tag_list => photo.machine_tags,
+          :tags => TagList.new(photo.tags, {:parse => true, :delimiter => ' '}),
+          :machine_tags => TagList.new(photo.machine_tags, {:parse => true, :delimiter => ' '}),
           :web_url => photo.url_photopage,
           :photo_url => photo.url(:original),
           :thumbnail_url => photo.url(:thumbnail),
