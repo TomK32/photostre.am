@@ -2,7 +2,7 @@
   <p class="error">No photos yet</p>
 <% else %>
 <% @photos.each do |photo| %>
-  <%= image_tag photo.icon_url, :title => photo.title %>
+  <%= link_to image_tag(photo.icon_url, :alt => photo.title), photo_url(photo) %>
 <% end %>
 
 <% end %>
