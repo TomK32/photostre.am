@@ -20,5 +20,5 @@ class AddOpenIdAuthenticationTables < ActiveRecord::Migration
     remove_index :open_id_authentication_associations, :handle
     drop_table :open_id_authentication_associations
     drop_table :open_id_authentication_nonces
-  end
+  end
 end
