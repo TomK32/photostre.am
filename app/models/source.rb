@@ -6,7 +6,6 @@ class Source < ActiveRecord::Base
   
   validates_presence_of :type
   validates_presence_of :user_id
-  validates_presence_of :title
   
   named_scope :active, :conditions => {:active => true }
   named_scope :recent, :order => 'last_updated_at DESC'
