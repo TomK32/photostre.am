@@ -41,17 +41,20 @@ class SourcesController < ApplicationController
   end
 
   def authenticate_flickr_account
+    hit = false
     current_user.sources.find(:all, :order => 'updated_at DESC').each do |source|
-      unless source.authenticate(params[:frob])
-        flash[:error] = "Can't find the account that this frob might belong to. Please retry"
+      if source.authenticate(params[:frob])
+        redirect_to sources_url and return
       end
-      redirect_to sources_url and return
     end
+    flash[:error] = "Can't verify your account with flickr. Please retry"
+    redirect_to sources_url and return
   end
   
 
   private
   def create_flickr_account
+    @source.token = nil
     if @source.save
       redirect_to @source.authentication_url and return
     end
