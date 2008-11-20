@@ -25,4 +25,5 @@ class ApplicationController < ActionController::Base
   def current_website
     @website
   end
+  helper_method :current_website
 end
