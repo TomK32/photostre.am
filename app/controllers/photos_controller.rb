@@ -20,5 +20,7 @@ class PhotosController < ApplicationController
   private
   def current_photo
     @photo ||= Photo.find(params[:id])
+    @meta_keywords = @photo.tag_list
+    @page_title = @photo.title
   end
 end
