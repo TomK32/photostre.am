@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081118170112) do
+ActiveRecord::Schema.define(:version => 20081120110036) do
 
   create_table "albums", :force => true do |t|
     t.datetime "created_at"
@@ -124,12 +124,12 @@ ActiveRecord::Schema.define(:version => 20081118170112) do
   add_index "users_websites", ["website_id", "user_id"], :name => "index_users_websites_on_website_id_and_user_id", :unique => true
 
   create_table "websites", :force => true do |t|
-    t.string   "domain",      :default => "localhost", :null => false
+    t.string   "domain",        :default => "localhost", :null => false
     t.string   "site_title"
-    t.string   "metatags"
+    t.string   "meta_keywords"
     t.string   "footer_line"
     t.string   "description"
-    t.boolean  "active",      :default => true
+    t.boolean  "active",        :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
