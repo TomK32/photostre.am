@@ -5,9 +5,9 @@
   <title><%= site_title %></title>
 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="a photo aggregator" />
-  <meta name="author" content="das-photowall" />
-  <meta name="keywords" content="photogaphy,photowall,photoalbum,<%= yield :keywords %>" />
+  <meta name="description" content="<%= h current_website.description %>" />
+  <meta name="generator" content="das-photowall" />
+  <meta name="keywords" content="<%= h meta_keywords %>" />
   <meta name="language" content="en-uk" />
 	
   <link title="Photos" type="application/atom+xml" href="<%= formatted_photos_url(:format => :atom)%>" rel="alternate" />
@@ -20,7 +20,8 @@
 
   <div id="header">
 
-    <p><a href="/" title="back to home-page"><%= current_website.site_title %></a></p>
+    <p id="site_title"><a href="/" title="back to homepage"><%= h current_website.site_title %></a></p>
+    <p id="site_description"><%= h current_website.description %></p>
   </div>
 
   <div id="top_navigation">
