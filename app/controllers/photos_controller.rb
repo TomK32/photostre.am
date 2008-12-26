@@ -12,7 +12,7 @@ class PhotosController < ApplicationController
   
   def edit
     if @photo.user_id != current_user.id
-      flash[:error] = "You cannot edit this photo"
+      flash[:error] = t(:'photos.errors.edit_photo', :default => 'You cannot edit this photo')
       redirect_to photo_url(photo) and return
     end
   end

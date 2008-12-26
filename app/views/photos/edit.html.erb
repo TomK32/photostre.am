@@ -2,6 +2,6 @@
   <div class="photo"><%= link_to image_tag(@photo.medium_url), @photo.web_url %></div>
   <%= render :partial => 'form', :object => form %>
   <p>
-    <input type="submit" value="update photo" />
+    <input type="submit" value="<%= t(:'photos.buttons.update', :default => 'update photo') %>" />
   </p>
 <% end %>
