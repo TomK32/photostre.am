@@ -1,9 +1,9 @@
 <% if @user.sources.empty? %>
-  <p class="notice">You didn't setup a source yet where we can pull the images from.
-  Please <%= link_to 'add a new source', new_source_url %>.</p>
+  <p class="notice"><%= t(:'sources.errors.no_sources_yet', :default => "You didn't setup a source yet where we can pull the images from.") %> 
+  <%= t(:'dashboard.add_new_source', :default => "Please add a {link}", :link => link_to(t(:'sources.links.new_source', :default => 'new source'), new_source_url)) %>.</p>
 <% else %>
 <div>
-  <h2><%= link_to( pluralize(@user.photos.count, 'photo'), photos_url) %></h2>
+  <h2><%= link_to( pluralize(@user.photos.count, t(:'dashboard.headers.photo', :default => 'photo'), photos_url) %></h2>
   <% if @user.photos.count > 0 %>
   <%= pluralize @user.photos.count, 'photo' %>
   <div id="photos">
@@ -15,13 +15,13 @@
 
 
 <div>
-  <h2><%= link_to( pluralize(@user.sources.count, 'source'), sources_url) %></h2>
+  <h2><%= link_to( pluralize(@user.sources.count, t(:'dashboard.headers.source', :default => 'source')), sources_url) %></h2>
   <% if @user.sources.count > 0 %>
   <ul id="sources">
   <% @user.sources.active.recent(:limit => 5).each do |source| %>
-    <li id="source-<%= source.id %>"><%= source.source_title %>: <%= link_to source.title, source_url(source) %> (<%= link_to 'photostream', source.photostream_url %>, <%= link_to 'profile', source.profile_url %>)</li>
+    <li id="source-<%= source.id %>"><%= source.source_title %>: <%= link_to source.title, source_url(source) %> (<%= link_to 'photostream', source.photostream_url %>, <%= link_to t(:'dashboard.links.profile', :default => 'profile'), source.profile_url %>)</li>
   <% end; end %>
-  <%= link_to 'Add new source', new_source_url %>
+  <%= link_to t(:'dashboard.links.new_source', :default => 'new source'), new_source_url %>
 </div>
 
 <% end %>
