@@ -1,0 +1,25 @@
+de:
+  dashboard:
+    add_new_source: Bitte fügen Sie eine {link} hinzu.
+    links:
+      new_source: neue Quelle
+      add_new_source: eine neue Quelle hinzufügen
+      profile: Profil
+    headers:
+      photo: Foto
+      source: Quelle
+  photos:
+    errors:
+      no_photos_yet: Noch keine Bilder vorhanden
+      edit_photo: Sie können dieses Bild nicht bearbeiten.
+    form:
+      buttons:
+        update: Abspeichern
+      labels:
+        title: Titel
+        description: Beschreibung
+        tags: Schlüsselwörter (Blume, Katze, blau)
+        public: Für alle sichtbar
+  sources:
+    errors:
+      no_sources_yet: Es sind noch keine Quellen eingetragen.
