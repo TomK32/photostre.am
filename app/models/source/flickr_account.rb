@@ -65,7 +65,7 @@ class Source::FlickrAccount < Source
   def authenticate(frob)
     flickr.auth.frob = frob
     unless flickr.auth.token.token.blank?
-      logger.debug ("authenticated %s: %s with frob: %s" % [self.source_type, self.username, frob])
+      logger.debug("authenticated %s: %s with frob: %s" % [self.source_type, self.username, frob])
       self.token = flickr.auth.token.token
       self.authenticated_at = Time.now
       save
@@ -76,7 +76,10 @@ class Source::FlickrAccount < Source
   end
   
   def call_worker
-    SourceFlickrAccountWorker.asynch_update_data(:id => self.id) if active? and authenticated?
+    return unless active?
+    return unless authenticated?
+    return unless active_changed?
+    SourceFlickrAccountWorker.asynch_update_data(:id => self.id)
   end
 
   def update_data
