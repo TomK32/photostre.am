@@ -25,7 +25,7 @@ class Source::FlickrAccount < Source
         end
       end
     end
-    if user
+    if flickr_user
       self.username = flickr_user.username
       return self.flickr_nsid = flickr_user.nsid
     end
@@ -95,7 +95,6 @@ class Source::FlickrAccount < Source
       flickr_photos.reject!{|p| existing_photos.include?(p.id)}
       flickr_photos.each do |photo|
 
-        # TODO break if there's no new image
         next if photo.media != 'photo'
         local_photo = self.photos.find_by_remote_id(photo.id) || self.photos.new
         next unless local_photo.new_record?
