@@ -8,6 +8,9 @@ de:
     headers:
       photo: Foto
       source: Quelle
+  layout:
+    links:
+      back_to_homepage: Zurück zur Startseite
   photos:
     errors:
       no_photos_yet: Noch keine Bilder vorhanden

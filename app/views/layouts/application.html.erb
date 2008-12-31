@@ -20,7 +20,7 @@
 
   <div id="header">
 
-    <p id="site_title"><a href="/" title="back to homepage"><%= h current_website.site_title %></a></p>
+    <p id="site_title"><a href="/" title="<%= t(:'layout.links.back_to_homepage', :default => 'Back to homepage') %>"><%= h current_website.site_title %></a></p>
     <p id="site_description"><%= h current_website.description %></p>
   </div>
 
