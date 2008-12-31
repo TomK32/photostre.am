@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, :login
   
-  is_tagger
+  acts_as_tagger
   
   def to_param
     [id, login] * '-'

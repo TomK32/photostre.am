@@ -9,7 +9,7 @@ class Photo < ActiveRecord::Base
   named_scope :published, :conditions => {:public => true}
   named_scope :recent, :order => 'id DESC'
   
-  is_taggable :tags, :machine_tags
+  acts_as_taggable_on :tags, :machine_tags
   has_permalink :title
 
   cattr_reader :per_page
