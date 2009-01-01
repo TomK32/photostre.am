@@ -20,4 +20,29 @@ describe Source::FlickrAccount do
       @flickr_account.source_title.should == 'Flickr.com'
     end
   end
+  
+  describe "flickr api communication" do
+    it "should set the :nsid" do
+      @flickr_account.set_nsid.should ==('99884191@N00')
+    end
+    it "should return a flickr object"
+    it "should have a flickr object with a token"
+    it "should reutrn a person object"
+    it "should reutrn an authetication url"
+  end
+  
+  describe "url" do
+    it "should have an url for photostream" do
+      @flickr_account.photostream_url.should == 'http://flickr.com/photos/TomK32'
+    end
+    it "should have an url for profile" do
+      @flickr_account.profile_url.should == 'http://flickr.com/people/TomK32'
+    end
+  end
+  it "should be authenticated? if both, token and authenticated_at, are set" do
+    @flickr_account.update_attributes({:token => false, :authenticated_at => Time.now})
+    @flickr_account.should_not be_authenticated
+    @flickr_account.update_attributes({:token => 'some-token'})
+    @flickr_account.should be_authenticated
+  end
 end
