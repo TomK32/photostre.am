@@ -28,10 +28,12 @@ describe Source::FlickrAccount do
     it "should return a flickr object"
     it "should have a flickr object with a token"
     it "should reutrn a person object"
-    it "should reutrn an authetication url"
+    it "should reutrn an authetication url" do
+      @flickr_account.authentication_url.should_not be_blank
+    end
   end
   
-  describe "url" do
+  describe "urls" do
     it "should have an url for photostream" do
       @flickr_account.photostream_url.should == 'http://flickr.com/photos/TomK32'
     end
