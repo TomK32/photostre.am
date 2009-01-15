@@ -28,3 +28,9 @@
 [submodule "vendor/plugins/acts_as_taggable_on"]
 	path = vendor/plugins/acts_as_taggable_on
 	url = git://github.com/mbleigh/acts-as-taggable-on.git
+[submodule "vendor/plugins/rspec_on_rails_on_crack"]
+	path = vendor/plugins/rspec_on_rails_on_crack
+	url = git://github.com/technoweenie/rspec_on_rails_on_crack.git
+[submodule "vendor/plugins/rspec-on-rails-matchers"]
+	path = vendor/plugins/rspec-on-rails-matchers
+	url = git://github.com/joshknowles/rspec-on-rails-matchers.git
