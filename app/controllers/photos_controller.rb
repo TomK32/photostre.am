@@ -19,7 +19,14 @@ class PhotosController < ApplicationController
   
   private
   def current_photo
-    @photo ||= Photo.find(params[:id])
+    begin
+      @photo ||= Photo.find_by_permalink(params[:id])
+      @photo ||= Photo.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => ex
+      flash.now[:error] = t(:'photos.errors.photo_not_found')
+      render :action => :index, :status => 404 and return
+    end
+    
     @meta_keywords = @photo.tag_list
     @page_title = @photo.title
   end
