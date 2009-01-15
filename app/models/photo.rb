@@ -16,6 +16,11 @@ class Photo < ActiveRecord::Base
   @@per_page = 10
   
   validates_uniqueness_of :remote_id, :scope => :source_id
+  validates_presence_of :permalink
+  validates_presence_of :source_id
+  validates_presence_of :web_url
+  validates_presence_of :photo_url
+  
   
   def validate
     errors.add('username or user_id missing') if user_id.blank? and username.blank?
