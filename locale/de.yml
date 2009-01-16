@@ -1,6 +1,6 @@
 de:
   dashboard:
-    add_new_source: Bitte fügen Sie eine {link} hinzu.
+    add_new_source: Bitte fügen Sie eine {{link}} hinzu.
     links:
       new_source: neue Quelle
       add_new_source: eine neue Quelle hinzufügen

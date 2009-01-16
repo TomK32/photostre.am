@@ -1,0 +1,37 @@
+en-GB:
+  sessions:
+    open_id:
+      success: 'We successfully authenticated you with your OpenID'
+    errors:
+      information_missing: 'But some information are missing to create an account for you.'
+    buttons:
+      create_account: 'Create account'
+      signing_in: 'Signing in'
+      de:
+  dashboard:
+    add_new_source: 'Please add a {{link}}'
+    links:
+      new_source: new source
+      add_new_source: add a new source
+      profile: Profile
+    headers:
+      photo: Photo
+      source: Source
+  layout:
+    links:
+      back_to_homepage: Back to homepage
+  photos:
+    errors:
+      no_photos_yet: No photos yet
+      edit_photo: You cannot edit this photo.
+    form:
+      buttons:
+        update: Update
+      labels:
+        title: Title
+        description: Description
+        tags: Tags (flower, car, blue)
+        public: Visible to all
+  sources:
+    errors:
+      no_sources_yet: You didn't setup a source yet where we can pull the images from.
