@@ -14,6 +14,7 @@ en-GB:
       new_source: new source
       add_new_source: add a new source
       profile: Profile
+      photostream: Photostream
     headers:
       photo: Photo
       source: Source

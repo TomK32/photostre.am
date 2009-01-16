@@ -1,11 +1,10 @@
 <% if @user.sources.empty? %>
-  <p class="notice"><%= t(:'sources.errors.no_sources_yet', :default => "You didn't setup a source yet where we can pull the images from.") %> 
-  <%= t(:'dashboard.add_new_source', :default => "Please add a {link}", :link => link_to(t(:'dashboard.links.new_source', :default => 'new source'), new_source_url)) %>.</p>
+  <p class="notice"><%= t(:'sources.errors.no_sources_yet') %> 
+  <%= t(:'dashboard.add_new_source', :link => link_to(t(:'dashboard.links.new_source'), new_source_url)) %>.</p>
 <% else %>
 <div>
-  <h2><%= link_to( pluralize(@user.photos.count, t(:'dashboard.headers.photo', :default => 'photo'), photos_url) %></h2>
+  <h2><%= link_to( t(:'dashboard.headers.photo', :count => @user.photos.count), photos_url) %></h2>
   <% if @user.photos.count > 0 %>
-  <%= pluralize @user.photos.count, 'photo' %>
   <div id="photos">
   <% @user.photos.recent.all(:limit => 8).each do |photo| %>
     <%= link_to image_tag(photo.icon_url), photo_url(photo) %>
@@ -15,13 +14,13 @@
 
 
 <div>
-  <h2><%= link_to( pluralize(@user.sources.count, t(:'dashboard.headers.source', :default => 'source')), sources_url) %></h2>
+  <h2><%= link_to( t(:'dashboard.headers.source', :count => @user.sources.count), sources_url) %></h2>
   <% if @user.sources.count > 0 %>
   <ul id="sources">
   <% @user.sources.active.recent(:limit => 5).each do |source| %>
-    <li id="source-<%= source.id %>"><%= source.source_title %>: <%= link_to source.title, source_url(source) %> (<%= link_to 'photostream', source.photostream_url %>, <%= link_to t(:'dashboard.links.profile', :default => 'profile'), source.profile_url %>)</li>
+    <li id="source-<%= source.id %>"><%= source.source_title %>: <%= link_to source.title, source_url(source) %> (<%= link_to t(:'dashboard.links.photostream'), source.photostream_url %>, <%= link_to t(:'dashboard.links.profile'), source.profile_url %>)</li>
   <% end; end %>
-  <%= link_to t(:'dashboard.links.add_new_source', :default => 'add a new source'), new_source_url %>
+  <%= link_to t(:'dashboard.links.add_new_source'), new_source_url %>
 </div>
 
 <% end %>
