@@ -1,6 +1,8 @@
 db/*sqlite
 db/*sqlite3
 log/*.log
+log/workling.output
+log/*.pid
 tmp/**/*
 .DS_Store
 public/cache/*
