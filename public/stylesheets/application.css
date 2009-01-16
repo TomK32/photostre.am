@@ -15,3 +15,8 @@
 	background-repeat: no-repeat;
 	background-position: 3px 2px;
 }
+
+.fieldWithErrors {
+	color: red;
+	display: inline;
+}

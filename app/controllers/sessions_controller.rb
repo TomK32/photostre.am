@@ -28,13 +28,13 @@ class SessionsController < ApplicationController
               logger.debug("creating new user '%s'" % registration["nickname"])
               @user = User.new(:login => registration["nickname"],
                   :name => registration["fullname"], :email => registration["email"])
-              unless @user.valid?
+              unless @user.save
                 # not enough data from the provider. e.g. missing email or nickname
                 @identity.save
                 session[:identity_id] = @identity.id
                 render :action => :edit and return
               end
-              @identity.update_attribute :user_id, @user.save!
+              @identity.update_attribute :user_id, @user.id
             end
           end
           @current_user = @identity.user

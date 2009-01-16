@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       end
       redirect_to '/' and return
     else
-      flash[:error] = "Couldn't save your account"
+      flash.now[:error] = "Couldn't save your account"
       render :action => 'new' and return
     end
   end

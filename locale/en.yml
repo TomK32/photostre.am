@@ -1,0 +1,8 @@
+sessions:
+  open_id:
+    success: 'We successfully authenticated you with your OpenID'
+  errors:
+    information_missing: 'But some information are missing to create an account for you.'
+  buttons:
+    create_account: 'Create account'
+    signing_in: 'Signing in'

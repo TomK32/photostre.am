@@ -1,0 +1,11 @@
+<p>
+  <%= t(:'sessions.open_id.success') %> <em><%= current_identity.identity_url %></em><br />
+  <%= t(:'sessions.errors.information_missing') %>
+</p>
+<%= error_messages_for :user %>
+<% form_for :user, @user, :url => users_url do |form| %>
+  <%= render :partial => 'users/form', :object => form %>
+<p>
+  <%= submit_tag t(:'sessions.buttons.create_account'), :disable_with => t(:'sessions.buttongs.signing_in') %>
+</p>
+<% end %>
