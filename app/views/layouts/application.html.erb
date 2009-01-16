@@ -31,7 +31,7 @@
       <li><%= link_to current_user.login, user_url(current_user.id) %></li>
       <li><%= link_to 'dashboard', dashboard_url %></li>
       <% else %>
-      <li><%= link_to 'login', login_url unless logged_in? %>
+      <li><%= link_to 'login', login_url unless logged_in? %></li>
       <% end %>
     </ul>
     <%= render :partial => 'submenu' rescue nil %>

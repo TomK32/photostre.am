@@ -15,15 +15,14 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password
 
-  before_filter :set_website
-  
   private
-  def set_website
+  def current_website
     @website ||= Website.find_by_domain(request.host)
     @website ||= Website.first
   end
-  def current_website
-    @website
-  end
   helper_method :current_website
+  def current_identity
+    @identity = Identity.find(session[:identity_id])
+  end
+  helper_method :current_identity
 end

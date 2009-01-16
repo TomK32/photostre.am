@@ -6,6 +6,7 @@ module WebsiteHelper
   end
   
   def meta_keywords
+    return if @meta_keywords.blank?
     @meta_keywords = @meta_keywords.split(',') if @meta_keywords.is_a?(String)
     @meta_keywords ||= []
     keywords = (@meta_keywords + current_website.meta_keywords.split(',')).compact

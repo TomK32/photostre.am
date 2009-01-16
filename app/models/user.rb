@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, :login
   
+  validates_uniqueness_of :login
+  
   acts_as_tagger
   
   def to_param
