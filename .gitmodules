@@ -34,3 +34,6 @@
 [submodule "vendor/plugins/rspec-on-rails-matchers"]
 	path = vendor/plugins/rspec-on-rails-matchers
 	url = git://github.com/joshknowles/rspec-on-rails-matchers.git
+[submodule "vendor/rails"]
+	path = vendor/rails
+	url = git://github.com/rails/rails.git
