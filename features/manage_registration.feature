@@ -5,6 +5,12 @@ Feature: Registration
   
   Scenario: Login with OpenID
     Given I am on the new session page
-    When I fill in "openid_identifier" with "http://tomk32.openid.com"
+    When I fill in "openid_identifier" with "http://tomk32.myopenid.com"
     And I press "Sign in"
-    Then I should be redirected to http://tomk32.openid.com
+    Then I should be redirected to /^http://www.myopenid.com/server/
+
+  Scenario: Loging with a bad OpenID
+    Given I am on the new session page
+    When I fill in "openid_identifier" with "http://badopenid.host"
+    And I press "Sign in"
+    Then the request should be a "success"
