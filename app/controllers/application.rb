@@ -21,4 +21,12 @@ class ApplicationController < ActionController::Base
     @website ||= Website.first
   end
   helper_method :current_website
+  
+  def current_identity
+    @current_identity = Identity.find_by_id(session[:identity_id])
+  end
+
+  def authenticated?
+    ! current_identity.nil?
+  end
 end

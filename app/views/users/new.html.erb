@@ -1,5 +1,5 @@
 <p>
-  <%= t(:'sessions.open_id.success') %> <em><%= current_identity.identity_url %></em><br />
+  <%= t(:'sessions.open_id.success') %> <em><%= @identity.identity_url %></em><br />
   <%= t(:'sessions.errors.information_missing') %>
 </p>
 <%= error_messages_for :user %>

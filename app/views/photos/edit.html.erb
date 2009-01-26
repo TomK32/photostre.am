@@ -1,7 +1,8 @@
+<%= error_messages_for :photo %>
 <% form_for :photo, @photo, photo_url(@photo) do |form| %>
   <div class="photo"><%= link_to image_tag(@photo.medium_url), @photo.web_url %></div>
   <%= render :partial => 'form', :object => form %>
   <p>
-    <input type="submit" value="<%= t(:'photos.buttons.update', :default => 'update photo') %>" />
+    <input type="submit" value="<%= t(:'photos.forms.buttons.update', :default => 'update photo') %>" />
   </p>
 <% end %>

@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   caches_action :show, :index
 
   def index
-    @photos = Photo.published.paginate(:limit => params[:limit], :page => params[:page])
+    @photos = current_user.photos.published.paginate(:limit => params[:limit], :page => params[:page])
   end
   
   def show
@@ -12,8 +12,8 @@ class PhotosController < ApplicationController
   
   def edit
     if @photo.user_id != current_user.id
-      flash[:error] = t(:'photos.errors.edit_photo', :default => 'You cannot edit this photo')
-      redirect_to photo_url(photo) and return
+      flash.now[:error] = t(:'photos.errors.edit_photo', :default => 'You cannot edit this photo')
+      redirect_to photo_url(@photo) and return
     end
   end
   

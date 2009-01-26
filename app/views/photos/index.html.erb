@@ -1,5 +1,5 @@
-<% if @photos.blank? %>
-  <p class="error"><%= t(:'errors.no_photos_yet', :default => 'No photos yet') %></p>
+<% if @photos.empty? %>
+  <p class="error"><%= t(:'photos.errors.no_photos_yet', :default => 'No photos yet') %></p>
 <% else %>
 <% @photos.each do |photo| %>
   <%= link_to image_tag(photo.icon_url, :alt => photo.title), photo_url(photo) %>

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  # for OpenID
   skip_before_filter :verify_authenticity_token, :only => :create
   helper :users
   def create
@@ -21,7 +22,7 @@ class SessionsController < ApplicationController
         if result.successful?
           @identity = Identity.find_or_create_by_identity_url(identity_url)
           if @identity.user.nil?
-            unless User.find_by_id(session[:user_id]).nil? # for some reason I can't access helpers here
+            unless User.find_by_id(session[:user_id]).nil?
               @identity.user_id = session[:user_id]
               @identity.save
             else
@@ -32,7 +33,7 @@ class SessionsController < ApplicationController
                 # not enough data from the provider. e.g. missing email or nickname
                 @identity.save
                 session[:identity_id] = @identity.id
-                render :action => :edit and return
+                render :template => 'users/new' and return
               end
               @identity.update_attribute :user_id, @user.id
             end
@@ -50,7 +51,7 @@ class SessionsController < ApplicationController
     def successful_login
       session[:identity_id] = @identity.id
       session[:user_id] = @current_user.id
-      redirect_to(root_url)
+      redirect_to(root_url, :status=>302) and return
     end
   
     def failed_login(message)
