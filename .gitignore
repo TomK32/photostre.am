@@ -10,3 +10,4 @@ public/**/cache/*
 config/flickr.yml
 config/database.yml
 tmp/token.yml
+tmp/webrat-*.html
