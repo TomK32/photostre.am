@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
     def successful_login
       session[:identity_id] = @identity.id
       session[:user_id] = @current_user.id
-      redirect_to(root_url, :status=>302) and return
+      redirect_to(dashboard_url)
     end
   
     def failed_login(message)

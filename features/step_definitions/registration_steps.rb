@@ -1,26 +1,13 @@
 
-Given /I am on the new session page/ do
-  visit "/sessions/new"
-end
-
-Then /^I should be redirected to "(.*)"$/ do |url|
-  if @response.redirected_to
-    assert @response.redirected_to.match(url)
-  else
-    assert_redirected_to url
+class OpenID::Association
+  def check_message_signature(params)
+    return true
   end
 end
 
-Then /^I should see template "(.*)"$/ do |template|
-  assert_template template
-end
-
-Then /^the request should be a "(.*)"$/ do |status|
-  assert_response status.to_sym
-end
-
 Given /^that I have a complete OpenID as user "(.*)"$/ do |username|
-  OpenIdAuthentication::Association.create!(
+    Time.stub!(:now).and_return(Time.utc(2009,01,26, 18,23,20))
+    OpenIdAuthentication::Association.create!(
     :handle => '{HMAC-SHA1}{497cd9fc}{zzWlVQ==}',
     :server_url => 'http://www.myopenid.com/server',
     :lifetime => 1209600, :issued => 1232922430, :assoc_type => 'HMAC-SHA1',
@@ -47,13 +34,8 @@ Given /^that I have a complete OpenID as user "(.*)"$/ do |username|
 end
 
 
-class OpenID::Association
-  def get_message_signature(params)
-    return 'abcdefghijklmnopqrstuvwxyz'
-  end
-end
-
 Given /^that I have an incomplete OpenID$/ do
+  Time.stub!(:now).and_return(Time.utc(2009,01,26, 18,23,20))
   OpenIdAuthentication::Association.create!(
     :handle => '{HMAC-SHA1}{497cd9fc}{zzWlVQ==}',
     :server_url => 'http://www.myopenid.com/server',
