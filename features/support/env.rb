@@ -11,6 +11,7 @@ Webrat.configure do |config|
   config.mode = :rails
 end
 
+
 # Comment out the next two lines if you're not using RSpec's matchers (should / should_not) in your steps.
 require 'cucumber/rails/rspec'
 require 'webrat/core/matchers'
@@ -18,3 +19,10 @@ require 'webrat/core/matchers'
 require 'spec'
 require 'spec/rails'
 require 'spec/mocks'
+
+Before do
+  Fixtures.reset_cache
+  fixtures_folder = File.join(RAILS_ROOT, 'spec', 'fixtures')
+  fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
+  Fixtures.create_fixtures(fixtures_folder, fixtures)
+end
