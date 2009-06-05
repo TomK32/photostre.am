@@ -12,7 +12,7 @@ en-GB:
     add_new_source: 'Please add a {{link}}'
     links:
       new_source: new source
-      add_new_source: add a new source
+      add_new_source: Add a new source
       profile: Profile
       photostream: Photostream
     headers:
@@ -35,4 +35,6 @@ en-GB:
         public: Visible to all
   sources:
     errors:
-      no_sources_yet: You didn't setup a source yet where we can pull the images from.
+      no_sources_yet: "You didn't setup a source yet where we can pull the images from."
+    buttons:
+      add_source: Add source

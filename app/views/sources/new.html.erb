@@ -1,6 +1,6 @@
 <% form_for :source, @source, :url => sources_url do |form| %>
   <%= render :partial => 'form', :object => form %>
 <p>
-  <input type="submit" value="Add source" />
+  <input type="submit" value="<%= t(:sources.buttons.add_source) %>" />
 </p>
 <% end %>
