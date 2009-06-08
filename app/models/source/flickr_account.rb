@@ -51,7 +51,7 @@ class Source::FlickrAccount < Source
   end
 
   def before_validation
-    self.title ||= self.username
+    self.title = self.username if self.title.blank?
   end
   
   def authentication_url
