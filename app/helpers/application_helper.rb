@@ -1,10 +1,11 @@
-module WebsiteHelper
-  attr_accessor :site_title, :page_title, :meta_keywords
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+  attr_accessor :site_title, :title, :meta_keywords
 
-  def site_title
-    [page_title, current_website.site_title].compact.join(' // ')
+  def page_title
+    [@title, (@site_title || t(:'app.title'))].reject{|a|a.blank?}.compact.join(' // ')
   end
-  
+
   def meta_keywords
     return if @meta_keywords.blank?
     @meta_keywords = @meta_keywords.split(',') if @meta_keywords.is_a?(String)
