@@ -11,7 +11,7 @@ module Rack
       if env['REQUEST_URI'] == '/'
         website = Website.find_by_domain(env['SERVER_NAME'])
         website ||= Website.find_by_domain(env['SERVER_NAME'].gsub(/^www\./, ''))
-        env['REQUEST_URI'] = website.root_path
+        env['REQUEST_URI'] = website.root_path if website
       end
       @app.call(env)
     end

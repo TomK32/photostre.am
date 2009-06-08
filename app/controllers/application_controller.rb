@@ -17,8 +17,10 @@ class ApplicationController < ActionController::Base
 
   private
   def current_website
-    @website ||= Website.find_by_domain(request.host)
-    @website ||= Website.first
+    @current_website ||= Website.active.find_by_domain(request.host)
+    flash[:error] = 'There is no domain %s registered with us or not active.' % request.host
+    @current_website ||= Website.first
+    @current_website
   end
   helper_method :current_website
   
