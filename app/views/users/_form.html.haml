@@ -1,13 +1,9 @@
-
-<p>
-  <%= form.label :login, 'nick name (required)' %><br />
-  <%= form.text_field :login %>
-</p>
-<p>
-  <%= form.label :name, 'display name' %><br />
-  <%= form.text_field :name %>
-</p>
-<p>
-  <%= form.label :email, 'email (required)' %><br />
-  <%= form.text_field :email %>
-</p>
+%p
+  = form.label :login, t(:'.login')
+  = form.text_field :login
+%p
+  = form.label :name, t(:'.name')
+  = form.text_field :name
+%p
+  = form.label :email, t(:'.email')
+  = form.text_field :email
