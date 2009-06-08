@@ -1,0 +1,28 @@
+@import includes.sass
+@import 960/grid.sass
+
+#container
+  +grid-container
+  :margin 0 auto
+  #header
+    +grid(16,16)
+    :height 80px
+  #navigation
+    +grid(16,16)
+    :position relative
+    :top -80px
+    :text-align right
+  #sidebar
+    +grid(3,16)
+    +omega
+  #content
+    +grid(12,16)
+    +alpha
+    :padding-bottom 10px
+    &.votings
+      +grid(16,16)
+      +omega
+  #footer
+    +grid(16,16)
+    +grid-container
+    :padding-top 2em

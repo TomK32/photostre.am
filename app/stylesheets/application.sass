@@ -1,3 +1,38 @@
+@import includes.sass
+
+body
+  :background-color = !color_background
+  :color = !color_text
+#container
+  :font-size 145%
+a
+  :color = !color_link + #222
+  &:hover, &:active, &:visited
+    :color = !color_link + #444
+
+p
+  :font-size 110%
+  :line-height 1.3em
+
+#header a
+  :font-size 4em
+  :text-decoration none
+  :color = !color_link
+  &:hover, &:active
+    :color = !color_link_active
+
+#navigation
+  :list-style-type none
+  :margin 0
+  :padding 0
+  li
+    :display inline
+
+#footer ul
+  :list-style-type none
+  li
+    :display inline
+
 #openid_logo
   :float right
   :margin 0 0 10px 10px

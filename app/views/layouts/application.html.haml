@@ -1,72 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
+%head
+  = render :partial => "shared/head"
 
-<head>
-  <title><%= site_title %></title>
+%body
+  #container
+    #header
+      = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
+    = render :partial => 'shared/navigation'
 
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="<%= h current_website.description %>" />
-  <meta name="generator" content="das-photowall" />
-  <meta name="keywords" content="<%= h meta_keywords %>" />
-  <meta name="language" content="en-uk" />
-	
-  <link title="Photos" type="application/atom+xml" href="<%= formatted_photos_url(:format => :atom)%>" rel="alternate" />
+    #content{:class => params[:controller]}
+      - flash.each do |flash_type, message|
+        %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
-  <%= stylesheet_link_tag %w(application), :cache => 'cache/das-photowall' %>
+      = yield :layout
 
-</head>
-
-<body id="c-<%= h(params[:controller]) %>">
-
-  <div id="header">
-
-    <p id="site_title"><a href="/" title="<%= t(:'layout.links.back_to_homepage', :default => 'Back to homepage') %>"><%= h current_website.site_title %></a></p>
-    <p id="site_description"><%= h current_website.description %></p>
-  </div>
-
-  <div id="top_navigation">
-    <ul>
-      <li><%= link_to_unless_current 'photos', photos_url %></li>
-      <% if logged_in? %>
-      <li><%= link_to current_user.login, user_url(current_user.id) %></li>
-      <li><%= link_to 'dashboard', dashboard_url %></li>
-      <% else %>
-      <li><%= link_to 'login', login_url unless logged_in? %></li>
-      <% end %>
-    </ul>
-    <%= render :partial => 'submenu' rescue nil %>
-  </div>
-
-<div id="container">
-<div id="col-main">
-<div id="col-left">
-
-
-<a name="top"></a>
-<div id="wrap-main">
-<div id="main">
-  <h1><%= page_title %></h1>
-
-<% flash.each do |type, message| %>
-  <div class="<%= type %>">
-    <%= message %>
-  </div>
-<% end %>
-
-<%= yield %>
-</div>
-</div> <!-- end wrap-main // main -->
-
-
-<div id="left">
-</div> <!-- end left -->
-
-</div>
-</div>
-</div> <!-- #col-main and #col-left -->
-
-<div id="footer">
-
-</div>
-</body>
-</html>
+    #footer
+      (C)
+      = link_to 'das-photowall', root_path
+      a product by <a href="http://www.ananasblau.com">ananasblau</a>.
+      = link_to 'about', static_path('about')
+      &
+      = link_to 'contact', static_path('contact')

@@ -1,0 +1,11 @@
+%ul#navigation
+  - if logged_in?
+    %li= link_to 'Logout', logout_path
+  - else
+    %li= link_to 'Login', login_path 
+  %li= link_to 'About', static_path(:action => 'about')
+  = yield :navigation
+- if yield :subnavigation
+  %ul#subnavigation
+    = yield :subnavigation
+    
