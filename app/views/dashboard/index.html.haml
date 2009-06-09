@@ -1,6 +1,6 @@
 %h2= link_to t(:'.sources'), sources_url
 - if @user.sources.empty?
-  %p.notice=  t(:'.no_sources') 
+  %p.error=  t(:'.no_sources') 
   = t(:'.add_new_source', :link => link_to(t(:'.new_source'), new_source_url))
 - else
 
@@ -19,4 +19,13 @@
     - @photos.each do |photo|
       = link_to image_tag(photo.icon_url), photo_url(photo)
 
-<% end %>
+%h2= link_to t(:'.websites'), websites_url
+- if @websites.empty?
+  %p.error= t(:'websites.index.no_websites')
+  = t(:'websites.index.add_new_website', :link => link_to(t(:'websites.index.new_website'), new_website_url))
+- else
+  %ul
+    - @websites.each do |website|
+      %li[website]{:class => website.active? ? 'active' : 'inactive'}
+        = link_to website.domain, website.domain
+        = link_to t(:'.website.edit'), edit_website_path(website)

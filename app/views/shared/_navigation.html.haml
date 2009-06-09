@@ -1,9 +1,10 @@
 %ul#navigation
   - if logged_in?
-    %li= link_to 'Logout', logout_path
+    %li= link_to t(:'.dashboard'), dashboard_path
+    %li= link_to t(:'.logout'), logout_path
   - else
-    %li= link_to 'Login', login_path 
-  %li= link_to 'About', static_path(:action => 'about')
+    %li= link_to t(:'.login'), login_path 
+  %li= link_to t(:'.about'), static_path(:action => 'about')
   = yield :navigation
 - if yield :subnavigation
   %ul#subnavigation
