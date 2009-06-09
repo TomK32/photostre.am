@@ -1,0 +1,6 @@
+%h1= title(t(:'.your_websites'))
+- if @websites.empty?
+  %p.error= t(:'.no_websites')
+  = t(:'.add_new_website', :link => link_to(t(:'.new_website'), new_website_url))
+- else
+  = render :partial => 'website', :collection => @websites

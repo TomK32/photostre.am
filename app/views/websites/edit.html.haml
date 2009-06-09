@@ -1,0 +1,8 @@
+%h1= title(t(:'.edit', :domain => @website.domain))
+
+= error_messages_for :website
+
+- form_for @website, {}, :method => :put do |form|
+  = render 'form', :object => form
+  
+  %p.submit= submit_tag t(:'.create'), :name => nil

@@ -1,0 +1,13 @@
+%p
+  = form.label :site_title, t(:'.site_title')
+  = form.text_field :site_title
+%p
+  = form.label :domain, t(:'.domain', :domain => current_website.domain)
+  = form.text_field :domain
+%p
+  = form.label :meta_keywords, t(:'.meta_keywords')
+  = form.text_field :meta_keywords
+%p
+  = form.label :description, t(:'.description')
+  = form.text_field :description
+

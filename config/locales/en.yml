@@ -1,4 +1,6 @@
 en:
+  app:
+    title: 'das-photowall'
   users:
     new:
       success: 'We successfully authenticated you with your OpenID'
@@ -14,15 +16,18 @@ en:
       openid_info: "We are using only OpenID for authentication and if you already use Flickr you can type in:<br /><em>http://www.flickr.com/photos/<strong>username</strong></em><br />Of course you can use any other OpenID provider and even use more than one OpenID for your account."
       signin: 'Sign in'
   dashboard:
-    add_new_source: 'Please add a {{link}}'
-    link:
+    index:
+      add_new_source: 'Please configure a new {{link}}.'
       new_source: new source
-      add_new_source: Add a new source
-      profile: Profile
-      photostream: Photostream
-    header:
-      photo: Photo
-      source: Source
+      photos: Photos
+      sources: Sources
+      websites: Websites
+      flickr:
+        profile: Profile
+        photostream: Photostream
+      error:
+        no_sources: "You didn't setup a source yet where we can pull the images from."
+        
   layout:
     link:
       back_to_homepage: Back to homepage
@@ -39,7 +44,38 @@ en:
         tags: Tags (flower, car, blue)
         public: Visible to all
   sources:
-    error:
-      no_sources_yet: "You didn't setup a source yet where we can pull the images from."
     button:
       add_source: Add source
+    form:
+      flickr: "Currently we support only flickr as a source for your photos. Type in your username to start the import process after which you can select your sets and photos for displaying them on your websites."
+      username: "Username"
+    new:
+      add_source: "Add source"
+    show:
+      activated: "Source is currently active."
+      reauthenticate: "You need to re-authenticate to make this source working."
+  websites:
+    new:
+      create: "Create website"
+    form:
+      site_title: "Title of your website"
+      domain: "Either your own domain which requirest you to point it to our IP<br />or a subdomain like johnnyjones.{{domain}}"
+      meta_keywords: "Keywords for the HTML file's metatag. Five to ten keywords are fine."
+      description: "Used in the HTML file's metatag but can also be used elsewhere.<br />E.g 'Johnny Jones is a professional photographer from New York City'"
+    index:
+      your_websites: "Your websites"
+      add_new_website: 'Please configure a new {{link}}.'
+      new_website: new website
+      no_websites: "You didn't setup a website yet."
+    website:
+      edit: "Edit website"
+      active: "Active"
+      inactive: "Inactive"
+    edit:
+      edit: "Edit domain '{{domain}}'"
+  shared:
+    navigation:
+      dashboard: 'Dashboard'
+      login: 'Login'
+      logout: 'Logout'
+      about: 'About'

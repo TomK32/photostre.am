@@ -7,4 +7,7 @@ class Website < ActiveRecord::Base
   named_scope :active, :conditions => {:state => 'active'}
   named_scope :latest, :order => 'updated_at DESC'
 
+  def active?
+    state == 'active'
+  end
 end
