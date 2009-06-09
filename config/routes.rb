@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.dashboard 'dashboard', :controller => 'dashboard'
 
+  map.static ':action', :controller => 'static'
   map.root :controller => 'static', :action => 'index'
 
   # See how all your routes lay out with "rake routes"
