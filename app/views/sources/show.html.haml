@@ -1,2 +1,5 @@
-
-<%= @source.username %> on <%= @source.source_title %> is <%= @source.active? ? 'active' : 'inactive' %> and was added at <%= @source.created_at.to_s(:short) %>. <%= link_to 'You need to re-authenticate', reauthenticate_source_url(@source) unless @source.authenticated? %>
+%h1= title("%s: %s" % [@source.source_title, @source.title])
+- if @source.authenticated?
+  %p=t(:'.activated', :username => @source.username, :title => @source.source_title) if @source.active
+- else
+  %p= link_to t(:'.reauthenticate'), reauthenticate_source_url(@source)

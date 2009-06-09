@@ -1,6 +1,4 @@
-<% form_for :source, @source, :url => sources_url do |form| %>
-  <%= render :partial => 'form', :object => form %>
-<p>
-  <input type="submit" value="<%= t(:sources.buttons.add_source) %>" />
-</p>
-<% end %>
+- form_for :source, @source, :url => sources_url do |form|
+  = render :partial => 'form', :object => form
+  %p
+    = submit_tag t(:'.add_source'), :name => nil
