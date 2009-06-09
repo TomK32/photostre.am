@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  attr_accessor :site_title, :title, :meta_keywords
+  attr_accessor :site_title, :meta_keywords
+
+  def title(text)
+    @title = text
+  end
 
   def page_title
     [@title, (@site_title || t(:'app.title'))].reject{|a|a.blank?}.compact.join(' // ')
