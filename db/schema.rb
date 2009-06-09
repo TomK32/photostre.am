@@ -9,12 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090115224542) do
+ActiveRecord::Schema.define(:version => 20090609215453) do
 
   create_table "albums", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",      :default => "public"
   end
+
+  add_index "albums", ["state"], :name => "index_albums_on_state"
 
   create_table "identities", :force => true do |t|
     t.string   "identity_url", :default => "", :null => false
@@ -62,10 +65,10 @@ ActiveRecord::Schema.define(:version => 20090115224542) do
     t.string   "medium_url"
   end
 
+  add_index "photos", ["description"], :name => "index_photos_on_description"
   add_index "photos", ["permalink"], :name => "index_photos_on_permalink", :unique => true
   add_index "photos", ["remote_id", "source_id"], :name => "index_photos_on_remote_id_and_source_id", :unique => true
   add_index "photos", ["title"], :name => "index_photos_on_title"
-  add_index "photos", ["description"], :name => "index_photos_on_description"
 
   create_table "sources", :force => true do |t|
     t.string   "feed_url"
@@ -126,14 +129,14 @@ ActiveRecord::Schema.define(:version => 20090115224542) do
   add_index "users_websites", ["website_id", "user_id"], :name => "index_users_websites_on_website_id_and_user_id", :unique => true
 
   create_table "websites", :force => true do |t|
-    t.string   "domain",        :default => "localhost", :null => false
+    t.string   "domain"
     t.string   "site_title"
     t.string   "meta_keywords"
-    t.string   "footer_line"
     t.string   "description"
-    t.boolean  "active",        :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",         :default => "active"
+    t.string   "root_path"
   end
 
   add_index "websites", ["domain"], :name => "index_websites_on_domain", :unique => true
