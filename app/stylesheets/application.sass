@@ -52,3 +52,15 @@ p
 .fieldWithErrors
   :color red
   :display inline
+
+.error, .notice
+  :border 2px solid
+  :padding 5px 10px
+.error
+  :color = !color_error
+  :background-color = !color_error + #777
+  :border-color = !color_error
+.notice
+  :color = !color_notice
+  :background-color = !color_notice + #777
+  :border-color = !color_notice
