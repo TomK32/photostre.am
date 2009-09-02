@@ -1,8 +1,8 @@
-%h1= @title = 'New website'
+- title('New website')
 
 = error_messages_for :website
 
-- form_for @website do |form|
+- form_for current_object||current_user.websites.new do |form|
   = render 'form', :object => form
   
   %p.submit= submit_tag t(:'.create'), :name => nil

@@ -74,7 +74,7 @@ en:
       new_website: new website
       no_websites: "You didn't setup a website yet."
     website:
-      edit: "Edit website"
+      edit: "Edit website details"
       active: "Active"
       inactive: "Inactive"
     edit:
