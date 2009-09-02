@@ -1,31 +1,39 @@
-%h2= link_to t(:'.sources'), sources_url
-- if @user.sources.empty?
-  %p.error=  t(:'.no_sources') 
-  = t(:'.add_new_source', :link => link_to(t(:'.new_source'), new_source_url))
-- else
 
-  %dl#sources
-    - @user.sources.active.recent(:limit => 5).each do |source|
-      %dt[source]{:class => source.active? ? 'active' : 'inactive'}
-        = link_to source.title, source_url(source)
-        = source.source_title
-      %dd
-        = link_to t(:'.flickr.photostream'), source.photostream_url
-        = link_to t(:'.flickr.profile'), source.profile_url
-
-  %h2= link_to t(:'.photos'), photos_url
-  - if @user.photos.count > 0
-    #photos
-    - @photos.each do |photo|
-      = link_to image_tag(photo.icon_url), photo_url(photo)
+- content_for :info do
+  = render :partial => 'info'
 
 %h2= link_to t(:'.websites'), websites_url
 - if @websites.empty?
   %p.error= t(:'websites.index.no_websites')
   = t(:'websites.index.add_new_website', :link => link_to(t(:'websites.index.new_website'), new_website_url))
 - else
-  %ul
+  %dl
     - @websites.each do |website|
-      %li[website]{:class => website.active? ? 'active' : 'inactive'}
-        = link_to website.domain, website.domain
-        = link_to t(:'.website.edit'), edit_website_path(website)
+      %dt[website]{:class => website.active? ? 'active' : 'inactive'}
+        = link_to website.domain, 'http://' + website.domain
+      %dd
+        = t(:".website.#{website.active? ? 'active' : 'inactive'}")
+        = link_to t(:'.website.details'), website_path(website)
+
+%h2= link_to t(:'.sources'), sources_url
+- if @sources.empty?
+  %p.error=  t(:'.no_sources') 
+  = t(:'.add_new_source', :link => link_to(t(:'.new_source'), new_source_url))
+- else
+
+  %dl#sources
+    - @sources.each do |source|
+      %dt[source]{:class => source.active? ? 'active' : 'inactive'}
+        = link_to source.title, source_url(source)
+        = source.source_title
+      %dd
+        = pluralize(source.photos.count, t(:'.photos'))
+        = link_to t(:'.flickr.photostream'), source.photostream_url
+        = link_to t(:'.flickr.profile'), source.profile_url
+
+
+%h2= link_to t(:'.photos'), photos_url
+- unless @photos.empty?
+  #photos
+  - @photos.each do |photo|
+    = link_to image_tag(photo.icon_url), photo_url(photo)

@@ -13,8 +13,10 @@ en:
   sessions:
     new:
       add_new_openid: "As you are already logged in we will add the OpenID profile you type in below to your current user account."
-      openid_info: "We are using only OpenID for authentication and if you already use Flickr you can type in:<br /><em>http://www.flickr.com/photos/<strong>username</strong></em><br />Of course you can use any other OpenID provider and even use more than one OpenID for your account."
+      openid_info: 'We are using "OpenID":http://openid.net/get-an-openid/what-is-openid/ for authentication which is simple if you already use flickr. If you are not a flickr user yet you can "signup at flickr":flickr.com/signup/.'
       signin: 'Sign in'
+      logout: 'Logout'
+      not_current_user: 'If you are not {{user}} then please {{logout}} and login again.'
   dashboard:
     index:
       add_new_source: 'Please configure a new {{link}}.'
@@ -25,6 +27,10 @@ en:
       flickr:
         profile: Profile
         photostream: Photostream
+      website:
+        active: "active"
+        inactive: "inactive"
+        details: "details"
       error:
         no_sources: "You didn't setup a source yet where we can pull the images from."
         

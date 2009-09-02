@@ -1,0 +1,23 @@
+%p
+  %em
+    You have a 
+    %span.flickr flickr account?
+    And you run a 
+    %span.portfolio portfolio?
+    And a
+    %span.photoblog photoblog?</em>
+  %br
+  So you upload your photos twice or thrice? Get ready to save some time:
+  %br
+  <strong>das-photowall</strong> reads your photos from your flickr account and gives you
+  great creative freedom for designing a portfolio and photoblog.
+  
+  %p
+    - if logged_in?
+      Welcome back, go straight to your
+      = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
+    - else
+  %p
+    You can 
+    = link_to t(:'shared.navigation.login').downcase, login_path
+    with your flickr account.
