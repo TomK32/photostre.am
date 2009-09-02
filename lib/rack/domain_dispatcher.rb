@@ -1,5 +1,5 @@
 module Rack
-  # Allows you to overwrite the REQUEST_URL in the env so you can set a different
+  # Allows you to overwrite the REQUEST_URI in the env so you can set a different
   # root_path for your Websites.
   class DomainDispatcher
     def initialize(app, options={}, &block)
@@ -17,3 +17,4 @@ module Rack
     end
   end
 end
+
