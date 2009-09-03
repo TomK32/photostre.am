@@ -1,0 +1,8 @@
+- title(current_object.domain)
+
+%div[current_object]
+  .url= current_object.domain
+
+-content_for :subnavigation do
+  %ul.actions
+    %li= link_to t(:'.edit_pages'), website_pages_path(current_object)

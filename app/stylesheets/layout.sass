@@ -6,22 +6,21 @@
   :margin 0 auto
   #header
     +grid(16,16)
-    :height 80px
+    :height 120px
   #navigation
     +grid(16,16)
-    :position relative
-    :top -80px
+    :position absolute
+    :top 10px
+    :right 20px
     :text-align right
-  #sidebar
-    +grid(3,16)
-    +omega
+  #info
+    :float right
+    :width 200px
+    :font-size 0.8em
   #content
-    +grid(12,16)
-    +alpha
+    +grid(16,16)
+    +omega
     :padding-bottom 10px
-    &.votings
-      +grid(16,16)
-      +omega
   #footer
     +grid(16,16)
     +grid-container

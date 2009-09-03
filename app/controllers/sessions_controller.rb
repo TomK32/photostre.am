@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   def delete
     session[:user_id] = nil
     @current_user = nil
-    redirect_to '/' and return
+    redirect_to (params[:return_to] || '/') and return
   end
   
   protected

@@ -7,9 +7,11 @@
   #container
     #header
       = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
-    = render :partial => 'shared/navigation' if %w(dashboard sessions).include?(controller_name)
+    = render :partial => 'shared/navigation' if %w(dashboard sessions websites).include?(controller_name)
 
     #content{:class => params[:controller]}
+      %h1= @title
+    
       - flash.each do |flash_type, message|
         %p{:class => 'flash ' + flash_type.to_s}= h(message)
 

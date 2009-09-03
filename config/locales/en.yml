@@ -19,6 +19,7 @@ en:
       not_current_user: 'If you are not {{user}} then please {{logout}} and login again.'
   dashboard:
     index:
+      page_title: 'Dashboard'
       add_new_source: 'Please configure a new {{link}}.'
       new_source: new source
       photos: Photos
@@ -73,12 +74,18 @@ en:
       add_new_website: 'Please configure a new {{link}}.'
       new_website: new website
       no_websites: "You didn't setup a website yet."
+      info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
     website:
       edit: "Edit website details"
+      edit_pages: "Edit pages"
+      edit_sets: "Edit sets"
       active: "Active"
       inactive: "Inactive"
     edit:
       edit: "Edit domain '{{domain}}'"
+      save: "Save website"
+    show:
+      edit_pages: 'edit pages'
   shared:
     navigation:
       dashboard: 'Dashboard'

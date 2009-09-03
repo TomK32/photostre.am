@@ -1,12 +1,13 @@
 - form_tag(sessions_url) do
   - if logged_in?
     %p=t('.add_new_openid')
-
+    %p=t('.not_current_user', :user => current_user.name, :logout => link_to(t(:'.logout'), logout_path(:return_to => login_path)))
   - else
-    %p=t(:'.openid_info')
-    
+    %p
+      = textilize t(:'.openid_info')
+
   %label{:for => "openid_identifier"} OpenID/Flickr:
-  = text_field_tag "openid_identifier", 'http://www.flickr.com/photos/username'
+  = text_field_tag "openid_identifier", 'http://www.flickr.com/photos/your-username'
 
   %p.submit
     = submit_tag t(:'.signin')
