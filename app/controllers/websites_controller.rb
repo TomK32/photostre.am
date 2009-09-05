@@ -14,4 +14,8 @@ class WebsitesController < ApplicationController
       end
     end
   end
+    
+  def current_objects
+    @current_objects ||= current_user.websites.find(:all)
+  end
 end

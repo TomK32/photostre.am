@@ -1,10 +1,18 @@
 @import includes.sass
+@import 960/grid.sass
 
 label
   :display block
-input[type=submit], input[type=text]
+.checkbox label
+  :display inline
+input[type=submit], input[type=text], textarea
   :border-style solid 
   :border-color transparent
   :border-width 1px
   :font-size 1.1em
   :margin-top 0.3em
+input[type=text], textarea
+  +grid-width(8)
+textarea
+  :height 6em
+

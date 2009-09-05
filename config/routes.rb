@@ -1,9 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.resources :albums
   map.resources :photos
   map.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
   map.resources :users
-  map.resources :websites
+  map.resources :websites do |website|
+    website.resources :pages
+  end
   map.resources :sessions
   map.logout 'logout', :controller => "sessions", :action => "delete"
   map.login 'login', :controller => "sessions", :action => "new"

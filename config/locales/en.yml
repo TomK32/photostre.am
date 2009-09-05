@@ -1,6 +1,6 @@
 en:
   app:
-    title: 'das-photowall'
+    title: 'photostre.am'
   users:
     new:
       success: 'We successfully authenticated you with your OpenID'
@@ -45,11 +45,12 @@ en:
     form:
       button:
         update: Update
-      label:
-        title: Title
-        description: Description
-        tags: Tags (flower, car, blue)
-        public: Visible to all
+      title: Title
+      description: Description
+      tags: Tags (flower, car, blue)
+      public: Visible to all
+    index:
+      page_title: 'photos'
   sources:
     button:
       add_source: Add source

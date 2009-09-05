@@ -1,0 +1,16 @@
+%div[album]
+  %p.state
+    %strong State
+    = h album.state
+  %p.position
+    %strong Position
+    = h album.position
+  %p.parent_id
+    %strong Parent
+    = h album.parent_id
+
+  = link_to 'Show', object_path(album)
+  |
+  = link_to 'Edit', edit_object_path(album)
+  |
+  = link_to 'Destroy', object_path(album), :confirm => 'Really destroy album?', :method => :delete

@@ -1,20 +1,12 @@
-<p>
-  <%= form.label :title, t(:'photos.form.labels.title') %><br />
-  <%= form.text_field :title, :class => 'title' %>
-</p>
-
-<p>
-  <%= form.label :description, t(:'photos.form.labels.description') %><br />
-  <%= form.text_area :description, :class => 'description' %>
-</p>
-
-<p>
-  <%= form.label :tag_list, t(:'photos.form.labels.tags') %><br />
-  <%= form.text_field :tag_list, :class => 'tags' %>
-</p>
-
-<p>
-  <%= form.check_box :public %>
-  <%= form.label :public, t(:'photos.form.labels.public') %>
-</p>
-
+%p
+  = form.label :title, t(:'.title')
+  = form.text_field :title, :class => 'title'
+%p
+  = form.label :description, t(:'.description')
+  = form.text_area :description, :class => 'description'
+%p
+  = form.label :tag_list, t(:'.tags')
+  = form.text_field :tag_list, :class => 'tags'
+%p.checkbox
+  = form.check_box :public
+  = form.label :public, t(:'.public')
