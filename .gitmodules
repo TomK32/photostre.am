@@ -4,12 +4,6 @@
 [submodule "vendor/plugins/will_paginate"]
 	path = vendor/plugins/will_paginate
 	url = git://github.com/mislav/will_paginate.git
-[submodule "vendor/plugins/acts_as_state_machine"]
-	path = vendor/plugins/acts_as_state_machine
-	url = git://github.com/omghax/acts_as_state_machine.git
-[submodule "vendor/plugins/acts_as_tree"]
-	path = vendor/plugins/acts_as_tree
-	url = git://github.com/rails/acts_as_tree.git
 [submodule "vendor/plugins/workling"]
 	path = vendor/plugins/workling
 	url = git://github.com/purzelrakete/workling.git
@@ -22,9 +16,6 @@
 [submodule "vendor/plugins/permalink_fu"]
 	path = vendor/plugins/permalink_fu
 	url = git://github.com/technoweenie/permalink_fu.git
-[submodule "vendor/plugins/acts_as_list"]
-	path = vendor/plugins/acts_as_list
-	url = git://github.com/rails/acts_as_list.git
 [submodule "vendor/plugins/acts_as_taggable_on"]
 	path = vendor/plugins/acts_as_taggable_on
 	url = git://github.com/mbleigh/acts-as-taggable-on.git
@@ -52,3 +43,6 @@
 [submodule "vendor/plugins/make_resourceful"]
 	path = vendor/plugins/make_resourceful
 	url = git://github.com/hcatlin/make_resourceful.git
+[submodule "vendor/plugins/acts_as_category"]
+	path = vendor/plugins/acts_as_category
+	url = git://github.com/funkensturm/acts_as_category.git
