@@ -1,4 +1,4 @@
-class PhotosController < ApplicationController
+class Admin::PhotosController < ApplicationController
   
   make_resourceful do
     actions :all

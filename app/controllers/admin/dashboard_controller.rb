@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class Admin::DashboardController < ApplicationController
   before_filter :authenticated
   def index
     @user = current_user

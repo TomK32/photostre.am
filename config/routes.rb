@@ -1,17 +1,24 @@
 ActionController::Routing::Routes.draw do |map|
-
-  map.resources :albums
   map.resources :photos
-  map.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
-  map.resources :users
-  map.resources :websites do |website|
-    website.resources :pages
+
+
+  map.namespace :admin do |admin|
+    admin.resources :albums
+    admin.resources :photos
+    admin.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
+    admin.resources :users
+    admin.resources :websites do |website|
+      website.resources :pages
+    end
   end
   map.resources :sessions
   map.logout 'logout', :controller => "sessions", :action => "delete"
   map.login 'login', :controller => "sessions", :action => "new"
 
-  map.dashboard 'dashboard', :controller => 'dashboard'
+  map.with_options :controller => 'admin/dashboard' do |dashboard|
+    dashboard.connect '/admin'
+    dashboard.dashboard '/dashboard'
+  end
 
   map.static ':action', :controller => 'static'
   map.faq 'faq/:action', :controller => 'static'

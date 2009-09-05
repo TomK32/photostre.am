@@ -1,4 +1,4 @@
-class WebsitesController < ApplicationController
+class Admin::WebsitesController < ApplicationController
   make_resourceful do
     actions :all
     belongs_to :current_user

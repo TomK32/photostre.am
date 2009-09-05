@@ -1,4 +1,4 @@
-class SourcesController < ApplicationController
+class Admin::SourcesController < ApplicationController
   before_filter :authenticated
 
   before_filter :current_source, :only => [:show, :reauthenticate]

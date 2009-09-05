@@ -1,4 +1,4 @@
-class AlbumsController < ApplicationController
+class Admin::AlbumsController < Admin::ApplicationController
   make_resourceful do
     actions :all
     belongs_to :website
