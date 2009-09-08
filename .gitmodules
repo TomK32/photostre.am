@@ -42,7 +42,7 @@
 	url = git://github.com/dchelimsky/rspec-rails.git
 [submodule "vendor/plugins/make_resourceful"]
 	path = vendor/plugins/make_resourceful
-	url = git://github.com/hcatlin/make_resourceful.git
+	url = git://github.com/TomK32/make_resourceful.git
 [submodule "vendor/plugins/acts_as_category"]
 	path = vendor/plugins/acts_as_category
 	url = git://github.com/funkensturm/acts_as_category.git

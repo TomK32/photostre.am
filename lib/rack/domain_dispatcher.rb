@@ -8,7 +8,8 @@ module Rack
   
     def call(env)
       # Overwrite the REQUEST_URI by whatever the Website's root_path may be.
-      if env['REQUEST_URI'] == '/'
+      # For some reason apache and mongrel give a different REQUEST_URI
+      if env['REQUEST_URI'] == '/' || env['REQUEST_URI'].match(/^http:\/\/[^\/]*\/$/)
         website = Website.find_by_domain(env['SERVER_NAME'])
         website ||= Website.find_by_domain(env['SERVER_NAME'].gsub(/^www\./, ''))
         env['REQUEST_URI'] = website.root_path if website
