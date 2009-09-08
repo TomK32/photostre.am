@@ -1,0 +1,85 @@
+en:
+  admin:
+    dashboard:
+      index:
+        page_title: 'Dashboard'
+        add_new_source: 'Please configure a new {{link}}.'
+        new_source: new source
+        photos: Photos
+        sources: Sources
+        websites: Websites
+        flickr:
+          profile: Profile
+          photostream: Photostream
+        website:
+          active: "active"
+          inactive: "inactive"
+          details: "details"
+        error:
+          no_sources: "You didn't setup a source yet where we can pull the images from."
+    pages:
+      index:
+        page_title: 'Pages'
+        no_pages_yet: 'There are no static pages yet on your website'
+        create_new_page: 'Create a new page'
+      new:
+        page_title: 'Create a new page'
+        submit: 'Create'
+      form:
+        body: 'Body'
+        title: 'Title'
+        tags: 'Tags'
+        state: 'Status'
+        permalink: 'Permalink'
+        parent: 'Parent page'
+    photos:
+      error:
+        no_photos_yet: No photos yet
+        edit_photo: You cannot edit this photo.
+      form:
+        button:
+          update: Update
+        title: Title
+        description: Description
+        tags: Tags (flower, car, blue)
+        public: Visible to all
+      index:
+        page_title: 'photos'
+    sources:
+      button:
+        add_source: Add source
+      form:
+        flickr: "Currently we support only flickr as a source for your photos. Type in your username to start the import process after which you can select your sets and photos for displaying them on your websites."
+        username: "Username"
+      new:
+        add_source: "Add source"
+      show:
+        activated: "Source is currently active."
+        reauthenticate: "You need to re-authenticate to make this source working."
+    websites:
+      new:
+        create: "Create website"
+      form:
+        site_title: "Title of your website"
+        domain: "Either your own domain which requirest you to point it to our IP<br />or a subdomain like johnnyjones.{{domain}}"
+        meta_keywords: "Keywords for the HTML file's metatag. Five to ten keywords are fine."
+        description: "Used in the HTML file's metatag but can also be used elsewhere.<br />E.g 'Johnny Jones is a professional photographer from New York City'"
+      index:
+        your_websites: "Your websites"
+        add_new_website: 'Please configure a new {{link}}.'
+        new_website: new website
+        no_websites: "You didn't setup a website yet."
+        info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
+      website:
+        edit: "Edit website details"
+        edit_pages: "Edit pages"
+        edit_sets: "Edit sets"
+        active: "Active"
+        inactive: "Inactive"
+      edit:
+        edit: "Edit domain '{{domain}}'"
+        save: "Save website"
+      show:
+        edit_pages: 'edit pages'
+        domain: 'Domain'
+        root_path: 'Root path (your homepage)'

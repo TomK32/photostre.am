@@ -1,0 +1,10 @@
+en:
+  page:
+    state:
+      draft: 'Draft'
+      published: 'Published'
+      deleted: 'Deleted'
+  pages:
+    index:
+      page_title: 'Sitemap'
+      create_new_page: 'Create a new page'
