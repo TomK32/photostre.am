@@ -4,6 +4,7 @@ class Website < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :sources
   has_many :pages
+  has_and_belongs_to_many :photos
   
   named_scope :active, :conditions => {:state => 'active'}
   named_scope :latest, :order => 'updated_at DESC'

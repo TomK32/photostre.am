@@ -1,11 +1,7 @@
-%h1 Editing photos
+- title(t(:'.page_title'))
 
 = error_messages_for :photos
 
-- form_for(:photos, :url => object_url, :html => { :method => :put }) do |form|
+- form_for(:photo, :url => object_url, :html => { :method => :put }) do |form|
   = render :partial => "form", :object => form
-  %p= submit_tag "Update"
-
-= link_to 'Show', object_path
-|
-= link_to 'Back', objects_path
+  %p= submit_tag t(:'.submit')

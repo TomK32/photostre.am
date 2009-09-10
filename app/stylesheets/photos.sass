@@ -1,5 +1,21 @@
+@import includes.sass
 
 #photos
   .photo
     :display inline-block
-    
+    :position relative
+    .icon
+      margin: 2px
+      :position relative
+    .info
+      :position absolute
+      :width 10em
+      :border-style solid 
+      :border-color = !color_green
+      :border-width 1px
+      :padding 0.2em
+      :background-color black
+    &.unassigned
+      :border-style solid 
+      :border-width 1px
+      :border-color = !color_green

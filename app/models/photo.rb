@@ -5,6 +5,7 @@
 class Photo < ActiveRecord::Base
   belongs_to :source
   belongs_to :user
+  has_and_belongs_to_many :websites
   
   named_scope :published, :conditions => {:public => true}
   named_scope :recent, :order => 'id DESC'

@@ -43,8 +43,21 @@ en:
         description: Description
         tags: Tags (flower, car, blue)
         public: Visible to all
+        websites: Websites
       index:
         page_title: 'photos'
+        websites: Websites
+        photos: Photos
+        info: 'To assign a photo to one of your websites simple drag and drop it'
+      photo:
+        unassigned: 'Not on any website'
+        edit: 'Edit'
+      edit:
+        submit: 'Update'
+        page_title: 'Edit photo'
+      show:
+        edit: 'Edit'
+        index: 'All photos'
     sources:
       button:
         add_source: Add source

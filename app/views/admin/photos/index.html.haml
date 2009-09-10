@@ -1,5 +1,37 @@
-- title t(:'.page_title')
+- title t(:".page_title")
+- content_for :info do
+  = t(:'.info')
+- content_for :javascript do
+  :plain
+    $(document).ready(function(){
+      dragable_options = { revert: true, stack: { group: 'photos', min: 50 }};
+      $('.draggable').draggable(dragable_options);
+      $('.droppable').droppable({
+        drop: function(event, ui) {
+          // when dropped onto website the update the photo and it's div
+          photo_id = ui.draggable.attr('id');
+          website_id = extractID(event.target.id);
+          $.ajax({
+            type: 'post',
+            url: '/admin/photos/' + extractID(ui.draggable.attr('id')),
+            data: 'action=edit&_method=put&photo[websites]['+website_id+']=1',
+            success: function(html){
+                $('#' + photo_id).html(html);//.draggable(dragable_options);
+            }
+          });
+        }
+      });
+      / # TODO selected draggables are to be assigned to selected droppables
 
+    });
+
+%h2= t(:'.websites')
+#websites3
+  = render :partial => 'website', :collection => current_user.websites
+
+%h2
+  = t(:'.photos')
+  = t(:".filtered_by_#{params[:filter]}") if params[:filter]
 #photos
   = render :partial => 'photo', :collection => current_objects
 = will_paginate current_objects

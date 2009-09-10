@@ -7,6 +7,14 @@
 %p
   = form.label :tag_list, t(:'.tags')
   = form.text_field :tag_list, :class => 'tags'
+%fieldset
+  %legend= t(:'.websites')
+  - form.fields_for :websites do |form_w|
+    - current_user.websites.each do |website|
+      %p.checkbox
+        = form_w.check_box website.id, {:checked => current_object.website_ids.include?(website.id) ? 'checked' : '' }
+        = form_w.label website.id, website.domain
+          
 %p.checkbox
   = form.check_box :public
   = form.label :public, t(:'.public')

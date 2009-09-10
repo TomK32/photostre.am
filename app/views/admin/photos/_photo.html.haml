@@ -1,2 +1,9 @@
-%div[photo]
-  = link_to image_tag(photo.icon_url), photo
+%div.selectable.draggable[photo]{:class => (photo.websites.empty? ? 'unassigned' : '')}
+  / # TODO selector to assign several images to a website or album
+  .icon= image_tag(photo.icon_url)
+  .info
+    .websites
+      = t(:'.unassigned') if photo.websites.empty?
+      - photo.websites.each do |website|
+        = link_to website.domain, admin_website_path(website)
+      = link_to t(:'.edit'), edit_admin_photo_path(photo)

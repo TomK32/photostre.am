@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password
 
-  private
+  protected
   def current_website
     @current_website ||= Website.active.find_by_domain(request.host)
     if @current_website.nil?

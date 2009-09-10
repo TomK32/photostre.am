@@ -14,3 +14,6 @@ en:
       login: 'Login'
       logout: 'Logout'
       about: 'About'
+  photos:
+    index:
+      page_title: 'Photos'
