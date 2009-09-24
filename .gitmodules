@@ -24,7 +24,7 @@
 	url = git://github.com/technoweenie/rspec_on_rails_on_crack.git
 [submodule "vendor/plugins/rspec-on-rails-matchers"]
 	path = vendor/plugins/rspec-on-rails-matchers
-	url = git://github.com/joshknowles/rspec-on-rails-matchers.git
+	url = git://github.com/ohammersmith/rspec-on-rails-matchers.git
 [submodule "vendor/rails"]
 	path = vendor/rails
 	url = git://github.com/rails/rails.git
