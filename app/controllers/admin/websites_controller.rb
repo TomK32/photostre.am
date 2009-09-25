@@ -9,7 +9,7 @@ class Admin::WebsitesController < Admin::ApplicationController
 
     before :edit, :update, :show do
       if ! @current_object.new_record? and ! @current_object.users.include?(current_user)
-        flash[:error] = "You are not allowed to edit this website"
+        flash[:error] = t(:'admin.website.access_denied')
         redirect_to :action => :index
       end
     end

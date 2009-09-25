@@ -2,7 +2,6 @@ class Admin::PhotosController < Admin::ApplicationController
   
   make_resourceful do
     actions :all
-    belongs_to :current_user
     before :update do
       websites = params[:photo].delete(:websites)
       current_object.websites.delete(Website.find(websites.collect{|key,value| key if value == '0' }.compact))
@@ -12,6 +11,14 @@ class Admin::PhotosController < Admin::ApplicationController
     response_for :update do |format|
       format.js {render :partial => 'photo', :object => current_object }
       format.html { redirect_to object_path}
+    end
+    before :index do
+      if params[:webiste_id].nil?
+        @websites = current_user.websites
+      else
+        @website = current_user.websites.find(params[:website_id])
+        @albums = @website.albums
+      end
     end
   end
   

@@ -1,7 +1,6 @@
-class SessionsController < ApplicationController
+class SessionsController < Admin::ApplicationController
   # for OpenID
   skip_before_filter :verify_authenticity_token, :only => :create
-  helper :users
   def create
     if using_open_id?
       open_id_authentication(params[:openid_identifier] || params[:openid_url])

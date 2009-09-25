@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.resources :albums do |album|
+    album.resources :photos
+  end
   map.resources :pages
   map.resources :photos
 
@@ -10,12 +13,15 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
     admin.resources :users
     admin.resources :websites do |website|
+      website.resources :albums
       website.resources :pages
+      website.resources :photos
     end
   end
   map.resources :sessions
-  map.logout 'logout', :controller => "sessions", :action => "delete"
-  map.login 'login', :controller => "sessions", :action => "new"
+  map.with_options :controller => "admin/sessions" do |sessions|
+    sessions.logout 'logout', :action => "delete"
+    sessions.login 'login', :action => "new"
 
   map.with_options :controller => 'admin/dashboard' do |dashboard|
     dashboard.connect '/admin'
