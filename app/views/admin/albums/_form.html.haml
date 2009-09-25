@@ -1,9 +1,3 @@
 %p
-  %label{:for => "album_state"} State:
-  = f.text_field :state
-%p
-  %label{:for => "album_position"} Position:
-  = f.text_field :position
-%p
-  %label{:for => "album_parent_id"} Parent:
-  = f.text_field :parent_id
+  = form.label :title, t(:'.title')
+  = form.text_field :title

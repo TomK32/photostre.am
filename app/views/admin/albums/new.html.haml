@@ -1,9 +1,7 @@
-%h1 Creating album
+- title t(:'.album_title')
 
-= error_messages_for :album
+= error_messages_for :album, :object => current_object
 
-- form_for(:album, :url => objects_url) do |f|
-  = render :partial => "form", :locals => {:f => f}
-  %p= submit_tag "Create"
-
-= link_to 'Back', objects_path
+- form_for current_object||@website.albums.new, :url => admin_website_albums_path(@website) do |form|
+  = render :partial => 'form', :object => form
+  %p.submit= submit_tag t(:'.submit')
