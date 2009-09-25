@@ -6,6 +6,7 @@ body
   :font-size x-small
 #container
   :font-size 145%
+
 a
   :color = !color_link + #222
   &:hover, &:active, &:visited
@@ -14,6 +15,15 @@ a
 p
   :font-size 110%
   :line-height 1.3em
+
+
+h1
+  :color = !color_green
+h2, h3
+  :color = !color_orange
+  a, a:visited
+    :color = !color_orange + #222
+    :text-decoration none
 
 #header a
   :font-size 4em
@@ -28,6 +38,11 @@ p
   :padding 0
   li
     :display inline
+  a
+    :text-decoration none
+    &:hover, &:active, &:visited
+      :color = !color_link
+  
 
 #footer ul
   :list-style-type none
