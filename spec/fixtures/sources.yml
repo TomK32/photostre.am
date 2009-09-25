@@ -1,8 +1,0 @@
-flickr_tomk32:
-  username: TomK32
-  token: 092abde12987492342adb34b34fe
-  title: TomK32
-  user_id: 1
-  website_id: 1
-  authenticated_at: <%= Time.now - 1.hour %>
-  type: Source::FlickrAccount

@@ -1,9 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Website do
-  fixtures :websites
   before(:each) do
-    @website = Website.first
+    @website = Factory(:website)
   end
   it "@website should be valid" do
     @website.should be_valid
@@ -19,10 +18,10 @@ describe Website do
   end
   describe "scopes" do
     it "should have :active scope" do
-      @website.update_attribute(:active, true)
-      active_websites = Website.all(:conditions => {:active => true})
+      @website.update_attribute(:state, 'active')
+      active_websites = Website.all(:conditions => {:state => 'active'})
       Website.active.should == active_websites
-      @website.update_attribute(:active, false)
+      @website.update_attribute(:state, 'draft')
       Website.active.should == active_websites.reject!{|w| w.id == @website.id }
     end
   end

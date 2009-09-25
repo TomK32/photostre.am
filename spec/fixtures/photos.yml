@@ -1,7 +1,0 @@
-photo1:
-  id: 1
-  source_id: 1
-  web_url: 'http://test.host/photos/1/1.html'
-  photo_url: 'http://test.host/photos/1/1.jpg'
-  thumbnail_url: 'http://test.host/photos/1/1_t.jpg'
-  permalink: 'self-portrait'
