@@ -5,5 +5,5 @@
     .websites
       = t(:'.unassigned') if photo.websites.empty?
       - photo.websites.each do |website|
-        = link_to website.domain, admin_website_path(website)
+        .website= link_to website.domain, admin_website_path(website)
       = link_to t(:'.edit'), edit_admin_photo_path(photo)

@@ -16,18 +16,51 @@
             url: '/admin/photos/' + extractID(ui.draggable.attr('id')),
             data: 'action=edit&_method=put&photo[websites]['+website_id+']=1',
             success: function(html){
-                $('#' + photo_id).html(html);//.draggable(dragable_options);
+                $('#' + photo_id).replaceWith(html);
+                $('#' + photo_id).draggable(dragable_options);
+                deleteableWebsites($('#' + photo_id));
             }
           });
         }
       });
-      / # TODO selected draggables are to be assigned to selected droppables
-
     });
+    function deleteableWebsite(photo, website) {
+    
+    console.log(photo);
+      delete_tag = document.createElement('a')
+      delete_tag.appendChild(document.createTextNode('x'));
+      delete_tag.bind('onclick', $.ajax({
+        type: 'post',
+        url: '/admin/photos/' + extractID(photo.attr('id')),
+        data: 'action=edit&_method=put&photo[websites]['+website.attr('id')+']==',
+        success: function(html){
+            $('#' + photo.attr('id')).replaceWith(html);
+            $('#' + photo.attr('id')).draggable(dragable_options);
+        }
+      }));
+      console.log(delete_tag);
+      $(website).append(delete_tag);
+    }
+    function deleteableWebsites(photo) {
+    console.log($(photo).children('.info .websites')[0]);
+      $(photo).children('.websites .website').each(function(index, website) {
+        deleteableWebsite(photo,website);
+      });
+    }
+    $('#photos .photo').each(function(index, photo) { deleteableWebsites(photo); });
 
-%h2= t(:'.websites')
-#websites3
-  = render :partial => 'website', :collection => current_user.websites
+- content_for :subnavigation do
+  - if @website
+    %li= link_to t(:'.new_album'), new_admin_website_album_path(@website)
+
+- if ! @websites.nil? and @websites.empty?
+  %h2= t(:'.websites')
+  #websites
+    = render :partial => 'website', :collection => @websites
+- if ! @albums.nil? and @albums.empty?
+  %h2= t(:'.albums')
+  #albums
+    = render :partial => 'album', :collection => @albums
 
 %h2
   = t(:'.photos')

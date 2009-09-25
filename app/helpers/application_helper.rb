@@ -1,9 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  attr_accessor :title
+  attr_accessor :title, :title_in_content
 
-  def title(text)
+  def title(text, in_content = true)
     @title = text
+    @title_in_content = in_content
   end
 
   def page_title
@@ -18,6 +19,5 @@ module ApplicationHelper
         end
       end
     end
-    
   end
 end

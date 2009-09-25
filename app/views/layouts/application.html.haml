@@ -10,7 +10,7 @@
     = render :partial => 'shared/navigation' if %w(dashboard sessions websites).include?(controller_name)
 
     #content{:class => params[:controller]}
-      %h1= @title
+      %h1= @title if @title_in_content
     
       - flash.each do |flash_type, message|
         %p{:class => 'flash ' + flash_type.to_s}= h(message)

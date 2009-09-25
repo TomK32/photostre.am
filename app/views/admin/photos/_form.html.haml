@@ -14,6 +14,9 @@
       %p.checkbox
         = form_w.check_box website.id, {:checked => current_object.website_ids.include?(website.id) ? 'checked' : '' }
         = form_w.label website.id, website.domain
+        - website.albums.each do |album|
+          = form_w.check_box album.id, {:checked => current_object.album_ids.include?(album.id) ? 'checked' : '' }
+          = form_w.label album.id, album.domain
           
 %p.checkbox
   = form.check_box :public
