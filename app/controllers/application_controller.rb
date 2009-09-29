@@ -3,6 +3,8 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  include Authentication
+  
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -39,6 +41,6 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordNotFound do
-    render '/404.html', :status => 404
+    render 'shared/404', :status => 404
   end
 end

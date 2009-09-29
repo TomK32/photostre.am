@@ -3,4 +3,5 @@
 - %w(geourl keywords description).each do |meta|
   - unless(yield('meta_' + meta).blank?)
     %meta{ :name => meta, :content => yield('meta_' + meta) }
-= stylesheet_link_tag %w(layout application forms colors photos), :cache => 'cache/all.js'
+= stylesheet_link_tag %w(layout application colors), :cache => 'cache/all.css'    
+= yield :head

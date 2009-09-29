@@ -1,0 +1,5 @@
+- scope = controller_name.to_s + '._404'
+- title(t(:"#{scope}.page_title"))
+
+.notice
+  = t(:"#{scope}.not_found")
