@@ -38,16 +38,16 @@ describe Page do
     end
   end
   describe "associations" do
-    it { Page.should belong_to :website }
-    it { Page.should belong_to :user }
-    it { Page.should belong_to :parent }
-    it { Page.should have_many :children }
+    it { Page.should belong_to(:website) }
+    it { Page.should belong_to(:user) }
+    it { Page.should belong_to(:parent) }
+    it { Page.should have_many(:children) }
   end
   describe "validations" do
-    it { @page.should validate_presence_of :website_id }
-    it { @page.should validate_presence_of :user_id }
-    it { @page.should validate_presence_of :title }
-    it { @page.should validate_presence_of :body }
+    it { @page.should validate_presence_of(:website_id) }
+    it { @page.should validate_presence_of(:user_id) }
+    it { @page.should validate_presence_of(:title) }
+    it { @page.should validate_presence_of(:body) }
   end
   describe "scopes" do
     before :each do

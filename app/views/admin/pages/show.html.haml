@@ -1,0 +1,18 @@
+- title(current_object.title)
+- meta_tags(current_object)
+
+- content_for :subnavigation do
+  - if current_object.published?
+    %li= link_to t(:'.see_online'), page_url(current_object.permalink, :host => current_object.website.domain)
+
+- unless current_object.published?
+  .notice= t(:'.not_published', :edit_link => link_to(t(:'.edit'), edit_admin_website_page_path(current_object.website.id, current_object.id)))
+
+
+%div[current_object]
+  %p.body
+    = current_object.body_html
+
+  %p#tags
+    %strong Tags
+    = h current_object.tags

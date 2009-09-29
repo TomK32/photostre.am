@@ -1,0 +1,18 @@
+%p
+  = form.label :title, t(:'.title')
+  = form.text_field :title
+%p
+  = form.label :body, t(:'.body')
+  = form.text_area :body
+%p
+  = form.label :excerpt, t(:'.excerpt')
+  = form.text_area :excerpt
+%p
+  = form.label :tags, t(:'.tags')
+  = form.text_field :tags
+%p
+  = form.label :state, t(:'.state')
+  = form.select(:state, current_model.aasm_states.collect{|s| [t(:"#{current_model_name.downcase}.state.#{s.name}"), s.name.to_s]})
+%p
+  = form.label :permalink, t(:'.permalink')
+  = form.text_field :permalink

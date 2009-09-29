@@ -1,0 +1,7 @@
+- title(t(:'.page_title', :title => current_object.title))
+
+= error_messages_for :page
+
+- form_for(:page, :url => object_url, :html => { :method => :put }) do |form|
+  = render :partial => "form", :object => form
+  %p= submit_tag "Update"

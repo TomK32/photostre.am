@@ -1,0 +1,10 @@
+- title(t(:'.page_title', :website => parent_object.domain))
+
+- content_for :subnavigation do
+  %lu= link_to t(:'.create_new_page'), new_object_path 
+
+- if current_objects.empty?
+  %p.eror= t(:'.no_pages_yet')
+- else
+  = render :partial => 'page', :collection => current_objects
+
