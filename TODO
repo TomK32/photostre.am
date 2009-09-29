@@ -1,0 +1,7 @@
+* basic design (black, blue headings)
+* static pages (about, contact, example users)
+* photo manager
+
+* flickr security id for original photo sizes
+* custom width/height for photos (e.g. 800px)
+* import from flickr based on tag, set and album. maybe camera as well
