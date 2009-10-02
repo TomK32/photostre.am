@@ -1,0 +1,5 @@
+%li[page]
+  = link_to page.title, admin_website_page_path(current_object, page)
+  - if page.children
+    %ul
+      = render :partial => 'page', :collection => page.children

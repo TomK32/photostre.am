@@ -1,0 +1,6 @@
+en:
+  website:
+    state:
+      active: 'Active'
+      draft: 'Draft'
+      deleted: 'Deleted'

@@ -6,11 +6,13 @@ class Website < ActiveRecord::Base
   has_many :pages
   has_many :albums
   has_and_belongs_to_many :photos
-  
-  named_scope :active, :conditions => {:state => 'active'}
+
   named_scope :latest, :order => 'updated_at DESC'
 
-  def active?
-    state == 'active'
-  end
+  include AASM
+  aasm_column :state
+  aasm_initial_state :draft
+  aasm_state :draft
+  aasm_state :active
+  aasm_state :deleted
 end

@@ -2,7 +2,7 @@
   = form.label :site_title, t(:'.site_title')
   = form.text_field :site_title
 %p
-  = form.label :domain, t(:'.domain', :domain => current_website.domain)
+  = form.label :domain, t(:'.domain', :domain => current_object.domain)
   = form.text_field :domain
 %p
   = form.label :meta_keywords, t(:'.meta_keywords')
@@ -10,4 +10,6 @@
 %p
   = form.label :description, t(:'.description')
   = form.text_field :description
-
+%p
+  = form.label :state, t(:'.state')
+  = form.select :state, current_model.aasm_states.collect{|s| [t(:"#{current_model_name.downcase}.state.#{s.name}"), s.name.to_s]}

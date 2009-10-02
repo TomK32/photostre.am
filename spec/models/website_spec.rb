@@ -6,7 +6,6 @@ describe Website do
   end
   it "@website should be valid" do
     @website.should be_valid
-    @website.domain.should == 'photos.tomk32.de'
   end
   describe "associations" do
     it "should have and belong to many users" do

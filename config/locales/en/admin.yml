@@ -17,6 +17,22 @@ en:
           details: "details"
         error:
           no_sources: "You didn't setup a source yet where we can pull the images from."
+    albums:
+      new:
+        page_title: 'Add an album'
+        submit: 'Create album'
+      form:
+        title: 'Title'
+        body: 'Description of your album.'
+        permalink: 'Permalink (will be set automatically and can be changed)'
+        state: 'State'
+      show:
+        edit: 'Edit album.'
+        unpublished: 'This album is not published yet. {{editlink}}'
+        photos: 'Photos in the album'
+      edit:
+        page_title: 'Edit "{{album}}"'
+        submit: 'Save album'
     pages:
       index:
         page_title: 'Pages'
@@ -27,11 +43,18 @@ en:
         submit: 'Create'
       form:
         body: 'Body'
+        excerpt: 'Excerpt'
         title: 'Title'
         tags: 'Tags'
         state: 'Status'
         permalink: 'Permalink'
         parent: 'Parent page'
+      show:
+        not_published: 'The page is not published. {{edit_link}} it to change that.'
+        edit: 'Edit'
+        see_online: 'See online'
+      edit:
+        page_title: 'Edit "{{title}}"'
     photos:
       error:
         no_photos_yet: No photos yet
@@ -47,6 +70,7 @@ en:
       index:
         page_title: 'photos'
         websites: Websites
+        new_album: 'new album'
         photos: Photos
         info: 'To assign a photo to one of your websites simple drag and drop it'
       photo:
@@ -77,6 +101,7 @@ en:
         domain: "Either your own domain which requirest you to point it to our IP<br />or a subdomain like johnnyjones.{{domain}}"
         meta_keywords: "Keywords for the HTML file's metatag. Five to ten keywords are fine."
         description: "Used in the HTML file's metatag but can also be used elsewhere.<br />E.g 'Johnny Jones is a professional photographer from New York City'"
+        state: "State"
       index:
         your_websites: "Your websites"
         add_new_website: 'Please configure a new {{link}}.'
@@ -93,6 +118,9 @@ en:
         edit: "Edit domain '{{domain}}'"
         save: "Save website"
       show:
+        edit: 'edit'
         edit_pages: 'edit pages'
         domain: 'Domain'
         root_path: 'Root path (your homepage)'
+        albums: 'Albums'
+        pages: 'Pages'
