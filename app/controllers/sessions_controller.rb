@@ -1,4 +1,4 @@
-class SessionsController < Admin::ApplicationController
+class SessionsController < ApplicationController
   # for OpenID
   skip_before_filter :verify_authenticity_token, :only => :create
   def create

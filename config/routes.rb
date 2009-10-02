@@ -19,9 +19,10 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
   map.resources :sessions
-  map.with_options :controller => "admin/sessions" do |sessions|
+  map.with_options :controller => "sessions" do |sessions|
     sessions.logout 'logout', :action => "delete"
     sessions.login 'login', :action => "new"
+  end
 
   map.with_options :controller => 'admin/dashboard' do |dashboard|
     dashboard.connect '/admin'
