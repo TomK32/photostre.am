@@ -1,0 +1,3 @@
+%ul
+  - @websites.each do |website|
+    %li= link_to website.site_title, :host => website.domain

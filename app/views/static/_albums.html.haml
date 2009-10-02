@@ -1,0 +1,3 @@
+%ul
+  - @albums.each do |album|
+    %li= link_to album.title, album_url_with_host(album)
