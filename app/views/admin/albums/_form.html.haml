@@ -1,3 +1,12 @@
 %p
   = form.label :title, t(:'.title')
   = form.text_field :title
+%p
+  = form.label :permalink, t(:'.permalink')
+  = form.text_field :permalink
+%p
+  = form.label :body, t(:'.body')
+  = form.text_area :body
+%p
+  = form.label :state, t(:'.state')
+  = form.select :state, current_model.aasm_states.collect{|s| [t(:"#{current_model_name.downcase}.state.#{s.name}"), s.name.to_s]}

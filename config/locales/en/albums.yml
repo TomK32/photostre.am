@@ -1,4 +1,9 @@
 en:
+  album:
+    state:
+      draft: 'Draft'
+      published: 'Published'
+      deleted: 'Deleted'
   albums:
     _404:
       page_title: 'No such album'

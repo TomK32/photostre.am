@@ -10,14 +10,15 @@ describe Album do
   end
   
   describe "validations" do
-    it { @album.should validate_presence_of :website_id }
-    it { @album.should validate_presence_of :title }
-    it { @album.should validate_presence_of :body }
+    it { @album.should validate_presence_of(:website_id) }
+    it { @album.should validate_presence_of(:title) }
+#    it { @album.should validate_presence_of(:body) }
   end
   describe "associations" do
-    it { Album.should belong_to :website }
-    it { Album.should belong_to :parent }
-    it { Album.should have_many :children }
+    it { Album.should belong_to(:website) }
+    it { Album.should belong_to(:parent) }
+    it { Album.should have_many(:children) }
+    it { Album.should have_one(:key_photo) }
   end
   describe "state" do
     it "should have states" do

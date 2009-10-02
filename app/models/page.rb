@@ -2,7 +2,7 @@ class Page < ActiveRecord::Base
   attr_accessible :title, :body, :excerpt, :permalink, :tags, :position, :parent_id, :state
   attr_accessible :meta_geourl, :meta_keywords, :meta_description
 
-  acts_as_category
+  acts_as_category :hidden => false
   has_permalink :title, :scope => :website_id
   belongs_to :website
   belongs_to :user

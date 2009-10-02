@@ -10,5 +10,8 @@ class Admin::AlbumsController < Admin::ApplicationController
       @current_objects ||= current_website.albums.find(:all,
         :order => "created_at DESC", :page => {:current => params[:page], :size => 10 } )
     end
+    before :show do
+      @photos = current_object.photos.paginate(:page => params[:page], :per_page => 20)
+    end
   end
 end
