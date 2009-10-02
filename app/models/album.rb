@@ -6,7 +6,8 @@ class Album < ActiveRecord::Base
   
   has_permalink :title, :scope => :website_id
   belongs_to :website
-  validates_presence_of :website_id, :title, :body, :body_html
+  has_and_belongs_to_many :photos
+  validates_presence_of :website_id, :title
   
   include AASM
   aasm_column :state

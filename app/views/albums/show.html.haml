@@ -1,0 +1,7 @@
+- title(current_object.title)
+
+%div[current_object]
+  .body= current_object.body_html
+
+  #photos
+    = render :partial => 'photo', :collection => @photos

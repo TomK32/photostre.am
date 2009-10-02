@@ -1,0 +1,5 @@
+en:
+  albums:
+    _404:
+      page_title: 'No such album'
+      not_found: 'We are sorry but there is no such album. Maybe it has been deleted.'
