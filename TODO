@@ -1,7 +1,10 @@
-* basic design (black, blue headings)
 * static pages (about, contact, example users)
 * photo manager
+* make the app itself (i.e. admin interface, static pages, login) a theme
+* Allow access to static controller only on certain (non-customer, no user-id?) domains
 
+* why the hell does Source belong_to a Website?
 * flickr security id for original photo sizes
 * custom width/height for photos (e.g. 800px)
 * import from flickr based on tag, set and album. maybe camera as well
+* better design
