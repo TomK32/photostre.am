@@ -1,9 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require RAILS_ROOT + '/app/models/source/flickr_account'
 describe Source::FlickrAccount do
-  fixtures :websites, :sources
   before(:each) do
-    @flickr_account = Source::FlickrAccount.first
+    @flickr_account = Factory(:source_flickr_account)
   end
   it "should be valid" do
     @flickr_account.should be_valid
@@ -22,8 +21,11 @@ describe Source::FlickrAccount do
   end
   
   describe "flickr api communication" do
+    before :each do
+      @tomk32 = Factory(:source_flickr_account, :username => 'TomK32' )
+    end
     it "should set the :nsid" do
-      @flickr_account.set_nsid.should ==('99884191@N00')
+      @tomk32.set_nsid.should ==('99884191@N00')
     end
     it "should return a flickr object"
     it "should have a flickr object with a token"
@@ -34,11 +36,14 @@ describe Source::FlickrAccount do
   end
   
   describe "urls" do
+    before :each do
+      @tomk32 = Factory(:source_flickr_account, :username => 'TomK32' )
+    end
     it "should have an url for photostream" do
-      @flickr_account.photostream_url.should == 'http://flickr.com/photos/TomK32'
+      @tomk32.photostream_url.should == 'http://flickr.com/photos/TomK32'
     end
     it "should have an url for profile" do
-      @flickr_account.profile_url.should == 'http://flickr.com/people/TomK32'
+      @tomk32.profile_url.should == 'http://flickr.com/people/TomK32'
     end
   end
   it "should be authenticated? if both, token and authenticated_at, are set" do

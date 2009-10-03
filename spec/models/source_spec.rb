@@ -1,9 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 require RAILS_ROOT + '/app/models/source/flickr_account'
 describe Source do
-  fixtures :websites, :sources
   before(:each) do
-    @source = Source.first
+    @source = Factory(:source)
   end
   it "@source should be valid" do
     @source.should be_valid
