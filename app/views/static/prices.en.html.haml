@@ -1,0 +1,67 @@
+- title 'Prices'
+- content_for :head do
+  = stylesheet_link_tag 'prices', :cache => true
+
+%p
+  Currently
+  = current_website.site_title
+  is still for free as not all features are launched yet but you can expected these types
+  of account and prices
+
+%table
+  %thead
+    %tr
+      %th 
+      %th Free
+      %th Medium
+      %th Pro
+      %th Szuper Pro
+  %tbody
+    %tr
+      %th No. of sources
+      %td 1 flickr account
+      %td.centered{:colspan => 3} combine unlimited flickr accounts
+    %tr
+      %th No. of photos
+      %td 100
+      %td 200
+      %td.centered{:colspan => 2} unlimited
+    %tr.centered
+      %th No. of sets
+      %td 5
+      %td 20
+      %td{:colspan => 2} unlimited
+    %tr.centered
+      %th No. of content pages
+      %td 5
+      %td{:colspan => 3} unlimited and multilingual
+    %tr.centered
+      %th Custom domain
+      %td No
+      %td Yes, one
+      %td{:colspan => 2} Yes, as many as you want
+    %tr.centered
+      %th Premade designs
+      %td about 10
+      %td about 10 plus community ones
+      %td{:colspan => 2} all that we made so far
+    %tr.centered
+      %th Custom designs
+      %td No
+      %td Yes, but available to all
+      %td Yes
+      %td Yes, plus our help
+    %tr
+      %th Photoblog
+      %td Yes, one photo per day
+      %td.centered{:colspan => 3} Yes, unlimited
+    %tr
+      %th Automatic distribution
+      %td.centered{:colspan => 2} No
+      %td.centered{:colspan => 2} Yes, by tags and album
+    %tr
+      %th Price
+      %td free
+      %td €9/year
+      %td €29/year
+      %td €99/year
