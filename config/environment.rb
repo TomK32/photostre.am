@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'chriseppstein-compass', :lib => 'compass'
   config.gem 'RedCloth'
   config.gem 'rubyist-aasm', :lib => "aasm", :version => '2.1.1'
+  config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
 #  config.gem 'chriseppstein-compass_960_plugin', :lib => 'compass-960-plugin'
 #  config.gem 'xml_magic'
 
