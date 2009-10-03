@@ -25,11 +25,14 @@ class ApplicationController < ActionController::Base
     @current_website ||= Website.active.first
     return false unless @current_website
     # use the websites theme for views
-    self.prepend_view_path File.join(RAILS_ROOT, 'themes', 'websites',
-              @current_website.domain, @current_website.theme, 'views')
+    self.prepend_view_path File.join(current_theme_path, 'views')
     return(@current_website)
   end
   helper_method :current_website
+  
+  def current_theme_path
+    File.join(RAILS_ROOT, 'themes', 'websites', current_website.domain, current_website.theme)
+  end
   
   def current_album
     return if params[:album_id].nil?

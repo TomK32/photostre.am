@@ -29,6 +29,8 @@ ActionController::Routing::Routes.draw do |map|
     dashboard.dashboard '/dashboard'
   end
 
+  map.connect ':file_type/theme/*filename', :controller => 'theme_files', :action => "show"
+
   map.static ':action', :controller => 'static'
   map.faq 'faq/:action', :controller => 'static'
 
