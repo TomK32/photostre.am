@@ -3,7 +3,7 @@ Factory.define :photo do |photo|
   photo.source { Source.first || Factory(:source)}
   photo.remote_id { Photo.count.to_s }
   photo.user { User.first || Factory(:user) }
-  photo.web_url 'http://example.com/photo.jpg'
-  photo.photo_url 'http://example.com/photo.jpg'
-  photo.thumbnail_url 'http://example.com/photo.jpg'
+  photo.web_url {'http://example.com/photo%i' % Photo.count}
+  photo.photo_url {'http://example.com/photo%i.jpg' % Photo.count}
+  photo.thumbnail_url {'http://example.com/photo%i_thumb.jpg' % Photo.count}
 end
