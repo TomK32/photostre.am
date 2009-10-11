@@ -2,13 +2,14 @@ en:
   admin:
     albums:
       new:
-        page_title: 'Add an album'
+        page_title: 'Add an album on "{{domain}}"'
         submit: 'Create album'
       form:
         title: 'Title'
         body: 'Description of your album.'
         permalink: 'Permalink (will be set automatically and can be changed)'
         state: 'State'
+        parent: 'Parent album'
       show:
         edit: 'Edit album.'
         unpublished: 'This album is not published yet. {{editlink}}'

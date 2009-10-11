@@ -3,6 +3,7 @@ class Album < ActiveRecord::Base
   
   named_scope :published, :conditions => {:state => 'published'}
   named_scope :latest, :order => 'updated_at DESC'
+  named_scope :for_select, :select => 'id, title'
   
   has_permalink :title, :scope => :website_id
   belongs_to :key_photo, :class_name => 'Photo'

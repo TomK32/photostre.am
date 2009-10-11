@@ -13,5 +13,8 @@ class Admin::AlbumsController < Admin::ApplicationController
     before :show do
       @photos = current_object.photos.paginate(:page => params[:page], :per_page => 20)
     end
+    before :all do
+      @website = current_user.website.find(params[:website_id]) if params[:website_id]
+    end
   end
 end

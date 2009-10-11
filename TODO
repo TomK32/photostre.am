@@ -1,10 +1,16 @@
 * static pages (about, contact, example users)
 * photo manager
+  * multi selector
 * make the app itself (i.e. admin interface, static pages, login) a theme
 * Allow access to static controller only on certain (non-customer, no user-id?) domains
+* specs for Photo
 
 * why the hell does Source belong_to a Website?
 * flickr security id for original photo sizes
 * custom width/height for photos (e.g. 800px)
 * import from flickr based on tag, set and album. maybe camera as well
 * better design
+
+== marketing
+* analogue photography book
+* tutorials (also as PDF for scribd and slideshare) on using wordpress for photos/flickr
