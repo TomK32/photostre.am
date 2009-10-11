@@ -59,6 +59,8 @@ en:
       photo:
         unassigned: 'Not on any website'
         edit: 'Edit'
+      website:
+        create_album: 'Create new album'
       edit:
         submit: 'Update'
         page_title: 'Edit photo'

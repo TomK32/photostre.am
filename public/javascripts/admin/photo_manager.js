@@ -12,19 +12,26 @@ var PhotoManager = {
   },
   makeDroppable: function(elements) {
     $(elements).droppable({
+      hoverClass: 'hover',
       drop: function(event, ui) {
         // when dropped onto website the update the photo and it's div
         photo_id = ui.draggable.attr('id');
-        website_id = extractID(event.target.id);
+        var droppable_class = '';
+        $.map(['album', 'website'], function(c) {
+          if($(event.target).hasClass(c))
+            droppable_class = c;
+        })
+        console.log(droppable_class);
+        droppable_id = extractID(event.target.id);
         $.ajax({
           type: 'post',
           url: PhotoManager.photoPath(ui.draggable),
-          data: '_method=put&photo[websites]['+website_id+']=1',
+          data: '_method=put&photo[' + droppable_class + 's]['+droppable_id+']=1',
           success: function(html){
-            alert('Photo has been added to website');
+            alert('Photo has been added to ' + droppable_class);
           },
           error: function(html){
-            alert('Photo could not be added to website.')
+            alert('Photo could not be added to ' + droppable_class)
           }
         });
       }

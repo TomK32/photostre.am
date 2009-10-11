@@ -15,7 +15,9 @@
       :border-width 1px
       :padding 0.2em
       :background-color black
-    &.unassigned
-      :border-style solid 
-      :border-width 1px
-      :border-color = !color_green
+
+.website, .album
+  &.droppable.hover
+    :border-style solid 
+    :border-width 1px
+    :border-color = !color_green

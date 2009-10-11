@@ -4,7 +4,6 @@
 - content_for :javascript do
   :plain
     $(document).ready(function(){
-      $('.photo').addClass("selectable draggable");
       var photo_manager = PhotoManager.init({draggables:'.draggable', droppables:'.droppable', photos: '#photos .photo'});
     });
 - content_for :head do

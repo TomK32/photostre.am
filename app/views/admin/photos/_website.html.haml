@@ -1,3 +1,5 @@
-%div.selectable.droppable[website]
-  .domain= website.domain
+%div
+  .domain.droppable[website]= website.domain
   .albums
+    = render :partial => 'album', :collection => website.albums
+    = link_to t(:'.create_album'), new_admin_website_album_path(:website_id => website.id)

@@ -3,10 +3,19 @@ class Admin::PhotosController < Admin::ApplicationController
   make_resourceful do
     actions :all
     before :update do
-      websites = params[:photo].delete(:websites)
-      current_object.websites.delete(Website.find(websites.collect{|key,value| key if value == '0' }.compact))
-      websites.reject!{|key,value| value.to_i != 1}
-      current_object.websites = current_user.websites.find(websites.keys)
+      %w(albums websites).each do |association|
+        next if(params[:photo][association.to_sym].blank?)
+        associations = params[:photo].delete(association.to_sym)
+        deleted_association_ids = associations.reject{|key,value| value.to_i != 0 }.keys
+
+        # TODO should be something like current_user.send(association)
+        new_association_ids = associations.reject{|key,value| value.to_i == 0}.keys
+
+        association_ids = current_object.send(association.singularize + '_ids')
+        association_ids = association_ids - deleted_association_ids + new_association_ids
+        logger.debug(association_ids)
+        current_object.send(association.singularize + '_ids=', association_ids)
+      end
     end
     response_for :update do |format|
       format.js { render :partial => 'photo', :object => current_object }
