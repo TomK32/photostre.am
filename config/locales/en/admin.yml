@@ -1,22 +1,5 @@
 en:
   admin:
-    dashboard:
-      index:
-        page_title: 'Dashboard'
-        add_new_source: 'Please configure a new {{link}}.'
-        new_source: new source
-        photos: Photos
-        sources: Sources
-        websites: Websites
-        flickr:
-          profile: Profile
-          photostream: Photostream
-        website:
-          active: "active"
-          inactive: "inactive"
-          details: "details"
-        error:
-          no_sources: "You didn't setup a source yet where we can pull the images from."
     albums:
       new:
         page_title: 'Add an album'
@@ -64,7 +47,7 @@ en:
           update: Update
         title: Title
         description: Description
-        tags: Tags (flower, car, blue)
+        tags: 'Tags (flower, car, blue)'
         public: Visible to all
         websites: Websites
       index:
