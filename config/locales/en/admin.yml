@@ -65,6 +65,10 @@ en:
       show:
         edit: 'Edit'
         index: 'All photos'
+      filter:
+        search: 'Search title and description'
+        tags: 'Matching all tags'
+        per_page: 'Photos per page'
     sources:
       button:
         add_source: Add source

@@ -10,6 +10,7 @@ class Photo < ActiveRecord::Base
   
   named_scope :published, :conditions => {:public => true}
   named_scope :recent, :order => 'id DESC'
+  named_scope :search, lambda {|term| {:conditions => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
   
   acts_as_taggable_on :tags, :machine_tags
   has_permalink :title
