@@ -9,9 +9,13 @@
       = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
     = render :partial => 'shared/navigation' if %w(static dashboard sessions websites).include?(controller_name)
 
+    - if current_website.pages.published.roots
+      #navigation.pages
+        = render :partial => 'pages/pages', :object => current_website.pages.published.roots
+
     #content{:class => params[:controller]}
       %h1= @title if @title_in_content
-    
+
       - flash.each do |flash_type, message|
         %p{:class => 'flash ' + flash_type.to_s}= h(message)
 

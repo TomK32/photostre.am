@@ -16,3 +16,6 @@
 %p
   = form.label :permalink, t(:'.permalink')
   = form.text_field :permalink
+%p
+  = form.label :parent_id, t(:'.parent')
+  = form.select :parent_id, @website.pages.find(:all, :select => 'id, title').collect{|p|[p.title, p.id]}, :include_blank => true
