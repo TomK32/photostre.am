@@ -1,6 +1,5 @@
 %div.selectable.draggable[photo]
-  / # TODO selector to assign several images to a website or album
-  .icon= link_to_function image_tag(photo.icon_url), 'PhotoManager.loadInfo(this)'
+  .icon= image_tag(photo.icon_url)
   .info
     - if !@current_objects # only display if we're not on the index
       .websites

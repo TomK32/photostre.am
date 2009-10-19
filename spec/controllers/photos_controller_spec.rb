@@ -17,29 +17,28 @@ describe PhotosController do
     it "assigns current_objects" do
       assigns[:photos].should == @photos[0..9]
     end
+    it "should not show deleted photos"
   end
-
 
   describe "GET to :show" do
     before :each do
       @photo = @photos.first || Factory(:photo)
     end
-    it "should assign @photo for id" do
+    it "should accept a photo id" do
       get :show, :id => @photo.id
       assigns[:current_object].should == @photo
     end
-    it "should assign @photo for permalink" do
+    it "should accept a permalink" do
       get :show, :id => @photo.permalink
       assigns[:current_object].should == @photo
     end
-    it "should redirect to :index for non-existing photo" do
+    it "should render a 404 for non-existing photo" do
       get :show, :id => 'no-such-photo'
       assert_response 404
     end
-    it "should show metatags"
-    describe "title" do
-      it "should show title"
-      it "should not show title in content"
+    describe "restricted photos" do
+      it "should request a password for restricted photos"
+      it "should a 403 for unauthorized access"
     end
   end
   

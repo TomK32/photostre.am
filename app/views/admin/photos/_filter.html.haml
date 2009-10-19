@@ -8,4 +8,4 @@
     = text_field_tag :tags, params[:tags]
   %p
     = label_tag :per_page, t(:'.per_page')
-    = select_tag :per_page, options_for_select(%w(10 30 50 100), params[:per_page].to_s)
+    = select_tag :per_page, options_for_select(%w(8 16 40 80), params[:per_page].to_s)

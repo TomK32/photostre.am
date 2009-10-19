@@ -82,6 +82,7 @@ class Source::FlickrAccount < Source
     SourceFlickrAccountWorker.asynch_update_data(:id => self.id)
   end
 
+  # TODO import and create albums
   def update_data
     return unless authenticated?
     errors = []
@@ -101,6 +102,7 @@ class Source::FlickrAccount < Source
         local_photo.attributes = {
           :title => photo.title,
           :remote_id => photo.id,
+          :taken_at => photo.taken_at,
           :description => photo.description,
           :tag_list => TagList.new(photo.tags, {:parse => true, :delimiter => ' '}),
           :machine_tag_list => TagList.new(photo.machine_tags, {:parse => true, :delimiter => ' '}),

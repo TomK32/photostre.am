@@ -7,7 +7,8 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :websites
   has_and_belongs_to_many :albums
-  
+
+  default_scope :order => 'created_at DESC'
   named_scope :published, :conditions => {:public => true}
   named_scope :recent, :order => 'id DESC'
   named_scope :search, lambda {|term| {:conditions => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
