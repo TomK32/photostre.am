@@ -1,6 +1,7 @@
 class Source < ActiveRecord::Base
   has_many :photos
   belongs_to :user
+  belongs_to :website
   
   ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', 'Source::FlickrAccount']]
   

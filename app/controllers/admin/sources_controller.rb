@@ -1,21 +1,21 @@
 class Admin::SourcesController < Admin::ApplicationController
-  before_filter :authenticated
 
-  before_filter :current_source, :only => [:show, :reauthenticate]
+  make_resourceful do
+    actions :all
 
-  def index
-    @sources = current_user.sources
-  end
-
-  def show
-    if @source.nil?
-      flash[:error] = "Source either does not exist or not belong to you"
-      redirect_to :action => :index and return
+    after :create do
+      current_object.user = current_user
     end
-  end
 
-  def new
-    @source = Source.new
+    before :edit, :update, :show do
+      if ! @current_object.new_record? and @current_object.user != current_user
+        flash[:error] = t(:'admin.sources.access_denied')
+        redirect_to :action => :index
+      end
+    end
+    before :show do
+      @photos = current_object.photos.find(:all, :limit => 16, :order => 'created_at DESC')
+    end
   end
 
   def create
@@ -58,8 +58,5 @@ class Admin::SourcesController < Admin::ApplicationController
     if @source.save
       redirect_to @source.authentication_url and return
     end
-  end
-  def current_source
-    @source = current_user.sources.find(params[:id])
   end
 end

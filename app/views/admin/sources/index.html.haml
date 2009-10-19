@@ -1,6 +1,9 @@
+- title(t(:'.page_title'))
+- content_for :subnavigation do
+  %li= link_to t(:'.new'), new_object_path
 
-<% @sources.each do |source| %>
-<div id="source-<=% source.id">
-  <%= source.username %> on <%= source.source_title %> is <%= source.active? ? 'active' : 'inactive' %> and was added at <%= source.created_at.to_s(:short) %>. <%= link_to 'You need to re-authenticate', reauthenticate_source_url(source) unless source.authenticated? %>
-</div>
-<% end %>
+- current_objects.each do |source|
+  %div[source]
+    = t(:'.source_info', {:username => source.username, :title => source.source_title, :active => t(source.active? ? :'.active' : :'.inactive')})
+    = link_to t(:'.reauthenticate'), reauthenticate_source_url(source) unless source.authenticated?
+    = link_to t(:'.show'), admin_source_path(source)

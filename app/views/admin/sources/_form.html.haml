@@ -17,9 +17,9 @@
   %p
     = form.label :username
     = form.text_field :username
-  
-  %p
-    = form.check_box :active
-    = form.label :active
-  
-  
+
+  - unless form.object.new_record?
+    %p
+      = form.check_box :active
+      = form.label :active
+
