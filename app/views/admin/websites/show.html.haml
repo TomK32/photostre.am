@@ -1,18 +1,23 @@
 - title(current_object.domain)
 - content_for :subnavigation do
   %li= link_to t(:'.edit'), edit_object_path
+  %li= link_to t(:'.online'), 'http://' + current_object.domain
 
 %div[current_object]
-  %h2.title= current_object.site_title
-  
-  %p.root_path
-    = current_object.root_path
-    %span.info= t(:'.root_path')
+  %h2#title= current_object.site_title
 
-  %h3= link_to t(:'.albums'), admin_website_albums_path(current_object)
-  %ul.albums
+  %dl
+    %dt= t(:'.root_path')
+    %dd= current_object.root_path
+
+  %h3
+    = link_to t(:'.albums'), admin_website_albums_path(current_object)
+    %span= link_to t(:'.add_album'), new_admin_website_album_path(current_object)
+  #albums
     = render :partial => 'album', :collection => current_object.albums
 
-  %h3= link_to t(:'.pages'), admin_website_pages_path(current_object)
-  %ul.pages
-    = render :partial => 'page', :collection => current_object.pages.roots
+  %h3
+    = link_to t(:'.pages'), admin_website_pages_path(current_object)
+    %span= link_to t(:'.add_page'), new_admin_website_page_path(current_object)
+  #pages
+    = render :partial => 'pages', :object => current_object.pages.roots

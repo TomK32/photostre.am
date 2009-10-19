@@ -11,9 +11,11 @@ en:
         state: 'State'
         parent: 'Parent album'
       show:
-        edit: 'Edit album.'
+        edit: 'Edit album'
         unpublished: 'This album is not published yet. {{editlink}}'
+        website: 'Back to website'
         photos: 'Photos in the album'
+        key_photo: 'Key photo'
       edit:
         page_title: 'Edit "{{album}}"'
         submit: 'Save album'
@@ -22,6 +24,7 @@ en:
         page_title: 'Pages'
         no_pages_yet: 'There are no static pages yet on your website'
         create_new_page: 'Create a new page'
+        website: 'Back to website'
       new:
         page_title: 'Create a new page'
         submit: 'Create'
@@ -37,6 +40,7 @@ en:
         not_published: 'The page is not published. {{edit_link}} it to change that.'
         edit: 'Edit'
         see_online: 'See online'
+        website: 'Back to website'
       edit:
         page_title: 'Edit "{{title}}"'
     photos:
@@ -95,7 +99,7 @@ en:
       index:
         your_websites: "Your websites"
         add_new_website: 'Please configure a new {{link}}.'
-        new_website: new website
+        new_website: "New website"
         no_websites: "You didn't setup a website yet."
         info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
       website:
@@ -108,8 +112,10 @@ en:
         edit: "Edit domain '{{domain}}'"
         save: "Save website"
       show:
-        edit: 'edit'
-        edit_pages: 'edit pages'
+        edit: 'Edit'
+        online: 'See online'
+        add_page: 'Add page'
+        add_album: 'Add album'
         domain: 'Domain'
         root_path: 'Root path (your homepage)'
         albums: 'Albums'
