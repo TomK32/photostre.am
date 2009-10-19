@@ -7,6 +7,7 @@ class Page < ActiveRecord::Base
   belongs_to :website
   belongs_to :user
   alias_attribute :meta_description, :excerpt
+  default_scope :order => 'parent_id ASC, position ASC'
 
   include AASM
   aasm_column :state

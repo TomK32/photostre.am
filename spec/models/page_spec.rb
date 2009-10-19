@@ -57,6 +57,9 @@ describe Page do
       Factory(:page, :state => 'deleted')
       Page.count.should be(4)
     end
+    it "should have a default scope ordering by position" do
+      @page.default_scoping[0][:find].should ==({:order => 'parent_id ASC, position ASC'})
+    end
     it "should have scopes" do
       Page.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(deleted draft published))
     end
@@ -74,6 +77,18 @@ describe Page do
       @page.body = 'A completely update page body'
       @page.save! and @page.reload
       @page.state.should =='deleted'
+    end
+  end
+  describe "sortable tree" do
+    it "should have roots" do
+      page2 = Factory(:page) # published by default
+      page3 = Factory(:page, :parent => page2) # published by default
+      page2.reload
+      page3.reload
+      Page.all.should == [@page, page2, page3]
+      Page.roots.should == [@page, page2]
+      page2.children.should == [page3]
+      page3.parent.should == page2
     end
   end
   describe "denormalizers for body and excerpt" do
