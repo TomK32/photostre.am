@@ -1,7 +1,8 @@
 %title= page_title
-- meta_tags(current_website)
-- %w(geourl keywords description).each do |meta|
-  - unless(yield('meta_' + meta).blank?)
-    %meta{ :name => meta, :content => yield('meta_' + meta) }
+- meta_tags(current_website) do |name,content|
+  %meta{ :name => name, :content => content }
+- meta_tags do |name,content|
+  %meta{ :name => name, :content => content }
+
 = stylesheet_link_tag %w(layout application colors), :cache => 'cache/all.css'
 = yield :head

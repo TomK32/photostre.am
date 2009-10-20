@@ -16,9 +16,7 @@ module ApplicationHelper
     return if object.nil?
     [:meta_geourl, :meta_keywords, :meta_description].each do |method|
       if object.respond_to?(method)
-        content_for method do
-          object.send(method)
-        end
+        yield(method, object.send(method))
       end
     end
   end
