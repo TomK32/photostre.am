@@ -1,12 +1,16 @@
 class Page < ActiveRecord::Base
   attr_accessible :title, :body, :excerpt, :permalink, :tags, :position, :parent_id, :state
-  attr_accessible :meta_geourl, :meta_keywords, :meta_description
+  attr_accessible :meta_geourl
 
   acts_as_category :hidden => false
+  acts_as_taggable
   has_permalink :title, :scope => :website_id
   belongs_to :website
   belongs_to :user
+
   alias_attribute :meta_description, :excerpt
+  alias_attribute :meta_keywords, :tag_list
+
   default_scope :order => 'parent_id ASC, position ASC'
 
   include AASM
@@ -20,7 +24,7 @@ class Page < ActiveRecord::Base
   validates_presence_of :website_id, :user_id
 
   before_validation :denormalize_body_and_excerpt
-  
+
   def denormalize_body_and_excerpt
     self.body_html = textilize(self.body)
     self.excerpt_html = textilize(self.excerpt)

@@ -79,6 +79,14 @@ describe Page do
       @page.state.should =='deleted'
     end
   end
+  describe "meta tags" do
+    it "should have meta_keywords" do
+      @page.meta_keywords.should == @page.tag_list
+    end
+    it "should have meta_description" do
+      @page.meta_description.should == @page.excerpt
+    end
+  end
   describe "sortable tree" do
     it "should have roots" do
       page2 = Factory(:page) # published by default
