@@ -1,6 +1,6 @@
 %h2
-  = website.site_title
-  %small= '(%s)' % website.domain
+  = link_to website.site_title, object_path(website)
+  %span= link_to website.domain, object_path(website)
 %ul
   %li= link_to t(:'.edit'), edit_object_path(website)
   %li= website.active? ? t(:'.active') : t(:'.inactive')

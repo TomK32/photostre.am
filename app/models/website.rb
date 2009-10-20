@@ -15,4 +15,8 @@ class Website < ActiveRecord::Base
   aasm_state :draft
   aasm_state :active
   aasm_state :deleted
+
+  def url
+    'http://' + self.domain
+  end
 end

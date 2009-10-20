@@ -1,3 +1,2 @@
 %div[album]
-  = link_to image_tag(album.key_photo_thumbnail_url), admin_website_album_path(current_object,album) if album.key_photo
-  = link_to album.title, admin_website_album_path(current_object,album)
+  = link_to image_tag(album.key_photo_thumbnail_url), admin_website_album_path(current_object,album), :title => album.title

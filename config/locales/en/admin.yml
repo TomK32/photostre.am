@@ -126,7 +126,7 @@ en:
         active: "Active"
         inactive: "Inactive"
       edit:
-        edit: "Edit domain '{{domain}}'"
+        page_title: "Edit domain '{{domain}}'"
         save: "Save website"
       show:
         edit: 'Edit'
