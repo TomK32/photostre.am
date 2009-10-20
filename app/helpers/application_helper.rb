@@ -11,7 +11,9 @@ module ApplicationHelper
     [@title, (current_website.site_title || t(:'app.title'))].reject{|a|a.blank?}.compact.join(' // ')
   end
 
-  def meta_tags(object)
+  def meta_tags(object = nil)
+    object ||= current_object if defined?(:current_object)
+    return if object.nil?
     [:meta_geourl, :meta_keywords, :meta_description].each do |method|
       if object.respond_to?(method)
         content_for method do
