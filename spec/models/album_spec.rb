@@ -67,4 +67,16 @@ describe Album do
       @new_album.key_photo_medium_url.should ==(@photos[2].medium_url)
     end
   end
+  describe "sortable tree" do
+    it "should have roots" do
+      album2 = Factory(:album) # published by default
+      album3 = Factory(:album, :parent => album2) # published by default
+      album2.reload
+      album3.reload
+      Album.all.should == [@album, album2, album3]
+      Album.roots.should == [@album, album2]
+      album2.children.should == [album3]
+      album3.parent.should == album2
+    end
+  end
 end
