@@ -3,7 +3,6 @@ class ExtendAlbums < ActiveRecord::Migration
     add_column :albums, :body, :text
     add_column :albums, :body_html, :text
     add_column :albums, :website_id, :integer, :nil => false
-    add_column :albums, :state, :string, :default => 'published'
     add_column :albums, :ancestors_count, :integer, :default => 0
     add_column :albums, :descendants_count, :integer, :default => 0
     remove_column :albums, :published, :null => false, :default => 'published'

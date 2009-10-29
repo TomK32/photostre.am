@@ -1,6 +1,6 @@
 class AddStateFields < ActiveRecord::Migration
   def self.up
-    add_column :albums, :state, :string, :default => 'public'
+    add_column :albums, :state, :string, :default => 'published'
     add_index :albums, :state
     remove_column :websites, :active
     add_column :websites, :state, :string, :default => 'active'
