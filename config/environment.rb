@@ -18,13 +18,14 @@ Rails::Initializer.run do |config|
   
 
   # Specify gems that this application depends on and have them installed with rake gems:install
-  config.gem 'haml-edge', :lib => 'haml', :version => '>= 2.0.6'
+  config.gem 'haml-edge', :lib => 'haml', :version => '>= 2.3.43'
   config.gem 'chriseppstein-compass', :lib => 'compass'
   config.gem 'RedCloth'
   config.gem 'rubyist-aasm', :lib => "aasm", :version => '2.1.1'
   config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+  config.gem "memcached"
 #  config.gem 'chriseppstein-compass_960_plugin', :lib => 'compass-960-plugin'
-#  config.gem 'xml_magic'
+  config.gem 'mig-xml_magick', :lib => 'xml_magic'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
