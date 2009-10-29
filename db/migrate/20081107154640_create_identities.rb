@@ -9,7 +9,6 @@ class CreateIdentities < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :identity_url, :identity_url
     drop_table :identities
   end
 end

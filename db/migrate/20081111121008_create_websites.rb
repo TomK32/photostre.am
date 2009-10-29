@@ -12,9 +12,6 @@ class CreateWebsites < ActiveRecord::Migration
     end
     add_index :websites, :domain, :unique => true
 
-    Website.create!(:site_title => 'das-photowall', :metatags => 'photos, log',
-      :footer_line => '&copy; 2008 by das-photowall')
-
     create_table :users_websites, :id => false do |t|
       t.column :website_id, :integer, :null => false
       t.column :user_id, :integer, :null => false

@@ -9,18 +9,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090609215453) do
+ActiveRecord::Schema.define(:version => 20091020223117) do
 
   create_table "albums", :force => true do |t|
+    t.string   "title",                                            :null => false
+    t.string   "permalink",                                        :null => false
+    t.integer  "position",                :default => 0,           :null => false
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",      :default => "public"
+    t.text     "body"
+    t.text     "body_html"
+    t.integer  "website_id"
+    t.string   "state",                   :default => "published"
+    t.integer  "ancestors_count",         :default => 0
+    t.integer  "descendants_count",       :default => 0
+    t.integer  "key_photo_id"
+    t.string   "key_photo_thumbnail_url"
+    t.string   "key_photo_medium_url"
+    t.integer  "children_count",          :default => 0
   end
 
-  add_index "albums", ["state"], :name => "index_albums_on_state"
+  create_table "albums_photos", :id => false, :force => true do |t|
+    t.integer "album_id", :null => false
+    t.integer "photo_id", :null => false
+  end
+
+  add_index "albums_photos", ["album_id"], :name => "index_albums_photos_on_album_id"
 
   create_table "identities", :force => true do |t|
-    t.string   "identity_url", :default => "", :null => false
+    t.string   "identity_url", :null => false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,23 +53,49 @@ ActiveRecord::Schema.define(:version => 20090609215453) do
     t.string  "assoc_type"
     t.binary  "server_url"
     t.binary  "secret"
+    t.integer "user_id"
   end
 
+  add_index "open_id_authentication_associations", ["handle", "user_id"], :name => "index_open_id_authentication_associations_on_handle_and_user_id", :unique => true
   add_index "open_id_authentication_associations", ["handle"], :name => "index_open_id_authentication_associations_on_handle"
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",                  :null => false
+    t.integer "timestamp",  :null => false
     t.string  "server_url"
-    t.string  "salt",       :default => "", :null => false
+    t.string  "salt",       :null => false
   end
+
+  create_table "pages", :force => true do |t|
+    t.integer "website_id"
+    t.integer "user_id"
+    t.string  "title",                                      :null => false
+    t.text    "body",                                       :null => false
+    t.text    "body_html",                                  :null => false
+    t.text    "excerpt"
+    t.text    "excerpt_html"
+    t.string  "permalink",                                  :null => false
+    t.text    "tags"
+    t.string  "state",             :default => "published", :null => false
+    t.integer "position",          :default => 0
+    t.integer "version",           :default => 0
+    t.string  "meta_geourl"
+    t.string  "meta_keywords"
+    t.integer "parent_id"
+    t.integer "descendants_count", :default => 0
+    t.integer "ancestors_count",   :default => 0
+    t.integer "children_count",    :default => 0
+  end
+
+  add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
+  add_index "pages", ["state"], :name => "index_pages_on_state"
 
   create_table "photos", :force => true do |t|
     t.integer  "source_id",                       :null => false
     t.string   "title"
     t.string   "description"
-    t.string   "web_url",       :default => "",   :null => false
-    t.string   "photo_url",     :default => "",   :null => false
-    t.string   "thumbnail_url", :default => "",   :null => false
+    t.string   "web_url",                         :null => false
+    t.string   "photo_url",                       :null => false
+    t.string   "thumbnail_url",                   :null => false
     t.string   "username"
     t.integer  "user_id"
     t.boolean  "public",        :default => true
@@ -70,14 +114,21 @@ ActiveRecord::Schema.define(:version => 20090609215453) do
   add_index "photos", ["remote_id", "source_id"], :name => "index_photos_on_remote_id_and_source_id", :unique => true
   add_index "photos", ["title"], :name => "index_photos_on_title"
 
+  create_table "photos_websites", :id => false, :force => true do |t|
+    t.integer "photo_id",   :null => false
+    t.integer "website_id", :null => false
+  end
+
+  add_index "photos_websites", ["website_id"], :name => "index_photos_websites_on_website_id"
+
   create_table "sources", :force => true do |t|
     t.string   "feed_url"
     t.string   "username"
     t.string   "api_key"
     t.string   "secret"
     t.string   "token"
-    t.string   "title",            :default => "",       :null => false
-    t.integer  "user_id",                                :null => false
+    t.string   "title"
+    t.integer  "user_id"
     t.integer  "website_id",                             :null => false
     t.boolean  "active",           :default => true
     t.datetime "created_at"
@@ -108,7 +159,7 @@ ActiveRecord::Schema.define(:version => 20090609215453) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login",      :limit => 40,  :default => "",        :null => false
+    t.string   "login",      :limit => 40,                         :null => false
     t.string   "name",       :limit => 100, :default => ""
     t.string   "email",      :limit => 100
     t.string   "state",                     :default => "passive"
@@ -137,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20090609215453) do
     t.datetime "updated_at"
     t.string   "state",         :default => "active"
     t.string   "root_path"
+    t.string   "theme",         :default => "default", :null => false
   end
 
   add_index "websites", ["domain"], :name => "index_websites_on_domain", :unique => true
