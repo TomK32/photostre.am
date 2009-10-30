@@ -5,13 +5,12 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :pages
   map.resources :photos
-
+  map.resources :users
 
   map.namespace :admin do |admin|
     admin.resources :albums
     admin.resources :photos
     admin.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
-    admin.resources :users
     admin.resources :websites do |website|
       website.resources :albums
       website.resources :pages
