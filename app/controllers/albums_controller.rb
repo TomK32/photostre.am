@@ -15,9 +15,10 @@ class AlbumsController < ApplicationController
   end
 
   def current_object
+    return false if params[:id].blank?
     scope = current_website.albums.published
-    @current_object ||= scope.find_by_permalink!(params[:id]) if params[:id]
-    @current_object ||= scope.find(params[:id]) if params[:id]
+    @current_object ||= scope.find_by_permalink!(params[:id])
+    @current_object ||= scope.find(params[:id])
     @current_object
   end
 end
