@@ -9,12 +9,15 @@ class AlbumsController < ApplicationController
   def current_objects(per_page = 5)
     per_page ||= params[:per_page]
     @current_objects ||= {}
-    @current_objects[:per_page] ||= current_website.albums.published.paginate(:page => params[:page], :per_page => per_page)
+    scope = current_website.albums.published
+    @current_objects[:per_page] ||= scope.paginate(:page => params[:page], :per_page => per_page)
     @current_objects[:per_page]
   end
+
   def current_object
-    @current_object ||= current_website.albums.published.find_by_permalink!(params[:id])
-    @current_object ||= current_website.albums.published.find(params[:id])
+    scope = current_website.albums.published
+    @current_object ||= scope.find_by_permalink!(params[:id]) if params[:id]
+    @current_object ||= scope.find(params[:id]) if params[:id]
     @current_object
   end
 end

@@ -15,7 +15,7 @@ module ApplicationHelper
     object ||= current_object if defined?(current_object)
     return if object.nil?
     [:meta_geourl, :meta_keywords, :meta_description].each do |method|
-      if object.respond_to?(method)
+      if object.respond_to?(method) and ! object.send(method).blank?
         yield(method, object.send(method))
       end
     end
