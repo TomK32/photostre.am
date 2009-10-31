@@ -1,67 +1,53 @@
 - title 'Prices'
-- content_for :head do
-  = stylesheet_link_tag 'prices', :cache => true
 
+%h2 Free
 %p
-  Currently
-  = current_website.site_title
-  is still for free as not all features are launched yet but you can expected these types
-  of account and prices
+  At no cost at all you can stream photos in from
+  %strong a single source,
+  you can
+  %strong display 50 photos
+  in
+  %strong upto 5 albums
+  pick from
+  %strong ten designs
+  and select your personal subdomain under one of 
+  = link_to "our domains", static_path('domains') + '#subdomains'
 
-%table
-  %thead
-    %tr
-      %th 
-      %th Free
-      %th Medium
-      %th Pro
-      %th Szuper Pro
-  %tbody
-    %tr
-      %th No. of sources
-      %td 1 flickr account
-      %td.centered{:colspan => 3} combine unlimited flickr accounts
-    %tr
-      %th No. of photos
-      %td 100
-      %td 200
-      %td.centered{:colspan => 2} unlimited
-    %tr.centered
-      %th No. of sets
-      %td 5
-      %td 20
-      %td{:colspan => 2} unlimited
-    %tr.centered
-      %th No. of content pages
-      %td 5
-      %td{:colspan => 3} unlimited and multilingual
-    %tr.centered
-      %th Custom domain
-      %td No
-      %td Yes, one
-      %td{:colspan => 2} Yes, as many as you want
-    %tr.centered
-      %th Premade designs
-      %td about 10
-      %td about 10 plus community ones
-      %td{:colspan => 2} all that we made so far
-    %tr.centered
-      %th Custom designs
-      %td No
-      %td Yes, but available to all
-      %td Yes
-      %td Yes, plus our help
-    %tr
-      %th Photoblog
-      %td Yes, one photo per day
-      %td.centered{:colspan => 3} Yes, unlimited
-    %tr
-      %th Automatic distribution
-      %td.centered{:colspan => 2} No
-      %td.centered{:colspan => 2} Yes, by tags and album
-    %tr
-      %th Price
-      %td free
-      %td €9/year
-      %td €29/year
-      %td €99/year
+%h2 Basic
+%p
+  For only
+  %strong €9 per year
+  you can stream photos in from
+  %strong a single source,
+  you can
+  %strong display 200 photos
+  in
+  %strong upto 20 albums and subalbums
+  pick from ten designs and
+  %strong create your own webdesign.
+
+%h2 Pro
+%p
+  For as much as
+  %strong €99 per year
+  you can stream photos in from
+  %strong three sources,
+  display any amount of photos with
+  %strong custom sizes and cropping for your photos
+  on
+  %strong upto three domains
+  and of course create your own webdesign.
+
+%h2 Szuper Pro
+%p
+  For
+  %strong €299 per year
+  you get all the above feature plus unlimited photo sources, domains, subdomains.
+
+%h2 Whitelabelled
+%p
+  If you want to offer our service to your group, network or customers with custom pages
+  for signup, dashboard and more, please send us a mail to
+  = link_to 'info@photostre.am', 'mailto:info@photostre.am?subject=Whitelabel Service'
+
+
