@@ -1,7 +1,9 @@
 %h2
-  = link_to website.site_title, object_path(website)
-  %span= link_to website.domain, object_path(website)
+  = link_to website.site_title, object_path(website), :title => t(:'.show_website_details')
+  %span= link_to website.domain, website.url, :title => t(:'.goto_domain')
 %ul
   %li= link_to t(:'.edit'), edit_object_path(website)
   %li= website.active? ? t(:'.active') : t(:'.inactive')
-
+  %li= link_to pluralize(website.pages.published.count, t(:'.pages')), admin_website_pages_path(website)
+  %li
+    = t(:'.photos_in_albums', :photos => pluralize(website.photos.published.count, t(:'.photo')), :albums => pluralize(website.albums.published.count, t(:'.album')))

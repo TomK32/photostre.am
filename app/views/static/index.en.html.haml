@@ -1,20 +1,16 @@
 - content_for :navigation do
-  %li= link_to t(:'.prices'), static_url('prices')
+  %li= link_to 'Plans &amp; Prices', static_url('prices')
 
 %p
-  %em
-    You have a 
-    %span.flickr flickr account?
-    And you run a 
-    %span.portfolio portfolio?
-    And a
-    %span.photoblog photoblog?</em>
+  You have a 
+  %span.flickr flickr account?
+  And you run a 
+  %span.portfolio portfolio?
+  And a
+  %span.photoblog photoblog?
   %br
-  So you upload your photos twice or thrice? Get ready to save some time:
-  %br
-  %strong= t(:'app.title')
-  reads your photos from your flickr account and gives you
-  great creative freedom for designing a portfolio and photoblog.
+  %strong= current_website.site_title
+  will help you save time and money and combine all those. And you can keep using flickr.
   
 %p
   - if logged_in?

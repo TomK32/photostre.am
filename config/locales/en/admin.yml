@@ -1,4 +1,10 @@
 en:
+  layouts:
+    admin:
+      application:
+        website_manager: "Website manager"
+        photo_manager: "Photo manger"
+
   admin:
     albums:
       new:
@@ -16,9 +22,13 @@ en:
         website: 'Back to website'
         photos: 'Photos in the album'
         key_photo: 'Key photo'
+        page_title: '{{album}} on "{{website}}"'
       edit:
         page_title: 'Edit "{{album}}"'
         submit: 'Save album'
+      index:
+        page_title: 'Albums on "{{website}}"'
+        new: 'New album'
     pages:
       index:
         page_title: 'Pages'
@@ -66,6 +76,8 @@ en:
         edit: 'Edit'
       website:
         create_album: 'Create new album'
+      album:
+        show: 'Show album'
       edit:
         submit: 'Update'
         page_title: 'Edit photo'
@@ -76,6 +88,8 @@ en:
         search: 'Search title and description'
         tags: 'Matching all tags'
         per_page: 'Photos per page'
+        submit: 'Apply filter'
+        reset: 'Reset filter'
     sources:
       button:
         add_source: Add source
@@ -119,12 +133,19 @@ en:
         new_website: "New website"
         no_websites: "You didn't setup a website yet."
         info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
+        new: 'new website'
       website:
+        goto_domain: 'Open this website as seen by the public'
+        show_website_details: 'Show details about this website'
         edit: "Edit website details"
         edit_pages: "Edit pages"
         edit_sets: "Edit sets"
         active: "Active"
         inactive: "Inactive"
+        pages: 'published pages'
+        photo: 'photo'
+        album: 'album'
+        photos_in_albums: '{{photos}} in {{albums}}'
       edit:
         page_title: "Edit domain '{{domain}}'"
         save: "Save website"

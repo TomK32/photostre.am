@@ -5,6 +5,8 @@ en:
       published: 'Published'
       deleted: 'Deleted'
   albums:
+    index:
+      page_title: 'Albums'
     _404:
       page_title: 'No such album'
       not_found: 'We are sorry but there is no such album. Maybe it has been deleted.'

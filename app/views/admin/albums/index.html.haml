@@ -1,5 +1,6 @@
-%h1 Listing albums
+- title(t(:'.page_title', :website => parent_object.site_title))
+- content_for :subnavigation do
+  %li= link_to t(:'.new'), new_object_path
 
-= render :partial => 'album', :collection => current_objects
-
-= link_to 'New album', new_object_path 
+- current_objects.each do |album|
+  %div[album]= link_to image_tag(album.key_photo_thumbnail_url), object_path(album)

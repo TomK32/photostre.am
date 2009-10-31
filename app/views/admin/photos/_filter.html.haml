@@ -9,3 +9,6 @@
   %p
     = label_tag :per_page, t(:'.per_page')
     = select_tag :per_page, options_for_select(%w(8 16 40 80), params[:per_page].to_s)
+  %p.submit
+    = submit_tag t(:'.submit'), :name => nil
+    = link_to t(:'.reset'), admin_photos_path

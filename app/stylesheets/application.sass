@@ -8,9 +8,9 @@ body
   :font-size 145%
 
 a
-  :color = !color_link + #222
-  &:hover, &:active, &:visited
-    :color = !color_link + #444
+  :color = !color_link
+  &:hover, &:active
+    :color = !color_link_active
 
 p
   :font-size 110%
@@ -28,10 +28,11 @@ h1
   :color = !color_green
 h2, h3
   :color = !color_orange
-  a, a:visited
-    :color = !color_orange + #222
+  a
+    :color = !color_orange
     :text-decoration none
-
+    &:hover, &:active
+      :color = !color_link_active
 #header a
   :font-size 4em
   :text-decoration none
@@ -39,16 +40,21 @@ h2, h3
   &:hover, &:active
     :color = !color_link_active
 
-#navigation
+#navigation, #subnavigation
   :margin 0
   :padding 0
   li
     :list-style-type none
   a
     :text-decoration none
-    &:hover, &:active, &:visited
-      :color = !color_link
-  
+    &:hover, &:active
+      :color = !color_link_active
+#subnavigation
+  li
+    :display inline
+    :margin 0px 20px 0px 0px
+    a:hover, a:active
+      :color = !color_link_active
 
 #footer ul
   :list-style-type none

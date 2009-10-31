@@ -3,12 +3,16 @@
 %head
   = render :partial => "shared/head"
   = javascript_include_tag(:defaults, %w(admin))
-  = stylesheet_link_tag %w(admin/forms admin/photos admin/websites), :cache => 'cache/admin.js'
+  = stylesheet_link_tag %w(admin/forms admin/photos admin/websites admin/albums), :cache => 'cache/admin.js'
 %body
   #container
     #header
       = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
+    - content_for :subnavigation do ||
+      %li= link_to_unless_current t(:'.photo_manager'), admin_photos_path
+      %li= link_to_unless_current t(:'.website_manager'), admin_websites_path
     = render :partial => 'shared/navigation'
+    
 
     #content
       %h1= @title

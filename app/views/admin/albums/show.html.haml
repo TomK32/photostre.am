@@ -1,16 +1,31 @@
-- title(current_object.title)
+- title(t(:'.page_title', {:album => current_object.title, :website => parent_object.site_title}))
+
 - content_for :subnavigation do
   %li= link_to t(:'.edit'), edit_object_path
   %li
-    back to
-    = link_to current_object.website.site_title, admin_website_path(current_object.website_id)
+    = link_to t(:'.website'), admin_website_path(current_object.website_id)
   
 %div[current_object]
   - if ! current_object.published?
     %p.notice= t(:'.unpublished', :editlink => link_to(t(:'.edit'), edit_object_path))
-  %h2= h current_object.title
-  %p.body
-    = current_object.body_html
+  .body= current_object.body_html
 
   %h3= t(:'.photos')
-  = render :partial => 'photo', :collection => @photos
+  #key_photo
+    - if current_object.key_photo
+      = image_tag(current_object.key_photo_medium_url) 
+    - else
+      = t(:'.no_keyphoto')
+    = t(:'.key_photo')
+  #photos
+    = render :partial => 'photo', :collection => @photos
+
+
+- content_for :head do
+  = javascript_include_tag 'admin/photo_manager'
+- content_for :javascript do
+  :plain
+    $(document).ready(function(){
+      var photo_manager = PhotoManager.init({draggables:'#photos .photo', droppables:'#keyphoto', photos: '#photos .photo'});
+    });
+  

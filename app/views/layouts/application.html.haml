@@ -14,7 +14,8 @@
         = render :partial => 'pages/pages', :object => current_website.pages.published.roots
 
     #content{:class => params[:controller]}
-      %h1= @title if @title_in_content
+      - if @title_in_content
+        %h1= @title 
 
       - flash.each do |flash_type, message|
         %p{:class => 'flash ' + flash_type.to_s}= h(message)

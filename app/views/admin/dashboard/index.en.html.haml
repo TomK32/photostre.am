@@ -1,15 +1,13 @@
 - title('Dashboard')
 - content_for :info do
   = render :partial => 'info'
-- content_for :subnavigation do
-  %li= link_to 'photo manager', admin_photos_path
 
 #websites
   - if @websites.empty?
     You haven't created a website yet.
   - else
     You currently have 
-    = link_to(pluralize(@websites.count, 'website'), admin_websites_path)
+    = pluralize(@websites.count, 'website')
     - if @websites.count != @websites.select{|w|w.active?}.size
       of which
       = pluralize(@websites.select{|w|w.active?}.size, 'is', 'are')
@@ -18,27 +16,13 @@
       and 
       = @websites.count == 1 ? 'it is' : 'all are'
       online.
-  You may add a
-  = link_to('new one', new_admin_website_path) + '.'
-
-#sources
-  - if @sources.empty?
-    There are no sources yet to stream photos in.
-  - else
-    The photos are coming from
-    = link_to(pluralize(@sources.count, 'source'), admin_sources_path)
-  You may stream from a
-  = link_to('new source', new_admin_source_path) + '.'
 
 #photos
   You have
   = pluralize(current_user.photos.count, 'photo')
-  that came from your sources. Use the
-  = link_to 'photo manager', admin_photos_path
-  to distribute them onto your websites and albums.
+  that came from your sources.
   
   - unless @photos.empty?
-    %p
-      A few of your newest photos
+    %h2 Latest photos imported
     - @photos.each do |photo|
       .photo= link_to image_tag(photo.icon_url), admin_photo_path(photo)

@@ -3,14 +3,16 @@
   = t(:'.info')
 - content_for :javascript do
   :plain
+    var photo_manager;
     $(document).ready(function(){
-      var photo_manager = PhotoManager.init({draggables:'.draggable', droppables:'.droppable', photos: '#photos .photo'});
+      photo_manager = new PhotoManager();
     });
 - content_for :head do
   = javascript_include_tag 'admin/photo_manager'
 - content_for :info do
   / # TODO link to 'select all'
   = render :partial => 'filter'
+#select-result
 
 - content_for :subnavigation do
   - if @website

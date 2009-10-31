@@ -1,13 +1,13 @@
-#navigation
-  %ul
-    - if logged_in?
-      %li= link_to t(:'.dashboard'), dashboard_path
-      %li= link_to t(:'.logout'), logout_path
-    - else
-      %li= link_to t(:'.login'), login_path 
-    %li= link_to t(:'.about'), static_path(:action => 'about')
-    = yield :navigation
-  - if yield :subnavigation
-    %ul#subnavigation
-      = yield :subnavigation
-    
+%ul#navigation
+
+  - if logged_in?
+    %li= link_to t(:'.dashboard'), dashboard_path
+    %li= link_to t(:'.logout'), logout_path
+  - else
+    %li= link_to t(:'.login'), login_path 
+  %li= link_to t(:'.about'), static_path(:action => 'about')
+  = yield :navigation
+- if yield :subnavigation
+  %ul#subnavigation
+    = yield :subnavigation
+  

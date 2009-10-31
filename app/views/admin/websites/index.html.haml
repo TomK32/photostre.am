@@ -1,6 +1,11 @@
 - title(t(:'.your_websites'))
 - content_for :info do
   = textilize t(:'.info', :domain_faq_link => faq_url('domains'))
+
+/ TODO subscription limit
+You may add a
+= link_to(t(:'.new'), new_admin_website_path) + '.'
+
 - if current_objects.empty?
   %p.error= t(:'.no_websites')
   = t(:'.add_new_website', :link => link_to(t(:'.new_website'), new_website_url))
