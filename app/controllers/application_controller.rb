@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if @current_website.nil?
       flash.now[:error] = 'There is no domain %s registered with us or not active.' % request.host
     end
-    @current_website ||= Website.active.first
+    @current_website ||= Website.system.first
     return false unless @current_website
     return(@current_website)
   end

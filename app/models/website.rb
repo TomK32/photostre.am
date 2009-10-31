@@ -8,12 +8,14 @@ class Website < ActiveRecord::Base
   has_and_belongs_to_many :photos
 
   named_scope :latest, :order => 'updated_at DESC'
+  named_scope :active, :conditions => {:state => ['active', 'system']}
 
   include AASM
   aasm_column :state
   aasm_initial_state :draft
   aasm_state :draft
   aasm_state :active
+  aasm_state :system
   aasm_state :deleted
 
   def url
