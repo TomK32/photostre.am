@@ -57,7 +57,7 @@ describe Page do
       Factory(:page, :state => 'deleted')
       Page.count.should be(4)
     end
-    it "should have a default scope ordering by position" do
+    it "should have a default scope ordering by parent and position" do
       @page.default_scoping[0][:find].should ==({:order => 'parent_id ASC, position ASC'})
     end
     it "should have scopes" do

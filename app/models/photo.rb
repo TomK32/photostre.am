@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   has_and_belongs_to_many :websites
   has_and_belongs_to_many :albums
 
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'created_at DESC, id DESC'
   named_scope :published, :conditions => {:public => true}
   named_scope :recent, :order => 'id DESC'
   named_scope :search, lambda {|term| {:conditions => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
@@ -30,6 +30,6 @@ class Photo < ActiveRecord::Base
     errors.add('username or user_id missing') if user_id.blank? and username.blank?
   end
 
-  alias :meta_keywords :tag_list
+  alias_attribute :meta_keywords, :tag_list
 
 end

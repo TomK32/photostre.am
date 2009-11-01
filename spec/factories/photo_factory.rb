@@ -6,4 +6,5 @@ Factory.define :photo do |photo|
   photo.web_url {'http://example.com/photo%i' % Photo.count}
   photo.photo_url {'http://example.com/photo%i.jpg' % Photo.count}
   photo.thumbnail_url {'http://example.com/photo%i_thumb.jpg' % Photo.count}
+  photo.medium_url {'http://example.com/photo%i_medium.jpg' % Photo.count}
 end

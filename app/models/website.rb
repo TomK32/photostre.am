@@ -1,5 +1,5 @@
 class Website < ActiveRecord::Base
-  validates_presence_of :domain, :site_title
+  validates_presence_of :domain, :site_title, :state
   validates_uniqueness_of :domain
   has_and_belongs_to_many :users
   has_many :sources

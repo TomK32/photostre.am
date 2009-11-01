@@ -7,6 +7,5 @@ describe Photo do
 
   it "should be valid" do
     @photo.should be_valid
-#    Photo.count.should be(1)
   end
 end

@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
     else
       scope = current_website.photos
     end
-    @current_objects = scope.published.paginate(:page => params[:page], :per_page => 10 )
+    @current_objects = scope.published.paginate(:page => params[:page], :per_page => params[:per_page] || 5 )
   end
 
   def current_object

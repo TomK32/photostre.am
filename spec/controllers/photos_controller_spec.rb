@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PhotosController do
   before :each do
+    request.host = 'example0.com'
     @website = Factory(:website)
     @website.photos = (0..20).collect { Factory(:photo) }
     @photos = @website.photos
@@ -15,7 +16,7 @@ describe PhotosController do
       assigns[:current_website].should == @website
     end
     it "assigns current_objects" do
-      assigns[:photos].should == @photos[0..9]
+      assigns[:photos].should == @photos.reverse[0...5]
     end
     it "should not show deleted photos"
   end
@@ -36,13 +37,14 @@ describe PhotosController do
       get :show, :id => 'no-such-photo'
       assert_response 404
     end
-    describe "restricted photos" do
+    describe "photos with password" do
       it "should request a password for restricted photos"
       it "should a 403 for unauthorized access"
+      it "should show photo with correct password"
     end
   end
   
-  describe "photos belonging in an album" do
+  describe "photos belonging to an album" do
     before :each do
       @album = Album.first || Factory(:album)
       @photo = @photos.first

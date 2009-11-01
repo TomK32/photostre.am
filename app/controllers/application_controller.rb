@@ -23,8 +23,7 @@ class ApplicationController < ActionController::Base
       flash.now[:error] = 'There is no domain %s registered with us or not active.' % request.host
     end
     @current_website ||= Website.system.first
-    return false unless @current_website
-    return(@current_website)
+    return @current_website
   end
   helper_method :current_website
 

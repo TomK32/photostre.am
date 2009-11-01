@@ -15,13 +15,28 @@ describe Website do
       @website.should have_many(:sources)
     end
   end
+  describe "validations" do
+    it "should validate for presence of domain" do
+      @website.domain = nil
+      @website.should_not be_valid
+    end
+    it "should validate for presence of state" do
+      @website.state = nil
+      @website.should_not be_valid
+    end
+    it "should validate for presence of site title" do
+      @website.site_title = nil
+      @website.should_not be_valid
+    end
+  end
   describe "scopes" do
-    it "should have :active scope" do
-      @website.update_attribute(:state, 'active')
-      active_websites = Website.all(:conditions => {:state => 'active'})
-      Website.active.should == active_websites
-      @website.update_attribute(:state, 'draft')
-      Website.active.should == active_websites.reject!{|w| w.id == @website.id }
+    it "should have scopes" do
+      Website.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(active deleted draft system))
+    end
+    it "should have named scope active that also includes system websites" do
+      system_website = Factory(:website, :state => 'system')
+      Website.active.count.should == Website.all.count
+      Website.system.count.should == 1
     end
   end
 end
