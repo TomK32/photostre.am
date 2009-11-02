@@ -43,3 +43,6 @@
 [submodule "vendor/plugins/jrails"]
 	path = vendor/plugins/jrails
 	url = git://github.com/aaronchi/jrails.git
+[submodule "vendor/plugins/exception_notification"]
+	path = vendor/plugins/exception_notification
+	url = git://github.com/rails/exception_notification.git

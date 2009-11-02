@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   include Authentication
+  include ExceptionNotifiable
   before_filter :set_theme
 
   # See ActionController::RequestForgeryProtection for details
