@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe Admin::DashboardController do
 
   def setup
-    request.host == Factory(:website, :state => 'system').domain
+    request.host = Factory(:website, :state => 'system').domain
     # there's only the index action, nothing else
   end
   describe "as not logged in user" do
@@ -15,7 +15,9 @@ describe Admin::DashboardController do
   describe "as logged in user" do
     before :each do
       @user = Factory(:user)
-      @user.websites << Factory(:website_with_photos)
+      @user.websites << Factory(:website)
+      @user.photos << (0..10).collect{ Factory(:photo, :user_id => @user.id)}
+      @user.sources << Factory(:source)
       @user.reload
       request.session[:user_id] = @user.id
       get :index
@@ -24,10 +26,10 @@ describe Admin::DashboardController do
       response.should be_success
     end
     it "should assign recent photos" do
-      assigns[:photos].should == @user.photos.recent(:limit => 8)
+      assigns[:photos].should == @user.photos.recent.all(:limit => 8)
     end
     it "should assign websites" do
-      assigns[:website].should == @user.websites
+      assigns[:websites].should == @user.websites
     end
     it "should assign sources" do
       assigns[:sources].should == @user.sources
