@@ -2,14 +2,24 @@
   = form.label :site_title, t(:'.site_title')
   = form.text_field :site_title
 %p
-  = form.label :domain, t(:'.domain', :domain => current_object.domain)
-  = form.text_field :domain
-%p
   = form.label :meta_keywords, t(:'.meta_keywords')
   = form.text_field :meta_keywords
 %p
   = form.label :description, t(:'.description')
   = form.text_field :description
+/ TODO check wether the user has the right subscription plan
+%p
+  = form.label :domain, t(:'.domain', :domain => current_object.domain)
+  = form.text_field :domain
+  OR
+%p
+  = text_field_tag :subdomain, {}, :class => 'small'
+  = '.'
+  = select_tag :domain, options_for_select(Website.system.find(:all, :select => 'domain').collect{|w|[w.domain, w.domain]})
+%p
+  = form.label :root_path, t(:'.root_path')
+  = form.text_field :root_path, :value => form.object.root_path || '/photos'
+
 %p
   = form.label :state, t(:'.state')
   = form.select :state, current_model.aasm_states.collect{|s| [t(:"#{current_model_name.downcase}.state.#{s.name}"), s.name.to_s]}

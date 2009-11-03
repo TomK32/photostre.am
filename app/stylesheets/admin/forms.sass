@@ -6,13 +6,16 @@ label
 .checkbox label
   :display inline
 input[type=submit], input[type=text], textarea, select
-  :border-style solid 
+  :border-style solid
   :border-color transparent
   :border-width 1px
   :font-size 1.1em
   :margin-top 0.3em
+
 input[type=text], textarea
   +grid-width(8)
+  &.small
+    +grid-width(4)
 textarea
   :height 6em
 
