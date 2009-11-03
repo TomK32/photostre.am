@@ -10,21 +10,21 @@ class Source::FlickrAccount < Source
   end
 
   def set_nsid
-    begin
+#    begin
       flickr_user = flickr.people.find_by_username(self.username)
-    rescue Flickr::Errors::UserNotFound
-      logger.debug "didn't find user by username, testing as email"
-      begin
-        flickr_user = flickr.people.find_by_email(self.username)
-      rescue Flickr::Errors::UserNotFound
-        logger.debug "didn't find user by email, testing as id"
-        begin
-          flickr_user = flickr.people.find_by_id(self.username)
-        rescue Flickr::Errors::UserNotFound
-          logger.debug "cannot find user by id"
-        end
-      end
-    end
+#    rescue Flickr::Errors::UserNotFound
+#      logger.debug "didn't find user by username, testing as email"
+#      begin
+#        flickr_user = flickr.people.find_by_email(self.username)
+#      rescue Flickr::Errors::UserNotFound
+#        logger.debug "didn't find user by email, testing as id"
+#        begin
+#          flickr_user = flickr.people.find_by_id(self.username)
+#        rescue Flickr::Errors::UserNotFound
+#          logger.debug "cannot find user by id"
+#        end
+#      end
+#    end
     if flickr_user
       self.username = flickr_user.username
       return self.flickr_nsid = flickr_user.nsid
