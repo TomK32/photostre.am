@@ -1,0 +1,33 @@
+--- !ruby/object:Flickr::Photos::Photo 
+farm: "4"
+flickr: &id001 !ruby/object:Flickr::Base 
+  api_key: 5e9b87e2f053331353d2259144850005
+  api_secret: 3840c260ae9ac464
+  auth: !ruby/object:Flickr::Auth 
+    flickr: *id001
+    token: &id002 !ruby/object:Flickr::Auth::Token {}
+
+  people: !ruby/object:Flickr::People 
+    flickr: *id001
+  token: *id002
+geo: 
+icon_server: 
+id: "4006507216"
+is_family: "0"
+is_friend: "0"
+is_public: "1"
+license_id: 5
+machine_tags: ""
+media: photo
+o_dims: 
+original_format: gif
+owner: 99884191@N00
+owner_name: TomK32
+secret: c5f3946f69
+server: "3009"
+tags: webdesign plasticpilots
+taken_at: 2009-10-12 23:56:07 +02:00
+title: plasticpilots
+updated_at: 2009-10-12 23:57:10 +02:00
+uploaded_at: 2009-10-12 23:56:07 +02:00
+views: 14

@@ -1,0 +1,3 @@
+The theme editor consists of two admin controllers for:
+* creating, editing and managing themes
+* applying themes and setting theme options like # of photos
