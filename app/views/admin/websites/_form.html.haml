@@ -15,7 +15,7 @@
 %p
   = text_field_tag :subdomain, {}, :class => 'small'
   = '.'
-  = select_tag :domain, options_for_select(Website.system.find(:all, :select => 'domain').collect{|w|[w.domain, w.domain]})
+  = select_tag :domain, options_for_select([[]] + Website.system.find(:all, :select => 'domain').collect{|w|[w.domain, w.domain]})
 %p
   = form.label :root_path, t(:'.root_path')
   = form.text_field :root_path, :value => form.object.root_path || '/photos'

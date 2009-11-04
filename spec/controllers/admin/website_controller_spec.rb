@@ -65,6 +65,22 @@ describe Admin::WebsitesController do
       response.should_not be_success
       assigns[:current_object].should_not be_valid
     end
+    it "should prefer domain field as input" do
+      post :create, {:subdomain => 'test', :domain => 'funny.com', :website => {:site_title => 'Test', :domain => 'notfunny.com'}}
+      response.should be_redirect
+      assigns[:current_object].should be_valid
+      assigns[:current_object].domain.should ==('notfunny.com')
+    end
+    it "should return error if subdomain is empty" do
+      post :create, {:domain => 'funny.com', :website => {:site_title => 'Test'}}
+      response.should_not be_success
+      assigns[:current_object].should_not be_valid
+    end
+    it "should return error if domain is empty" do
+      post :create, {:subdomain => 'test', :website => {:site_title => 'Test'}}
+      response.should_not be_success
+      assigns[:current_object].should_not be_valid
+    end
   end
   describe ":destroy" do
     it "should set state to deleted"

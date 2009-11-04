@@ -12,7 +12,9 @@ module ApplicationHelper
   end
 
   def meta_tags(object = nil)
-    object ||= current_object if defined?(current_object)
+    begin
+      object ||= current_object if object.nil? && defined?(current_object) && !current_object.nil?
+    rescue ActiveRecord::RecordNotFound => ex; end;
     return if object.nil?
     [:meta_geourl, :meta_keywords, :meta_description].each do |method|
       if object.respond_to?(method) and ! object.send(method).blank?

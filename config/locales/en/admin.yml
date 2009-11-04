@@ -119,18 +119,21 @@ en:
         page_title: "Edit '{{title}}'"
       access_denied: "Access denied to this source"
     websites:
+      access_denied: "You are not allowed to edit this website"
       new:
         create: "Create website"
       form:
         site_title: "Title of your website"
-        domain: "Either your own domain which requirest you to point it to our IP<br />or a subdomain like johnnyjones.{{domain}}"
-        meta_keywords: "Keywords for the HTML file's metatag. Five to ten keywords are fine."
-        description: "Used in the HTML file's metatag but can also be used elsewhere.<br />E.g 'Johnny Jones is a professional photographer from New York City'"
+        domain: "Domain or subdomain"
+        subdomain: ""
+        meta_keywords: "Keywords for the HTML metatags. Five to ten keywords are best."
+        description: "Description for HTML metatags. E.g. <em>John Doe is a professional photographer from New York City</em>"
         state: "State"
+        root_path: Root path for your domain. E.g. <em>/photos</em> or <em>/pages/homepage</em>
       index:
         your_websites: "Your websites"
         add_new_website: 'Please configure a new {{link}}.'
-        new_website: "New website"
+        new_website: "new website"
         no_websites: "You didn't setup a website yet."
         info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
         new: 'new website'

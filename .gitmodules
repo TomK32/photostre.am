@@ -46,3 +46,6 @@
 [submodule "vendor/plugins/exception_notification"]
 	path = vendor/plugins/exception_notification
 	url = git://github.com/rails/exception_notification.git
+[submodule "vendor/gems/flickr_fu"]
+	path = vendor/gems/flickr_fu
+	url = git://github.com/TomK32/flickr_fu.git

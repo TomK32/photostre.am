@@ -9,14 +9,14 @@ class Admin::WebsitesController < Admin::ApplicationController
 
     before :edit, :update, :show do
       if ! @current_object.new_record? and ! @current_object.users.include?(current_user)
-        flash[:error] = t(:'admin.website.access_denied')
+        flash[:error] = t(:'admin.websites.access_denied')
         redirect_to :action => :index
       end
     end
 
     # combine params subdomain and domain to params[:website][:domain]
     before :create do
-      unless params[:subdomain].blank? && params[:domain].blank?
+      if !(params[:subdomain].blank? or params[:domain].blank?) && params[:website][:domain].blank?
         if Website.system.find_by_domain(params[:domain])
           current_object.domain = params[:subdomain] + '.' + params[:domain]
         elsif current_user.websites.find_by_domain(params[:domain])
