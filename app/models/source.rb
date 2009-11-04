@@ -10,6 +10,7 @@ class Source < ActiveRecord::Base
   
   validates_presence_of :title
   validates_length_of :title, :minimum => 3
+  validates_uniqueness_of :username, :scope => 'type'
   
   named_scope :active, :conditions => {:active => true }
   named_scope :recent, :order => 'last_updated_at DESC'
