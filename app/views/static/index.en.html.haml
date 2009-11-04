@@ -2,26 +2,27 @@
   %li= link_to 'Plans &amp; Prices', static_url('prices')
 
 %p
-  You have a 
+  You have a
   %span.flickr flickr account?
-  And you run a 
+  And you run a
   %span.portfolio portfolio?
   And a
   %span.photoblog photoblog?
   %br
   %strong= current_website.site_title
   will help you save time and money and combine all those. And you can keep using flickr.
-  
-%p
-  - if logged_in?
+
+- if logged_in?
+  %p
     Welcome back, go straight to your
     = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
     to manage your websites.
-  - else
+- else
+  %h2 Login via flickr.com
+  - form_for :source, Flickr::Source.new, :url => admin_sources_path do |form|
+    = render :partial => 'admin/sources/form', :object => form
     %p
-      You can 
-      = link_to t(:'shared.navigation.login').downcase, login_path
-      with your flickr account.
+      = submit_tag t(:'admin.sources.new.add_source'), :name => nil
 
 %h3 Newest websites
 = render :partial => 'websites', :object => @websites

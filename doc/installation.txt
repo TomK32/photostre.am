@@ -1,1 +1,3 @@
-* Create Website with state system
+* rake db:setup
+* Create Website with state system: Website.create!(:site_title => 'photostre.am', :domain => 'photostre.am', :state => 'system')
+

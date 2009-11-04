@@ -1,16 +1,17 @@
 - title("%s: %s" % [current_object.source_title, current_object.title])
 
 - content_for :subnavigation do
-  %li= link_to t(:'.edit'), edit_admin_source_path(current_object)
+  %li= link_to t(:'.edit'), edit_object_path(current_object)
 #source[current_object]
   - if current_object.authenticated?
     %p=t(:'.activated', :username => current_object.username, :title => current_object.source_title) if current_object.active
   - else
-    %p= link_to t(:'.reauthenticate'), reauthenticate_source_url(current_object)
+    %p= link_to t(:'.reauthenticate'), reauthenticate_admin_source_path(current_object)
 
-  #photos
-    %h2= t(:'.latest_photos')
-    %p= t(:'.last_updated', :time => current_object.updated_at)
-    %p= t(:'.last_photo', :time => @photos.first.created_at)
+  - unless @photos.empty?
+    #photos
+      %h2= t(:'.latest_photos')
+      %p= t(:'.last_updated', :time => current_object.updated_at)
+      %p= t(:'.last_photo', :time => @photos.first.created_at)
 
-    = render :partial => 'admin/photos/photo', :collection => @photos
+      = render :partial => 'admin/photos/photo', :collection => @photos

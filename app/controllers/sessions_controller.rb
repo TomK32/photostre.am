@@ -49,7 +49,7 @@ class SessionsController < ApplicationController
   private
     def successful_login
       session[:identity_id] = @identity.id
-      session[:user_id] = @current_user.id
+      self.current_user=(@current_user)
       redirect_to(dashboard_url)
     end
   

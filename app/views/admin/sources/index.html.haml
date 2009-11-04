@@ -5,5 +5,5 @@
 - current_objects.each do |source|
   %div[source]
     = t(:'.source_info', {:username => source.username, :title => source.source_title, :active => t(source.active? ? :'.active' : :'.inactive')})
-    = link_to t(:'.reauthenticate'), reauthenticate_source_url(source) unless source.authenticated?
-    = link_to t(:'.show'), admin_source_path(source)
+    = link_to t(:'.reauthenticate'), reauthenticate_admin_source_path(source) unless source.authenticated?
+    = link_to t(:'.show'), object_path(source)
