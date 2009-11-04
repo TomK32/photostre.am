@@ -1,6 +1,5 @@
 - content_for :navigation do
   %li= link_to 'Plans &amp; Prices', static_url('prices')
-
 %p
   You have a
   %span.flickr flickr account?
@@ -18,11 +17,11 @@
     = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
     to manage your websites.
 - else
-  %h2 Login via flickr.com
+  %h3 Login via flickr.com
   - form_for :source, Source::FlickrAccount.new, :url => admin_sources_path do |form|
     = render :partial => 'admin/sources/form', :object => form
-    %p
-      = submit_tag t(:'admin.sources.new.add_source'), :name => nil
+    %p.submit
+      = submit_tag 'Login via flickr', :name => nil
 
 %h3 Newest websites
 = render :partial => 'websites', :object => @websites

@@ -16,25 +16,34 @@ class Admin::SourcesController < Admin::ApplicationController
   end
 
   def create
-    # It's enough if we authenticate against flickr, so create a user here
-    if !logged_in?
-      @current_user = User.new(:login => params[:source][:username])
-      @current_user.save(false) # we don't have a mail address, yet
-      self.current_user=(@current_user)
-    end
     source_type = params[:source][:source_type]
     if source_type.blank? or ! Source::ACTIVE_TYPES.include?(source_type)
       @current_object = source_type.constantize.new({:website_id => current_website.id}.merge(params[:source]))
-      send("build_" + source_type.demodulize.underscore)
     else
       @current_object = Source.new(params[:source])
       render :action => :new and return
     end
+
+    # It's enough if we authenticate against flickr, so create a user here
+    if !logged_in?
+      @current_user = User.new(:login => params[:source][:username])
+      begin
+        @current_user.save(false) # we don't have a mail address, yet
+        self.current_user=(@current_user)
+      rescue ActiveRecord::StatementInvalid => ex
+        logger.info('User tried to create a %s source with username %s but there is already such a user.' % [params[:source][:source_type], params[:source][:username]])
+        flash[:notice] = t(:'admin.sources.create.error_on_creating_user')
+      end
+    end
     current_object.user = current_user
     if current_object.save
-      redirect_to object_url(current_object)
+      if ! current_object.authenticated?
+        send("build_" + source_type.demodulize.underscore)
+      else
+        redirect_to object_url(current_object)
+      end
     else
-      flash[:error] = "Could not save the new source"
+      flash[:error] = t(:'admin.sources.create.error')
       render :action => :new and return
     end
   end

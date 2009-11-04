@@ -10,6 +10,7 @@
 * custom width/height for photos (e.g. 800px)
 * import from flickr based on tag, set and album. maybe camera as well
 * better design
+* Ask user for completing his profile when creating the user account on the fly. Or add email to the signup form. AB test?
 
 == performance
 * Partial caching for pages navigation

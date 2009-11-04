@@ -96,6 +96,9 @@ en:
       form:
         flickr: "Currently we support only flickr as a source for your photos. Type in your username to start the import process after which you can select your sets and photos for displaying them on your websites."
         username: "Username"
+      create:
+        error_on_creating_user: "There was an error while creating a user for you. Please contact our support for help."
+        error: 'Photo source could not be created. Check the details or contact our support'
       new:
         add_source: "Add source"
         page_title: "Add a new photo source"

@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
   end
   
   def delete
-    session[:user_id] = nil
-    @current_user = nil
+    self.current_user=(nil)
     redirect_to (params[:return_to] || '/') and return
   end
   
