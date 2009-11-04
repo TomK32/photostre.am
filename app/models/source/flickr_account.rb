@@ -3,6 +3,7 @@ require 'flickr_fu'
 class Source::FlickrAccount < Source
 
   validates_presence_of :username
+  validates_uniqueness_of :username
   after_save :call_worker
   
   def validate_on_create
