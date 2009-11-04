@@ -2,9 +2,15 @@
 - content_for :info do
   = render :partial => 'info'
 
+- if @sources.empty?
+  %p
+    You don't have a photo source yet. These are required to retrieve photos from that you can use here on your website.
+    = link_to 'Create one.', new_admin_source_path
+
 #websites
   - if @websites.empty?
     You haven't created a website yet.
+    = link_to 'Create one.', new_admin_website_path
   - else
     You currently have 
     = pluralize(@websites.count, 'website')
@@ -20,7 +26,7 @@
 #photos
   You have
   = pluralize(current_user.photos.count, 'photo')
-  that came from your sources.
+  that have been imported from your photo sources.
   
   - unless @photos.empty?
     %h2 Latest photos imported
