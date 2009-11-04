@@ -2,7 +2,7 @@
 
 = error_messages_for :website
 
-- form_for :website, current_object||current_user.websites.new do |form|
+- form_for :website, current_object||current_user.websites.new, :url => objects_path do |form|
   = render 'form', :object => form
   
   %p.submit= submit_tag t(:'.create'), :name => nil

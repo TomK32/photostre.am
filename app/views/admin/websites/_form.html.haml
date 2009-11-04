@@ -19,7 +19,3 @@
 %p
   = form.label :root_path, t(:'.root_path')
   = form.text_field :root_path, :value => form.object.root_path || '/photos'
-
-%p
-  = form.label :state, t(:'.state')
-  = form.select :state, current_model.aasm_states.collect{|s| [t(:"#{current_model_name.downcase}.state.#{s.name}"), s.name.to_s]}
