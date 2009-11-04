@@ -3,6 +3,11 @@ Factory.define :website do |website|
   website.domain {'example%i.com' % Website.count }
   website.state 'active'
 end
+Factory.define :website_system, :parent => :website do |website|
+  website.site_title 'photostre.am'
+  website.domain 'photostre.am'
+  website.state 'system'
+end
 
 Factory.define :website_with_photos, :parent => :website do |website|
   website.photos { (0...20).collect{ Factory(:photo)} }
