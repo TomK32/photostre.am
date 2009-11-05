@@ -9,5 +9,6 @@ public/cache/*
 public/**/cache/*
 config/flickr.yml
 config/database.yml
+themes/websites
 tmp/token.yml
 tmp/webrat-*.html
