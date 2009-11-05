@@ -18,8 +18,7 @@
     to manage your websites.
 - else
   %h3 Login via flickr.com
-  - form_for :source, Source::FlickrAccount.new, :url => admin_sources_path do |form|
-    = render :partial => 'admin/sources/form', :object => form
+  - form_tag Source::FlickrAccount.authentication_url do |form|
     %p.submit
       = submit_tag 'Login via flickr', :name => nil
 

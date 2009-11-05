@@ -1,5 +1,5 @@
 class Admin::SourcesController < Admin::ApplicationController
-  skip_before_filter :authenticated, :only => :create
+  skip_before_filter :authenticated, :only => [:create, :authenticate_flickr_account]
 
   make_resourceful do
     actions :all
@@ -18,7 +18,12 @@ class Admin::SourcesController < Admin::ApplicationController
   def create
     source_type = params[:source][:source_type]
     if source_type.blank? or ! Source::ACTIVE_TYPES.include?(source_type)
-      @current_object = source_type.constantize.new({:website_id => current_website.id}.merge(params[:source]))
+      # Source already exists, use it to reauthenticate
+      if(@current_object = source_type.constantize.find_by_username(params[:source][:username]))
+        send("build_" + source_type.demodulize.underscore)
+        return
+      end
+      @current_object = source_type.constantize.new(params[:source])
     else
       @current_object = Source.new(params[:source])
       render :action => :new and return
@@ -53,16 +58,47 @@ class Admin::SourcesController < Admin::ApplicationController
   end
 
   def authenticate_flickr_account
-    hit = false
-    current_user.sources.find(:all, :order => 'updated_at DESC').each do |source|
-      if source.authenticate(params[:frob])
-        redirect_to objects_url and return
+    source = Source::FlickrAccount.new
+    source.authenticate(params[:frob])
+    @current_object = Source::FlickrAccount.find_by_flickr_nsid(source.flickr.auth.token.user_id)
+
+    if !logged_in?
+      # valid source, log the user in, all fine
+      if @current_object
+        self.current_user=(@current_object.user)
+        redirect_to dashboard_path and return
+      end
+      # Never validated this flickr account, create it and also an user
+      @current_object = Source::FlickrAccount.new do |source|
+        source.username = source.flickr.auth.token.username
+        source.flickr_nsid = source.flickr.auth.token.user_id
+        source.token = source.flickr.auth.token.token
+      end
+      username = source.flickr.auth.token.username
+      username = ('Flickr:' + username) if(User.find_by_login(username))
+
+      @user = User.new(:login => username, :name => source.flickr.auth.token.user_real_name)
+      @user.save(false) # we don't have an email yet
+      @current_object.user = @user
+      if @current_object.save!
+        self.current_user=(@user)
+        redirect_to dashboard_path and return
+      else
+        render :action => 'new' and return
+      end
+    else
+      # logged in, obviously clicked the reauth link
+      # loop over all sources available. no better solution, sorry
+      current_user.sources.find(:all, :order => 'updated_at DESC').each do |source|
+        if source.authenticate(params[:frob])
+          redirect_to objects_url and return
+        end
       end
     end
     flash[:error] = "Can't verify your account with flickr. Please retry"
     redirect_to objects_url and return
   end
-  
+
 
   private
   def build_flickr_account
