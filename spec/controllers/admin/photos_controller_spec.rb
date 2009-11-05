@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe Admin::PhotosController do
 
   def setup
-    request.host == Factory(:website, :state => 'system').domain
+    request.host = Factory(:website_system).domain
     @user = Factory(:user)
     request.session[:user_id] = @user.id
   end

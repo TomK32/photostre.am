@@ -3,8 +3,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe Admin::DashboardController do
 
   def setup
-    request.host = Factory(:website, :state => 'system').domain
-    # there's only the index action, nothing else
+    request.host = Factory(:website_system).domain
+    @user = Factory(:user)
+    @user.websites << Factory(:website)
+    @user.photos << (0..10).collect{ Factory(:photo, :user_id => @user.id)}
+    @user.sources << Factory(:source)
+    @user.reload
   end
   describe "as not logged in user" do
     it "should not let me in" do
@@ -14,11 +18,6 @@ describe Admin::DashboardController do
   end
   describe "as logged in user" do
     before :each do
-      @user = Factory(:user)
-      @user.websites << Factory(:website)
-      @user.photos << (0..10).collect{ Factory(:photo, :user_id => @user.id)}
-      @user.sources << Factory(:source)
-      @user.reload
       request.session[:user_id] = @user.id
       get :index
     end
