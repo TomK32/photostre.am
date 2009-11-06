@@ -4,7 +4,7 @@ class ThemeFilesController < ApplicationController
     if File.exists?(file_name)
       render :file => file_name and return
     else
-      render :status => 404 and return
+      render :text => '404 not found', :status => 404 and return
     end
   end
 end
