@@ -1,15 +1,20 @@
 - content_for :navigation do
   %li= link_to 'Plans &amp; Prices', static_url('prices')
-%p
+%p{:style => 'font-size: 120%;'}
   You have a
   %span.flickr flickr account?
   And you run a
   %span.portfolio portfolio?
   And a
   %span.photoblog photoblog?
-  %br
+%p
   %strong= current_website.site_title
-  will help you save time and money and combine all those. And you can keep using flickr.
+  will help you save time and money.
+  %ul
+    %li Publish your flickr photostream on a custom designed website.
+    %li No software installation necessary.
+    %li No more duplicate uploads to your websites.
+    %li And you're still part of the flickr community.
 
 - content_for :info do
   - if logged_in?
