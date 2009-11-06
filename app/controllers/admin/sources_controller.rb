@@ -16,7 +16,7 @@ class Admin::SourcesController < Admin::ApplicationController
   end
 
   def current_objects
-    @current_objects ||= current_user.websites.find(:all)
+    @current_objects ||= current_user.sources.find(:all)
   end
 
   def create
