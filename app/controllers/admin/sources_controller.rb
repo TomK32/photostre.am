@@ -81,6 +81,8 @@ class Admin::SourcesController < Admin::ApplicationController
       @user.save(false) # we don't have an email yet
       @current_object.user = @user
       if @current_object.save!
+        # last is to authenticate the newly created source
+        @current_object.authenticate(params[:frob])
         self.current_user=(@user)
         redirect_to dashboard_path and return
       else
@@ -105,7 +107,7 @@ class Admin::SourcesController < Admin::ApplicationController
     current_object.token = nil
     # All fine, take it straight to authenticate with flickr
     if current_object.valid? and current_object.save!
-      redirect_to current_object.authentication_url and return
+      redirect_to Source::FlickrAccount.authentication_url and return
     end
   end
 end

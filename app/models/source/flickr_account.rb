@@ -78,7 +78,7 @@ class Source::FlickrAccount < Source
       self.token = flickr.auth.token.token
       self.authenticated_at = Time.now
       save
-      @flickr = nil # to create a new with the right token
+      @flickr = nil # to create a new one with the right token
       return true
     end
     return false
@@ -98,6 +98,7 @@ class Source::FlickrAccount < Source
     logger.debug "updating data for %s: %s" % [source_title, username]
     page = 1
     per_page = 200
+    TagList.delimiter = ' '
     while (page <= (person.photo_count / per_page) + 1)
 #      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
       flickr_photos = person.public_photos(:per_page => per_page, :page => page)
@@ -113,8 +114,8 @@ class Source::FlickrAccount < Source
           :remote_id => photo.id,
           :taken_at => photo.taken_at,
           :description => photo.description,
-          :tag_list => TagList.new(photo.tags, {:parse => true, :delimiter => ' '}),
-          :machine_tag_list => TagList.new(photo.machine_tags, {:parse => true, :delimiter => ' '}),
+          :tag_list => TagList.new(photo.tags, {:parse => true}),
+          :machine_tag_list => TagList.new(photo.machine_tags, {:parse => true}),
           :web_url => photo.url_photopage,
           :photo_url => photo.url(:original),
           :thumbnail_url => photo.url(:thumbnail),
