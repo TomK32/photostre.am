@@ -18,7 +18,8 @@
     to manage your websites.
 - else
   %h3 Login via flickr.com
-  - form_tag Source::FlickrAccount.authentication_url do |form|
+  - form_tag sessions_path do |form|
+    = hidden_field_tag :flickr, true
     %p.submit
       = submit_tag 'Login via flickr', :name => nil
 

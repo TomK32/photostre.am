@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
   def create
     if using_open_id?
       open_id_authentication(params[:openid_identifier] || params[:openid_url])
+    elsif params[:flickr]
+      redirect_to Source::FlickrAccount.authentication_url and return
     end
   end
   

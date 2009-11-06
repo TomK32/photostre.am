@@ -1,15 +1,13 @@
-* static pages (about, contact, example users)
+* static pages (contact, example users)
 * photo manager
   + multi selector
-* make the app itself (i.e. admin interface, static pages, login) a theme
 * Allow access to static controller only on certain (non-customer, no user-id?) domains
 * specs for Photo
+* Put the first system domain into sessions so we can redirect the user once he comes back from flick auth
 
-* why the hell does Source belong_to a Website?
 * flickr security id for original photo sizes
 * custom width/height for photos (e.g. 800px)
 * import from flickr based on tag, set and album. maybe camera as well
-* better design
 * Ask user for completing his profile when creating the user account on the fly. Or add email to the signup form. AB test?
 
 == performance

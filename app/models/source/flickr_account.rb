@@ -3,13 +3,19 @@ require 'flickr_fu'
 class Source::FlickrAccount < Source
 
   validates_presence_of :username
+  validates_presence_of :flickr_nsid
   after_save :call_worker
+  before_validation :set_title
   
   def validate_on_create
     errors.add 'username', 'not a flickr account' unless set_nsid
   end
 
+  def set_title
+    self.title ||= 'Flickr.com %s' % self.username
+  end
   def set_nsid
+    return true unless self.flickr_nsid.blank?
     begin
       flickr_user = flickr.people.find_by_username(self.username)
     rescue Flickr::Errors::UserNotFound
@@ -32,10 +38,13 @@ class Source::FlickrAccount < Source
     return false
   end
 
-  def flickr
+  def self.flickr(token = nil)
     options = FLICKR_CONFIG
-    options.merge!({:token => Flickr::Auth::Token.new( token)}) unless token.blank?
+    options.merge!({:token => Flickr::Auth::Token.new(token)}) unless token.blank?
     @flickr ||= Flickr.new(options)
+  end
+  def flickr(token = nil)
+    self.class.flickr(token)
   end
   
   def photostream_url
@@ -54,8 +63,8 @@ class Source::FlickrAccount < Source
     self.title = self.username if self.title.blank?
   end
   
-  def authentication_url
-    flickr.auth.url(:write)
+  def self.authentication_url
+    self.flickr.auth.url(:write)
   end
   
   def authenticated?
