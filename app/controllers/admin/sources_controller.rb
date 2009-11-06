@@ -15,6 +15,10 @@ class Admin::SourcesController < Admin::ApplicationController
     end
   end
 
+  def current_objects
+    @current_objects ||= current_user.websites.find(:all)
+  end
+
   def create
     source_type = params[:source][:source_type]
     if source_type.blank? or ! Source::ACTIVE_TYPES.include?(source_type)
