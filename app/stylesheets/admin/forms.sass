@@ -13,12 +13,13 @@ input[type=submit], input[type=text], textarea, select
   :margin-top 0.3em
 
 input[type=text], textarea
+  :-moz-border-radius 2px
+  :-webkit-border-radius 2px
   +grid-width(8)
   &.small
     +grid-width(4)
 textarea
   :height 6em
-
 
 #sidebar
   input[type=text], textarea

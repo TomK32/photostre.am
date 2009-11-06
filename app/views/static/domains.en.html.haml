@@ -5,7 +5,15 @@
   = link_to 'send us an email', 'mailto:info@photostre.am?subject=Domains'
 
 %dl
+  %dt Custom domain
+  %dd
+    In order to have use your own domain you need to point the 
+    = link_to 'CNAME', 'http://en.wikipedia.org/wiki/CNAME_record'
+    to 
+    %strong= current_website.domain
   %dt Sharing a domain with friends
-  %dd If you want to give your friends subdomains like fred.example.com or betty.example.com
+  %dd If you want to give your friends subdomains like fred.example.com or betty.example.com you can send a mail to our support with their usernames and requested domains.
   %dt Subdomains
-  %dd We are offering quite a few domains from which you may pick any subdomain, if available. Our domains for the community are: photostre.am, 365shots.net and photolog.at
+  %dd
+    We are offering quite a few domains from which you may pick any subdomain, if available. Our domains for the community are: 
+    = Website.system.find(:all, :select => 'domain').collect(&:domain).join(', ')

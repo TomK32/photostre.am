@@ -11,17 +11,17 @@
   %strong= current_website.site_title
   will help you save time and money and combine all those. And you can keep using flickr.
 
-- if logged_in?
-  %p
-    Welcome back, go straight to your
-    = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
-    to manage your websites.
-- else
-  %h3 Login via flickr.com
-  - form_tag sessions_path do |form|
-    = hidden_field_tag :flickr, true
-    %p.submit
-      = submit_tag 'Login via flickr', :name => nil
+- content_for :info do
+  - if logged_in?
+    %p
+      Welcome back, go straight to your
+      = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
+      to manage your websites.
+  - else
+    - form_tag sessions_path do |form|
+      = hidden_field_tag :flickr, true
+      %p.submit
+        = submit_tag 'Login via flickr', :name => nil, :class => 'flickr'
 
 %h3 Newest websites
 = render :partial => 'websites', :object => @websites

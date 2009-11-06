@@ -8,12 +8,9 @@ describe Website do
     @website.should be_valid
   end
   describe "associations" do
-    it "should have and belong to many users" do
-      @website.should have_and_belong_to_many(:users)
-    end
-    it "should have and belong to many sources" do
-      @website.should have_many(:sources)
-    end
+    it { Website.should have_and_belong_to_many(:users) }
+    it { Website.should have_many(:sources) }
+    it { Website.should belong_to(:theme) }
   end
   describe "validations" do
     it "should validate for presence of domain" do
@@ -37,6 +34,16 @@ describe Website do
       system_website = Factory(:website, :state => 'system')
       Website.active.count.should == Website.all.count
       Website.system.count.should == 1
+    end
+  end
+  
+  describe "creating a new website" do
+    it "should create a standard homepage" do
+      new_website = Factory(:website)
+      new_website.pages.find_by_permalink('homepage').should be_published
+      new_website.pages.find_by_permalink('about').should be_published
+      new_website.pages.find_by_permalink('contact').should be_published
+      new_website.root_path.should ==('/pages/homepage')
     end
   end
 end

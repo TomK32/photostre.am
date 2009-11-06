@@ -18,7 +18,7 @@ describe "admin/websites/new" do
     response.should have_text_field_for :website, :meta_keywords
     response.should have_text_field_for :website, :description
     response.should have_text_field_for :website, :domain
-    response.should have_text_field_for :website, :tracking_code
+    response.should have_text_area_for :website, :tracking_code
     # TODO missing or maybe buggy matcher
     #response.should have_select_for :domain
     response.should have_tag('input#subdomain')

@@ -60,7 +60,7 @@ describe Page do
     it "should have a default scope ordering by parent and position" do
       @page.default_scoping[0][:find].should ==({:order => 'parent_id ASC, position ASC'})
     end
-    it "should have scopes" do
+    it "should have states" do
       Page.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(deleted draft published))
     end
     it "should have a published scope" do

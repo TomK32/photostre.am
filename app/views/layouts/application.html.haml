@@ -20,10 +20,10 @@
       - flash.each do |flash_type, message|
         %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
-      - if yield :info
-        #sidebar
-          #info= yield :info
       = yield :layout
+    - if yield :info
+      #sidebar
+        #info= yield :info
 
     #footer
       (C)

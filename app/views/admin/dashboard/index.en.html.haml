@@ -9,26 +9,31 @@
 
 #websites
   - if @websites.empty?
-    You haven't created a website yet.
-    = link_to 'Create one.', new_admin_website_path
+    .error
+      You haven't created a website yet. Please
+      = link_to 'create one.', new_admin_website_path
+
   - else
-    You currently have 
+    You currently have
     = pluralize(@websites.count, 'website')
     - if @websites.count != @websites.select{|w|w.active?}.size
       of which
       = pluralize(@websites.select{|w|w.active?}.size, 'is', 'are')
       active.
     - else
-      and 
+      and
       = @websites.count == 1 ? 'it is' : 'all are'
       online.
 
 #photos
-  You have
-  = pluralize(current_user.photos.count, 'photo')
-  that have been imported from your photo sources.
-  
-  - unless @photos.empty?
-    %h2 Latest photos imported
+  %h2 Latest photos imported
+  %p
+    So far we have imported
+    = pluralize(current_user.photos.count, 'photo')
+    from your photo sources.
+
+  - if ! @photos.empty?
     - @photos.each do |photo|
       .photo= link_to image_tag(photo.icon_url), admin_photo_path(photo)
+  - elsif ! @sources.empty?
+    .notice Usually it takes some time to import your photos, unless you don't have any at flickr yet. Give it a few more second and then reload this page to see your photos.

@@ -127,7 +127,7 @@ en:
         create: "Create website"
       form:
         site_title: "Title of your website"
-        domain: "Domain or subdomain"
+        domain: "Domain (see our <a href='/faq/domains'>FAQ</a> for details)"
         subdomain: ""
         meta_keywords: "Keywords for the HTML metatags. Five to ten keywords are best."
         description: "Description for HTML metatags. E.g. <em>John Doe is a professional photographer from New York City</em>"
