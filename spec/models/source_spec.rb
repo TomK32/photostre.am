@@ -15,6 +15,11 @@ describe Source do
       @source.should have_many(:photos)
     end
   end
+  describe "states" do
+    it "should have states" do
+      Source.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(active deleted updating))
+    end
+  end
   describe "scopes" do
     it "should have :active scope" do
       @source.update_attribute(:active, true)
