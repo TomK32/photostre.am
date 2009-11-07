@@ -7,5 +7,5 @@ if workling = @routing[command]
   options = options.symbolize_keys
   method_name = @routing.method_name(command)
 
-  workling.dispatch_to_worker_method(method, options)
+  workling.dispatch_to_worker_method(method_name, options)
 end
