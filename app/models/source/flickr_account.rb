@@ -38,13 +38,10 @@ class Source::FlickrAccount < Source
     return false
   end
 
-  def self.flickr(token = nil)
+  def flickr(token = nil)
     options = FLICKR_CONFIG
     options.merge!({:token => Flickr::Auth::Token.new(token)}) unless token.blank?
     @flickr ||= Flickr.new(options)
-  end
-  def flickr(token = nil)
-    self.class.flickr(token)
   end
   
   def photostream_url
@@ -63,8 +60,8 @@ class Source::FlickrAccount < Source
     self.title = self.username if self.title.blank?
   end
   
-  def self.authentication_url
-    self.flickr.auth.url(:write)
+  def authentication_url
+    flickr.auth.url(:read)
   end
   
   def authenticated?

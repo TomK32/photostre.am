@@ -105,13 +105,12 @@ class Admin::SourcesController < Admin::ApplicationController
     redirect_to objects_url and return
   end
 
-
   private
   def build_flickr_account
     current_object.token = nil
     # All fine, take it straight to authenticate with flickr
     if current_object.valid? and current_object.save!
-      redirect_to Source::FlickrAccount.authentication_url and return
+      redirect_to current_object.authentication_url and return
     end
   end
 end
