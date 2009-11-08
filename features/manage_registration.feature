@@ -10,7 +10,7 @@ Feature: Registration
     Then I should be redirected to "http://www.myopenid.com/server"
 
   Scenario: Login with a bad OpenID
-  Given I go to /sessions/new
+    Given I go to /sessions/new
     When I fill in "openid_identifier" with "http://badopenid.host"
     And I press "Sign in"
     Then the flash "error" should be "Sorry, the OpenID server couldn't be found"

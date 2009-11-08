@@ -16,7 +16,7 @@ Given /^that I have a complete OpenID as user "(.*)"$/ do |username|
     "openid.claimed_id" => "http://tomk32.myopenid.com/",
     "openid.mode" => "id_res",
     "openid.ns.sreg" => "http://openid.net/extensions/sreg/1.1",
-    "openid.return_to" => "http://www.example.com/sessions?_method=post&open_id_complete=1",
+    "openid.return_to" => "http://" + @system_website.domain + "/sessions?_method=post&open_id_complete=1",
     "openid.sig" => "abcdefghijklmnopqrstuvwxyz",
     "openid.sreg.fullname" => "Thomas R. Koll",
     "openid.ns" => "http://specs.openid.net/auth/2.0",
@@ -44,7 +44,7 @@ Given /^that I have an incomplete OpenID$/ do
   visit '/sessions', :post, {
       "openid.claimed_id" => "http://tomk32.myopenid.com/",
       "openid.mode" => "id_res",
-      "openid.return_to" => "http://www.example.com/sessions?_method=post&open_id_complete=1",
+      "openid.return_to" => "http://" + @system_website.domain + "/sessions?_method=post&open_id_complete=1",
       "openid.sig" => "abcdefghijklmnopqrstuvwxyz",
       "openid.ns" => "http://specs.openid.net/auth/2.0",
       "openid.op_endpoint" => "http://www.myopenid.com/server",
