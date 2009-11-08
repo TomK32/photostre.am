@@ -29,7 +29,12 @@
 
 %h2
   = t(:'.photos')
+  = t(:'.for_website', :website => @website.site_title) if @website
+  = t(:'.for_album', :album => @album.title) if @album
   = t(:".filtered_by_#{params[:filter]}") if params[:filter]
 #photos
+  %p
+    = link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
+    = link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
   = render :partial => 'photo', :collection => current_objects
 = will_paginate current_objects

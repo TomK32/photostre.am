@@ -18,7 +18,7 @@ class Admin::PhotosController < Admin::ApplicationController
       end
     end
     response_for :update do |format|
-      format.js { render :partial => 'photo', :object => current_object }
+      format.js { render :json => {:success => true}}
       format.html { redirect_to object_path }
     end
     before :index do
@@ -37,6 +37,16 @@ class Admin::PhotosController < Admin::ApplicationController
   
   def current_objects
     scope = current_user.photos
+    if ! params[:website_id].blank?
+      scope = current_user.websites.find(params[:website_id]).photos
+      @website = current_user.websites.find(params[:website_id])
+    end
+    if ! params[:album_id].blank?
+      @album = Album.find(params[:album_id])
+      if(@album.website.user_ids.include?(current_user.id))
+        scope = @album.photos
+      end
+    end
     if ! params[:search].blank?
       scope = scope.search(params[:search])
     end

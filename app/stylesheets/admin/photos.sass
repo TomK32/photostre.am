@@ -4,6 +4,10 @@
   .photo
     :display inline-block
     :position relative
+    :border 1px solid transparent
+    &.selected
+      :border 1px solid
+      :border-color= !color_blue
     .icon
       margin: 2px
       :position relative

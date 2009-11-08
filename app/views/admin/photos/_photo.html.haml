@@ -1,15 +1,2 @@
 %div.draggable[photo]
   .icon= image_tag(photo.icon_url)
-  .info
-    - if !@current_objects # only display if we're not on the index
-      .websites
-        = t(:'.unassigned') if photo.websites.empty?
-        - photo.websites.each do |website|
-          .website= link_to website.domain, admin_website_path(website)
-        = link_to t(:'.edit'), edit_admin_photo_path(photo)
-      .websites
-        = t(:'.unassigned') if photo.websites.empty?
-        - photo.websites.each do |website|
-          .website= link_to website.domain, admin_website_path(website)
-        = link_to t(:'.edit'), edit_admin_photo_path(photo)
-    

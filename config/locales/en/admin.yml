@@ -71,13 +71,19 @@ en:
         new_album: 'new album'
         photos: Photos
         info: 'To assign a photo to one of your websites simple drag and drop it'
+        for_website: 'on {{website}}'
+        for_album: 'in album {{album}}'
+        select_all: 'select all'
+        select_none: 'none'
       photo:
         unassigned: 'Not on any website'
         edit: 'Edit'
       website:
         create_album: 'Create new album'
+        only_website: 'Only photos on this website'
       album:
         show: 'Show album'
+        only_album: 'Only photos from this album'
       edit:
         submit: 'Update'
         page_title: 'Edit photo'

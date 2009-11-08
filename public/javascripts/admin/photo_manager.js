@@ -32,14 +32,13 @@ var PhotoManager = {
       if($(droppable).hasClass(c))
         droppable_class = c;
     });
-    console.log(droppable.id);
     droppable_id = extractID(droppable.id);
     $.ajax({
       type: 'post',
       url: this.photoPath(photo),
       data: '_method=put&photo[' + droppable_class + 's]['+droppable_id+']=1',
       success: function(html){
-        alert('Photo has been added to ' + droppable_class);
+        $(photo).removeClass('selected');
       },
       error: function(html){
         alert('Photo could not be added to ' + droppable_class)
@@ -68,7 +67,7 @@ var PhotoManager = {
     } else {
       id = photo.attr('id');
     } 
-    return('/admin/photos/' + extractID(id));
+    return('/admin/photos/' + extractID(id) + '.js');
   },
 
   init: function(options) {

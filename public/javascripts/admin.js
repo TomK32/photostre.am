@@ -1,4 +1,4 @@
-
+/*
 $(document).ready(function(){
   $('#photos .photo .info').hide();
   $('#photos .photo').each(function(element) {
@@ -10,7 +10,7 @@ $(document).ready(function(){
   $('#photos .photo').addClass('ui-draggable');
 
 });
-
+*/
 function extractID(text) {
   r = /[0-9]+$/;
   if(text == "") {return ;}
