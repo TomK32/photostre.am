@@ -1,7 +1,6 @@
 Factory.define :source do |source|
   source.title 'some source'
-  source.website { Website.first || Factory(:website) }
-  source.user { User.first || Factory(:user) }
+  source.user_id { (User.first || Factory(:user)).id }
 end
 
 Factory.define :source_flickr_account, :parent => :source, :class => Source::FlickrAccount do |source|
