@@ -52,4 +52,9 @@ describe Source::FlickrAccount do
     @flickr_account.update_attributes({:token => 'some-token'})
     @flickr_account.should be_authenticated
   end
+  describe "worker" do
+    it "should not created for deleted sources"
+    it "should not created for unauthenticated sources"
+    it "should be created"
+  end
 end

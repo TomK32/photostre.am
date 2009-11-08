@@ -82,9 +82,8 @@ class Source::FlickrAccount < Source
   end
   
   def call_worker
-    return unless active?
+    return if self.deleted?
     return unless authenticated?
-    return unless active_changed?
     SourceFlickrAccountWorker.asynch_update_data(:id => self.id)
   end
 
