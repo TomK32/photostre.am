@@ -4,7 +4,7 @@
   %li= link_to t(:'.edit'), edit_object_path(current_object)
 #source[current_object]
   - if current_object.authenticated?
-    %p=t(:'.activated', :username => current_object.username, :title => current_object.source_title) if current_object.active
+    %p=t(:'.activated', :username => current_object.username, :title => current_object.source_title) if ! current_object.deleted?
   - else
     %p= link_to t(:'.reauthenticate'), reauthenticate_admin_source_path(current_object)
 
