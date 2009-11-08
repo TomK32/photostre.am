@@ -70,12 +70,12 @@ class Source::FlickrAccount < Source
   
   def authenticate(frob)
     flickr.auth.frob = frob
-    unless flickr.auth.token.token.blank?
+    unless flickr.auth.token.nil? or flickr.auth.token.token.blank?
       logger.debug("authenticated %s: %s with frob: %s" % [self.source_type, self.username, frob])
       self.token = flickr.auth.token.token
       self.authenticated_at = Time.now
       save
-      @flickr = nil # to create a new one with the right token
+      @flickr = nil unless self.new_record? # to create a new one with the right token
       return true
     end
     return false

@@ -62,11 +62,11 @@ class Admin::SourcesController < Admin::ApplicationController
   end
 
   def authenticate_flickr_account
-    source = Source::FlickrAccount.new
-    source.authenticate(params[:frob])
-    @current_object = Source::FlickrAccount.find_by_flickr_nsid(source.flickr.auth.token.user_id)
-
     if !logged_in?
+      source = Source::FlickrAccount.new
+      source.authenticate(params[:frob])
+      @current_object = Source::FlickrAccount.find_by_flickr_nsid(source.flickr.auth.token.user_id)
+
       # valid source, log the user in, all fine
       if @current_object
         self.current_user=(@current_object.user)
