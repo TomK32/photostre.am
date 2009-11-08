@@ -5,7 +5,7 @@
   :plain
     var photo_manager;
     $(document).ready(function(){
-      photo_manager = new PhotoManager();
+      PhotoManager.init();
     });
 - content_for :head do
   = javascript_include_tag 'admin/photo_manager'
