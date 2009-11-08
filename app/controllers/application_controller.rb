@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
     return @current_website if @current_website
     @current_website ||= Website.active.find_by_domain(request.host)
     @current_website ||= Website.active.find_by_domain(request.host.sub(/^www\./, ''))
+    @current_website ||= Website.active.find_by_domain('www.' + request.host)
     if @current_website.nil?
       flash.now[:error] = 'There is no domain %s registered with us or not active.' % request.host
     end
@@ -30,6 +31,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_website
 
   def set_theme
+    return unless current_website
     # use the websites theme for views
     self.prepend_view_path File.join(current_theme_path, 'views')
   end
