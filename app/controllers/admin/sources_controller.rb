@@ -72,12 +72,10 @@ class Admin::SourcesController < Admin::ApplicationController
         self.current_user=(@current_object.user)
         redirect_to dashboard_path and return
       end
-      # Never validated this flickr account, create it and also an user
-      @current_object = Source::FlickrAccount.new do |source|
-        source.username = source.flickr.auth.token.username
-        source.flickr_nsid = source.flickr.auth.token.user_id
-        source.token = source.flickr.auth.token.token
-      end
+      source.username = source.flickr.auth.token.username
+      source.flickr_nsid = source.flickr.auth.token.user_id
+      source.token = source.flickr.auth.token.token
+      @current_object = source
       username = source.flickr.auth.token.username
       username = ('Flickr:' + username) if(User.find_by_login(username))
 

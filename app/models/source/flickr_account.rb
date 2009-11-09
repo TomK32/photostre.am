@@ -83,7 +83,8 @@ class Source::FlickrAccount < Source
   
   def call_worker
     return if self.deleted?
-    return unless authenticated?
+    return unless self.authenticated?
+    self.update_attribute(:state, 'active') if self.updating?
     SourceFlickrAccountWorker.asynch_update_data(:id => self.id)
   end
 
@@ -97,6 +98,8 @@ class Source::FlickrAccount < Source
     TagList.delimiter = ' '
     while (page <= (person.photo_count / per_page) + 1)
 #      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
+      # TODO change to use search with min_date and also to get private photos
+      #      with extras url_o
       flickr_photos = person.public_photos(:per_page => per_page, :page => page)
       existing_photos = Photo.find(:all, :conditions => {:remote_id => flickr_photos.collect{|p| p.id }}, :select => :remote_id).collect{|p| p.remote_id }
       flickr_photos.reject!{|p| existing_photos.include?(p.id)}
@@ -109,6 +112,8 @@ class Source::FlickrAccount < Source
           :title => photo.title,
           :remote_id => photo.id,
           :taken_at => photo.taken_at,
+          :created_at => photo.uploaded_at,
+          :updated_at => photo.updated_at,
           :description => photo.description,
           :tag_list => TagList.new(photo.tags, {:parse => true}),
           :machine_tag_list => TagList.new(photo.machine_tags, {:parse => true}),
@@ -128,6 +133,9 @@ class Source::FlickrAccount < Source
       end
       page += 1
     end
+    # all done
+    self.last_updated_at = Time.now
+    self.state = 'active'
     return errors
   end
 end
