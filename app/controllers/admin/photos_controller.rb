@@ -23,9 +23,9 @@ class Admin::PhotosController < Admin::ApplicationController
     end
     before :index do
       if params[:webiste_id].nil?
-        @websites = current_user.websites
+        @websites = current_user.websites.active
       else
-        @website = current_user.websites.find(params[:website_id])
+        @website = current_user.websites.active.find(params[:website_id])
         @albums = @website.albums
       end
     end
