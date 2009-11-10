@@ -1,12 +1,11 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 require 'rack/domain_dispatcher'
-
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -15,10 +14,6 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   config.load_paths += %W( #{RAILS_ROOT}/app/models/source/ )
-  # for flickr-fu gem
-  config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir|
-    File.directory?(lib = "#{dir}/lib") ? lib : dir
-  end
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem 'haml-edge', :lib => 'haml', :version => '>= 2.3.60'
@@ -27,7 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'rubyist-aasm', :lib => "aasm", :version => '2.1.1'
   config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
 #  config.gem "memcache-client"
-#  config.gem "flickr-fu", :lib => 'flickr_fu'
+  config.gem "tomk32-flickr_fu", :lib => 'flickr_fu'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
