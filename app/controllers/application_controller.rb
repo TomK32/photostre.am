@@ -31,13 +31,13 @@ class ApplicationController < ActionController::Base
   helper_method :current_website
 
   def set_theme
-    return unless current_website
+    return if current_website.nil?
     # use the websites theme for views
     self.prepend_view_path File.join(current_theme_path, 'views')
   end
 
   def current_theme_path
-    File.join(RAILS_ROOT, 'themes', 'websites', current_website.domain, current_website.theme)
+    File.join([RAILS_ROOT, 'themes', 'websites', current_website.domain, current_website.theme].compact)
   end
 
   def current_album
