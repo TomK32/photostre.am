@@ -3,9 +3,14 @@ en:
     title: 'photostre.am'
   sessions:
     new:
+      page_title: 'Login'
+      login_via_flickr: 'Login via flickr.com'
+      submit_flickr: 'Login via flickr'
+      flickr_info: 'If you already have an account with flickr then you can use that account to authenticate and create an account here. If you are not a flickr user yet you can "signup at flickr":http://flickr.com/signup/.'
+      login_via_openid: 'Login via OpenID'
       add_new_openid: "As you are already logged in we will add the OpenID profile you type in below to your current user account."
-      openid_info: 'We are using "OpenID":http://openid.net/get-an-openid/what-is-openid/ for authentication which is simple if you already use flickr. If you are not a flickr user yet you can "signup at flickr":flickr.com/signup/.'
-      signin: 'Sign in'
+      openid_info: 'We are using "OpenID":http://openid.net/get-an-openid/what-is-openid/ for authentication which is simple if you already use e.g. Yahoo.'
+      submit_openid: 'Sign in via OpenID'
       logout: 'Logout'
       not_current_user: 'If you are not {{user}} then please {{logout}} and login again.'
   shared:
