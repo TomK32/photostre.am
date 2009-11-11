@@ -2,6 +2,7 @@ Factory.define :website do |website|
   website.site_title 'my portfolio'
   website.domain {'example%i.com' % Website.count }
   website.state 'active'
+  website.users {[Factory(:user)]}
 end
 Factory.define :website_system, :parent => :website do |website|
   website.site_title 'photostre.am'
