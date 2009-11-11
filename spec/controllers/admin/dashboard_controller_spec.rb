@@ -3,12 +3,14 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe Admin::DashboardController do
 
   def setup
-    request.host = Factory(:website_system).domain
     @user = Factory(:user)
     @user.websites << Factory(:website)
-    @user.photos << (0..10).collect{ Factory(:photo, :user_id => @user.id)}
-    @user.sources << Factory(:source)
+    @user.sources << @source = Factory(:source)
+    @user.photos << (0..7).collect{ Factory(:photo, :user_id => @user.id, :source_id => @source.id)}
     @user.reload
+  end
+  before :each do
+    request.host = Factory(:website_system, :theme => Factory(:theme)).domain
   end
   describe "as not logged in user" do
     it "should not let me in" do

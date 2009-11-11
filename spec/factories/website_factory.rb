@@ -15,9 +15,8 @@ Factory.define :website_with_photos, :parent => :website do |website|
 end
 
 Factory.define :website_with_albums_and_photos, :parent => :website_with_photos do |website|
-  website.albums do |website|
-    album = Factory.build(:album)
-    album.photos = website.photos[0..4]
-  end
+  website.albums {
+    [Factory(:album)]
+  }
 end
   

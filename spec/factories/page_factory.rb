@@ -2,6 +2,6 @@ Factory.define :page do |page|
   page.title {'My page ' + Page.count.to_s}
   page.state 'published'
   page.body 'Welcome to my page'
-  page.website { Website.first || Factory(:website) }
-  page.user { User.first || Factory(:user)}
+  page.website_id { (Website.first || Factory(:website)).id }
+  page.user_id { (User.first || Factory(:user)).id }
 end

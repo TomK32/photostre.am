@@ -1,14 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Page do
-  before(:each) do
+  def setup
     @page = Factory(:page)
     @new_page = Factory.build(:page)
   end
 
   it "should be valid" do
     @page.should be_valid
-    Page.count.should be(1)
   end
 
   it "should protect attributes" do
@@ -49,35 +48,18 @@ describe Page do
     it { @page.should validate_presence_of(:title) }
     it { @page.should validate_presence_of(:body) }
   end
-  describe "scopes" do
-    before :each do
-      # there's already @page which is published
-      Factory(:page) # published by default
-      Factory(:page, :state => 'draft')
-      Factory(:page, :state => 'deleted')
-      Page.count.should be(4)
-    end
-    it "should have a default scope ordering by parent and position" do
-      @page.default_scoping[0][:find].should ==({:order => 'parent_id ASC, position ASC'})
-    end
-    it "should have states" do
-      Page.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(deleted draft published))
-    end
-    it "should have a published scope" do
-      Page.published.count.should be(2)
-    end
-    it "should have a deleted scope" do
-      Page.deleted.count.should be(1)
-    end
-    it "should have a draft scope" do
-      Page.draft.count.should be(1)
-    end
-    it "should keep state when being edited" do
-      @page.state = 'deleted'
-      @page.body = 'A completely update page body'
-      @page.save! and @page.reload
-      @page.state.should =='deleted'
-    end
+  
+  it "should have states" do
+    Page.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(deleted draft published))
+  end
+  it "should have a default scope ordering by parent and position" do
+    @page.default_scoping[0][:find].should ==({:order => 'parent_id ASC, position ASC'})
+  end
+  it "should keep state when being edited" do
+    @page.state = 'deleted'
+    @page.body = 'A completely update page body'
+    @page.save! and @page.reload
+    @page.state.should =='deleted'
   end
   describe "meta tags" do
     it "should have meta_keywords" do
