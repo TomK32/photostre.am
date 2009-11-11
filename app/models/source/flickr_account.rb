@@ -100,6 +100,7 @@ class Source::FlickrAccount < Source
 #      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
       # TODO change to use search with min_date and also to get private photos
       #      with extras url_o
+      # flickr_photos = flickr.photos.search(:user_id => self.flickr_nsid, :min_upload_date => self.photos.first(:))
       flickr_photos = person.public_photos(:per_page => per_page, :page => page)
       existing_photos = Photo.find(:all, :conditions => {:remote_id => flickr_photos.collect{|p| p.id }}, :select => :remote_id).collect{|p| p.remote_id }
       flickr_photos.reject!{|p| existing_photos.include?(p.id)}
@@ -118,7 +119,7 @@ class Source::FlickrAccount < Source
           :tag_list => TagList.new(photo.tags, {:parse => true}),
           :machine_tag_list => TagList.new(photo.machine_tags, {:parse => true}),
           :web_url => photo.url_photopage,
-          :photo_url => photo.url(:original) || photo.url(:medium),
+          :photo_url => photo.url(:original) || photo.url(:medium),
           :thumbnail_url => photo.url(:thumbnail),
           :medium_url => photo.url(:medium),
           :icon_url => photo.url(:square),
