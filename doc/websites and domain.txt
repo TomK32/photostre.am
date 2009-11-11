@@ -1,0 +1,15 @@
+
+The user can send their own domain to photostream.
+This can be done via CNAME or A-Record
+The user can have subdomains under our system websites.
+The user can create subdomains on his own domains for other users
+
+The app is completely whitelaballed.
+The system websites have different designs and may also have different functionality.
+
+Static content (image, css files etc) is delivered directly by the
+website using the HTTP_HOST data and delivering files from
+/themes/domains/example.com/public/
+Dynamic content is pointed to the app which
+a) rewrites the request path if the request goes to the homepage "/"
+b) uses views from /themes/domains/example.com/views

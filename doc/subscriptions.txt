@@ -1,0 +1,7 @@
+There's a model for subscription plans and plan items containing
+information on
+subscription plan: price, name, state
+subscription item: a simple key, value storage
+
+The user can subscribe a plan via spreedly
+Spreedly updates our subscription data via REST.

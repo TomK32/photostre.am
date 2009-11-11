@@ -1,3 +1,11 @@
 The theme editor consists of two admin controllers for:
 * creating, editing and managing themes
-* applying themes and setting theme options like # of photos
+* applying themes and setting theme options like # of photos per page
+
+Users can create new theme and share the with everyone.
+Theme states
+* deleted
+* draft
+* public for themes available to every user
+* private for themes created by users but not being shared
+* paid for themes the users have to pay for
