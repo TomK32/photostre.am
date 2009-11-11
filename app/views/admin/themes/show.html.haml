@@ -1,0 +1,27 @@
+%h1 Viewing theme
+
+%div[current_object]
+  %p.name
+    %strong Name
+    = h current_object.name
+  %p.version
+    %strong Version
+    = h current_object.version
+  %p.author_id
+    %strong Author
+    = h current_object.author_id
+  %p.user_id
+    %strong User
+    = h current_object.user_id
+  %p.license
+    %strong License
+    = h current_object.license
+  %p.state
+    %strong State
+    = h current_object.state
+
+= link_to 'Edit', edit_object_path
+|
+= link_to 'Destroy', object_path, :confirm => 'Really destroy theme?', :method => :delete
+|
+= link_to 'Back', objects_path

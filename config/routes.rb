@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :albums
     admin.resources :photos
     admin.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
+    admin.resources :themes
     admin.resources :websites do |website|
       website.resources :albums
       website.resources :pages

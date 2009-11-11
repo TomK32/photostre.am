@@ -1,0 +1,25 @@
+%div[theme]
+  %p.name
+    %strong Name
+    = h theme.name
+  %p.version
+    %strong Version
+    = h theme.version
+  %p.author_id
+    %strong Author
+    = h theme.author_id
+  %p.user_id
+    %strong User
+    = h theme.user_id
+  %p.license
+    %strong License
+    = h theme.license
+  %p.state
+    %strong State
+    = h theme.state
+
+  = link_to 'Show', object_path(theme)
+  |
+  = link_to 'Edit', edit_object_path(theme)
+  |
+  = link_to 'Destroy', object_path(theme), :confirm => 'Really destroy theme?', :method => :delete

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091020223117) do
+ActiveRecord::Schema.define(:version => 20091106185315) do
 
   create_table "albums", :force => true do |t|
     t.string   "title",                                            :null => false
@@ -129,14 +129,13 @@ ActiveRecord::Schema.define(:version => 20091020223117) do
     t.string   "token"
     t.string   "title"
     t.integer  "user_id"
-    t.integer  "website_id",                             :null => false
-    t.boolean  "active",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "flickr_nsid"
     t.datetime "authenticated_at"
     t.datetime "last_updated_at"
     t.string   "type",             :default => "Source", :null => false
+    t.string   "state",            :default => "active"
   end
 
   add_index "sources", ["type"], :name => "index_sources_on_type"
@@ -156,6 +155,17 @@ ActiveRecord::Schema.define(:version => 20091020223117) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "themes", :force => true do |t|
+    t.string  "name",                                           :null => false
+    t.string  "directory",                                      :null => false
+    t.text    "description",                                    :null => false
+    t.integer "version"
+    t.integer "author_id",                                      :null => false
+    t.integer "user_id",                                        :null => false
+    t.string  "license",     :default => "All rights reserved"
+    t.string  "state",       :default => "private",             :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -189,6 +199,7 @@ ActiveRecord::Schema.define(:version => 20091020223117) do
     t.string   "state",         :default => "active"
     t.string   "root_path"
     t.string   "theme",         :default => "default", :null => false
+    t.text     "tracking_code"
   end
 
   add_index "websites", ["domain"], :name => "index_websites_on_domain", :unique => true

@@ -1,0 +1,10 @@
+- title=(t(:'.page_title'))
+
+= error_messages_for :theme
+
+- form_for(:theme, :url => objects_path) do |form|
+  = render :partial => "form", :object => form
+  %p.submit
+    = submit_tag t(:'.create')
+
+= link_to 'Back', objects_path

@@ -6,6 +6,7 @@ class Website < ActiveRecord::Base
   has_many :pages
   has_many :albums
   has_and_belongs_to_many :photos
+  belongs_to :theme
 
   named_scope :latest, :order => 'updated_at DESC'
   named_scope :active, :conditions => {:state => ['active', 'system']}
