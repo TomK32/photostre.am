@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091106185315) do
+ActiveRecord::Schema.define(:version => 20091111202947) do
 
   create_table "albums", :force => true do |t|
     t.string   "title",                                            :null => false
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20091106185315) do
     t.string   "token"
     t.string   "title"
     t.integer  "user_id"
+    t.boolean  "active",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "flickr_nsid"
@@ -200,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20091106185315) do
     t.string   "root_path"
     t.string   "theme",         :default => "default", :null => false
     t.text     "tracking_code"
+    t.string   "theme_path",    :default => "default"
   end
 
   add_index "websites", ["domain"], :name => "index_websites_on_domain", :unique => true

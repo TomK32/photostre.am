@@ -11,6 +11,7 @@ class Website < ActiveRecord::Base
   named_scope :latest, :order => 'updated_at DESC'
   named_scope :active, :conditions => {:state => ['active', 'system']}
   after_create :create_default_pages
+  before_save :set_theme_path
 
   include AASM
   aasm_column :state
@@ -22,6 +23,14 @@ class Website < ActiveRecord::Base
 
   def url
     'http://' + self.domain
+  end
+
+  def set_theme_path
+    if theme
+      self.theme_path = theme.directory
+    else
+      self.theme_path = 'default'
+    end
   end
 
   def create_default_pages

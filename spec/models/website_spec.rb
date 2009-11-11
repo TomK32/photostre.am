@@ -46,4 +46,12 @@ describe Website do
       new_website.root_path.should ==('/pages/homepage')
     end
   end
+  it "should denormalize theme_path" do
+    @website.theme.should be_nil
+    @website.theme_path.should ==('default')
+    theme = Factory(:theme, :directory => 'funky')
+    @website.theme = theme
+    @website.save
+    @website.theme_path.should ==(theme.directory)
+  end
 end
