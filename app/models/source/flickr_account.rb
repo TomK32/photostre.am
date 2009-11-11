@@ -118,7 +118,7 @@ class Source::FlickrAccount < Source
           :tag_list => TagList.new(photo.tags, {:parse => true}),
           :machine_tag_list => TagList.new(photo.machine_tags, {:parse => true}),
           :web_url => photo.url_photopage,
-          :photo_url => photo.url(:original),
+          :photo_url => photo.url(:original) || photo.url(:medium),
           :thumbnail_url => photo.url(:thumbnail),
           :medium_url => photo.url(:medium),
           :icon_url => photo.url(:square),
