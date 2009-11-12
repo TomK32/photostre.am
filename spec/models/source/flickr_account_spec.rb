@@ -25,7 +25,9 @@ describe Source::FlickrAccount do
       @tomk32 = Factory(:source_flickr_account, :username => 'TomK32' )
     end
     it "should set the :nsid" do
-      @tomk32.set_nsid.should ==('99884191@N00')
+      new_source = Factory(:source_flickr_account, :flickr_nsid => nil)
+      new_source.should_receive(:set_nsid).and_return(true)
+      new_source.flickr_nsid.should_not be_nil
     end
     it "should return a flickr object"
     it "should have a flickr object with a token"

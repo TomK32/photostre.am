@@ -30,13 +30,14 @@ describe Website do
     it "should have scopes" do
       Website.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(active deleted draft system))
     end
-    it "should have named scope active that also includes system websites" do
+    it "should have named scope active_or_styem" do
       system_website = Factory(:website, :state => 'system')
-      Website.active.count.should == Website.all.count
+      Website.active_or_system.count.should == Website.all.count
+      Website.active.count.should ==(Website.all.count - 1)
       Website.system.count.should == 1
     end
   end
-  
+
   describe "creating a new website" do
     it "should create a standard homepage" do
       new_website = Factory(:website)

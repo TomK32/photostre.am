@@ -4,7 +4,7 @@ class Source::FlickrAccount < Source
 
   validates_presence_of :username
   validates_presence_of :flickr_nsid
-  after_save :call_worker
+  after_create :call_worker
   before_validation :set_title
   
   def validate_on_create
