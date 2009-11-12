@@ -9,7 +9,7 @@ class Website < ActiveRecord::Base
   belongs_to :theme
 
   named_scope :latest, :order => 'updated_at DESC'
-  named_scope :active, :conditions => {:state => ['active', 'system']}
+  named_scope :active_or_system, :conditions => {:state => ['active', 'system']}
   after_create :create_default_pages
   before_save :set_theme_path
 

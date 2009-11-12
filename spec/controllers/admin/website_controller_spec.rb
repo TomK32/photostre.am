@@ -21,6 +21,13 @@ describe Admin::WebsitesController do
   describe ":new without sufficient subscription" do
     it "should redirect to subscriptions"
   end
+  describe ":create" do
+    it "should belong to current_user" do
+      post :create, {:website => {:site_title => 'Test', :domain => 'test.com'}}
+      assigns[:current_object].should be_valid
+      assigns[:current_object].user_ids.should include(@user.id)
+    end
+  end
   describe ":edit" do
     it "should allow setting any public theme"
     it "should allow setting any theme by the user"

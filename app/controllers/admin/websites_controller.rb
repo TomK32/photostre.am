@@ -3,7 +3,7 @@ class Admin::WebsitesController < Admin::ApplicationController
     actions :all
     belongs_to :current_user
 
-    after :create do
+    before :create do
       current_object.users << current_user
     end
 
