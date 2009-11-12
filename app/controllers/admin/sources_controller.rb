@@ -76,10 +76,8 @@ class Admin::SourcesController < Admin::ApplicationController
       source.flickr_nsid = source.flickr.auth.token.user_id
       source.token = source.flickr.auth.token.token
       @current_object = source
-      username = source.flickr.auth.token.username
-      username = ('Flickr:' + username) if(User.find_by_login(username))
 
-      @user = User.new(:login => username, :name => source.flickr.auth.token.user_real_name)
+      @user = User.new(:login => source.flickr.auth.token.user_id, :name => source.flickr.auth.token.user_real_name || source.flickr.auth.token.username)
       @user.save(false) # we don't have an email yet
       @current_object.user = @user
       if @current_object.save!

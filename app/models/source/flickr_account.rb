@@ -45,11 +45,11 @@ class Source::FlickrAccount < Source
   end
   
   def photostream_url
-    "http://flickr.com/photos/%s" % username
+    "http://flickr.com/photos/%s" % flickr_nsid
   end
 
   def profile_url
-    "http://flickr.com/people/%s" % username
+    "http://flickr.com/people/%s" % flickr_nsid
   end
 
   def person
