@@ -6,6 +6,7 @@ class SourceFlickrAccountWorker < Workling::Base
     else
       source.update_attribute(:state, 'updating')
       begin
+        puts 'updating'
         source.update_data
       rescue RuntimeError => ex
         # possibly run out of memory, root knows

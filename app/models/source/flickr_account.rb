@@ -97,6 +97,7 @@ class Source::FlickrAccount < Source
     per_page = 200
     TagList.delimiter = ' '
     while (page <= (person.photo_count / per_page) + 1)
+      logger.info "updating page %i for %s" % [page, self.title]
 #      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
       # TODO change to use search with min_date and also to get private photos
       #      with extras url_o
