@@ -135,9 +135,6 @@ class Source::FlickrAccount < Source
       end
       page += 1
     end
-    # all done
-    self.last_updated_at = Time.now
-    self.state = 'active'
     return errors
   end
 end
