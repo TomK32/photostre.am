@@ -14,6 +14,7 @@ class SourceFlickrAccountWorker < Workling::Base
         # possibly run out of memory, root knows
         # but just let's kick another workling
         source.update_attribute(:state, 'active')
+        puts ex
         source.call_worker
       end
     end
