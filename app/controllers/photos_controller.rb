@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
 
-  caches_action :show, :index
+  #caches_action :show, :index
 
   make_resourceful do
     actions :show, :index
@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
 
   private
   def current_objects
-    return @current_objects if @current_objects
+    return @current_objects unless @current_objects.nil?
     if current_album
       scope = current_album.photos
     else

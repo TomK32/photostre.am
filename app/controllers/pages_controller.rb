@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  caches_action :show, :index
+  #caches_action :show, :index
 
   make_resourceful do
     actions :index, :show
