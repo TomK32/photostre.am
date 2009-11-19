@@ -7,3 +7,7 @@
   photos and created
   = Website.count
   websites.
+  %h2 Latest sources
+  %ul
+  - Source.find(:all, :limit => 10, :order => 'id DESC').each do |source|
+    %li= link_to source.username, photostream_url
