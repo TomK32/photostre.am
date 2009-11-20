@@ -97,6 +97,7 @@ en:
         submit: 'Apply filter'
         reset: 'Reset filter'
     sources:
+      updating: 'We are looking for your new photos.'
       button:
         add_source: Add source
       form:

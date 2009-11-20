@@ -20,8 +20,11 @@ class Source < ActiveRecord::Base
   validates_length_of :title, :minimum => 3
   validates_uniqueness_of :username, :scope => 'type'
 
-  named_scope :active, :conditions => {:active => true }
   named_scope :recent, :order => 'last_updated_at DESC'
+
+  def call_worker
+    false # implement yourself goddamn it
+  end
 
   def source_type=(source_type)
     self[:type] = source_type if AVAILABLE_TYPES.collect{|t|t[0]}.include?(source_type)
