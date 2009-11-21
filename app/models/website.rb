@@ -34,7 +34,7 @@ class Website < ActiveRecord::Base
   end
 
   def create_default_pages
-    [self.pages.new(:title => 'Homepage', :body => 'Welcome to the photo portfolio of %s' % self.site_title), 
+    [self.pages.new(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.site_title), 
     self.pages.new(:title => 'About', :body => 'Want to know more about %s?' % self.site_title),
     self.pages.new(:title => 'Contact', :body => 'The contact details of %s are yet missing.' % self.site_title)].each do |page|
       page.user = self.users.first # still could be nil
