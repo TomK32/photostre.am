@@ -2,3 +2,7 @@ en:
   photos:
     index:
       page_title: 'Photos'
+    show:
+      taken_at: 'Taken {{date}}'
+      from_source: 'From {{source}}'
+      tagged: 'Tagged: '
