@@ -2,7 +2,6 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
 %head
   = render :partial => "shared/head"
-
 %body
   #container
     #header
@@ -29,6 +28,7 @@
       (C)
       = link_to h(current_website.site_title), root_path
       a product by <a href="http://www.ananasblau.com">ananasblau</a>.
+      = link_to 'blog', 'http://blog.photostre.am'
       = link_to 'about', static_path('about')
       &
       = link_to 'contact', static_path('contact')
