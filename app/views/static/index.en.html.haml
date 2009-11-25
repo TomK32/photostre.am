@@ -24,7 +24,8 @@
     - form_tag sessions_path do |form|
       = hidden_field_tag :flickr, true
       %p.submit
-        = submit_tag 'Login via flickr', :name => nil, :class => 'flickr'
+        = submit_tag 'Signup for free', :name => nil, :class => 'flickr'
+      %p.small This signup will take you to flickr.
 
 %h3 Newest websites
 = render :partial => 'websites', :object => @websites
