@@ -39,10 +39,13 @@
 	url = git://github.com/hcatlin/make_resourceful.git
 [submodule "vendor/plugins/acts_as_category"]
 	path = vendor/plugins/acts_as_category
-	url = git://github.com/funkensturm/acts_as_category.git
+	url = git://github.com/TomK32/acts_as_category.git
 [submodule "vendor/plugins/jrails"]
 	path = vendor/plugins/jrails
 	url = git://github.com/aaronchi/jrails.git
 [submodule "vendor/plugins/exception_notification"]
 	path = vendor/plugins/exception_notification
 	url = git://github.com/rails/exception_notification.git
+[submodule "vendor/plugins/translate"]
+	path = vendor/plugins/translate
+	url = git://github.com/newsdesk/translate.git
