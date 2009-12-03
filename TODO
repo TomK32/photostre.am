@@ -1,17 +1,25 @@
-* Allow access to static controller only on certain (non-customer, no user-id?) domains
-* Put the first system domain into sessions so we can redirect the user once he comes back from flick auth. necessary for like having users on 365shots.net
+1 Allow access to static controller only on certain (non-customer, no user-id?) domains
+1 Icon for missing album.png (i.e. no keyphoto yet)
+1 Ask user to complete his profile (current_user.email.blank?)
+1 Limit to three albums for now
+1 Tidy up photo manager and add info text
+2 Start with subscriptions and products (better name?)
 
-* flickr security id for original photo sizes (getInfo or o_url on getPhotos?)
-* import from flickr based on tag, set and album. maybe camera as well
-* Ask user for completing his profile when creating the user account on the fly. Or add email to the signup form. AB test?
-* login via flickr button on sessions/new
-* custom width/height for photos (e.g. 800px)
-* Icon for missing album.png
+2 custom width/height for photos (paid feature)
+2 refactor admin/sources::authenticate_flickr_account
+3 Put the first system domain into sessions so we can redirect the user once he comes back from flick auth. necessary for like having users on 365shots.net
+
+== flickr account
+1 speed up inseration of photo tags
+1 stream photos based on tag, set and album directly into an album or website
+2 flickr security id for original photo sizes (getInfo or o_url on getPhotos?)
+2 save user icon from flickr into user account (only if empty)
+3 show list of sources with flickr user icon
 
 == performance
-* Partial caching for pages navigation
-* Denormalize photo tags
+2 Partial caching for pages navigation
+1 Denormalize photo tags (acts_as_taggable_on)
 
 == marketing
-* analogue photography book
-* tutorials (also as PDF for scribd and slideshare) on using wordpress for photos/flickr
+3 analogue photography book
+2 tutorials (also as PDF for scribd and slideshare) on using wordpress for photos/flickr
