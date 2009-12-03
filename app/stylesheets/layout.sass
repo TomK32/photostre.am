@@ -4,27 +4,39 @@
   +grid-container
   :margin 0 auto
   :position relative
-  #header
-    +grid(16,16)
-    :height 120px
-  #navigation
-    +grid(3,16)
-    :position absolute
-    :top 10px
-    :right 0
-    :text-align right
-    :display inline
-  #sidebar
-    :float right
-    +grid(3,16)
-    +omega
-    :font-size 0.8em
-    :padding-top 5em
-  #content
-    +grid(12,16)
-    +alpha
-    :padding-bottom 10px
-  #footer
-    +grid(16,16)
-    +grid-container
-    :padding-top 2em
+#header
+  +grid(16,16)
+  :height 120px
+  +omega
+  +alpha
+#navigation
+  +grid(3,16)
+  +omega
+  :position absolute
+  :top 10px
+  :right 10px
+  :text-align right
+  :display inline
+#sidebar
+  :float right
+  +grid(3,16)
+  +omega
+  :font-size 0.8em
+  :padding-top 5em
+#content
+  +grid(12,16)
+  +alpha
+  :padding-bottom 10px
+#footer
+  +grid(16,16)
+  +grid-container
+  :padding-top 2em
+
+.columns
+  +grid-container
+.column_1_2
+  +grid(9,16)
+  +alpha
+.column_2_2
+  +grid(3,16)
+  +omega
