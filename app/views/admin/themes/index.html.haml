@@ -1,5 +1,9 @@
-%h1 Listing themes
+-title(:'.page_title')
 
-= render :partial => 'theme', :collection => current_objects
+= will_paginate(current_objects)
 
-= link_to 'New theme', new_object_path 
+%ul
+  - current_objects.each do |theme|
+    %li= link_to theme.name, object_path(theme)
+      
+= will_paginate(current_objects)

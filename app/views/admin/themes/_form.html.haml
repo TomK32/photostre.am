@@ -1,18 +1,15 @@
 %p
-  %label{:for => "theme_name"} Name:
+  = form.label :name, t(:'.name')
   = form.text_field :name
 %p
-  %label{:for => "theme_version"} Version:
-  = form.text_field :version
+  = form.label :directory, t(:'.directory')
+  = form.text_field :directory
 %p
-  %label{:for => "theme_author_id"} Author:
-  = form.text_field :author_id
+  = form.label :description, t(:'.description')
+  = form.text_field :description
 %p
-  %label{:for => "theme_user_id"} User:
-  = form.text_field :user_id
-%p
-  %label{:for => "theme_license"} License:
+  = form.label :license, t(:'.license')
   = form.text_field :license
 %p
-  %label{:for => "theme_state"} State:
+  = form.label :state, t(:'.state')
   = form.text_field :state

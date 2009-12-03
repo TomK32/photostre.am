@@ -9,22 +9,16 @@ describe "admin/themes/new" do
   end
   it "should have fields" do
     response.should be_success
-    response.should have_form_posting_to('/admin/themes')
-    response.should have_text_field_for :theme, :name
-    response.should have_text_field_for :theme, :directory
-    response.should have_text_field_for :theme, :license
-    response.should have_text_area_for :theme, :description
-    # TODO missing or maybe buggy matcher
-    #response.should have_select_for :domain
-    response.should have_tag('input#subdomain')
-    response.should have_tag('select#domain')
-  end
-  it "should display system domains in drop down" do
-    response.should have_tag('select#domain') do |tag|
-      # FIXME
-      tag.should have_tag('option')
+    response.should have_form_posting_to('/admin/themes') do
+      puts y form
+      with_text_field_for :theme, :nam
+      with_text_field_for :theme, :directory
+      with_text_field_for :theme, :license
+      with_text_area_for :theme, :description
+      with_select_for :theme_parent_id
+      with_select_for :theme, :select
+      assert nil == 2
     end
-    
   end
 end
 

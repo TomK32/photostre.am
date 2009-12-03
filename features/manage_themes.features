@@ -1,0 +1,13 @@
+Feature: Manage themes
+  In order to customize my website
+  As a customer
+  I want to choose from public themes
+  I want to create new themes
+  I want to enhance existing public themes
+
+
+  Scenario: Login with flickr username
+    Given I go to the homepage
+    When I fill in "source_username" with "TomK32"
+    And I press "Login via flickr"
+    Then I should be redirected to

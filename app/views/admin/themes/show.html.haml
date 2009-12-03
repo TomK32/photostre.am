@@ -1,4 +1,4 @@
-%h1 Viewing theme
+- title(t(:'.page_title', :theme => current_object.name))
 
 %div[current_object]
   %p.name
@@ -19,9 +19,3 @@
   %p.state
     %strong State
     = h current_object.state
-
-= link_to 'Edit', edit_object_path
-|
-= link_to 'Destroy', object_path, :confirm => 'Really destroy theme?', :method => :delete
-|
-= link_to 'Back', objects_path

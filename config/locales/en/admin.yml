@@ -172,3 +172,17 @@ en:
         root_path: 'Root path (your homepage)'
         albums: 'Albums'
         pages: 'Pages'
+    themes:
+      index:
+        page_title: 'Themes'
+      form:
+        name: 'Name'
+        directory: 'Name of directory (only a-z, 0-9 and -)'
+        description: 'A good description'
+        license: 'License'
+        state: 'Status'
+      show:
+        page_title: 'Theme: {{theme}}'
+      edit:
+        save: 'Save'
+        page_title: 'Edit theme'
