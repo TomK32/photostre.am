@@ -12,20 +12,26 @@
 - content_for :info do
   / # TODO link to 'select all'
   = render :partial => 'filter'
-#select-result
 
 - content_for :subnavigation do
   - if @website
     %li= link_to t(:'.new_album'), new_admin_website_album_path(@website)
 
-- unless @websites.nil? or @websites.empty?
-  %h2= t(:'.websites')
-  #websites
-    = render :partial => 'website', :collection => @websites
-- unless @albums.nil? or @albums.empty?
-  %h2= t(:'.albums')
-  #albums
-    = render :partial => 'album', :collection => @albums
+.columns
+  .column_1_2
+    - unless @websites.nil? or @websites.empty?
+      %h2= t(:'.websites')
+      #websites
+        = render :partial => 'website', :collection => @websites
+    - unless @albums.nil? or @albums.empty?
+      %h2= t(:'.albums')
+      #albums
+        = render :partial => 'album', :collection => @albums
+
+  .column_2_2
+    .info#draggable= render :partial => 'info_draggable'
+    .info#remove= render :partial => 'info_remove'
+    /.info#delete= render :partial => 'info_delete'
 
 %h2
   = t(:'.photos')

@@ -66,7 +66,7 @@ en:
         public: Visible to all
         websites: Websites
       index:
-        page_title: 'photos'
+        page_title: 'Photo manager'
         websites: Websites
         new_album: 'new album'
         photos: Photos

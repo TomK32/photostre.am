@@ -1,6 +1,6 @@
 %div
   .domain.droppable[website]= website.domain
   = link_to(t(:'.only_website'), admin_photos_path({:website_id => website.id}))
-  .albums
-    = render :partial => 'album', :collection => website.albums
+  .info.albums
+    = render :partial => 'album', :collection => website.albums.published
     = link_to t(:'.create_album'), new_admin_website_album_path(:website_id => website.id)
