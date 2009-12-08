@@ -5,6 +5,7 @@ log/workling.output
 log/*.pid
 tmp/**/*
 .DS_Store
+*.swp
 public/cache/*
 public/**/cache/*
 config/flickr.yml
