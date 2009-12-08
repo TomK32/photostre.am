@@ -1,0 +1,39 @@
+- title('Instrumäntbräda')
+- content_for :info do
+  = render :partial => 'info'
+
+- if @sources.empty?
+  %p
+    Du har ännu inte en fotokälla.  Detta behöver du för att kunna fü tillbaka fotona för att kunna använda dem pü din hemsida. 
+    = link_to 'Skapa en.', new_admin_source_path
+
+#websites
+  - if @websites.empty?
+    .error
+      Du har inte skapat en hemsida ännu, snälla
+      = link_to 'skapa en.', new_admin_website_path
+
+  - else
+    Du har för tillfället
+    = pluralis(@webbsida.konto, 'webbsida')
+    - if @websites.count != @websites.select{|w|w.aktive?}.size
+      av vilka
+      = pluralize(@websites.select{|w|w.active?}.size, 'är', 'är')
+      aktiv.
+    - else
+      och
+      = @websites.count == 1 ? 'det är' : 'alla är'
+      online.
+
+#photos
+  %h2 senaste foton importerade
+  %p
+    hittills har vi importerat
+    = pluralis(aktuell_användare.foton.konto, 'foto')
+    från din foto källa.
+
+  - if ! @foton.tom?
+    - @photos.varje do |photo|
+      .photo= link_to profil_beteckning(foto.icon_url), admin_foto_bana(foto)
+  - elsif ! @källa.tom?
+    .notice att vanligtvis tar det lite tid att importera fotona, om du inte redan har dem på flickr. Ge det nügra sekunders tid och ladda om denna sida för att kunna se dina foton.

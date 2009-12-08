@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   include Authentication
   include ExceptionNotifiable
-  before_filter :set_theme
+  before_filter :set_theme, :set_locale
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -51,5 +51,16 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound do
     render 'shared/404', :status => 404
+  end
+  def set_locale
+    user_language = params[:language] || session[:language] || extract_locale_from_accept_language_header
+    if %w(en sv).include?(user_language)
+      I18n.locale = user_language
+      session[:language] = user_language if session[:language] != user_language
+    end
+  end
+
+  def extract_locale_from_accept_language_header
+    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
 end

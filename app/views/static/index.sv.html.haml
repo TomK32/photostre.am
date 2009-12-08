@@ -1,0 +1,30 @@
+%p{:style => 'font-size: 120%;'}
+  Du har en
+  %span.flickr flickr konto?
+  Och du sköter en
+  %span.portfolio mapp?
+  Och en
+  %span.photoblog fotoblog?
+%p
+  %strong= current_website.site_title
+  kommer hjälpa dig spara tid och pengar. 
+  %ul
+    %li Publicera din flickr fotoström på en färdig konstruerad websida.
+    %li Inget programm behövs installeras. 
+    %li Inga mer kopior behövs laddas upp på din webbsidor. 
+    %li Och du är fortfarande en del av flickr´s gemenskap. 
+
+- content_for :info do
+  - if logged_in?
+    %p
+      Välkommen tillbaka, gå raka vägen till 
+      = link_till t(:'delade.navigation.instrumäntbräda').downcase, instrumäntbräda_bana
+      för att behandla din websida.
+  - else
+    - form_tag sessions_path do |form|
+      = hidden_field_tag :flickr, true
+      %p.submit
+        = submit_tag 'gå med grattis', :name => nil, :class => 'flickr'
+      %p.small Denna bekräftelse kommer ta dig till flickr. 
+
+%h3 Senast webbsida

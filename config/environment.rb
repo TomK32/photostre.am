@@ -17,10 +17,10 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem 'haml-edge', :lib => 'haml', :version => '>= 2.3.60'
-  config.gem 'chriseppstein-compass', :lib => 'compass', :version => '>= 0.8.17'
+  config.gem 'compass', :version => '>= 0.8.17'
   config.gem 'RedCloth'
-  config.gem 'rubyist-aasm', :lib => "aasm", :version => '2.1.1'
-  config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+  config.gem "aasm"
+#  config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
 #  config.gem "memcache-client"
   config.gem "tomk32-flickr_fu", :lib => 'flickr_fu'
 

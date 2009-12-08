@@ -1,0 +1,30 @@
+sv:
+  app:
+    title: 'fotoström'
+  sessions:
+    new:
+      site_title: 'Logga in'
+      loggain_via_flickr: 'Logga in via flickr.com'
+      submit_flickr: 'Logga in via flickr'
+      flickr_info: 'Om du redan har ett konto på flickr kan du använda detta konto för att bevisa och skapa ett konto här. Om du inte är användare av flickr kan du skapa använda "skapa konto flickr":http://flickr.com/signup/.'
+      login_via_openid: 'Logga in via OpenID'
+      add_new_openid: "Eftersom du redan är inloggad kommer vi lägga till OpenID profil, du skriver in här nedanför till ditt aktuella användar konto."
+      openid_info: 'Vi använder "OpenID":http://openid.net/get-an-openid/vad-är-openid/ för att bevisa vilket är enkelt om du redan använder e.g. Yahoo.'
+      submit_openid: 'bli medlem via OpenID'
+      logout: 'Logga ut'
+      not_current_user: 'Om du är inte {{user}} då snälla {{logout}} och logga in igen.'
+  shared:
+    navigation:
+      dashboard: 'Instrumentbräda'
+      login: 'Logga in'
+      logout: 'Logga ut'
+      about: 'Om'
+  users:
+    new:
+      success: 'Vi lyckades bevisa dig med din OpenID'
+      information_missing: 'En del information saknas för att kunna skapa ett konto för dig.'
+      create: 'Skapa konto'
+    form:
+      login: "Logginnamn (bara bokstäver och nummer)"
+      name: "Ditt riktiga namn"
+      email: "Email adress"
