@@ -8,11 +8,10 @@
   = form.label :description, t(:'.description')
   = form.text_field :description
 / TODO check wether the user has the right subscription plan
-/
-  %p
-    = form.label :domain, t(:'.domain', :domain => current_object.domain)
-    = form.text_field :domain
-    OR
+  /%p
+    /= form.label :domain, t(:'.domain', :domain => current_object.domain)
+    /= form.text_field :domain
+    /OR
 %p
   = form.label :subdomain, t(:'.subdomain')
   = text_field_tag :subdomain, {}, :class => 'small'
