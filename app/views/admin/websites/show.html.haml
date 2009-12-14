@@ -20,4 +20,4 @@
     = link_to t(:'.pages'), admin_website_pages_path(current_object)
     %span= link_to t(:'.add_page'), new_admin_website_page_path(current_object)
   #pages
-    = render :partial => 'pages', :object => current_object.pages.active.roots
+    = render :partial => 'pages', :object => current_object.pages.published.roots
