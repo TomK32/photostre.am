@@ -1,0 +1,12 @@
+sv:
+  album:
+    state:
+      draft: 'Kladd'
+      deleted: 'Borttaget'
+      published: 'Publiserad'
+  albums:
+    index:
+      page_title: 'Albums'
+    _404:
+      page_title: 'Inget sånt album'
+      not_found: 'Vi ber om ursäkt men det finns inget sånt album. Kanske har det blivit borttaget.'

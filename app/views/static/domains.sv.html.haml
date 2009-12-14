@@ -1,0 +1,19 @@
+- title('Domän FAQ')
+
+%p
+  Om du några frågor sominte har blivit besvarade här snälla
+  = link_to 'Maila oss', 'mailto:info@photostre.am?subject=Domains'
+
+%dl
+  %dt kund domän
+  %dd
+    För att visa att du har använt din domän måste du peka ut 
+    = link_to 'CNAME', 'http://en.wikipedia.org/wiki/CNAME_record'
+    till 
+    %strong= current_website.site_title
+  %dt Dela en domän med en kompis
+  %dd Om du vill ge dina kompisar underdomäner som fred.example.com eller betty.example.com kan du skicka ett mail till våran suporter med förfrågan med ditt  användarenamn och domän förslag
+  %dt Deldomän
+  %dd
+    Vi föreslår en del domäner som du kan välja mellan som underdomän, om den fortfarande är valbar, Våran domän för våran gemenskap är
+    = Website.system.find(:all, :select => 'domain').collect(&:domain).join(', ')

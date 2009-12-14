@@ -1,0 +1,187 @@
+sv:
+  layouts:
+    admin:
+      application:
+        website_manager: "webbsida adminstratör"
+        photo_manager: "foto administratör"
+  admin:
+    albums:
+      new:
+        page_title: 'Add an album "{{domain}}"'
+        submit: 'Skapa album'
+      form:
+        title: 'Titel'
+        body: 'beskriving av ditt album.'
+        permalink: 'Permalink (kommer bli satt automatiskt och kan ändras)'
+        state: 'State'
+        parent: 'huvud album'
+      show:
+        edit: 'redigera album'
+        unpublished: 'Detta album är inte publicerat. {{editlink}}'
+        website: 'tillbaka till webbsidan'
+        photos: 'foton i albumet'
+        key_photo: 'album foto'
+        page_title: '{{album}} på "{{website}}"'
+      edit:
+        page_title: 'redigera "{{album}}"'
+        submit: 'Spara album'
+      index:
+        page_title: 'Albums på "{{website}}"'
+        new: 'Nytt album'
+    pages:
+      index:
+        page_title: 'sidor'
+        no_pages_yet: 'Det är ännu ingen oförändlig sida pü din webbsida'
+        create_new_page: 'Skapa en ny sida'
+        website: 'tillbaka till webbsidan'
+      new:
+        page_title: 'Skapa en ny sida'
+        submit: 'Skapa'
+      form:
+        body: 'huvuddel'
+        excerpt: 'Excerpera'
+        title: 'Titel'
+        tags: 'beteckningar'
+        state: 'Status'
+        permalink: 'Permalink'
+        parent: 'huvud sida'
+      show:
+        not_published: 'Sidan är inte publicerad. {{edit_link}} för att ändra det.'
+        edit: 'redigera'
+        see_online: 'Se online'
+        website: 'tillbaka till webbsidan'
+      edit:
+        page_title: 'redigera "{{title}}"'
+    photos:
+      error:
+        no_photos_yet: Inga foton ännu
+        edit_photo: Du kan redigera denna bild.
+      form:
+        button:
+          update: Uppdatera
+        title: Titel
+        description: Beskrivning
+        tags: 'beteckning (blomma,bil,blå)'
+        public: Synligt för alla
+        websites: Webbsidor
+      index:
+        page_title: 'foton'
+        websites: Webbsidor
+        new_album: 'nytt album'
+        photos: foton
+        info: 'För att lägga till ett foto till en utav dina webbsidor markera fotot och droppa'
+        for_website: 'på {{website}}'
+        for_album: 'i album {{album}}'
+        select_all: 'välj alla'
+        select_none: 'ingen'
+      photo:
+        unassigned: 'Ingen webbsida'
+        edit: 'Redigera'
+      website:
+        create_album: 'Skapa nytt album'
+        only_website: 'Bara foton på denna webbsida'
+      album:
+        show: 'Visa album'
+        only_album: 'Bara foton från detta album'
+      edit:
+        submit: 'Uppdatera'
+        page_title: 'Redigera foto'
+      show:
+        edit: 'redigera'
+        index: 'Alla foton'
+      filter:
+        search: 'Sök titel och beskrivning'
+        tags: 'Matchar alla beteckningar'
+        per_page: 'foton per sida'
+        submit: 'Ansök filter'
+        reset: 'Omredigerings filter'
+    sources:
+      updating: 'Vi kollar efter dina nya foton.'
+      button:
+        add_source: Lägg till källa
+      form:
+        flickr: "För tillfället ger vi suport bara till flickr som källa för dina foton. Skriv in ditt användarnamn för att kunna starta importerings processen, vilket gör att du kan välja dina set och foton för att visa dem på din webbsida."
+        username: "Användarnamn"
+      create:
+        error_on_creating_user: "Något vart fel under produsering av din användare. Snälla kontakta din suport för hjälp."
+        error: 'Foto källa kunde inte bli skapad. Kontollera dina detaljer eller kontakta våran suporter'
+      new:
+        add_source: "lägg till källa"
+        page_title: "Läg till ny foto källa"
+      show:
+        activated: "Källa är för tilfället aktiv."
+        reauthenticate: "You need to re-authenticate to make this source working."
+        last_updated: "Last updated at {{time}}"
+        last_photo: "Senaste foto tilllagt på {{time}}"
+        latest_photos: "Senaste foton"
+        edit: "Redigera källa"
+      index:
+        reauthenticate: 'Du behöver verifiera'
+        active: "aktiv"
+        inactive: "inaktiv"
+        source_info: "{{username}} på {{title}} är {{active}}."
+        show: "Visa detaljer"
+        new: "Lägg till foto källa"
+        page_title: "Din foto källa"
+      edit:
+        save: "SPara källa"
+        page_title: "Redigera '{{title}}'"
+      access_denied: "åtkosmt nekad för denna källa"
+    websites:
+      access_denied: "Du är inte tillåten att redigera denna webbsid"
+      new:
+        create: "Skapa webbsida"
+      form:
+        site_title: "Titel på din webbsida"
+        domain: "Domän (se våran <a href='/faq/domains'>FAQ</a> för detaljer)"
+        subdomain: ""
+        meta_keywords: "Nyckelord för HTML metabeteckningar. Fem till tio nyckelord är bäst."
+        description: "Beskrivning för HTML metabeteckningar. E.g. <em>John Doe är en professionell fotograf från New York City</em>"
+        state: "State"
+        root_path: Basbana för din domän. E.g. <em>/foton</em> eller <em>/sidor/hemsida</em>
+        tracking_code: 'Javascript spårningskod. E.g. från Google Analytics'
+      index:
+        your_websites: "Din webbsida"
+        add_new_website: 'Snälla konfigurera en ny {{link}}.'
+        new_website: "ny webbsida"
+        no_websites: "Du har inte arrangerat en webbsida ännu."
+        info: 'Här kan du lägga till nya webbsidor. Eller du använder en utav våra domäner eller lägger din egen domän på våran servers IP adress. För mer se våran "FAQ på domäns":{{domain_faq_link}}'
+        new: 'ny webbsida'
+      website:
+        goto_domain: 'Öppna denna webbsida också offentligt'
+        show_website_details: 'Visa detaljer om denna webbsida'
+        edit: "Redigera webbside detaljer"
+        edit_pages: "Redigera sidor"
+        edit_sets: "Redigera sets"
+        active: "Aktiv"
+        inactive: "Inaktiv"
+        pages: 'publiserade sidor'
+        photo: 'foto'
+        album: 'album'
+        photos_in_albums: '{{photos}} i {{albums}}'
+      edit:
+        page_title: "Redigera domän '{{domain}}'"
+        save: "Spara webbsida"
+      show:
+        edit: 'Redigera'
+        online: 'Se online'
+        add_page: 'Lägg till sida'
+        add_album: 'Lägg till album'
+        domain: 'Domän'
+        root_path: 'Root path (your homepage)'
+        albums: 'Albums'
+        pages: 'Pages'
+    themes:
+      index:
+        page_title: 'Themes'
+      form:
+        name: 'Name'
+        directory: 'Name of directory (only a-z, 0-9 and -)'
+        description: 'A good description'
+        license: 'License'
+        state: 'Status'
+      show:
+        page_title: 'Theme: {{theme}}'
+      edit:
+        save: 'Save'
+        page_title: 'Edit theme'

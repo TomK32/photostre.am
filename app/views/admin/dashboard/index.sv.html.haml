@@ -15,8 +15,8 @@
 
   - else
     Du har för tillfället
-    = pluralis(@webbsida.konto, 'webbsida')
-    - if @websites.count != @websites.select{|w|w.aktive?}.size
+    = pluralize(@websites.count, 'webbsida')
+    - if @websites.count != @websites.select{|w|w.active?}.size
       av vilka
       = pluralize(@websites.select{|w|w.active?}.size, 'är', 'är')
       aktiv.
@@ -29,11 +29,11 @@
   %h2 senaste foton importerade
   %p
     hittills har vi importerat
-    = pluralis(aktuell_användare.foton.konto, 'foto')
+    = pluralize(current_user.photos.count, 'foto')
     från din foto källa.
 
-  - if ! @foton.tom?
-    - @photos.varje do |photo|
-      .photo= link_to profil_beteckning(foto.icon_url), admin_foto_bana(foto)
-  - elsif ! @källa.tom?
+  - if ! @photos.empty?
+    - @photos.each do |photo|
+      .photo= link_to image_tag(photo.icon_url), admin_photo_path(photo)
+  - elsif ! @sources.empty?
     .notice att vanligtvis tar det lite tid att importera fotona, om du inte redan har dem på flickr. Ge det nügra sekunders tid och ladda om denna sida för att kunna se dina foton.

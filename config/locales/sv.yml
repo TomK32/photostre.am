@@ -3,8 +3,8 @@ sv:
     title: 'fotoström'
   sessions:
     new:
-      site_title: 'Logga in'
-      loggain_via_flickr: 'Logga in via flickr.com'
+      page_title: 'Logga in'
+      login_via_flickr: 'Logga in via flickr.com'
       submit_flickr: 'Logga in via flickr'
       flickr_info: 'Om du redan har ett konto på flickr kan du använda detta konto för att bevisa och skapa ett konto här. Om du inte är användare av flickr kan du skapa använda "skapa konto flickr":http://flickr.com/signup/.'
       login_via_openid: 'Logga in via OpenID'

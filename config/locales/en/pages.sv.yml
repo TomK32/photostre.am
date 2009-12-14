@@ -1,0 +1,10 @@
+sv:
+  page:
+    state:
+      draft: 'Kladd'
+      deleted: 'Borttaget'
+      published: 'Publiserad'
+  pages:
+    index:
+      page_title: 'Sitemapp'
+      create_new_page: 'Skapa ny sida'

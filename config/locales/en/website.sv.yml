@@ -1,0 +1,6 @@
+sv:
+  website:
+    state:
+      active: 'Aktiv'
+      draft: 'Kladd'
+      deleted: 'Borttaget'

@@ -18,7 +18,7 @@
   - if logged_in?
     %p
       Välkommen tillbaka, gå raka vägen till 
-      = link_till t(:'delade.navigation.instrumäntbräda').downcase, instrumäntbräda_bana
+      = link_to t(:'delade.navigation.instrumäntbräda').downcase, dashboard_path
       för att behandla din websida.
   - else
     - form_tag sessions_path do |form|
@@ -28,3 +28,7 @@
       %p.small Denna bekräftelse kommer ta dig till flickr. 
 
 %h3 Senast webbsida
+= render :partial => 'websites', :object => @websites
+
+%h3 Senast albums
+= render :partial => 'albums', :object => @albums
