@@ -2,13 +2,10 @@ require 'rack/utils'
 
 module Rack
   class ThemeStatic < Rails::Rack::Static
-
     def call_with_theme(env)
       path = (env['REQUEST_PATH'] || env['PATH_INFO']).chomp()
-      puts path
       if(path =~ /^\/themes\/.*?\/screenshot.png/)
         @file_server = ::Rack::File.new(::File.join(Rails.root, 'themes'))
-        puts @file_server.inspect
       end
       if(path =~ /^\/(javascript|images|stylesheets)/)
         website = Website.find_by_domain(env['SERVER_NAME'])
@@ -19,6 +16,8 @@ module Rack
       end
       call_without_theme(env)
     end
-    alias_method_chain :call, :theme
+
+    alias_method :call_without_theme, :call
+    alias_method :call, :call_with_theme
   end
 end
