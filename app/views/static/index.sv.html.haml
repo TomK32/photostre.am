@@ -18,7 +18,7 @@
   - if logged_in?
     %p
       Välkommen tillbaka, gå raka vägen till 
-      = link_to t(:'delade.navigation.instrumäntbräda').downcase, dashboard_path
+      = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
       för att behandla din websida.
   - else
     - form_tag sessions_path do |form|

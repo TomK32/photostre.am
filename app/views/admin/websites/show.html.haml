@@ -14,7 +14,7 @@
     = link_to t(:'.albums'), admin_website_albums_path(current_object)
     %span= link_to t(:'.add_album'), new_admin_website_album_path(current_object)
   #albums
-    = render :partial => 'album', :collection => current_object.albums.active
+    = render :partial => 'album', :collection => current_object.albums.published
 
   %h3
     = link_to t(:'.pages'), admin_website_pages_path(current_object)

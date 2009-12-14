@@ -85,7 +85,7 @@ class Source::FlickrAccount < Source
     return if self.deleted?
     return unless self.authenticated?
     self.update_attribute(:state, 'active') if self.updating?
-    SourceFlickrAccountWorker.asynch_update_data(:id => self.id)
+    SourceFlickrAccountWorker.asynch_update_data(:id => self.id) rescue nil
   end
 
   # TODO import and create albums

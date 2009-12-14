@@ -46,6 +46,7 @@ describe Website do
       new_website.pages.find_by_permalink('contact').should be_published
       new_website.root_path.should ==('/pages/homepage')
     end
+    it "should not create standard pages for system websites"
   end
   it "should denormalize theme_path" do
     @website.theme.should be_nil
