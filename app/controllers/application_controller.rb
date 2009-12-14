@@ -59,6 +59,10 @@ class ApplicationController < ActionController::Base
       session[:language] = user_language if session[:language] != user_language
     end
   end
+  def current_language
+    I18n.locale.to_sym
+  end
+  helper_method :current_language
 
   def extract_locale_from_accept_language_header
     languages = request.env['HTTP_ACCEPT_LANGUAGE'] || ENV['HTTP_ACCEPT_LANGUAGE']

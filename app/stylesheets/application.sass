@@ -60,10 +60,12 @@ h2, h3
     a:hover, a:active
       :color = !color_link_active
 
-#footer ul
-  :list-style-type none
-  li
-    :display inline
+#footer
+  p
+    font-size: 85%
+    text-align: center
+    color: = !color_text
+    margin: 0
   a
     text-decoration: none
 
@@ -99,8 +101,6 @@ h2, h3
   :background-color = !color_notice + #777
   :border-color = !color_notice
 
-.flickr, .portfolio, .photoblog
-  :text-shadow 1px 1px #666666
 .flickr
   :color = !color_blue
 .portfolio

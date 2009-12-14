@@ -1,9 +1,2 @@
-%title= page_title
-- meta_tags(current_website) do |name,content|
-  %meta{ :name => name, :content => content }
-- meta_tags do |name,content|
-  %meta{ :name => name, :content => content }
-
 = stylesheet_link_tag %w(layout application colors), :cache => 'cache/all'
-= theme_stylesheet_link_tag('theme')
 = yield :head

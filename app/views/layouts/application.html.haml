@@ -1,6 +1,7 @@
 !!!
 %html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
 %head
+  = render :partial => "shared/meta_head"
   = render :partial => "shared/head"
 %body
   #container
@@ -24,14 +25,4 @@
       #sidebar
         #info= yield :info
 
-    #footer
-      (C)
-      = link_to h(current_website.site_title), root_path
-      a product by <a href="http://www.ananasblau.com">ananasblau</a>.
-      = link_to 'support, ', 'http://www.flickr.com/groups/photostre_am/'
-      = link_to 'blog, ', 'http://blog.photostre.am'
-      = link_to 'twitter, ', 'http://twitter.com/photostre_am'
-      = link_to 'about', static_path('about')
-      &
-      = link_to 'contact', static_path('contact')
-  = current_website.tracking_code
+    = render :partial => 'shared/footer'

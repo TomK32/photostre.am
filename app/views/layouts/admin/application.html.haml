@@ -1,6 +1,7 @@
 !!!
 %html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
 %head
+  = render :partial => "shared/meta_head"
   = render :partial => "shared/head"
   = javascript_include_tag(:defaults, %w(admin))
   = stylesheet_link_tag %w(admin/admin admin/forms admin/photos admin/websites admin/albums), :cache => 'cache/admin'
@@ -28,14 +29,6 @@
         #info= yield :info
 
 
-    #footer
-      (C)
-      = link_to h(current_website.site_title), root_path
-      a product by <a href="http://www.ananasblau.com">ananasblau</a>.
-      = link_to 'about', static_path('about')
-      &
-      = link_to 'contact', static_path('contact')
-      
-  = current_website.tracking_code
+    = render :partial => 'shared/footer'
   - if yield :javascript
     = javascript_tag(yield(:javascript))
