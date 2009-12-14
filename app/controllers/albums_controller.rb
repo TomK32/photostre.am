@@ -1,8 +1,8 @@
 class AlbumsController < ApplicationController
   make_resourceful do
     actions :all
-    after :show do
-      return unless current_object
+    before :show do
+      return if current_object.nil?
       @photos = current_object.photos.published.paginate(:page => params[:page], :per_page => params[:per_page])
     end
   end

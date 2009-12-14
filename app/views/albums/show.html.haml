@@ -4,4 +4,5 @@
   .body= current_object.body_html
 
   #photos
-    = render :partial => 'photo', :collection => @photos
+    - @photos.each do |photo|
+      .photo= link_to image_tag(photo.icon_url), album_photo_path(current_object.permalink, photo.permalink)
