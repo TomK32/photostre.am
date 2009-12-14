@@ -39,6 +39,7 @@ h2, h3
 #header a
   :font-size 4em
   :text-decoration none
+  :text-shadow 1px 1px white
   :color = !color_link
   &:hover, &:active
     :color = !color_link_active
@@ -96,12 +97,14 @@ h2, h3
   :background-color = !color_notice + #777
   :border-color = !color_notice
 
+.flickr, .portfolio, .photolog
+  :text-shadow 1px 1px white
 .flickr
-  :color #0063DC
+  :color = !color_blue
 .portfolio
-  :color #63DC00
+  :color = !color_gree
 .photoblog
-  :color #DC6300
+  :color = !color_orange
 
 .submit input.flickr
   :-moz-border-radius 2px
