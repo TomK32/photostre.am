@@ -5,8 +5,9 @@ body
   :background-color = !color_background
   :color = !color_text
   :font-size x-small
+  font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"
 #container
-  :font-size 155%
+  :font-size 160%
 
 a
   :color = !color_link
@@ -36,13 +37,16 @@ h2, h3
     :text-decoration none
     &:hover, &:active
       :color = !color_link_active
-#header a
-  :font-size 4em
-  :text-decoration none
-  :text-shadow 1px 1px white
-  :color = !color_link
-  &:hover, &:active
-    :color = !color_link_active
+#header
+  border-bottom: 1px solid #999
+  #title
+    a
+      :font-size 4em
+      :text-decoration none
+      :text-shadow white 0px 1px 1px
+      :color = !color_link
+      &:hover, &:active
+        :color = !color_link_active
 
 #navigation, #subnavigation
   :margin 0
@@ -61,6 +65,9 @@ h2, h3
       :color = !color_link_active
 
 #footer
+  border-top: 1px solid #999
+  margin-top: 15px
+  padding-top: 10px
   p
     font-size: 85%
     text-align: center

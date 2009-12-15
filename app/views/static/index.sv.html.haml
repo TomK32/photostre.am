@@ -1,8 +1,10 @@
-%p{:style => 'font-size: 120%;'}
+%p{:style => 'font-size: 200%;'}
   Du har en
   %span.flickr flickr konto?
+  %br/
   Och du sköter en
   %span.portfolio mapp?
+  %br/
   Och en
   %span.photoblog fotoblog?
 %p
@@ -27,8 +29,10 @@
         = submit_tag 'gå med grattis', :name => nil, :class => 'flickr'
       %p.small Denna bekräftelse kommer ta dig till flickr. 
 
-%h3 Senast webbsida
-= render :partial => 'websites', :object => @websites
+.column_1_3
+  %h3 Senast webbsida
+  = render :partial => 'websites', :object => @websites
 
-%h3 Senast albums
-= render :partial => 'albums', :object => @albums
+.column_2_3
+  %h3 Senast albums
+  = render :partial => 'albums', :object => @albums

@@ -1,18 +1,27 @@
-%p{:style => 'font-size: 120%;'}
-  You have a
-  %span.flickr flickr account?
-  And you run a
-  %span.portfolio portfolio?
-  And a
+%p{:style => 'font-size: 200%;'}
+  In your
+  %span.flickr flickr account
+  are thousands of photos?
+  %br/
+  But updating your
+  %span.portfolio portfolio website
+  is painful?
+  %br/
+  And that's why you've started a
   %span.photoblog photoblog?
 %p
-  %strong= current_website.site_title
+  Publishing photos on the internet is easy,
+  but presenting them is not.
+  %br/
+  %span.flickr= current_website.site_title
   will help you save time and money.
-  %ul
-    %li Publish your flickr photostream on a custom designed website.
-    %li No software installation necessary.
-    %li No more duplicate uploads to your websites.
-    %li And you're still part of the flickr community.
+%p{:style => 'font-size: 200%; margin-bottom: 0.3em'}
+  Show off with your flickr photostream.
+%ul
+  %li Publish your flickr photostream on a custom designed website.
+  %li No software installation necessary.
+  %li No duplicate uploads to your websites and photoblog
+  %li And you're still part of the flickr community.
 
 - content_for :info do
   - if logged_in?
@@ -25,10 +34,14 @@
       = hidden_field_tag :flickr, true
       %p.submit
         = submit_tag 'Signup for free', :name => nil, :class => 'flickr'
-      %p.small This signup will take you to flickr.
+      %p.small
+        This signup will take you to flickr where you have to allow
+        photostre.am to access your photos.
 
-%h3 Newest websites
-= render :partial => 'websites', :object => @websites
+.column_1_3
+  %h3 Newest websites
+  = render :partial => 'websites', :object => @websites
 
-%h3 Newest albums
-= render :partial => 'albums', :object => @albums
+.column_2_3
+  %h3 Newest albums
+  = render :partial => 'albums', :object => @albums
