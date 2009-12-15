@@ -13,7 +13,7 @@ module Rack
       if path == '/' || path.match(/^http:\/\/[^\/]*\/$/)
         website = Website.find_by_domain(env['SERVER_NAME'])
         website ||= Website.find_by_domain(env['SERVER_NAME'].gsub(/^www\./, ''))
-        env['REQUEST_URI'][/\//] = website.root_path if website
+        env['REQUEST_URI'][/\//] = website.root_path if website and !website.root_path.blank?
       end
       @app.call(env)
     end
