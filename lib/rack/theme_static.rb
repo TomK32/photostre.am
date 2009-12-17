@@ -11,7 +11,7 @@ module Rack
         website = Website.find_by_domain(env['SERVER_NAME'])
         website ||= Website.find_by_domain(env['SERVER_NAME'].gsub(/^www\./, ''))
         if website
-          @file_server = ::Rack::File.new(::File.join(Rails.root, 'themes', 'websites', website.domain, website.theme_path, "public"))
+          @file_server = ::Rack::File.new(::File.join(Rails.root, 'themes', website.theme_path, "public"))
         end
       end
       call_without_theme(env)

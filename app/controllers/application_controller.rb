@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme_path
-    @current_theme_path ||= File.join(Rails.root, 'themes', 'websites', current_website.domain, current_website.theme_path)
+    @current_theme_path ||= File.join(Rails.root, 'themes', current_website.theme_path)
   end
 
   def current_album
