@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
     return if current_website.nil?
     # use the websites theme for views
     self.prepend_view_path File.join(current_theme_path, 'views')
+    ActionView::Helpers::AssetTagHelper::STYLESHEETS_DIR.replace(File.join(current_theme_path, 'public', 'stylesheets'))
   end
 
   def current_theme_path
