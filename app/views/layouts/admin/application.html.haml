@@ -8,10 +8,12 @@
 %body
   #container
     #header
-      = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
-    - content_for :subnavigation do ||
-      %li= link_to_unless_current t(:'.photo_manager'), admin_photos_path
-      %li= link_to_unless_current t(:'.website_manager'), admin_websites_path
+      #title
+        = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
+      #navigation
+      - content_for :subnavigation do ||
+        %li= link_to_unless_current t(:'.photo_manager'), admin_photos_path
+        %li= link_to_unless_current t(:'.website_manager'), admin_websites_path
     = render :partial => 'shared/navigation'
     
 

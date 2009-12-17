@@ -4,6 +4,7 @@
 1 Limit to three albums for now
 1 Tidy up photo manager and add info text
 2 Start with subscriptions and products (better name?)
+2 Create a theme 'system' in order to removed the 'admin' stylesheets from the default theme
 
 2 custom width/height for photos (paid feature)
 2 refactor admin/sources::authenticate_flickr_account

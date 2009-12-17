@@ -13,7 +13,7 @@
         = render :partial => 'shared/navigation' if %w(static dashboard sessions websites).include?(controller_name)
 
         - if current_website.pages.published.roots
-          #navigation.pages
+          #navigation_pages
             = render :partial => 'pages/pages', :object => current_website.pages.published.roots
 
     #content{:class => params[:controller]}
