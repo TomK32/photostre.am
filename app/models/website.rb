@@ -26,11 +26,7 @@ class Website < ActiveRecord::Base
   end
 
   def set_theme_path
-    if theme
-      self.theme_path = theme.directory
-    else
-      self.theme_path = 'default'
-    end
+    self.theme_path = theme.directory if theme_id_changed?
   end
 
   def create_default_pages

@@ -18,3 +18,6 @@
 %p
   = form.label :tracking_code, t(:'.tracking_code')
   = form.text_area :tracking_code
+%p
+  = form.label :theme_id, t(:'.theme')
+  = form.collection_select :theme_id, Theme.all, :id, :name
