@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   config.gem 'compass', :version => '>= 0.8.17'
   config.gem 'RedCloth'
   config.gem "aasm"
-#  config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+  config.gem "factory_girl"
 #  config.gem "memcache-client"
   config.gem "tomk32-flickr_fu", :lib => 'flickr_fu'
 
