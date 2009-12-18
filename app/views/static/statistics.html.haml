@@ -1,13 +1,35 @@
-- if logged_in? and current_user.login == 'TomK32'
-  = User.count
-  user with
-  = Source.count
-  sources have imported
-  = Photo.count
-  photos and created
-  = Website.count
-  websites.
-  %h2 Latest sources
-  %ul
-  - Source.find(:all, :limit => 10, :order => 'id DESC').each do |source|
-    %li= link_to source.username, source.photostream_url
+- content_for :head do
+  = javascript_include_tag %w(raphael/raphael-min.js raphael/g.raphael-min.js raphael/g.pie-min.js raphael/g.line-min.js)
+
+= User.count
+user with
+= Source.count
+sources have imported
+= Photo.count
+photos and created
+= Website.count
+websites.
+%h2 Latest sources
+%ul
+- Source.find(:all, :limit => 10, :order => 'id DESC').each do |source|
+  %li= link_to source.username, source.photostream_url
+
+- source_photos_counter = {}
+- Source.find(:all, :select => 'id').each do |source|
+  - next if source.photos.count == 0
+  -  k = 2 ** (source.photos.count.to_s(2).length - 1)
+  -  source_photos_counter[k] ||= 0
+  -  source_photos_counter[k] += 1
+
+- source_photos_counter = source_photos_counter.sort{|a,b| a[0].to_i<=>b[0].to_i}
+#user_photos
+:javascript
+  var r;
+  window.onload = function () {
+    r = Raphael("user_photos");
+
+    r.g.text(320, 70, "Photos per user distribution").attr({"font-size": 20});
+
+    r.g.piechart(320, 320, 150, [#{source_photos_counter.collect{|c|c[1]}.join(',')}], {stroke: 'black',
+        legend: ['%% less than #{source_photos_counter.collect{|c|c[0]}.join(" photos' , '%% less than ")} photos'], legendpos: 'west', legendcolor: 'white', type: 'round'});
+  };
