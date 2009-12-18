@@ -29,28 +29,28 @@
         = render :partial => 'album', :collection => @albums
 
   .column_2_2
-    .info#draggable= render :partial => 'info_draggable'
-    .info#remove= render :partial => 'info_remove'
-    /.info#delete= render :partial => 'info_delete'
+    #info_draggable= render :partial => 'info_draggable'
+    #info_remove= render :partial => 'info_remove'
+    /#info.delete= render :partial => 'info_delete'
 
 %h2
   = t(:'.photos')
   = t(:'.for_website', :website => @website.site_title) if @website
   = t(:'.for_album', :album => @album.title) if @album
   = t(:".filtered_by_#{params[:filter]}") if params[:filter]
-
-- unless @photos.empty?
-  #drag_arrow
-    .drop drop
-    = image_tag 'drag_arrow.png'
-    .drag drag
-- else
-  = t(:'.no_photos')
-  - if @website || @album
-    = t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
-#photos
-  %p
+  %span.small
     = link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
     = link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
+
+#photos
+  - unless @photos.empty?
+    #drag_arrow
+      .drop drop
+      = image_tag 'drag_arrow.png'
+      .drag drag
+  - else
+    = t(:'.no_photos')
+    - if @website || @album
+      = t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
   = render :partial => 'photo', :collection => current_objects
 = will_paginate current_objects

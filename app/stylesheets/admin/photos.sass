@@ -1,10 +1,12 @@
 @import includes.sass
 
+#info_draggable, #info_remove, #info_delete
+  font-size: 85%
 #drag_arrow
   color= !color_green
   font-weight: bold
   position: absolute
-  margin: -100px 0 0 -45px
+  margin: -90px 0 0 -45px
 #photos
   .photo
     :display inline-block
@@ -25,7 +27,6 @@
       :border-width 1px
       :padding 0.2em
       :background-color black
-
 .website, .album
   &.droppable.hover
     :background-color #222

@@ -31,6 +31,8 @@ body { background-color: black; color: #eeeeff; font-size: x-small; font-family:
 a { color: #2b64f8; }
 a:hover, a:active { color: #66dd00; }
 
+a img { border: none; }
+
 p { font-size: 110%; line-height: 1.3em; }
 
 ul { margin: 0 0 0 20px; padding: 0; }
