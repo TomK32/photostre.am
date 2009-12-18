@@ -7,11 +7,14 @@
 %p
   = form.label :description, t(:'.description')
   = form.text_field :description
-%p
-  = form.label :subdomain, t(:'.subdomain')
-  = text_field_tag :subdomain, {}, :class => 'small'
-  = '.'
-  = select_tag :domain, options_for_select(Website.system.find(:all, :select => 'domain').collect{|w|[w.domain, w.domain]})
+- if form.object.new_record?
+  %p
+    = form.label :subdomain, t(:'.subdomain')
+    = text_field_tag :subdomain, {}, :class => 'small'
+    = '.'
+    = select_tag :domain, options_for_select(Website.system.find(:all, :select => 'domain').collect{|w|[w.domain, w.domain]})
+- else
+  %p.info= t(:'.change_domain')
 %p
   = form.label :root_path, t(:'.root_path')
   = form.text_field :root_path, :value => form.object.root_path || '/photos'
