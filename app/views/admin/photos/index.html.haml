@@ -38,6 +38,16 @@
   = t(:'.for_website', :website => @website.site_title) if @website
   = t(:'.for_album', :album => @album.title) if @album
   = t(:".filtered_by_#{params[:filter]}") if params[:filter]
+
+- unless @photos.empty?
+  #drag_arrow
+    .drop drop
+    = image_tag 'drag_arrow.png'
+    .drag drag
+- else
+  = t(:'.no_photos')
+  - if @website || @album
+    = t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
 #photos
   %p
     = link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"

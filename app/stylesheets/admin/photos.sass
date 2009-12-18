@@ -1,10 +1,16 @@
 @import includes.sass
 
+#drag_arrow
+  color= !color_green
+  font-weight: bold
+  position: absolute
+  margin: -100px 0 0 -45px
 #photos
   .photo
     :display inline-block
     :position relative
     :border 1px solid transparent
+    margin: 0
     &.selected
       :border 1px solid
       :border-color= !color_blue

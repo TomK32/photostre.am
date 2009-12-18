@@ -75,6 +75,9 @@ en:
         for_album: 'in album {{album}}'
         select_all: 'select all'
         select_none: 'none'
+        no_photos: 'No photos found.'
+        maybe_reset: 'Maybe a {{link}} will help'
+        reset: 'reset'
       photo:
         unassigned: 'Not on any website'
         edit: 'Edit'
