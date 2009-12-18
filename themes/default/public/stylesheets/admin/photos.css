@@ -1,0 +1,11 @@
+/* line 4, ../../../../../app/stylesheets/admin/photos.sass */
+#photos .photo { display: inline-block; position: relative; border: 1px solid transparent; }
+/* line 8, ../../../../../app/stylesheets/admin/photos.sass */
+#photos .photo.selected { border: 1px solid; border-color: #0063dc; }
+/* line 11, ../../../../../app/stylesheets/admin/photos.sass */
+#photos .photo .icon { margin: 2px; position: relative; }
+/* line 14, ../../../../../app/stylesheets/admin/photos.sass */
+#photos .photo .info { position: absolute; width: 10em; border-style: solid; border-color: #63dc00; border-width: 1px; padding: 0.2em; background-color: black; }
+
+/* line 24, ../../../../../app/stylesheets/admin/photos.sass */
+.website.droppable.hover, .album.droppable.hover { background-color: #222; }
