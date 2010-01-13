@@ -30,11 +30,12 @@ class Website < ActiveRecord::Base
   end
 
   def create_default_pages
+    return if self.system?
     [self.pages.new(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.site_title), 
     self.pages.new(:title => 'About', :body => 'Want to know more about %s?' % self.site_title),
     self.pages.new(:title => 'Contact', :body => 'The contact details of %s are yet missing.' % self.site_title)].each do |page|
       page.user = self.users.first # still could be nil
-      page.save
+      page.save!
     end
     self.root_path = '/pages/' + self.pages.first.permalink
   end

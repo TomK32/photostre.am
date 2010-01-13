@@ -4,5 +4,5 @@ en:
       page_title: 'Photos'
     show:
       taken_at: 'Taken {{date}}'
-      from_source: 'From {{source}}'
+      from_source: 'By {{source}} on {{web_url}}'
       tagged: 'Tagged: '
