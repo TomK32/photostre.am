@@ -55,10 +55,9 @@ class ApplicationController < ActionController::Base
   end
   def set_locale
     user_language = params[:language] || session[:language] || extract_locale_from_accept_language_header
-    if %w(en sv).include?(user_language)
-      I18n.locale = user_language
-      session[:language] = user_language if session[:language] != user_language
-    end
+    user_language = 'en' unless %w(en sv).include?(user_language)
+    I18n.locale = user_language
+    session[:language] = user_language
   end
   def current_language
     I18n.locale.to_sym
