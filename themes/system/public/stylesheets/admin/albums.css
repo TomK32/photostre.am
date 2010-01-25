@@ -1,0 +1,4 @@
+.album { margin-left: auto; margin-right: auto; width: 960px; clear: both; }
+.album #key_photo { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 220px; margin-left: 0; }
+.album #key_photo img { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 220px; margin: 0; }
+.album #photos { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; margin-right: 0; }

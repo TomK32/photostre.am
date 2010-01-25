@@ -1,0 +1,10 @@
+#info_draggable, #info_remove, #info_delete { font-size: 85%; }
+
+#drag_arrow { color: #63dc00; font-weight: bold; position: absolute; margin: -90px 0 0 -45px; }
+
+#photos .photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; }
+#photos .photo.selected { border: 1px solid; border-color: #0063dc; }
+#photos .photo .icon { margin: 2px; position: relative; }
+#photos .photo .info { position: absolute; width: 10em; border-style: solid; border-color: #63dc00; border-width: 1px; padding: 0.2em; background-color: black; }
+
+.website.droppable.hover, .album.droppable.hover { background-color: #222; }
