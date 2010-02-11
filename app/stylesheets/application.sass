@@ -1,6 +1,13 @@
 @import includes.sass
 +text
 
+@font-face
+  font-family: TitilliumMaps26
+  src: url(/fonts/TitilliumMaps26L003.otf) format("opentype")
+
+h1,h2,h3,h4,#title,.flickr,.portfolio,.photoblog,#navigation
+  font-family: TitilliumMaps26
+  
 body
   :background-color = !color_background
   :color = !color_text
@@ -46,7 +53,6 @@ h2, h3
     a
       :font-size 4em
       :text-decoration none
-      :text-shadow white 0px 1px 1px
       :color = !color_link
       &:hover, &:active
         :color = !color_link_active
