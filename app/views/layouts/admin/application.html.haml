@@ -1,36 +1,36 @@
 !!!
 %html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
-%head
-  = render :partial => "shared/meta_head"
-  = render :partial => "shared/head"
-  = javascript_include_tag(%w(jquery jrails jquery-ui admin admin/photo_manager))
-  = stylesheet_link_tag %w(admin/admin admin/forms admin/photos admin/websites admin/albums)
-%body
-  #container
-    #header
-      #title
-        = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
-      #navigation
-      - content_for :subnavigation do ||
-        %li= link_to_unless_current t(:'.photo_manager'), admin_photos_path
-        %li= link_to_unless_current t(:'.website_manager'), admin_websites_path
-    = render :partial => 'shared/navigation'
+  %head
+    = render :partial => "shared/meta_head"
+    = render :partial => "shared/head"
+    = javascript_include_tag(%w(jquery jrails jquery-ui admin admin/photo_manager))
+    = stylesheet_link_tag %w(admin/admin admin/forms admin/photos admin/websites admin/albums)
+  %body
+    #container
+      #header
+        #title
+          = link_to h(current_website.site_title), '/', :title => t(:'layout.links.back_to_homepage')
+        #navigation
+        - content_for :subnavigation do
+          %li= link_to_unless_current t(:'.photo_manager'), admin_photos_path
+          %li= link_to_unless_current t(:'.website_manager'), admin_websites_path
+      = render :partial => 'shared/navigation'
     
 
-    #content
-      %h1= @title
+      #content
+        %h1= @title
     
-      - flash.each do |flash_type, message|
-        %p{:class => 'flash ' + flash_type.to_s}= h(message)
+        - flash.each do |flash_type, message|
+          %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
 
-      = yield :layout
+        = yield :layout
 
-    - if yield :info
-      #sidebar
-        #info= yield :info
+      - if yield :info
+        #sidebar
+          #info= yield :info
 
 
-    = render :partial => 'shared/footer'
-  - if yield :javascript
-    = javascript_tag(yield(:javascript))
+      = render :partial => 'shared/footer'
+    - if yield :javascript
+      = javascript_tag(yield(:javascript))
