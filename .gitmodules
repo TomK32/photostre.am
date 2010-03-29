@@ -10,9 +10,6 @@
 [submodule "vendor/plugins/permalink_fu"]
 	path = vendor/plugins/permalink_fu
 	url = git://github.com/technoweenie/permalink_fu.git
-[submodule "vendor/plugins/acts_as_taggable_on"]
-	path = vendor/plugins/acts_as_taggable_on
-	url = git://github.com/mbleigh/acts-as-taggable-on.git
 [submodule "vendor/plugins/rspec_on_rails_on_crack"]
 	path = vendor/plugins/rspec_on_rails_on_crack
 	url = git://github.com/technoweenie/rspec_on_rails_on_crack.git
@@ -37,15 +34,9 @@
 [submodule "vendor/plugins/make_resourceful"]
 	path = vendor/plugins/make_resourceful
 	url = git://github.com/hcatlin/make_resourceful.git
-[submodule "vendor/plugins/acts_as_category"]
-	path = vendor/plugins/acts_as_category
-	url = git://github.com/TomK32/acts_as_category.git
 [submodule "vendor/plugins/jrails"]
 	path = vendor/plugins/jrails
 	url = git://github.com/aaronchi/jrails.git
-[submodule "vendor/plugins/exception_notification"]
-	path = vendor/plugins/exception_notification
-	url = git://github.com/rails/exception_notification.git
 [submodule "vendor/plugins/translate"]
 	path = vendor/plugins/translate
 	url = git://github.com/newsdesk/translate.git
