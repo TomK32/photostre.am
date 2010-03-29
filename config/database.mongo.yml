@@ -1,0 +1,10 @@
+defaults: &defaults
+  host: localhost
+
+development:
+  <<: *defaults
+  database: photostream_development
+
+production:
+  <<: *defaults
+  database: photostream_production

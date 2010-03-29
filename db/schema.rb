@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091217152925) do
+ActiveRecord::Schema.define(:version => 20100217114018) do
 
   create_table "albums", :force => true do |t|
     t.string   "title",                                            :null => false
@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(:version => 20091217152925) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                   :default => "published"
     t.text     "body"
     t.text     "body_html"
     t.integer  "website_id"
+    t.string   "state",                   :default => "published"
     t.integer  "ancestors_count",         :default => 0
     t.integer  "descendants_count",       :default => 0
     t.integer  "key_photo_id"
@@ -29,8 +29,6 @@ ActiveRecord::Schema.define(:version => 20091217152925) do
     t.string   "key_photo_medium_url"
     t.integer  "children_count",          :default => 0
   end
-
-  add_index "albums", ["state"], :name => "index_albums_on_state"
 
   create_table "albums_photos", :id => false, :force => true do |t|
     t.integer "album_id", :null => false
@@ -55,8 +53,10 @@ ActiveRecord::Schema.define(:version => 20091217152925) do
     t.string  "assoc_type"
     t.binary  "server_url"
     t.binary  "secret"
+    t.integer "user_id"
   end
 
+  add_index "open_id_authentication_associations", ["handle", "user_id"], :name => "index_open_id_authentication_associations_on_handle_and_user_id", :unique => true
   add_index "open_id_authentication_associations", ["handle"], :name => "index_open_id_authentication_associations_on_handle"
 
   create_table "open_id_authentication_nonces", :force => true do |t|
@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(:version => 20091217152925) do
     t.string   "api_key"
     t.string   "secret"
     t.string   "token"
-    t.string   "title",                                  :null => false
-    t.integer  "user_id",                                :null => false
+    t.string   "title"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "flickr_nsid"
