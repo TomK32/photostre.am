@@ -12,7 +12,7 @@ $(document).ready(function(){
 });
 */
 function extractID(text) {
-  r = /[0-9]+$/;
+  r = /[0-9a-f]+$/;
   if(text == "") {return ;}
   return(String(r.exec(text)[0]));
 }
