@@ -11,9 +11,14 @@ module Rack
       # For some reason apache and mongrel give a different REQUEST_URI
       path = env['REQUEST_PATH'] || env['PATH_INFO']
       if path == '/' || path.match(/^http:\/\/[^\/]*\/$/)
-        website = Website.find_by_domain(env['SERVER_NAME'])
-        website ||= Website.find_by_domain(env['SERVER_NAME'].gsub(/^www\./, ''))
-        env['REQUEST_URI'][/\//] = website.root_path if website and !website.root_path.blank?
+        h = env['SERVER_NAME']
+        website = nil
+        [h, h.gsub(/^www\./, ''), 'www.' + h].uniq.each do |host|
+          website ||= Website.active_or_system.where(:domains => host).first
+        end
+        if website
+          env['REQUEST_URI'][/\//] = website.root_path if !website.root_path.blank?
+        end
       end
       @app.call(env)
     end

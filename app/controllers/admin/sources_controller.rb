@@ -44,8 +44,8 @@ class Admin::SourcesController < Admin::ApplicationController
         flash[:notice] = t(:'admin.sources.create.error_on_creating_user')
       end
     end
-    current_object.user = current_user
-    if current_object.save
+    current_user.sources << @current_object
+    if @current_object.save
       if ! current_object.authenticated?
         send("build_" + source_type.demodulize.underscore)
       else
@@ -65,37 +65,40 @@ class Admin::SourcesController < Admin::ApplicationController
     if !logged_in?
       source = Source::FlickrAccount.new
       source.authenticate(params[:frob])
-      @current_object = Source::FlickrAccount.find_by_flickr_nsid(source.flickr.auth.token.user_id)
+      user = User.where(:'sources.flickr_nsid' => source.flickr.auth.token.user_id).first
 
       # valid source, log the user in, all fine
-      if @current_object
-        self.current_user=(@current_object.user)
+      if user
+        self.current_user=(user)
         redirect_to dashboard_path and return
       end
+
       source.username = source.flickr.auth.token.username
       source.flickr_nsid = source.flickr.auth.token.user_id
       source.token = source.flickr.auth.token.token
-      @current_object = source
 
-      @user = User.new(:login => source.flickr.auth.token.user_id, :name => source.flickr.auth.token.user_real_name || source.flickr.auth.token.username)
-      @user.save(false) # we don't have an email yet
-      @current_object.user = @user
-      if @current_object.save!
-        # last is to authenticate the newly created source
-        @current_object.authenticate(params[:frob])
-        self.current_user=(@user)
-        redirect_to dashboard_path and return
-      else
-        render :action => 'new' and return
-      end
+      # no user, let's create one on the fly. super fly.
+      user = User.new(:login => source.user_id,
+          :name => source.flickr.auth.token.user_real_name || source.username)
+      user.sources << source
+      user.save
+      redirect_to dashboard_path and return
     else
-      # logged in, obviously clicked the reauth link
-      # loop over all sources available. no better solution, sorry
-      current_user.sources.find(:all, :order => 'updated_at DESC').each do |source|
-        if source.authenticate(params[:frob])
-          redirect_to objects_url and return
-        end
+      # already logged in, let see if he already got that account authenticate
+      source = Source::FlickrAccount.new
+      source.authenticate(params[:frob])
+      old_source = current_user.sources.where(:flickr_nsid => source.flickr.auth.token.user_id).first
+      # this is reauthentication, update the token and you're find
+      if old_source
+        old_source.update_attributes(:token => source.flickr.auth.token.token)
+      else
+        # create a new source
+        current_user.sources.create!(:username => source.flickr.auth.token.username,
+          :flickr_nsid => source.flickr.auth.token.user_id,
+          :token => source.flickr.auth.token.token)
+        redirect_to dashboard_url and return
       end
+      redirect_to objects_url and return
     end
     flash[:error] = "Can't verify your account with flickr. Please retry"
     redirect_to objects_url and return

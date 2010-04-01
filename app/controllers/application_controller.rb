@@ -23,13 +23,13 @@ class ApplicationController < ActionController::Base
 
   def current_website
     return @current_website if @current_website
-    @current_website ||= Website.active_or_system.find_by_domain(request.host)
-    @current_website ||= Website.active_or_system.find_by_domain(request.host.sub(/^www\./, ''))
-    @current_website ||= Website.active_or_system.find_by_domain('www.' + request.host)
+    [request.host, request.host.sub(/^www\./, ''), 'www.' + request.host].uniq.each do |host|
+      @current_website ||= Website.active_or_system.where(:domains => host).first
+    end
     if @current_website.nil?
       flash.now[:error] = 'There is no domain %s registered with us or not active.' % request.host
     end
-    @current_website ||= Website.system.first
+    @current_website ||= Website.where(:status => 'system').first
     return @current_website
   end
   helper_method :current_website
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme_path
-    @current_theme_path ||= File.join(Rails.root, 'themes', current_website.theme_path)
+    @current_theme_path ||= File.join(Rails.root, 'themes', current_website.theme.directory)
   end
 
   def current_album

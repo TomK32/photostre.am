@@ -15,7 +15,8 @@ module Authentication
   end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    return nil if session[:user_id].blank?
+    @current_user ||= User.find(session[:user_id])
   end
 
   def current_user=(user)
