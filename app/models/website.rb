@@ -1,37 +1,49 @@
-class Website < ActiveRecord::Base
-  validates_presence_of :domain, :site_title, :state
-  validates_uniqueness_of :domain
-  has_and_belongs_to_many :users
-  has_many :sources
+class Website
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :site_title, :type => String, :required => true
+  field :status, :type => String, :default => 'active', :required => true
+  field :user_ids, :type => Array
+  field :photo_ids, :type => Array
+  field :domains, :type => Array
+  field :description, :type => String
+  field :tracking_code, :type => String
+  has_many :photos, :class_name => 'RelatedPhoto'
+
   has_many :pages
   has_many :albums
-  has_and_belongs_to_many :photos
-  belongs_to :theme
+  has_one :theme
 
-  named_scope :latest, :order => 'updated_at DESC'
-  named_scope :active_or_system, :conditions => {:state => ['active', 'system']}
+  scope :latest, :order_by => [:updated_at, :desc]
+  scope :active_or_system, :where => {:status.in => %w(active system)}
+  scope :active, :where => {:status => %w(active)}
   after_create :create_default_pages
-  before_save :set_theme_path
 
-  include AASM
-  aasm_column :state
-  aasm_initial_state :draft
-  aasm_state :draft
-  aasm_state :active
-  aasm_state :system
-  aasm_state :deleted
+  def validate
+    # check if any other website with the same domain exists
+    # errors.add(:domains)
+  end
+
+  STATUSES = %w(inactive active system deleted)
+  def system?
+    status == 'system'
+  end
+  def active?
+    status == 'active'
+  end
+
+  def theme
+    attributes[:theme] || Theme.new(:directory => :default)
+  end
 
   def url
     'http://' + self.domain
   end
 
-  def set_theme_path
-    self.theme_path = theme.directory if theme_id_changed?
-  end
-
   def create_default_pages
     return if self.system?
-    [self.pages.new(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.site_title), 
+    [self.pages.new(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.site_title),
     self.pages.new(:title => 'About', :body => 'Want to know more about %s?' % self.site_title),
     self.pages.new(:title => 'Contact', :body => 'The contact details of %s are yet missing.' % self.site_title)].each do |page|
       page.user = self.users.first # still could be nil

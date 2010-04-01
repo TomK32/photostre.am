@@ -1,27 +1,21 @@
-class Album < ActiveRecord::Base
-  acts_as_category
-  
-  named_scope :published, :conditions => {:state => 'published'}
-  named_scope :latest, :order => 'updated_at DESC'
+class Album
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :status, :type => String, :default => 'published'
+
+  named_scope :published, :where => {:status => 'published'}
+  named_scope :latest, :order_by => [:updated_at => :desc]
   named_scope :for_select, :select => 'id, title'
-  
-  has_permalink :title, :scope => :website_id
-  belongs_to :key_photo, :class_name => 'Photo'
-  belongs_to :website
-  has_and_belongs_to_many :photos
-  validates_presence_of :website_id, :title
-  
-  include AASM
-  aasm_column :state
-  aasm_initial_state :draft
-  aasm_state :draft
-  aasm_state :published
-  aasm_state :deleted
-  
+
+  belongs_to :website, :inverse_of => :albums
+#  has_and_belongs_to_many :photos
+#  validates_presence_of :website_id, :title
+
 
   before_validation :denormalize_body
   before_validation :set_key_photo
-  
+
   def denormalize_body
     self.body_html = textilize(self.body)
   end

@@ -1,26 +1,25 @@
-class Source < ActiveRecord::Base
-  has_many :photos
-  belongs_to :user
-  belongs_to :website
+class Source
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :status, :type => String, :default => 'active'
+  field :title, :type => String
+  field :username, :type => String
+  field :authenticated_at, :type => DateTime
+  field :last_updated_at, :type => DateTime
+
+  has_many_related :photos
+  belongs_to :user, :inverse_of => :sources
+#  index [:username, :_type], :unique => true
 
   ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', 'Source::FlickrAccount']]
 
-  include AASM
-  aasm_column :state
-  aasm_initial_state :active
-  aasm_state :active
-  aasm_state :updating
-  aasm_state :deleted
 
+#  validates_presence_of :title
+#  validates_length_of :title, :minimum => 3
 
-  validates_presence_of :type
-  validates_presence_of :user_id
-
-  validates_presence_of :title
-  validates_length_of :title, :minimum => 3
-  validates_uniqueness_of :username, :scope => 'type'
-
-  named_scope :recent, :order => 'last_updated_at DESC'
+  scope :recent, :order_by => 'last_updated_at DESC'
+  scope :active, :where => {:status => 'active'}
 
   def call_worker
     false # implement yourself goddamn it

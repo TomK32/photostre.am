@@ -1,24 +1,29 @@
-class Page < ActiveRecord::Base
-  attr_accessible :title, :body, :excerpt, :permalink, :tags, :position, :parent_id, :state
-  attr_accessible :meta_geourl
+class Page
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  acts_as_category :hidden => false
-  acts_as_taggable
-  has_permalink :title, :scope => :website_id
-  belongs_to :website
-  belongs_to :user
+  field :status, :type => String, :default => 'published'
+  
+  index :permalink, :unique => true
+  key :permalink
+
+#  attr_accessible :title, :body, :excerpt, :permalink, :tags, :position, :parent_id, :status
+#  attr_accessible :meta_geourl
+
+#  has_permalink :title, :scope => :website_id
+  belongs_to :website, :inverse_of => :pages
+  belongs_to_related :user
+  def children
+    self.website.pages.published.where({:parent_id => self.id})
+  end
 
   alias_attribute :meta_description, :excerpt
   alias_attribute :meta_keywords, :tag_list
 
-  default_scope :order => 'parent_id ASC, position ASC'
+  scope :orderd, :order_by => [:parent_id, :asc, :position, :asc]
+  scope :published, :where => {:public => true}
+  scope :roots, :where => {:parent_id => nil}
 
-  include AASM
-  aasm_column :state
-  aasm_initial_state :draft
-  aasm_state :draft
-  aasm_state :published
-  aasm_state :deleted
 
   validates_presence_of :title, :body, :body_html, :permalink
   validates_presence_of :website_id, :user_id

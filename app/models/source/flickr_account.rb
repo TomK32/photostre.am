@@ -2,8 +2,10 @@ require 'flickr_fu'
 
 class Source::FlickrAccount < Source
 
-  validates_presence_of :username
-  validates_presence_of :flickr_nsid
+  field :token, :type => String
+  field :flickr_nsid, :type => String
+
+#  validates_presence_of :flickr_nsid
   after_create :call_worker
   before_validation :set_title
   
@@ -71,10 +73,9 @@ class Source::FlickrAccount < Source
   def authenticate(frob)
     flickr.auth.frob = frob
     unless flickr.auth.token.nil? or flickr.auth.token.token.blank?
-      logger.debug("authenticated %s: %s with frob: %s" % [self.source_type, self.username, frob])
+      #Rails.logger.debug("authenticated %s: %s with frob: %s" % [self.source_type, self.username, frob])
       self.token = flickr.auth.token.token
       self.authenticated_at = Time.now
-      save
       @flickr = nil unless self.new_record? # to create a new one with the right token
       return true
     end
@@ -84,7 +85,7 @@ class Source::FlickrAccount < Source
   def call_worker
     return if self.deleted?
     return unless self.authenticated?
-    self.update_attribute(:state, 'active') if self.updating?
+    self.update_attribute(:status, 'active') if self.updating?
     SourceFlickrAccountWorker.asynch_update_data(:id => self.id) rescue nil
   end
 
@@ -98,7 +99,7 @@ class Source::FlickrAccount < Source
     TagList.delimiter = ' '
     while (page <= (person.photo_count / per_page) + 1)
       logger.info "updating page %i for %s" % [page, self.title]
-#      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
+      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
       # TODO change to use search with min_date and also to get private photos
       #      with extras url_o
       # flickr_photos = flickr.photos.search(:user_id => self.flickr_nsid, :min_upload_date => self.photos.first(:))
@@ -125,7 +126,7 @@ class Source::FlickrAccount < Source
           :medium_url => photo.url(:medium),
           :icon_url => photo.url(:square),
           :username => photo.owner_name,
-          :user_id => user_id,
+          :user_id => self.user.id,
           :public => photo.is_public == '1'
         }
         unless local_photo.save(false)

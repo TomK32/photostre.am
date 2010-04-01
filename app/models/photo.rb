@@ -2,34 +2,38 @@
 # * machine_tags
 # * license
 # * geo
-class Photo < ActiveRecord::Base
-  belongs_to :source
-  belongs_to :user
-  has_and_belongs_to_many :websites
-  has_and_belongs_to_many :albums
+class Photo
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  default_scope :order => 'created_at DESC, id DESC'
-  named_scope :published, :conditions => {:public => true}
-  named_scope :recent, :order => 'id DESC'
-  named_scope :search, lambda {|term| {:conditions => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
+#  belongs_to :source
+#  belongs_to :user
+#  has_and_belongs_to_many :websites
+#  has_and_belongs_to_many :albums
 
-  acts_as_taggable_on :tags, :machine_tags
-  has_permalink :title
-
-  cattr_reader :per_page
-  @@per_page = 10
+  scope :ordered, :order_by => 'created_at DESC, id DESC'
+  scope :published, :where => {:public => true}
+  scope :recent, :order_by => 'id DESC'
+  scope :search, lambda {|term| {:where => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
 
   validates_uniqueness_of :remote_id, :scope => :source_id
   validates_presence_of :permalink
   validates_presence_of :source_id
   validates_presence_of :web_url
-  validates_presence_of :photo_url
+  validates_presence_of :photo_urls
 
+  def photo_url(size = :medium, default_file = 'default.png')
+    photo_urls[size.to_s] || photo_urls.values.first || default_file
+  end
+
+#  def photo_url(size = :medium)
+#    self.photo_urls[size] || self.remote_photo_urls[0]
+#  end
 
   def validate
     errors.add('username or user_id missing') if user_id.blank? and username.blank?
   end
 
-  alias_attribute :meta_keywords, :tag_list
+  alias_attribute :meta_keywords, :tags
 
 end

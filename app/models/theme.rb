@@ -1,20 +1,13 @@
-class Theme < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :author, :class_name => "User", :foreign_key => 'author_id'
-  has_many :websites
+class Theme
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  belongs_to_related :user
+  field :name, :type => String
+  field :directory, :type => String
 
   validates_uniqueness_of :directory
 
-  include AASM
-  aasm_column :state
-  aasm_initial_state :draft
-  aasm_state :draft
-  aasm_state :deleted
-  aasm_state :public
-  aasm_state :private
-  aasm_state :paid
+  STATUSES = %w(draft deleted public private paid)
 
-  def self.default
-    Theme.first(:conditions => { :directory => 'default' })
-  end
 end
