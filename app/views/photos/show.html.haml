@@ -1,13 +1,13 @@
 - title(current_object.title)
 
 %div[current_object]
-  = link_to image_tag(current_object.medium_url), current_object.web_url
+  = link_to image_tag(current_object.photo_url(:medium)), current_object.web_url
 
   %ul.meta
     %li= t(:'.taken_at', :date => current_object.taken_at)
     %li
       = t(:'.tagged')
-      = current_object.tag_list
+      = current_object.tags.join(', ')
     - if current_object.source
       %li= t(:'.from_source', |
         :source => link_to(current_object.source.username, current_object.source.profile_url), |

@@ -13,7 +13,7 @@
   %h3= t(:'.photos')
   #key_photo
     - if current_object.key_photo
-      = image_tag(current_object.key_photo_medium_url) 
+      = image_tag(current_object.key_photo.photo_url(:medium))
     - else
       = t(:'.no_keyphoto')
     = t(:'.key_photo')

@@ -5,6 +5,6 @@
 
 %div[current_object]
   
-  = link_to image_tag(current_object.medium_url), current_object.photo_url, :rel => 'lightbox'
+  = link_to image_tag(current_object.photo_url(:medium)), current_object.photo_url, :rel => 'lightbox'
   
-  .tags= @photo.tag_list
+  .tags= @photo.tags.join(', ')

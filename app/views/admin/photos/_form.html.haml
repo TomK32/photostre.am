@@ -5,8 +5,8 @@
   = form.label :description, t(:'.description')
   = form.text_area :description, :class => 'description'
 %p
-  = form.label :tag_list, t(:'.tags')
-  = form.text_field :tag_list, :class => 'tags'
+  = form.label :tags, t(:'.tags')
+  = form.text_field :tags, :class => 'tags'
 %fieldset
   %legend= t(:'.websites')
   - form.fields_for :websites do |form_w|
