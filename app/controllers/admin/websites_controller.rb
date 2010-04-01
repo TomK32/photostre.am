@@ -8,7 +8,7 @@ class Admin::WebsitesController < Admin::ApplicationController
     end
 
     before :edit, :update, :show do
-      if ! @current_object.new_record? and ! @current_object.users.include?(current_user)
+      if ! @current_object.new_record? and ! @current_object.user_ids.include?(current_user.id)
         flash[:error] = t(:'admin.websites.access_denied')
         redirect_to :action => :index
       end
@@ -27,6 +27,6 @@ class Admin::WebsitesController < Admin::ApplicationController
   end
 
   def current_objects
-    @current_objects ||= current_user.websites.find(:all)
+    @current_objects ||= current_user.websites
   end
 end

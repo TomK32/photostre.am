@@ -10,4 +10,9 @@ class Admin::PagesController < Admin::ApplicationController
       current_object.user = current_user
     end
   end
+  
+  private
+  def build_object
+    @current_object ||= parent_object.pages.build
+  end
 end

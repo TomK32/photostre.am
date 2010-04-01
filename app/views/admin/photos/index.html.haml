@@ -19,6 +19,8 @@
 
 .columns
   .column_1_2
+    - if @websites.empty?
+      = link_to t(:'.create_website'), new_admin_website_path
     - unless @websites.nil? or @websites.empty?
       %h2= t(:'.websites')
       #websites

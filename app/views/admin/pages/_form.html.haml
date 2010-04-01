@@ -11,11 +11,11 @@
   = form.label :tags, t(:'.tags')
   = form.text_field :tags
 %p
-  = form.label :state, t(:'.state')
-  = form.select(:state, current_model.aasm_states.collect{|s| [t(:"#{current_model_name.downcase}.state.#{s.name}"), s.name.to_s]})
+  = form.label :status, t(:'.status')
+  = form.select(:status, Page::STATUSES.collect{|s| [t(:"#{current_model_name.downcase}.statuses.#{s}"), s]})
 %p
   = form.label :permalink, t(:'.permalink')
   = form.text_field :permalink
 %p
   = form.label :parent_id, t(:'.parent')
-  = form.select :parent_id, @website.pages.find(:all, :select => 'id, title').collect{|p|[p.title, p.id]}, :include_blank => true
+  = form.select :parent_id, parent_object.pages.collect{|p|[p.title, p.id]}, :include_blank => true

@@ -1,6 +1,6 @@
 en:
   page:
-    state:
+    statuses:
       draft: 'Draft'
       published: 'Published'
       deleted: 'Deleted'

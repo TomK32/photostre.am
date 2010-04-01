@@ -2,6 +2,6 @@
 
 = error_messages_for :page, :object => current_object 
 
-- form_for current_object||@website.pages.new, :url => admin_website_pages_path(@website) do |form|
+- form_for current_object, :url => admin_website_pages_path(parent_object) do |form|
   = render :partial => 'form', :object => form
   %p.submit= submit_tag t(:'.submit')

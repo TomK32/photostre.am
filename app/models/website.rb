@@ -10,6 +10,7 @@ class Website
   field :description, :type => String
   field :tracking_code, :type => String
   has_many :photos, :class_name => 'RelatedPhoto'
+  has_many :related_photos
 
   has_many :pages
   has_many :albums
@@ -26,11 +27,9 @@ class Website
   end
 
   STATUSES = %w(inactive active system deleted)
-  def system?
-    status == 'system'
-  end
-  def active?
-    status == 'active'
+  STATUSES.each do |s|
+    define_method("#{s}?".to_sym) { status == s}
+    scope s.to_sym, :where => {:status => s}
   end
 
   def theme

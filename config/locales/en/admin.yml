@@ -14,7 +14,7 @@ en:
         title: 'Title'
         body: 'Description of your album.'
         permalink: 'Permalink (will be set automatically and can be changed)'
-        state: 'State'
+        status: 'Status'
         parent: 'Parent album'
       show:
         edit: 'Edit album'
@@ -43,7 +43,7 @@ en:
         excerpt: 'Excerpt'
         title: 'Title'
         tags: 'Tags'
-        state: 'Status'
+        status: 'Status'
         permalink: 'Permalink'
         parent: 'Parent page'
       show:
@@ -142,7 +142,7 @@ en:
         change_domain: "If you want to change the domain of your website, please write us an email."
         meta_keywords: "Keywords for the HTML metatags. Five to ten keywords are best."
         description: "Description for HTML metatags. E.g. <em>John Doe is a professional photographer from New York City</em>"
-        state: "State"
+        status: "Status"
         root_path: Root path for your domain. E.g. <em>/photos</em> or <em>/pages/homepage</em>
         tracking_code: 'Javascript tracking code. E.g. from Google Analytics'
       index:
@@ -184,7 +184,7 @@ en:
         directory: 'Name of directory (only a-z, 0-9 and -)'
         description: 'A good description'
         license: 'License'
-        state: 'Status'
+        status: 'Status'
       show:
         page_title: 'Theme: {{theme}}'
       edit:

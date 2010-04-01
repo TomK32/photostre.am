@@ -1,6 +1,6 @@
 en:
   album:
-    state:
+    statuses:
       draft: 'Draft'
       published: 'Published'
       deleted: 'Deleted'
