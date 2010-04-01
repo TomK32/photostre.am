@@ -1,6 +1,6 @@
 %h2
-  = link_to website.site_title, object_path(website), :title => t(:'.show_website_details')
-  %span= link_to website.domain, website.url, :title => t(:'.goto_domain')
+  = link_to website.title, object_path(website), :title => t(:'.show_website_details')
+  %span= link_to website.domains.join(', '), website.url, :title => t(:'.goto_domain')
 %ul
   %li= link_to t(:'.edit'), edit_object_path(website)
   %li= website.active? ? t(:'.active') : t(:'.inactive')

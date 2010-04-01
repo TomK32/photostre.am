@@ -13,7 +13,7 @@
   Publishing photos on the internet is easy,
   but presenting them is not.
   %br/
-  %span.flickr= current_website.site_title
+  %span.flickr= current_website.title
   will help you save time and money.
 %p{:style => 'font-size: 200%; margin-bottom: 0.3em'}
   Show off with your flickr photostream.
@@ -30,7 +30,7 @@
       = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
       to manage your websites.
   - else
-    - form_tag sessions_path do |form|
+    - form_tag sessions_path do
       = hidden_field_tag :flickr, true
       %p.submit
         = submit_tag 'Signup for free', :name => nil, :class => 'flickr'

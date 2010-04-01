@@ -1,9 +1,9 @@
 %p
-  = form.label :site_title, t(:'.site_title')
-  = form.text_field :site_title
+  = form.label :title, t(:'.title')
+  = form.text_field :title
 %p
-  = form.label :meta_keywords, t(:'.meta_keywords')
-  = form.text_field :meta_keywords
+  = form.label :tags, t(:'.tags')
+  = form.text_field :tag_list
 %p
   = form.label :description, t(:'.description')
   = form.text_field :description
@@ -12,7 +12,7 @@
     = form.label :subdomain, t(:'.subdomain')
     = text_field_tag :subdomain, {}, :class => 'small'
     = '.'
-    = select_tag :domain, options_for_select(Website.system.find(:all, :select => 'domain').collect{|w|[w.domain, w.domain]})
+    = select_tag :domain, options_for_select(Website.system.all.collect{|w|[w.domain, w.domain]})
 - else
   %p.info= t(:'.change_domain')
 %p

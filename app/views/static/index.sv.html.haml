@@ -8,7 +8,7 @@
   Och en
   %span.photoblog fotoblog?
 %p
-  %strong= current_website.site_title
+  %strong= current_website.title
   kommer hjälpa dig spara tid och pengar. 
   %ul
     %li Publicera din flickr fotoström på en färdig konstruerad websida.
@@ -23,7 +23,7 @@
       = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
       för att behandla din websida.
   - else
-    - form_tag sessions_path do |form|
+    - form_tag sessions_path do
       = hidden_field_tag :flickr, true
       %p.submit
         = submit_tag 'gå med grattis', :name => nil, :class => 'flickr'

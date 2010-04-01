@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def page_title
-    [@title, (current_website.site_title || t(:'app.title'))].reject{|a|a.blank?}.compact.join(' // ')
+    [@title, (current_website.title || t(:'app.title'))].reject{|a|a.blank?}.compact.join(' // ')
   end
 
   def meta_tags(object = nil)

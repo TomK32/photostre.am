@@ -23,9 +23,9 @@ class Admin::PhotosController < Admin::ApplicationController
     end
     before :index do
       if params[:webiste_id].nil?
-        @websites = current_user.websites.active
+        @websites = current_user.websites
       else
-        @website = current_user.websites.active.find(params[:website_id])
+        @website = current_user.websites.find(params[:website_id])
         @albums = @website.albums
       end
     end
@@ -36,24 +36,25 @@ class Admin::PhotosController < Admin::ApplicationController
   end
   
   def current_objects
-    scope = current_user.photos
     if ! params[:website_id].blank?
-      scope = current_user.websites.find(params[:website_id]).photos
-      @website = current_user.websites.find(params[:website_id])
+      @website = current_user.websites.find(params[:website_id]).first
+      scope = @website.related_photos
+    elsif ! params[:album_id].blank?
+      @website = current_user.websites.find(:'albums.id' => params[:album_id]).first
+      @album = @website.albums.find(params[:album_id])
+      scope = @album.related_photos
+    else
+      scope ||= Photo
+      conditions = {:user_id => current_user.id}
     end
-    if ! params[:album_id].blank?
-      @album = Album.find(params[:album_id])
-      if(@album.website.user_ids.include?(current_user.id))
-        scope = @album.photos
-      end
-    end
+
     if ! params[:search].blank?
       scope = scope.search(params[:search])
     end
     if ! params[:tags].blank?
-      scope = scope.tagged_with(params[:tags], :on => :tags, :match_all => true)
+      conditions = {:tags => params[:tags].split(/ ,/)}
     end
     params[:per_page] = 16 if params[:per_page].blank?
-    @current_objects ||= scope.paginate(pagination_defaults)
+    @current_objects ||= scope.paginate(pagination_defaults(:conditions => conditions))
   end
 end

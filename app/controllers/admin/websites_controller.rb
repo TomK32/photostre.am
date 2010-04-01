@@ -4,7 +4,7 @@ class Admin::WebsitesController < Admin::ApplicationController
     belongs_to :current_user
 
     before :create do
-      current_object.users << current_user
+      current_object.user_ids << current_user.id
     end
 
     before :edit, :update, :show do
@@ -17,10 +17,10 @@ class Admin::WebsitesController < Admin::ApplicationController
     # combine params subdomain and domain to params[:website][:domain]
     before :create do
       if !(params[:subdomain].blank? or params[:domain].blank?) && params[:website][:domain].blank?
-        if Website.system.find_by_domain(params[:domain])
-          current_object.domain = params[:subdomain] + '.' + params[:domain]
-        elsif current_user.websites.find_by_domain(params[:domain])
-          current_object.domain = params[:subdomain] + '.' + params[:domain]
+        if !Website.system.where(:domain => params[:domain]).empty?
+          current_object.domains << params[:subdomain] + '.' + params[:domain]
+        elsif !Website.system.where(:domain => params[:domain], :user_ids => current_user.id).empty?
+          current_object.domains << params[:subdomain] + '.' + params[:domain]
         end
       end
     end

@@ -37,7 +37,7 @@
 
 %h2
   = t(:'.photos')
-  = t(:'.for_website', :website => @website.site_title) if @website
+  = t(:'.for_website', :website => @website.title) if @website
   = t(:'.for_album', :album => @album.title) if @album
   = t(:".filtered_by_#{params[:filter]}") if params[:filter]
   %span.small
