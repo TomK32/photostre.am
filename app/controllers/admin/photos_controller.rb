@@ -54,6 +54,6 @@ class Admin::PhotosController < Admin::ApplicationController
       scope = scope.tagged_with(params[:tags], :on => :tags, :match_all => true)
     end
     params[:per_page] = 16 if params[:per_page].blank?
-    @current_objects ||= scope.paginate(:page => params[:page], :per_page => params[:per_page])
+    @current_objects ||= scope.paginate(pagination_defaults)
   end
 end

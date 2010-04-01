@@ -4,6 +4,6 @@ class Admin::ThemesController < Admin::ApplicationController
   end
   
   def current_objects
-    scope = Theme.paginate(:per_page => params[:per_page], :page => params[:page])
+    scope = Theme.paginate(pagination_defaults)
   end
 end

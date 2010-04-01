@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
 
   protected
+
+  def pagination_defaults(args = {})
+    {:page => params[:page], :per_page => params[:per_page]}.merge(args)
+  end
+
   def current_website
     return @current_website if @current_website
     @current_website ||= Website.active_or_system.find_by_domain(request.host)
