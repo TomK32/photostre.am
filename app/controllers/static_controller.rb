@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
   before_filter :is_system
   def index
-    @websites = Website.latest.all(:limit => 5, :conditions => {:state => 'active'})
+    @websites = Website.latest.active.limit( 5 )
     @albums = Album.latest.published.all(:limit => 5)
   end
   def statistics

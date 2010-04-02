@@ -24,8 +24,10 @@ class Admin::WebsitesController < Admin::ApplicationController
         end
       end
     end
+
   end
 
+  private
   def current_objects
     @current_objects ||= current_user.websites
   end

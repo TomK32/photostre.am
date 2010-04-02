@@ -25,10 +25,11 @@ class Website
   scope :active, :where => {:status => %w(active)}
   after_create :create_default_pages
 
-  def validate
-    # check if any other website with the same domain exists
-    # errors.add(:domains)
-  end
+  validates_true_for :domains, :logic => lambda {
+    result = [! domains.empty?]
+    result << domains.collect {|domain| ! Website.where(:domains => domain).count == 0 }
+    result.include?(true)
+  }
 
   STATUSES = %w(inactive active system deleted)
   STATUSES.each do |s|

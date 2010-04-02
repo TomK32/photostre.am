@@ -9,13 +9,7 @@
     = h current_object.version
   %p.author_id
     %strong Author
-    = h current_object.author_id
-  %p.user_id
-    %strong User
-    = h current_object.user_id
+    = current_object.author.name
   %p.license
     %strong License
     = h current_object.license
-  %p.state
-    %strong State
-    = h current_object.state

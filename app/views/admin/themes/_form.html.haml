@@ -11,5 +11,5 @@
   = form.label :license, t(:'.license')
   = form.text_field :license
 %p
-  = form.label :state, t(:'.state')
-  = form.text_field :state
+  = form.label :status, t(:'.status')
+  = form.select(:status, Theme::STATUSES.collect{|s| [t(:"#{current_model_name.downcase}.statuses.#{s}"), s]})

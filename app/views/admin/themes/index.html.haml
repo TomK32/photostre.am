@@ -1,4 +1,8 @@
--title(:'.page_title')
+- title(t :'.page_title')
+- content_for :subnavigation do
+  %li= link_to t(:'.new'), new_object_path
+
+
 
 = will_paginate(current_objects)
 

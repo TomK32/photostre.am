@@ -18,7 +18,7 @@ class Page
 #  attr_accessible :title, :body, :excerpt, :permalink, :tags, :position, :parent_id, :status
 #  attr_accessible :meta_geourl
 
-belongs_to_related :user
+  belongs_to_related :user
 
   belongs_to :website, :inverse_of => :pages
 

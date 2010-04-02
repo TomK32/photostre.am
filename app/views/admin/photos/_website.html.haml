@@ -1,5 +1,5 @@
 %div.droppable[website]
-  %span.domain= website.domain
+  %span.domain= website.title
   %span.small
     (
     = link_to(t(:'.create_album'), new_admin_website_album_path(:website_id => website.id))
