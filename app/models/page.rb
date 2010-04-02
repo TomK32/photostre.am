@@ -49,4 +49,10 @@ belongs_to_related :user
     self.excerpt_html = textilize(self.excerpt)
   end
 
+  def tag_list=(new_tags)
+    self.tags = new_tags.to_s.split(/, /).uniq
+  end
+  def tag_list
+    [self.tags].flatten.join(', ')
+  end
 end

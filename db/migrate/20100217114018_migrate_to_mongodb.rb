@@ -118,6 +118,8 @@ class MigrateToMongodb < ActiveRecord::Migration
       # A Website had only one domain so far, can have many in the future
       attributes[:domains] = [website.domain]
       attributes.delete(:domain)
+      attributes[:title] = website[:site_title]
+      attributes.delete(:site_title)
       m_website = MongoStream::Website.create!(attributes)
       m_website.photo_ids = website.photo_ids.collect{|k| photo_ids_map[k] }
       m_website.user_ids = website.user_ids.collect{|k| user_ids_map[k] }

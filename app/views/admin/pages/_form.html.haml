@@ -9,7 +9,7 @@
   = form.text_area :excerpt
 %p
   = form.label :tags, t(:'.tags')
-  = form.text_field :tags
+  = form.text_field :tag_list
 %p
   = form.label :status, t(:'.status')
   = form.select(:status, Page::STATUSES.collect{|s| [t(:"#{current_model_name.downcase}.statuses.#{s}"), s]})

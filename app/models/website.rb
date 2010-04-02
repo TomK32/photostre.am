@@ -48,7 +48,7 @@ class Website
     self.tags = new_tags.to_s.split(/, /).uniq
   end
   def tag_list
-    self.tags.join(', ')
+    [self.tags].flatten.join(', ')
   end
 
   def create_default_pages

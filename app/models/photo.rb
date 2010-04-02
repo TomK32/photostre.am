@@ -33,6 +33,12 @@ class Photo
   def validate
     errors.add('username or user_id missing') if user_id.blank? and username.blank?
   end
+  def tag_list=(new_tags)
+    self.tags = new_tags.to_s.split(/, /).uniq
+  end
+  def tag_list
+    [self.tags].flatten.join(', ')
+  end
 
   alias_attribute :meta_keywords, :tags
 
