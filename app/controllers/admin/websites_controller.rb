@@ -17,10 +17,12 @@ class Admin::WebsitesController < Admin::ApplicationController
     # combine params subdomain and domain to params[:website][:domain]
     before :create do
       if !(params[:subdomain].blank? or params[:domain].blank?) && params[:website][:domain].blank?
-        if !Website.system.where(:domain => params[:domain]).empty?
+        if !Website.system.where(:domains => params[:domain]).empty?
           current_object.domains << params[:subdomain] + '.' + params[:domain]
-        elsif !Website.system.where(:domain => params[:domain], :user_ids => current_user.id).empty?
+        elsif !Website.system.where(:domains => params[:domain], :user_ids => current_user.id).empty?
           current_object.domains << params[:subdomain] + '.' + params[:domain]
+        else
+          flash[:error] = t(:'websites.create.domain_error')
         end
       end
     end

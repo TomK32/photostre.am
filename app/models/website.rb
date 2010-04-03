@@ -26,9 +26,9 @@ class Website
   after_create :create_default_pages
 
   validates_true_for :domains, :logic => lambda {
-    result = [! domains.empty?]
-    result << domains.collect {|domain| ! Website.where(:domains => domain).count == 0 }
-    result.include?(true)
+    result = [domains.empty?]
+    result << domains.collect {|domain| Website.where(:domains => domain).size > 0 }
+    ! result.flatten.include?(true)
   }
 
   STATUSES = %w(inactive active system deleted)
