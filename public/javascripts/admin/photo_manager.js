@@ -26,7 +26,7 @@ var PhotoManager = {
   },
 
   addToWebsiteOrAlbum: function(photo, droppable) {
-    photo_id = $(photo).id;
+    photo_id = extractID($(photo).attr('id'));
     var droppable_class = '';
     $.map(['album', 'website'], function(c) {
       if($(droppable).hasClass(c))
@@ -35,8 +35,8 @@ var PhotoManager = {
     droppable_id = extractID(droppable.id);
     $.ajax({
       type: 'post',
-      url: this.photoPath(photo),
-      data: '_method=put&photo[' + droppable_class + 's]['+droppable_id+']=1',
+      url: '/admin/' + droppable_class + 's/' + droppable_id + '/related_photos.js',
+      data: '_method=post&related_photo[photo_id]=' + photo_id,
       success: function(html){
         $(photo).removeClass('selected');
       },

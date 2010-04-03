@@ -8,14 +8,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   map.namespace :admin do |admin|
-    admin.resources :albums
     admin.resources :photos
     admin.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
     admin.resources :themes
     admin.resources :websites do |website|
-      website.resources :albums
-      website.resources :pages
-      website.resources :photos
+      website.resources :albums do |album|
+        album.resources :related_photos
+      end
+      website.resources :pages do |album|
+        album.resources :related_photos
+      end
+      website.resources :related_photos
     end
   end
   map.resources :sessions

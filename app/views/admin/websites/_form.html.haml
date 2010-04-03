@@ -10,7 +10,7 @@
 - if form.object.new_record?
   %p
     = form.label :subdomain, t(:'.subdomain')
-    = text_field_tag :subdomain, {}, :class => 'small'
+    = text_field_tag :subdomain, params[:subdomain], :class => 'small'
     = '.'
     = select_tag :domain, options_for_select(Website.system.all.collect(&:domains).collect{|d|[d,d]})
 - else

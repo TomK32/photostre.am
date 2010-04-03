@@ -20,8 +20,8 @@ class PhotosController < ApplicationController
 
   def current_object
     return false if params[:id].blank?
-    @current_object = current_model.published.find_by_permalink(params[:id]) ||
-                      current_model.published.find(params[:id])
+    @current_object = current_model.find_by_permalink(params[:id]) ||
+                      current_model.find(params[:id])
   end
   def parent_object
     if params[:album_id]

@@ -2,21 +2,6 @@ class Admin::PhotosController < Admin::ApplicationController
   
   make_resourceful do
     actions :all
-    before :update do
-      %w(albums websites).each do |association|
-        next if(params[:photo][association.to_sym].blank?)
-        associations = params[:photo].delete(association.to_sym)
-        deleted_association_ids = associations.reject{|key,value| value.to_i != 0 }.keys
-
-        # TODO should be something like current_user.send(association)
-        new_association_ids = associations.reject{|key,value| value.to_i == 0}.keys
-
-        association_ids = current_object.send(association.singularize + '_ids')
-        association_ids = association_ids - deleted_association_ids + new_association_ids
-        logger.debug(association_ids)
-        current_object.send(association.singularize + '_ids=', association_ids)
-      end
-    end
     response_for :update do |format|
       format.js { render :json => {:success => true}}
       format.html { redirect_to object_path }
