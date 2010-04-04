@@ -10,11 +10,11 @@ class Album
   field :key_photo_id, :type => String
   field :parent_id, :type => String
 
-  named_scope :published, :where => {:status => 'published'}
-  named_scope :latest, :order_by => [:updated_at => :desc]
-  named_scope :for_select, :select => 'id, title'
+  scope :published, :where => {:status => 'published'}
+  scope :latest, :order_by => [:updated_at => :desc]
+  scope :for_select, :select => 'id, title'
   has_many :related_photos
- 
+  
   index :permalink, :unique => true
 
   belongs_to :website, :inverse_of => :albums

@@ -13,3 +13,7 @@ config/database.yml
 themes/websites
 tmp/token.yml
 tmp/webrat-*.html
+db/mongod.lock
+db/*.[0-9]
+db/*.ns
+.bundle
