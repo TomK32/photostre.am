@@ -1,39 +1,71 @@
-ActionController::Routing::Routes.draw do |map|
+DasPhotowall::Application.routes.draw do |map|
+  # Sample of regular route:
+  #   match 'products/:id' => 'catalog#view'
+  # Keep in mind you can assign values other than :controller and :action
 
-  map.resources :albums do |album|
-    album.resources :photos
+  # Sample of named route:
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  # This route can be invoked with purchase_url(:id => product.id)
+
+  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
+
+  # Sample resource route with options:
+  #   resources :products do
+  #     member do
+  #       get :short
+  #       post :toggle
+  #     end
+  #
+  #     collection do
+  #       get :sold
+  #     end
+  #   end
+
+  # Sample resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
+  # Sample resource route with more complex sub-resources
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get :recent, :on => :collection
+  #     end
+  #   end
+
+  resources :albums do
+    resources :photos
   end
-  map.resources :pages
-  map.resources :photos
-  map.resources :users
+  
+  resources :pages
+  resources :photos
+  resources :users
+  
 
-  map.namespace :admin do |admin|
-    admin.resources :photos
-    admin.resources :sources, :member => {:reauthenticate => :get}, :collection => {:authenticate_flickr_account => :get}
-    admin.resources :themes
-    admin.resources :websites do |website|
-      website.resources :albums do |album|
-        album.resources :related_photos
-      end
-      website.resources :pages do |album|
-        album.resources :related_photos
-      end
-      website.resources :related_photos
+  namespace :admin do
+    resources :sources do
+      get :reauthenticate, :on => :memeber
+      get :authenticate_flickr_account, :on => :collection
     end
+    resources :websites do
+      resources :pages do
+        resources :related_photos
+      end
+      resources :albums do
+        resources :related_photos
+      end
+      resources :related_photos
+    end
+    resources :photos
   end
-  map.resources :sessions
-  map.with_options :controller => "sessions" do |sessions|
-    sessions.logout 'logout', :action => "delete"
-    sessions.login 'login', :action => "new"
-  end
+  get 'static/:action', :to => 'static'
+  get 'faq/:action', :to => 'static'
 
-  map.with_options :controller => 'admin/dashboard' do |dashboard|
-    dashboard.connect '/admin'
-    dashboard.dashboard '/dashboard'
-  end
-
-  map.static ':action', :controller => 'static'
-  map.faq 'faq/:action', :controller => 'static'
-
-  map.root :controller => 'static', :action => 'index'
+  get 'dashboard', :to => 'dashboard#index'
+  get 'login', :to => 'sessions#new'
+  get 'logout', :to => 'sessions#delete'
+  root :to => 'static#index'
 end
