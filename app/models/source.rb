@@ -9,7 +9,7 @@ class Source
   field :last_updated_at, :type => DateTime
 
   has_many_related :photos
-  belongs_to :user, :inverse_of => :sources
+  embedded_in :user, :inverse_of => :sources
 #  index [:username, :_type], :unique => true
 
   ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', 'Source::FlickrAccount']]

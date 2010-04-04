@@ -4,10 +4,10 @@ class User
 
   field :email, :type => String
 
-  has_many :photos
-  has_many :sources
-  has_many :identities
-  # has_and_belongs_to_many :websites
+  embed_many :photos
+  embed_many :sources
+  embed_many :identities
+  # has_and_belongs_to_related_many :websites
 
   validates_presence_of :login
 

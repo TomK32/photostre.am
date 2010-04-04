@@ -11,13 +11,11 @@ class Website
   field :tracking_code, :type => String
   field :root_path, :type => String
   field :tags, :type => Array
-  has_many :photos, :class_name => 'RelatedPhoto'
-  has_many :related_photos
+  embed_many :photos, :class_name => 'RelatedPhoto'
 
-  has_many :pages
-  has_many :albums
-  has_one :theme
-  belongs_to_related :theme
+  embed_many :pages
+  embed_many :albums
+  embed_one :theme
   alias_attribute :meta_keywords, :tags
 
   scope :latest, :order_by => [:updated_at, :desc]
@@ -25,11 +23,11 @@ class Website
   scope :active, :where => {:status => %w(active)}
   after_create :create_default_pages
 
-  validates_true_for :domains, :logic => lambda {
+  def validate
     result = [domains.empty?]
     result << domains.collect {|domain| Website.where(:domains => domain).size > 0 }
-    ! result.flatten.include?(true)
-  }
+    errors[:domains].add t(:'.unique') if result.flatten.include?(true)
+  end
 
   STATUSES = %w(inactive active system deleted)
   STATUSES.each do |s|

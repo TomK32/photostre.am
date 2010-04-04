@@ -6,10 +6,8 @@ class Photo
   include Mongoid::Document
   include Mongoid::Timestamps
 
-#  belongs_to :source
-#  belongs_to :user
-#  has_and_belongs_to_many :websites
-#  has_and_belongs_to_many :albums
+  belongs_to_related :source
+  belongs_to_related :user
 
   scope :ordered, :order_by => 'created_at DESC, id DESC'
   scope :published, :where => {:public => true}

@@ -11,20 +11,20 @@ class Album
   field :parent_id, :type => String
 
   scope :published, :where => {:status => 'published'}
-  scope :latest, :order_by => [:updated_at => :desc]
+  scope :latest, :order_by => [:updated_at, 'desc']
   scope :for_select, :select => 'id, title'
-  has_many :related_photos
+  embed_many :related_photos
   
   index :permalink, :unique => true
 
-  belongs_to :website, :inverse_of => :albums
-#  has_and_belongs_to_many :photos
+  embedded_in :website, :inverse_of => :albums
+#  has_and_belongs_to_related_many :photos
 #  validates_presence_of :website_id, :title
   validates_uniqueness_of :permalink
 
 
-  before_validation :denormalize_body
-  before_validation :set_key_photo
+  before_validate :denormalize_body
+  before_validate :set_key_photo
 
 
   STATUSES = %w(published draft deleted)

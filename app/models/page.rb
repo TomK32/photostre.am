@@ -20,7 +20,7 @@ class Page
 
   belongs_to_related :user
 
-  belongs_to :website, :inverse_of => :pages
+  embedded_in :website, :inverse_of => :pages
 
   def children
     self.website.pages.published.where({:parent_id => self.id})
@@ -36,7 +36,7 @@ class Page
   validates_presence_of :title, :body, :body_html, :permalink, :user_id
   validates_uniqueness_of :permalink
 
-  before_validation :denormalize_body_and_excerpt
+  before_validate :denormalize_body_and_excerpt
 
   STATUSES = %w(published draft deleted)
   STATUSES.each do |s|

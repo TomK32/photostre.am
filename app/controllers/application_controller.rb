@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
   # See ActionController::Base for details
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password").
-  filter_parameter_logging :password
-
   protected
 
   def pagination_defaults(args = {})
@@ -38,7 +36,7 @@ class ApplicationController < ActionController::Base
     return if current_website.nil?
     # use the websites theme for views
     self.prepend_view_path File.join(current_theme_path, 'views')
-    ActionView::Helpers::AssetTagHelper::STYLESHEETS_DIR.replace(File.join(current_theme_path, 'public', 'stylesheets'))
+#    ActionView::Helpers::AssetTagHelper::STYLESHEETS_DIR.replace(File.join(current_theme_path, 'public', 'stylesheets'))
   end
 
   def current_theme_path
@@ -54,9 +52,9 @@ class ApplicationController < ActionController::Base
     @current_identity = Identity.find_by_id(session[:identity_id])
   end
 
-  rescue_from ActiveRecord::RecordNotFound do
-    render 'shared/404', :status => 404
-  end
+#  rescue_from Mongoid::DocumentNotFound do
+#    render 'shared/404', :status => 404
+#  end
   def set_locale
     user_language = params[:language] || session[:language] || extract_locale_from_accept_language_header
     user_language = 'en' unless %w(en sv).include?(user_language)
