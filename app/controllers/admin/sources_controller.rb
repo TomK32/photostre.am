@@ -1,35 +1,25 @@
 class Admin::SourcesController < Admin::ApplicationController
   skip_before_filter :authenticated, :only => [:create, :authenticate_flickr_account]
+  before_filter :owner_required, :only => [:edit, :update, :show]
+  inherit_resources
+  actions :all
 
-  make_resourceful do
-    actions :all
-
-    before :edit, :update, :show do
-      if ! current_object.new_record? and current_object.user != current_user
-        flash[:error] = t(:'admin.sources.access_denied')
-        redirect_to :action => :index
-      end
-    end
-    before :show do
-      @photos = current_object.photos.find(:all, :limit => 16, :order => 'created_at DESC')
-    end
-  end
-
-  def current_objects
-    @current_objects ||= current_user.sources.find(:all)
+  def show
+    @photos = resource.photos.find(:all, :limit => 16, :order => 'created_at DESC')
+    show!
   end
 
   def create
     source_type = params[:source][:source_type]
     if source_type.blank? or ! Source::ACTIVE_TYPES.include?(source_type)
       # Source already exists, use it to reauthenticate
-      if(@current_object = source_type.constantize.find_by_username(params[:source][:username]))
+      if(@resource = source_type.constantize.find_by_username(params[:source][:username]))
         send("build_" + source_type.demodulize.underscore)
         return
       end
-      @current_object = source_type.constantize.new(params[:source])
+      @resource = source_type.constantize.new(params[:source])
     else
-      @current_object = Source.new(params[:source])
+      @resource = Source.new(params[:source])
       render :action => :new and return
     end
 
@@ -44,12 +34,12 @@ class Admin::SourcesController < Admin::ApplicationController
         flash[:notice] = t(:'admin.sources.create.error_on_creating_user')
       end
     end
-    current_user.sources << @current_object
-    if @current_object.save
-      if ! current_object.authenticated?
+    current_user.sources << @resource
+    if @resource.save
+      if ! resource.authenticated?
         send("build_" + source_type.demodulize.underscore)
       else
-        redirect_to object_url(current_object)
+        redirect_to object_url(resource)
       end
     else
       flash[:error] = t(:'admin.sources.create.error')
@@ -58,7 +48,7 @@ class Admin::SourcesController < Admin::ApplicationController
   end
 
   def reauthenticate
-    send("build_" + current_object[:type].demodulize.underscore)
+    send("build_" + resource[:type].demodulize.underscore)
   end
 
   def authenticate_flickr_account
@@ -105,11 +95,22 @@ class Admin::SourcesController < Admin::ApplicationController
   end
 
   private
+  def owner_required
+    if ! resource.new_record? and resource.user != current_user
+      flash[:error] = t(:'admin.sources.access_denied')
+      redirect_to :action => :index
+    end
+  end
+
+  def collection
+    @resources ||= current_user.sources.find(:all)
+  end
+
   def build_flickr_account
-    current_object.token = nil
+    resource.token = nil
     # All fine, take it straight to authenticate with flickr
-    if current_object.valid? and current_object.save!
-      redirect_to current_object.authentication_url and return
+    if resource.valid? and resource.save!
+      redirect_to resource.authentication_url and return
     end
   end
 end

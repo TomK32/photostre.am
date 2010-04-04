@@ -12,6 +12,7 @@ class Website
   field :root_path, :type => String
   field :tags, :type => Array
   embed_many :photos, :class_name => 'RelatedPhoto'
+  alias_attribute :related_photos, :photos
 
   embed_many :pages
   embed_many :albums

@@ -14,6 +14,7 @@ gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :require => 'mongo
 gem 'transitions'
 
 gem 'ruby-openid', :require => 'openid'
+gem 'inherited_resources'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -21,6 +22,7 @@ gem 'ruby-openid', :require => 'openid'
 # Deploy with Capistrano
 gem 'capistrano'
 gem 'haml', :require => 'haml'
+gem 'RedCloth'
 
 gem 'tomk32-flickr_fu', :require => 'flickr_fu'
 
