@@ -10,6 +10,8 @@ require "rails/test_unit/railtie"
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
+require 'lib/rack/domain_dispatcher'
+#require 'lib/rack/theme_static'
 
 module DasPhotowall
   class Application < Rails::Application
@@ -45,5 +47,8 @@ module DasPhotowall
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
+    
+    config.middleware.use(Rack::DomainDispatcher)
+#    config.middleware.use(Rack::ThemeStatic)
   end
 end

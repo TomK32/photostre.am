@@ -37,6 +37,7 @@ class Page
   validates_uniqueness_of :permalink
 
   before_validate :denormalize_body_and_excerpt
+  before_validate :set_permalink
 
   STATUSES = %w(published draft deleted)
   STATUSES.each do |s|
@@ -49,6 +50,9 @@ class Page
     self.excerpt_html = textilize(self.excerpt)
   end
 
+  def set_permalink
+    self.permalink ||= self.title.underscore
+  end
   def tag_list=(new_tags)
     self.tags = new_tags.to_s.split(/, /).uniq
   end
