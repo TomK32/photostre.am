@@ -2,6 +2,6 @@
 
 = error_messages_for :photos
 
-- form_for(:photo, :url => object_url, :html => { :method => :put }) do |form|
+- form_for(:photo, :url => resource_path, :html => { :method => :put }) do |form|
   = render :partial => "form", :object => form
   %p= submit_tag t(:'.submit')

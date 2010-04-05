@@ -4,7 +4,7 @@ class User
 
   field :email, :type => String
 
-  embed_many :photos
+  has_many_related :photos
   embed_many :sources
   embed_many :identities
   # has_and_belongs_to_related_many :websites

@@ -1,33 +1,25 @@
 class PhotosController < ApplicationController
 
-  #caches_action :show, :index
+  def show
+    @photo = parent.related_photos.where(:permalink => params[:id]).first
+    @photo ||=  parent.related_photos.where(:_id => params[:id]).first
+    redirect_to :action => :index if @photo.nil?
+  end
 
-  make_resourceful do
-    actions :show, :index
-    belongs_to :album, :website
+  def index
+    @photos = parent.related_photos.paginate(pagination_defaults)
   end
 
   private
-  def current_objects
-    return @current_objects unless @current_objects.nil?
-    if current_album
-      scope = current_album.photos
-    else
-      scope = current_website.photos
+  def parent
+    return @parent if @parent
+    %w(Album Website Page).each do |klass|
+      if ! params["#{klass.downcase}_id"].blank?
+        @parent_model = klass
+        # TODO status
+        @parent = klass.constantize.find(params["#{klass.downcase}_id"])
+      end
     end
-    @current_objects = scope.paginate(pagination_defaults)
-  end
-
-  def current_object
-    return false if params[:id].blank?
-    @current_object = current_model.find_by_permalink(params[:id]) ||
-                      current_model.find(params[:id])
-  end
-  def parent_object
-    if params[:album_id]
-      @parent_object ||= current_album
-    end
-    @parent_object ||= parent_model.nil? ? nil : parent_model.find(params["#{parent_name}_id"])
-    @parent_object
+    @parent || current_website
   end
 end

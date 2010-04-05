@@ -1,17 +1,26 @@
 class Admin::RelatedPhotosController < Admin::ApplicationController
+  inherit_resources
+  belongs_to :website, :album
+  before_filter :owner_required
 
-  make_resourceful do
-    actions :create, :destroy
-    belongs_to :website, :album
-
-    before :create do
-      current_object.photo = current_user.photos.find(params[:photo_id])
-      website = parent_object.is_a?(Website) ? parent_object : parent_object.website
-      if ! website.user_ids.include?(current_user.id)
-        flash[:error] = t(:'related_photos.not_allowed')
-        redirect_to dashboard_path and return
-      end
+  def create
+    if ! photo = current_user.photos.find(params[:related_photo][:photo_id])
+      flash[:error] = t(:'related_photos.not_allowed')
+      redirect_to dashboard_path and return
     end
-    # TODO check ownership on 
+    parent.related_photos.create(params[:related_photo])
+    parent.save!
+    respond_to do |format|
+      format.js { render :json => :success, :layout => false }
+    end
+  end
+
+  private
+  def owner_required
+    website = parent.is_a?(Website) ? parent : parent.website
+    if ! website.user_ids.include?(current_user.id)
+      flash[:error] = t(:'related_photos.not_allowed')
+      redirect_to dashboard_path and return
+    end
   end
 end

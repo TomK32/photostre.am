@@ -1,9 +1,0 @@
-%h1 Creating photos
-
-= error_messages_for :photos
-
-- form_for(:photos, :url => objects_url) do |f|
-  = render :partial => "form", :locals => {:f => f}
-  %p= submit_tag "Create"
-
-= link_to 'Back', objects_path

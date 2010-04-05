@@ -26,11 +26,11 @@ class Source
   end
 
   def source_type=(source_type)
-    self[:type] = source_type if AVAILABLE_TYPES.collect{|t|t[0]}.include?(source_type)
+    self.attributes[:_type] = source_type if AVAILABLE_TYPES.collect{|t|t[0]}.include?(source_type)
   end
 
   def source_type
-    self[:type].to_s
+    self.attributes[:_type].to_s
   end
   def source_title
     AVAILABLE_TYPES.each do |source_t|

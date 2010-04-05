@@ -1,16 +1,16 @@
-- title(current_object.title)
+- title(@photo.title)
 
-%div[current_object]
-  = link_to image_tag(current_object.photo_url(:medium)), current_object.web_url
+%div[@photo]
+  = link_to image_tag(@photo.photo_url(:medium)), @photo.web_url
 
   %ul.meta
-    %li= t(:'.taken_at', :date => current_object.taken_at)
+    %li= t(:'.taken_at', :date => @photo.taken_at)
     %li
       = t(:'.tagged')
-      = current_object.tags.join(', ')
-    - if current_object.source
+      = @photo.tags.join(', ')
+    - if @photo.source
       %li= t(:'.from_source', |
-        :source => link_to(current_object.source.username, current_object.source.profile_url), |
-        :web_url => link_to(current_object.source.source_title, current_object.web_url)) |
+        :source => link_to(@photo.source.username, @photo.source.profile_url), |
+        :web_url => link_to(@photo.source.source_title, @photo.web_url)) |
 
     

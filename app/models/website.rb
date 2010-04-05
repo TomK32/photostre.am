@@ -5,14 +5,15 @@ class Website
   field :title, :type => String, :required => true
   field :status, :type => String, :default => 'active', :required => true
   field :user_ids, :type => Array, :default => []
-  field :photo_ids, :type => Array, :default => []
   field :domains, :type => Array, :default => []
   field :description, :type => String
   field :tracking_code, :type => String
   field :root_path, :type => String
   field :tags, :type => Array
-  embed_many :photos, :class_name => 'RelatedPhoto'
-  alias_attribute :related_photos, :photos
+  field :related_photos, :type => Array
+  embed_many :related_photos
+
+#  alias_attribute :related_photos, :photos
 
   embed_many :pages
   embed_many :albums

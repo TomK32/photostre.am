@@ -1,5 +1,5 @@
 - title t(:'.page_title'), false
 
 #photos
-  = render :partial => 'photo', :collection => current_objects
-= will_paginate current_objects
+  = render :partial => 'photo', :collection => @photos
+= will_paginate @photos

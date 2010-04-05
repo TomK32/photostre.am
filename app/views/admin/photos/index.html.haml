@@ -45,7 +45,7 @@
     = link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
 
 #photos
-  - unless @photos.empty?
+  - unless collection.empty?
     #drag_arrow
       .drop drop
       = image_tag 'drag_arrow.png'
@@ -54,5 +54,5 @@
     = t(:'.no_photos')
     - if @website || @album
       = t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
-  = render :partial => 'photo', :collection => current_objects
-= will_paginate current_objects
+  = render :partial => 'photo', :collection => collection
+= will_paginate collection
