@@ -1,8 +1,8 @@
-- title(t(:'.page_title', :domain => current_object.title))
+- title(t(:'.page_title', :domain => resource.title))
 
 = error_messages_for :website
 
-- form_for current_object, {:url => object_path(current_object), :method => :put} do |form|
-  = render 'form', :object => form
+- form_for resource, {:url => resource_path(resource), :method => :put} do |form|
+  = render 'form', :form => form
   
   %p.submit= submit_tag t(:'.save'), :name => nil

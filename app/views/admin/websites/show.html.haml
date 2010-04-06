@@ -1,24 +1,23 @@
-- title(current_object.title)
+- title(resource.title)
 - content_for :subnavigation do
-  %li= link_to t(:'.edit'), edit_object_path
-  - current_object.domains.each do |domain|
-    %li= link_to t(:'.online'), 'http://' + domain
+  %li= link_to t(:'.edit'), edit_resource_path
+  %li= link_to t(:'.online'), resource.url
 
-%div[current_object]
-  %h2#title= current_object.title
+%div[resource]
+  %h2#title= resource.title
 
   %dl
     %dt= t(:'.root_path')
-    %dd= current_object.root_path
+    %dd= resource.root_path
 
   %h3
-    = link_to t(:'.albums'), admin_website_albums_path(current_object)
-    %span= link_to t(:'.add_album'), new_admin_website_album_path(current_object)
+    = link_to t(:'.albums'), admin_website_albums_path(resource)
+    %span= link_to t(:'.add_album'), new_admin_website_album_path(resource)
   #albums
-    = render :partial => 'album', :collection => current_object.albums.published
+    = render :partial => 'album', :collection => resource.albums.published
 
   %h3
-    = link_to t(:'.pages'), admin_website_pages_path(current_object)
-    %span= link_to t(:'.add_page'), new_admin_website_page_path(current_object)
+    = link_to t(:'.pages'), admin_website_pages_path(resource)
+    %span= link_to t(:'.add_page'), new_admin_website_page_path(resource)
   #pages
-    = render :partial => 'pages', :object => current_object.pages.published.roots
+    = render :partial => 'page', :collection => resource.pages.published.roots

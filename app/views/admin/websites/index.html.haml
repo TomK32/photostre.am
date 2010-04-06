@@ -1,8 +1,8 @@
 - title(t(:'.your_websites'))
 - content_for :info do
-  = textilize t(:'.info', :domain_faq_link => faq_url('domains'))
+  = textilize t(:'.info', :domain_faq_link => faq_url(:action => 'domains'))
 
-- if current_objects.empty?
+- if collection.empty?
   %p.error= t(:'.no_websites')
   = t(:'.add_new_website', :link => link_to(t(:'.new_website'), new_admin_website_url))
 - else
@@ -10,5 +10,5 @@
   You may add a
   = link_to(t(:'.new'), new_admin_website_path) + '.'
 
-  = render :partial => 'website', :collection => current_objects
+  = render :partial => 'website', :collection => collection
   

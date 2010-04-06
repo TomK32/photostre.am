@@ -14,7 +14,7 @@
 
           - if current_website.pages.published.roots
             #navigation_pages
-              = render :partial => 'pages/pages', :object => current_website.pages.published.roots
+              = render current_website.pages.published.roots
       #content{:class => params[:controller]}
         - if @title_in_content
           %h1= @title 

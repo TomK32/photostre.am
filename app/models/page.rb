@@ -31,9 +31,9 @@ class Page
 
   scope :orderd, :order_by => [:parent_id, :asc, :position, :asc]
   scope :published, :where => {:public => true}
-  scope :roots, :where => {:parent_id => nil}
+  scope :roots, :where => {:parent_id => ''} # FIXME shouldn't that be nil?
 
-  validates_presence_of :title, :body, :body_html, :permalink, :user_id
+  validates_presence_of :title, :body, :permalink
   validates_uniqueness_of :permalink
 
   before_validate :denormalize_body_and_excerpt

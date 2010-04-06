@@ -1,0 +1,6 @@
+%li
+  = link_to page.title, page_url(page.permalink)
+  - unless page.children.published.empty?
+    %ul
+      - page.children.each do |child|
+        = render child

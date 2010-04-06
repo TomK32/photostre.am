@@ -1,7 +1,7 @@
 - title t(:'.page_title')
 
-= error_messages_for :page, :object => current_object 
+= error_messages_for :page, :object => resource
 
-- form_for current_object, :url => admin_website_pages_path(parent_object) do |form|
+- form_for resource, :url => admin_website_pages_path(@parent) do |form|
   = render :partial => 'form', :object => form
   %p.submit= submit_tag t(:'.submit')

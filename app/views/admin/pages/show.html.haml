@@ -1,19 +1,19 @@
-- title(current_object.title)
+- title(resource.title)
 
 - content_for :subnavigation do
-  %li= link_to t(:'.edit'), edit_object_path
-  %li= link_to t(:'.website'), admin_website_path(parent_object)
-  - if current_object.published?
-    %li= link_to t(:'.see_online'), page_url(current_object.permalink, :host => current_object.website.domain)
+  %li= link_to t(:'.edit'), edit_resource_path
+  %li= link_to t(:'.website'), admin_website_path(resource.website.id)
+  - if resource.published?
+    %li= link_to t(:'.see_online'), page_path(resource.permalink, :host => resource.website.domains.first)
 
-- unless current_object.published?
-  .notice= t(:'.not_published', :edit_link => link_to(t(:'.edit'), edit_admin_website_page_path(current_object.website.id, current_object.id)))
+- unless resource.published?
+  .notice= t(:'.not_published', :edit_link => link_to(t(:'.edit'), edit_admin_website_page_path(resource.website.id, resource.id)))
 
 
-%div[current_object]
+%div[resource]
   %p.body
-    = current_object.body_html
+    = resource.body_html
 
   %p#tags
     %strong Tags
-    = h current_object.tags.join(', ')
+    = h resource.tags.join(', ')

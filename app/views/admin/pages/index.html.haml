@@ -1,13 +1,13 @@
-- title(t(:'.page_title', :website => parent_object.domain))
+- title(t(:'.page_title', :website => @parent.title))
 
 - content_for :subnavigation do
-  %li= link_to t(:'.website'), admin_website_path(parent_object)
-  %li= link_to t(:'.create_new_page'), new_object_path
+  %li= link_to t(:'.website'), admin_website_path(@parent)
+  %li= link_to t(:'.create_new_page'), new_resource_path
 
-- if current_objects.empty?
+- if collection.empty?
   %p.eror= t(:'.no_pages_yet')
 - else
   %ul#pages
-    - @pages.each do |page|
+    - collection.each do |page|
       %ul[page]= link_to page.title, edit_admin_website_page_path(page.website_id, page)
 
