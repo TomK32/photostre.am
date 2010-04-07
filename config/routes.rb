@@ -32,7 +32,7 @@ DasPhotowall::Application.routes.draw do |map|
   end
   
   get 'static/:action', :to => 'static', :as => 'static'
-  get 'faq/:action', :to => 'static'
+  get 'faq/:action', :to => 'static', :as => 'faq'
 
   get 'dashboard', :to => 'admin/dashboard#index'
   get 'login', :to => 'sessions#new'

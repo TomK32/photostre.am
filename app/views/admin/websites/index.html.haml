@@ -1,6 +1,6 @@
 - title(t(:'.your_websites'))
 - content_for :info do
-  = textilize t(:'.info', :domain_faq_link => faq_url(:action => 'domains'))
+  = raw textilize(t(:'.info', :domain_faq_link => faq_url(:action => 'domains')))
 
 - if collection.empty?
   %p.error= t(:'.no_websites')

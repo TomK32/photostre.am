@@ -136,11 +136,11 @@ en:
       new:
         create: "Create website"
       form:
-        site_title: "Title of your website"
+        title: "Title of your website"
         domain: "Domain (see our <a href='/faq/domains'>FAQ</a> for details)"
         subdomain: ""
         change_domain: "If you want to change the domain of your website, please write us an email."
-        meta_keywords: "Keywords for the HTML metatags. Five to ten keywords are best."
+        tags: "Keywords for the HTML metatags. Five to ten keywords are best."
         description: "Description for HTML metatags. E.g. <em>John Doe is a professional photographer from New York City</em>"
         status: "Status"
         root_path: Root path for your domain. E.g. <em>/photos</em> or <em>/pages/homepage</em>

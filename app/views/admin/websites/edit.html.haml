@@ -1,4 +1,6 @@
 - title(t(:'.page_title', :domain => resource.title))
+- content_for :subnavigation do
+  %li= link_to t(:'.show'), resource_path
 
 = error_messages_for :website
 

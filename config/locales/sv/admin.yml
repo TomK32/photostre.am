@@ -132,10 +132,10 @@ sv:
       new:
         create: "Skapa webbsida"
       form:
-        site_title: "Titel på din webbsida"
+        title: "Titel på din webbsida"
         domain: "Domän (se våran <a href='/faq/domains'>FAQ</a> för detaljer)"
         subdomain: ""
-        meta_keywords: "Nyckelord för HTML metabeteckningar. Fem till tio nyckelord är bäst."
+        tags: "Nyckelord för HTML metabeteckningar. Fem till tio nyckelord är bäst."
         description: "Beskrivning för HTML metabeteckningar. E.g. <em>John Doe är en professionell fotograf från New York City</em>"
         state: "State"
         root_path: Basbana för din domän. E.g. <em>/foton</em> eller <em>/sidor/hemsida</em>
