@@ -1,14 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta2'
+gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rack'
 gem 'rack-openid'
 
 gem 'compass'
 gem 'compass-960-plugin', :require => 'ninesixty'
 
-gem 'mongo'
-gem 'mongo_ext'
+gem 'system_timer'
+gem 'mongo', '0.20.1'
+gem 'bson_ext', '0.20.1'
 gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :require => 'mongoid'
 
 gem 'transitions'
