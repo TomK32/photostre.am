@@ -1,23 +1,24 @@
 require 'rack/utils'
 
 module Rack
-  class ThemeStatic < Rails::Rack::Static
-    def call_with_theme(env)
-      path = (env['REQUEST_PATH'] || env['PATH_INFO']).chomp()
-      if(path =~ /^\/themes\/.*?\/screenshot.png/)
-        @file_server = ::Rack::File.new(::File.join(Rails.root, 'themes'))
-      end
-      if(path =~ /^\/(javascript|images|stylesheets)/)
-        website = Website.find_by_domain(env['SERVER_NAME'])
-        website ||= Website.find_by_domain(env['SERVER_NAME'].gsub(/^www\./, ''))
-        if website
-          @file_server = ::Rack::File.new(::File.join(Rails.root, 'themes', website.theme_path, "public"))
-        end
-      end
-      call_without_theme(env)
-    end
+  class ThemeStatic < Rack::Static
+    def call(env)
+      path = env['PATH_INFO']
 
-    alias_method :call_without_theme, :call
-    alias_method :call, :call_with_theme
+      if(path =~ /^\/(javascript|images|stylesheets)/)
+        h = env['SERVER_NAME']
+        website = nil
+        [h, h.gsub(/^www\./, ''), 'www.' + h].uniq.each do |host|
+          website ||= Website.active_or_system.where(:domains => host).first
+        end
+        directory = website.nil? ? 'default' : website.theme.directory
+        file_server = ::Rack::File.new(::File.join(Rails.root, 'themes', directory, "public"))
+        file_server.call(env)
+      elsif @urls.any? { |url| path.index(url) == 0 }
+        @file_server.call(env)
+      else
+        @app.call(env)
+      end
+    end
   end
 end
