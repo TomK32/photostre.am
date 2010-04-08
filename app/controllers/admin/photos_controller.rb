@@ -27,6 +27,7 @@ class Admin::PhotosController < Admin::ApplicationController
 
   private
   def collection
+    return @photos if @photos
     if ! params[:website_id].blank?
       @website ||= current_user.websites.where(:_id => params[:website_id]).first
       scope = @website.related_photos

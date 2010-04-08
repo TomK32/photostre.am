@@ -46,8 +46,8 @@ class Page
   end
 
   def denormalize_body_and_excerpt
-    self.body_html = textilize(self.body)
-    self.excerpt_html = textilize(self.excerpt)
+    self.body_html = textilize(html_escape(self.body))
+    self.excerpt_html = textilize(html_escape(self.excerpt))
   end
 
   def set_permalink

@@ -8,7 +8,7 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
       flash[:error] = t(:'related_photos.not_allowed')
       redirect_to dashboard_path and return
     end
-    parent.related_photos.create(params[:related_photo])
+    parent.related_photos.build(params[:related_photo])
     parent.save!
     respond_to do |format|
       format.js { render :json => :success, :layout => false }
@@ -16,6 +16,13 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
   end
 
   private
+  def parent
+    return @parent if @parent
+    if params[:website_id]
+      @parent ||= @website = Website.find(params[:website_id])
+    else
+      @website Website.where(:"#{parent_}")
+  end
   def owner_required
     website = parent.is_a?(Website) ? parent : parent.website
     if ! website.user_ids.include?(current_user.id)

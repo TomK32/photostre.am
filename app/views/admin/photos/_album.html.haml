@@ -1,6 +1,4 @@
-%div.droppable[album]
-  %span.title= album.title
+%li.droppable[album]
+  %span.title= link_to album.title, admin_photos_path({:website_id => album.website.id, :album_id => album.id})
   %span.small
-    (
-    = link_to(t(:'.only_album'), admin_photos_path({:album_id => album.id}))
-    )
+    = t(:'.photos', :count => album.related_photos.count)

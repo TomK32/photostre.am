@@ -1,7 +1,7 @@
-- title t(:'.page_title', :domain => @website.domain)
+- title t(:'.page_title', :domain => @website.title)
 
-= error_messages_for :album, :object => current_object
+= error_messages_for :album, :object => resource
 
-- form_for current_object||@website.albums.new, :url => admin_website_albums_path(@website) do |form|
+- form_for resource||@website.albums.new, :url => admin_website_albums_path(@website) do |form|
   = render :partial => 'form', :object => form
   %p.submit= submit_tag t(:'.submit')

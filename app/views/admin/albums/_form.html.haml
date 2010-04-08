@@ -9,9 +9,9 @@
   = form.text_area :body
 %p
   = form.label :status, t(:'.status')
-  = form.select :status, Album::STATUSES.collect{|s| [t(:"#{current_model_name.downcase}.statuses.#{s}"), s.to_s]}
+  = form.select :status, Album::STATUSES.collect{|s| [t(:"#{resource.class.name.downcase}.statuses.#{s}"), s.to_s]}
 
 - if @website.albums.count > 0
   %p
     = form.label :parent_id, t(:'.parent')
-    = form.select :parent_id, @website.albums.collect{|a|[a.title, a.id]}, :include_blank => true
+    = form.select :parent_id, @website.albums.collect{|a|[a.title, a.id] if a.id != resource.id}, :include_blank => true

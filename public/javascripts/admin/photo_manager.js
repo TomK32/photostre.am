@@ -35,8 +35,8 @@ var PhotoManager = {
     droppable_id = extractID(droppable.id);
     $.ajax({
       type: 'post',
-      url: '/admin/' + droppable_class + 's/' + droppable_id + '/related_photos.js',
-      data: '_method=post&related_photo[photo_id]=' + photo_id,
+      url: '/admin/related_photos.js',
+      data: '_method=post&related_photo[photo_id]=' + photo_id + '&' + droppable_class + '_id=' + droppable_id,
       success: function(html){
         $(photo).removeClass('selected');
       },

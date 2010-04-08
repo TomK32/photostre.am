@@ -24,7 +24,9 @@ li { margin-left: 30px; }
 
 p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset { margin-bottom: 20px; }
 
-body { background-color: black; color: #eeeeff; font-size: x-small; font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"; }
+@font-face { font-family: TitilliumMaps26; src: url(/fonts/TitilliumMaps26L003.otf) format("opentype"); }
+
+body { background-color: black; color: #eeeeff; font-size: x-small; font-family: TitilliumMaps26, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"; }
 
 #container { font-size: 160%; }
 
@@ -46,7 +48,7 @@ h2 a, h3 a { color: #dc6300; text-decoration: none; }
 h2 a:hover, h2 a:active, h3 a:hover, h3 a:active { color: #66dd00; }
 
 #header { border-bottom: 1px solid #999; }
-#header #title a { font-size: 4em; text-decoration: none; text-shadow: white 0px 1px 1px; color: #2b64f8; }
+#header #title a { font-size: 4em; text-decoration: none; color: #2b64f8; }
 #header #title a:hover, #header #title a:active { color: #66dd00; }
 
 #navigation, #subnavigation { margin: 0; padding: 0; }

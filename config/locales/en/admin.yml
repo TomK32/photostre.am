@@ -29,6 +29,8 @@ en:
       index:
         page_title: 'Albums on "{{website}}"'
         new: 'New album'
+        create_new: 'create a new album'
+        no_albums_yet: "You don't have any albums yet, {{album_link}}."
     pages:
       index:
         page_title: 'Pages'
@@ -84,9 +86,15 @@ en:
       website:
         create_album: 'Create new album'
         only_website: 'Only photos on this website'
+        photos:
+          one: 'One items'
+          other: '{{count}} items'
       album:
         show: 'Show album'
         only_album: 'Only photos from this album'
+        photos:
+          one: 'One items'
+          other: '{{count}} items'
       edit:
         submit: 'Update'
         page_title: 'Edit photo'
@@ -133,6 +141,10 @@ en:
       access_denied: "Access denied to this source"
     websites:
       access_denied: "You are not allowed to edit this website"
+      album:
+        photos:
+          one: 'One items'
+          other: '{{count}} items'
       new:
         create: "Create website"
       form:

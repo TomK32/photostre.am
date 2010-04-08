@@ -1,6 +1,8 @@
-- title(t(:'.page_title', :website => parent_object.title))
+- title(t(:'.page_title', :website => @parent.title))
 - content_for :subnavigation do
-  %li= link_to t(:'.new'), new_object_path
+  %li= link_to t(:'.new'), new_resource_path
 
-- current_objects.each do |album|
+- if collection.empty?
+  = t(:'.no_albums_yet', :album_link => link_to(t(:'.create_new'), new_resource_path))
+- collection.each do |album|
   %div[album]= link_to image_tag(album.key_photo ? album.key_photo.photo_url(:thumbnail) : 'album.png'), object_path(album)

@@ -39,13 +39,13 @@ class Album
     @key_photo ||= @key_photo.photo if @key_photo and @key_photo.photo
     @key_photo
   end
-  def key_photo_url(size, default)
+  def key_photo_url(size, default = 'album.png')
     return default if key_photo.nil?
     key_photo.photo_url(default) || default
   end
 
   def denormalize_body
-    self.body_html = textilize(self.body)
+    self.body_html = textilize(html_escape(self.body))
   end
 
   def set_key_photo

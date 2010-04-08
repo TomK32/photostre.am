@@ -19,13 +19,13 @@
 
 .columns
   .column_1_2
-    - if @websites.empty?
+    - if !@websites or @websites.empty?
       = link_to t(:'.create_website'), new_admin_website_path
-    - unless @websites.nil? or @websites.empty?
+    - else
       %h2= t(:'.websites')
       #websites
         = render :partial => 'website', :collection => @websites
-    - unless @albums.nil? or @albums.empty?
+    - if @albums and ! @albums.empty?
       %h2= t(:'.albums')
       #albums
         = render :partial => 'album', :collection => @albums
@@ -44,15 +44,17 @@
     = link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
     = link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
 
+- unless collection.empty?
+  #drag_arrow
+    .drop drop
+    = image_tag 'drag_arrow.png'
+    .drag drag
+
 #photos
-  - unless collection.empty?
-    #drag_arrow
-      .drop drop
-      = image_tag 'drag_arrow.png'
-      .drag drag
-  - else
+  - if collection.empty?
     = t(:'.no_photos')
     - if @website || @album
       = t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
-  = render :partial => 'photo', :collection => collection
-= will_paginate collection
+  - else
+    = render :partial => 'photo', :collection => collection
+    = will_paginate collection
