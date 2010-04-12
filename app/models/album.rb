@@ -13,8 +13,11 @@ class Album
   scope :published, :where => {:status => 'published'}
   scope :latest, :order_by => [:updated_at, 'desc']
   scope :for_select, :select => 'id, title'
+  scope :roots, :where => {:parent_id => nil}
   embed_many :related_photos
-  
+  alias_attribute :photos, :related_photos
+
+
   index :permalink, :unique => true
 
   embedded_in :website, :inverse_of => :albums

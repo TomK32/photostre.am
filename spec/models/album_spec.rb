@@ -54,19 +54,17 @@ describe Album do
   end
   describe "key photo" do
     before :each do
-      @photos = (0..5).collect { @album.related_photos.create( :photo => Factory(:photo)) }
-      @website.save!
-      @website.reload
-      @album = @website.albums.find(@album.id)
+      (0..5).collect { @album.related_photos.create( :photo => Factory(:photo)) }
+      @album.save!
     end
     it "should return the first photo as key" do
-      @album.key_photo.should ==(@photos.first)
+      @album.key_photo.should ==(@album.photos[0])
     end
     it "should allow changing the key photo" do
-      @album.key_photo.should_not be(@photos[2])
-      @album.key_photo_id = @photos[2].id
+      @album.key_photo.should_not be(@album.photos[2])
+      @album.key_photo_id = @album.photos[2].id
       @album.save
-      @album.key_photo.should ==(@photos[2])
+      @album.key_photo.should ==(@album.photos[2])
     end
   end
   describe "sortable tree" do
@@ -74,8 +72,8 @@ describe Album do
     it "should have children"
     
     it "should have roots" do
-      album2 = Factory.build(:album, :website => @website)
-      album3 = Factory.build(:album, :parent => album2, :website => @website)
+      album2 = @website.albums.create(:title => 'album 2')
+      album3 = @website.albums.create(:title => 'album 3')
       @website.albums << album2
       @website.albums << album3
       @website.save
