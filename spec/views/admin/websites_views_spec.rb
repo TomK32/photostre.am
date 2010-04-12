@@ -4,8 +4,7 @@ describe "admin/websites/new" do
   before :each do
     assigns[:current_user] = @user = Factory(:user)
     Factory(:website_system)
-    @website = Factory(:website, :domain => 'user.com')
-    @website.users << @user
+    @website = Factory(:website, :domains => ['user.com'], :user_ids => [@user.id])
     @photos = @website.photos.paginate(:per_page => 5, :page => 1)
     template.stub(:objects_path).and_return('/admin/websites')
     template.stub(:current_object).and_return(Website.new)

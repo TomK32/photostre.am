@@ -1,22 +1,22 @@
 Factory.define :website do |website|
-  website.site_title 'my portfolio'
-  website.domain {'example%i.com' % Website.count }
-  website.state 'active'
-  website.users {[Factory(:user)]}
+  website.title 'my portfolio'
+  website.domains {['example%i.com' % Website.count ]}
+  website.status 'active'
+  website.user_ids {[Factory(:user).id]}
 end
 Factory.define :website_system, :parent => :website do |website|
-  website.site_title 'photostre.am'
-  website.domain 'photostre.am'
-  website.state 'system'
+  website.title 'photostre.am'
+  website.domains ['photostre.am']
+  website.status 'system'
 end
 
 Factory.define :website_with_photos, :parent => :website do |website|
-  website.photos { (0...20).collect{ Factory(:photo)} }
+  website.related_photos { (0...20).collect{ Factory.build(:related_photo)} }
 end
 
 Factory.define :website_with_albums_and_photos, :parent => :website_with_photos do |website|
   website.albums {
-    [Factory(:album)]
+    [Factory.build(:album)]
   }
 end
   

@@ -1,80 +1,87 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Album do
-  before(:each) do
-    @album = Factory(:album)
-    @new_album = Factory.build(:album)
+  before :each do
+    @website = Factory(:website)
+    @album = @website.albums.build(Factory(:album).attributes)
+    @album.save
   end
   it "should be valid" do
     @album.should be_valid
   end
   
   describe "validations" do
-    it { @album.should validate_presence_of(:website_id) }
-    it { @album.should validate_presence_of(:title) }
-#    it { @album.should validate_presence_of(:body) }
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:body) }
+    it { should validate_presence_of(:body_html) }
   end
   describe "associations" do
-    it { Album.should belong_to(:website) }
-    it { Album.should belong_to(:parent) }
-    it { Album.should have_many(:children) }
-    it { Album.should belong_to(:key_photo) }
+    it "should be embedded in a website" do
+      association = Page.associations['website']
+      association.klass.should ==(Website)
+      association.association.should ==(Mongoid::Associations::EmbeddedIn)
+    end
   end
-  describe "state" do
-    it "should have states" do
-      Album.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(deleted draft published))
+  describe "status" do
+    it "should have statuses" do
+      Album::STATUSES.sort.should ==(%w(deleted draft published))
+    end
+    it "should be published by default" do
+      Album.new.status.should ==("published")
+    end
+    it "should not allow invalid statuses" do
+      album = Factory.build(:album, {:status => 'totally no possible!!1!elf!'})
+      album.should_not be_valid
     end
   end
   describe "permalink" do
     it "should have a permalink" do
       @album.title.should ==('My album 0')
       @album.permalink.should ==('my-album-0')
-      new_album = Factory(:album, { :title => 'Title 123 '})
-      new_album.permalink.should ==('title-123')
     end
-    it "should have a scope on the permalink" do
-      album_on_other_website = Factory(:album, :website => Factory(:website), :title => @album.title)
-      album_on_other_website.website_id.should_not ==(@album.website_id)
-      album_on_other_website.permalink.should ==(@album.permalink)
+    it "should keep permalink on changing the title" do
+      @album.title = 'other_title'
+      @album.save
+      @album.permalink.should ==('my-album-0')
     end
+    it "should have a scope on the permalink"
   end
   
   it "should set body_html" do
-    @new_album.body = 'Hello this is my website'
-    @new_album.body_html.should be_nil
-    @new_album.save
-    @new_album.body_html.should =='<p>Hello this is my website</p>'
+    @album.body = 'Hello this is a new body'
+    @album.save
+    @album.body_html.should =='<p>Hello this is a new body</p>'
   end
   describe "key photo" do
     before :each do
-      @photos = (0..5).collect { Factory(:photo) }
-      @new_album.photos << @photos
-      @new_album.save!
-      @new_album.reload
+      @photos = (0..5).collect { @album.related_photos.create( :photo => Factory(:photo)) }
+      @website.save!
+      @website.reload
+      @album = @website.albums.find(@album.id)
     end
-    it "should set the first photo as key" do
-      @new_album.key_photo.should ==(@photos.first)
-      @new_album.key_photo_thumbnail_url.should ==(@photos.first.thumbnail_url)
-      @new_album.key_photo_medium_url.should ==(@photos.first.medium_url)
+    it "should return the first photo as key" do
+      @album.key_photo.should ==(@photos.first)
     end
     it "should allow changing the key photo" do
-      @new_album.key_photo.should ==(@photos.first)
-      @new_album.key_photo = @photos[2]
-      @new_album.save
-      @new_album.reload
-      @new_album.key_photo.should ==(@photos[2])
-      @new_album.key_photo_thumbnail_url.should ==(@photos[2].thumbnail_url)
-      @new_album.key_photo_medium_url.should ==(@photos[2].medium_url)
+      @album.key_photo.should_not be(@photos[2])
+      @album.key_photo_id = @photos[2].id
+      @album.save
+      @album.key_photo.should ==(@photos[2])
     end
   end
   describe "sortable tree" do
+    it "should belong to a parent"
+    it "should have children"
+    
     it "should have roots" do
-      album2 = Factory(:album) # published by default
-      album3 = Factory(:album, :parent => album2) # published by default
-      album2.reload
-      album3.reload
-      Album.all.should == [@album, album2, album3]
-      Album.roots.should == [@album, album2]
+      album2 = Factory.build(:album, :website => @website)
+      album3 = Factory.build(:album, :parent => album2, :website => @website)
+      @website.albums << album2
+      @website.albums << album3
+      @website.save
+      @website.reload
+      @website.albums.should == [@album, album2, album3]
+      @website.albums.roots.should == [@album, album2]
       album2.children.should == [album3]
       album3.parent.should == album2
     end

@@ -2,36 +2,49 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Website do
   before(:each) do
+    Website.delete_all
     @website = Factory(:website)
   end
   it "@website should be valid" do
     @website.should be_valid
   end
   describe "associations" do
-    it { Website.should have_and_belong_to_many(:users) }
-    it { Website.should have_many(:sources) }
-    it { Website.should belong_to(:theme) }
+    it "should have user_ids" do
+      @website.user_ids.should be_a(Array)
+      @website.user_ids.first.should be_a(String)
+      User.find(@website.user_ids[0]).id.should ==(@website.user_ids[0])
+    end
+    it "should have a theme" do
+      @website.theme.should be_a(Theme)
+    end
+    it "should have many albums" do
+      @website.albums.new.should be_a(Albums)
+    end
   end
   describe "validations" do
     it "should validate for presence of domain" do
-      @website.domain = nil
+      @website.domains = nil
+      @website.should_not be_valid
+      @website.domains = []
       @website.should_not be_valid
     end
-    it "should validate for presence of state" do
-      @website.state = nil
-      @website.should_not be_valid
-    end
-    it "should validate for presence of site title" do
-      @website.site_title = nil
+
+# NOTE There's a default value for status and mongoid just ignores my nil!
+#    it "should validate for presence of status" do
+#      @website.status = nil
+#      @website.should_not be_valid
+#    end
+    it "should validate for presence of title" do
+      @website.title = nil
       @website.should_not be_valid
     end
   end
   describe "scopes" do
     it "should have scopes" do
-      Website.aasm_states.collect{|s|s.name.to_s}.sort.should ==(%w(active deleted draft system))
+      Website::STATUSES ==(%w(active deleted draft system))
     end
     it "should have named scope active_or_styem" do
-      system_website = Factory(:website, :state => 'system')
+      system_website = Factory(:website, :status => 'system')
       Website.active_or_system.count.should == Website.all.count
       Website.active.count.should ==(Website.all.count - 1)
       Website.system.count.should == 1
@@ -41,19 +54,12 @@ describe Website do
   describe "creating a new website" do
     it "should create a standard homepage" do
       new_website = Factory(:website)
-      new_website.pages.find_by_permalink('homepage').should be_published
-      new_website.pages.find_by_permalink('about').should be_published
-      new_website.pages.find_by_permalink('contact').should be_published
-      new_website.root_path.should ==('/pages/homepage')
+      new_website.reload
+      new_website.pages.count.should be(3)
+      new_website.pages.collect(&:permalink).sort.should == %w(about contact home)
+      new_website.pages.collect(&:status).sort.should == %w(published published published)
+      new_website.root_path.should ==('/pages/home')
     end
     it "should not create standard pages for system websites"
-  end
-  it "should denormalize theme_path" do
-    @website.theme.should be_nil
-    @website.theme_path.should ==('default')
-    theme = Factory(:theme, :directory => 'funky')
-    @website.theme = theme
-    @website.save
-    @website.theme_path.should ==(theme.directory)
   end
 end

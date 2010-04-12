@@ -2,8 +2,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe Admin::SourcesController do
   def setup
-    request.host = Factory(:website_system).domain
-    @user = Factory(:user)
+    @user = Factory(:user, :login => 'TomK32', :email => 'tomk32@gmx.de')
+  end
+  before :each do
+    request.host = Factory(:website_system).domains.first
     request.session[:user_id] = @user.id
   end
   it "should only work for logged in users" do
@@ -26,7 +28,6 @@ describe Admin::SourcesController do
 =end
     
     it "should log in the user for existing sources" do
-      Factory(:user, :login => 'TomK32', :email => 'tomk32@gmx.de')
       post :index, {:source => {:username => 'TomK32'}}
       response.should be_success
     end

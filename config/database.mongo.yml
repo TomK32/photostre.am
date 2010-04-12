@@ -1,6 +1,10 @@
 defaults: &defaults
   host: localhost
 
+test:
+  <<: *defaults
+  database: photostream_test
+
 development:
   <<: *defaults
   database: photostream_development

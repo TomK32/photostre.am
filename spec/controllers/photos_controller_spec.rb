@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe PhotosController do
   before :each do
     @website = Factory(:website)
-    request.host = @website.domain
+    request.host = @website.domains.first
     @website.photos = (0..20).collect { Factory(:photo) }
     @photos = @website.photos
   end

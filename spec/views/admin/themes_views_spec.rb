@@ -1,8 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "admin/themes/new" do
-  before :each do
+  def setup
     @theme = Factory(:theme)
+  end
+  before :each do
     template.stub(:current_object).and_return(Theme.new)
     template.stub(:objects_path).and_return('/admin/themes')
     render

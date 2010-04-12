@@ -7,7 +7,7 @@ describe PhotosController do
     @website.albums << Factory(:album, {:state => 'draft', :website => @website})
     
     @photos = @website.photos
-    @request.host = @website.domain
+    @request.host = @website.domains.first
   end
 
   describe "GET to :index" do

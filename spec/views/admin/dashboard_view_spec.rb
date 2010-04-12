@@ -16,9 +16,9 @@ describe "admin/dashboard/index" do
     before :each do
       assigns[:current_user] = @user = Factory(:user)
       Factory(:website_system)
-      assigns[:websites] = [Factory(:website, :domain => 'user.com'),
-          Factory(:website, :domain => 'subdomain.user.com')]
-      assigns[:photos] = (0..30).collect{ Factory(:photo) }
+      assigns[:websites] = [Factory(:website, :domains => ['user.com']),
+          Factory(:website, :domains => ['subdomain.user.com'])]
+      assigns[:photos] = (0..30).collect{ Factory(:photo, :user_id => @user.id) }
       assigns[:sources] = []
       render
     end

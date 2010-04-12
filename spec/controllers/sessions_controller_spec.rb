@@ -1,9 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe SessionsController do
-  integrate_views
   before :each do
-    Factory(:website, :domain => 'photos.tomk32.de')
+    Factory(:website, :domains => ['photos.tomk32.de'])
   end
 
   it "should have authenticate form send request to OpenID provider" do

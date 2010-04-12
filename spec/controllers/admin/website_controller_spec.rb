@@ -2,10 +2,14 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe Admin::WebsitesController do
 
-  def setup
-    request.host = Factory(:website_system).domain
+  before do
     @user = Factory(:user)
-    request.session[:user_id] = @user.id
+    @website = Factory(:website_system).domains.first
+  end
+  before :each do
+
+#    request.host = @website.domains.first
+#    request.session[:user_id] = @user.id
     # there's only the index action, nothing else
   end
   it "should only work for logged in users" do
@@ -23,9 +27,9 @@ describe Admin::WebsitesController do
   end
   describe ":create" do
     it "should belong to current_user" do
-      post :create, {:website => {:site_title => 'Test', :domain => 'test.com'}}
-      assigns[:current_object].should be_valid
-      assigns[:current_object].user_ids.should include(@user.id)
+      post :create, {:website => {:title => 'Test', :domains => 'test.com'}}
+      assigns[:resource].should be_valid
+      assigns[:resource].user_ids.should include(@user.id)
     end
   end
   describe ":edit" do
@@ -35,58 +39,58 @@ describe Admin::WebsitesController do
   end
   describe ":create with subscription" do
     it "should create a new website" do
-      post :create, {:website => {:site_title => 'Test', :domain => 'tomk32.de'}}
+      post :create, {:website => {:title => 'Test', :domain => 'tomk32.de'}}
       response.should be_redirect
-      assigns[:current_object].should be_valid
-      assigns[:current_object].domain.should ==('tomk32.de')
-      assert @user.websites.find_by_domain('tomk32.de')
+      assigns[:resource].should be_valid
+      assigns[:resource].domains.should ==(['tomk32.de'])
+      assert @user.websites.where(:domains => 'tomk32.de').first
     end
     it "should use create a new subdomain under system domain" do
       Factory(:website, :domain => 'funny.com', :state => 'system')
-      assert_nil @user.websites.find_by_domain('test.funny.com')
-      post :create, {:subdomain => 'test', :domain => 'funny.com', :website => {:site_title => 'Test'}}
+      assert_nil @user.websites.where(:domains => 'test.funny.com').first
+      post :create, {:subdomain => 'test', :domain => 'funny.com', :website => {:title => 'Test'}}
       response.should be_redirect
-      assigns[:current_object].should be_valid
-      assigns[:current_object].domain.should ==('test.funny.com')
-      assert @user.websites.find_by_domain('test.funny.com')
+      assigns[:resource].should be_valid
+      assigns[:resource].domains.should ==(['test.funny.com'])
+      assert @user.websites.where(:domains => 'test.funny.com').first
     end
     it "should create a new subdomain under a user domain" do
-      @user.websites << Factory(:website, :domain => 'user.com')
-      assert_nil @user.websites.find_by_domain('test.user.com')
-      post :create, {:subdomain => 'test', :domain => 'user.com', :website => {:site_title => 'Test'}}
+      @user.websites << Factory(:website, :domains => ['user.com'])
+      assert_nil @user.websites.where(:domains => 'test.user.com').first
+      post :create, {:subdomain => 'test', :domain => 'user.com', :website => {:title => 'Test'}}
       response.should be_redirect
-      assigns[:current_object].should be_valid
-      assigns[:current_object].domain.should ==('test.user.com')
-      assert @user.websites.find_by_domain('test.user.com')
+      assigns[:resource].should be_valid
+      assigns[:resource].domains.should ==(['test.user.com'])
+      assert @user.websites.where(:domains => 'test.user.com').first
     end
     it "should not create a new subdomain under a non-existing domain" do
-      assert_nil @user.websites.find_by_domain('test.bad.com')
-      post :create, {:subdomain => 'test', :domain => 'bad.com', :website => {:site_title => 'Test'}}
+      assert_nil @user.websites.where(:domains => 'test.bad.com').first
+      post :create, {:subdomain => 'test', :domain => 'bad.com', :website => {:title => 'Test'}}
       response.should_not be_success
-      assigns[:current_object].should_not be_valid
+      assigns[:resource].should_not be_valid
     end
     it "should not create a new subdomain under someone elses domain" do
-      other_website = Factory(:website, :domain => 'theirs.com', :users => [Factory(:user)])
-      assert_nil @user.websites.find_by_domain('theirs.com')
-      post :create, {:subdomain => 'test', :domain => 'theirs.com', :website => {:site_title => 'Test'}}
+      other_website = Factory(:website, :domains => ['theirs.com'], :user_ids => [Factory(:user).id])
+      assert_nil @user.websites.where(:domains => 'theirs.com').first
+      post :create, {:subdomain => 'test', :domain => 'theirs.com', :website => {:title => 'Test'}}
       response.should_not be_success
-      assigns[:current_object].should_not be_valid
+      assigns[:resource].should_not be_valid
     end
     it "should prefer domain field as input" do
-      post :create, {:subdomain => 'test', :domain => 'funny.com', :website => {:site_title => 'Test', :domain => 'notfunny.com'}}
+      post :create, {:subdomain => 'test', :domain => 'funny.com', :website => {:title => 'Test', :domain => 'notfunny.com'}}
       response.should be_redirect
-      assigns[:current_object].should be_valid
-      assigns[:current_object].domain.should ==('notfunny.com')
+      assigns[:resource].should be_valid
+      assigns[:resource].domains.should ==(['notfunny.com'])
     end
     it "should return error if subdomain is empty" do
-      post :create, {:domain => 'funny.com', :website => {:site_title => 'Test'}}
+      post :create, {:domain => 'funny.com', :website => {:title => 'Test'}}
       response.should_not be_success
-      assigns[:current_object].should_not be_valid
+      assigns[:resource].should_not be_valid
     end
     it "should return error if domain is empty" do
-      post :create, {:subdomain => 'test', :website => {:site_title => 'Test'}}
+      post :create, {:subdomain => 'test', :website => {:title => 'Test'}}
       response.should_not be_success
-      assigns[:current_object].should_not be_valid
+      assigns[:resource].should_not be_valid
     end
   end
   describe ":destroy" do

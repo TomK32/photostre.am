@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Theme do
-  before(:each) do
+  def setup
     @theme = Factory(:theme)
   end
   it "@theme should be valid" do
@@ -9,9 +9,8 @@ describe Theme do
   end
 
   describe "associations" do
-    it { Theme.should belong_to(:author) }
-    it { Theme.should belong_to(:user) }
-    it { Theme.should have_many(:websites) }
+    it { Theme.should embed_one(:author) }
+    it { Theme.should embed_one(:user) }
   end
   
   it "should have states" do
