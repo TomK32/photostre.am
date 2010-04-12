@@ -10,9 +10,7 @@ class RelatedPhoto
   before_save :set_permalink
 
   belongs_to_related :photo
-  embedded_in :website, :polymorphic => true, :inverse_of => :related_photos
-
-#  key :permalink
+  embedded_in :parent, :polymorphic => true, :inverse_of => :related_photos
 
   scope :published, :where => {:status => 'published'}
 
@@ -21,6 +19,6 @@ class RelatedPhoto
   end
 
   def set_permalink
-    self.permalink = self.title.to_permalink if self.title and self.permalink.blank?
+    self.permalink = self.title.to_permalink if self.permalink.blank? && self.title
   end
 end
