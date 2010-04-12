@@ -20,7 +20,6 @@ class Photo
   scope :search, lambda {|term| {:where => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
 
   validates_uniqueness_of :remote_id, :scope => :source_id
-  validates_presence_of :permalink
   validates_presence_of :source_id
   validates_presence_of :web_url
   validates_presence_of :photo_urls

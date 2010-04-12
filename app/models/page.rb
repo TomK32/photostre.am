@@ -11,9 +11,6 @@ class Page
   field :status, :type => String, :default => 'published'
   field :tags, :type => Array
   field :parent_id, :type => String
-  
-  index :permalink, :unique => true
-  key :permalink
 
 #  attr_accessible :title, :body, :excerpt, :permalink, :tags, :position, :parent_id, :status
 #  attr_accessible :meta_geourl
@@ -33,11 +30,12 @@ class Page
   scope :published, :where => {:public => true}
   scope :roots, :where => {:parent_id => ''} # FIXME shouldn't that be nil?
 
+  before_validate :denormalize_body_and_excerpt
+  before_validate :set_permalink
+
   validates_presence_of :title, :body, :permalink
   validates_uniqueness_of :permalink
 
-  before_validate :denormalize_body_and_excerpt
-  before_validate :set_permalink
 
   STATUSES = %w(published draft deleted)
   STATUSES.each do |s|
@@ -51,7 +49,7 @@ class Page
   end
 
   def set_permalink
-    self.permalink ||= self.title.underscore
+    self.permalink = self.title.to_permalink if self.title and self.permalink.blank?
   end
   def tag_list=(new_tags)
     self.tags = new_tags.to_s.split(/, /).uniq

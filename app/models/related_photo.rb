@@ -21,6 +21,6 @@ class RelatedPhoto
   end
 
   def set_permalink
-    self.permalink = self.id if self.permalink.blank?
+    self.permalink = self.title.to_permalink if self.title and self.permalink.blank?
   end
 end

@@ -18,14 +18,13 @@ class Album
   index :permalink, :unique => true
 
   embedded_in :website, :inverse_of => :albums
-#  has_and_belongs_to_related_many :photos
-#  validates_presence_of :website_id, :title
-  validates_uniqueness_of :permalink
-
 
   before_validate :denormalize_body
   before_validate :set_key_photo
+  before_validate :set_permalink
 
+  validates_presence_of :title
+  validates_uniqueness_of :permalink
 
   STATUSES = %w(published draft deleted)
   STATUSES.each do |s|
@@ -52,6 +51,9 @@ class Album
     if self.key_photo.nil? and self.related_photos.first
       self.key_photo_id = self.related_photos.first.id
     end
+  end
+  def set_permalink
+    self.permalink = self.title.to_permalink if self.title and self.permalink.blank?
   end
 
 end
