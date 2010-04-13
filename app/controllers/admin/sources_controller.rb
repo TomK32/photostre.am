@@ -68,7 +68,7 @@ class Admin::SourcesController < Admin::ApplicationController
       source.token = source.flickr.auth.token.token
 
       # no user, let's create one on the fly. super fly.
-      user = User.new(:login => source.user_id,
+      user = User.new(:login => (source.username || source.flickr_nsid),
           :name => source.flickr.auth.token.user_real_name || source.username)
       user.sources << source
       user.save
