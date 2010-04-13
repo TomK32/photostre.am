@@ -6,19 +6,3 @@
   = hidden_field_tag :flickr, true
   %p.submit
     = submit_tag t(:'.submit_flickr'), :name => nil, :class => 'flickr'
-
-%h2= t(:'.login_via_openid')
-- form_tag(sessions_url) do
-  - if logged_in?
-    %p=t(:'.add_new_openid')
-    %p=t(:'.not_current_user', :user => current_user.name, :logout => link_to(t(:'.logout'), logout_path(:return_to => login_path)))
-  - else
-    %p
-      = textilize t(:'.openid_info')
-
-  %label{:for => "openid_identifier"} OpenID:
-  = text_field_tag "openid_identifier", 'http://www.flickr.com/photos/your-username'
-
-  %p.submit
-    = submit_tag t(:'.submit_openid'), :class => 'openid'
-
