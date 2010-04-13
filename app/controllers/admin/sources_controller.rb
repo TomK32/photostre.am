@@ -57,21 +57,20 @@ class Admin::SourcesController < Admin::ApplicationController
       source.authenticate(params[:frob])
       user = User.where(:'sources.flickr_nsid' => source.flickr.auth.token.user_id).first
 
-      # valid source, log the user in, all fine
-      if user
-        self.current_user=(user)
-        redirect_to dashboard_path and return
+      # no user, create one
+      if ! user
+        source.username = source.flickr.auth.token.username
+        source.flickr_nsid = source.flickr.auth.token.user_id
+        source.token = source.flickr.auth.token.token
+
+        # no user, let's create one on the fly. super fly.
+        user = User.new(:login => (source.username || source.flickr_nsid),
+            :name => source.flickr.auth.token.user_real_name || source.username)
+        user.sources << source
+        source.save!
       end
 
-      source.username = source.flickr.auth.token.username
-      source.flickr_nsid = source.flickr.auth.token.user_id
-      source.token = source.flickr.auth.token.token
-
-      # no user, let's create one on the fly. super fly.
-      user = User.new(:login => (source.username || source.flickr_nsid),
-          :name => source.flickr.auth.token.user_real_name || source.username)
-      user.sources << source
-      user.save
+      self.current_user=(user)
       redirect_to dashboard_path and return
     else
       # already logged in, let see if he already got that account authenticate
@@ -82,10 +81,12 @@ class Admin::SourcesController < Admin::ApplicationController
       if old_source
         old_source.update_attributes(:token => source.flickr.auth.token.token)
       else
-        # create a new source
-        current_user.sources.create!(:username => source.flickr.auth.token.username,
+        # store the new one in the user
+        user.sources << source
+        source.update_attributes(:username => source.flickr.auth.token.username,
           :flickr_nsid => source.flickr.auth.token.user_id,
           :token => source.flickr.auth.token.token)
+        source.save!
         redirect_to dashboard_url and return
       end
       redirect_to objects_url and return
