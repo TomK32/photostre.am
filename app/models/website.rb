@@ -54,10 +54,10 @@ class Website
 
   def create_default_pages
     return if self.system?
-    [self.pages.create(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.title),
-    self.pages.create(:title => 'About', :body => 'Want to know more about %s?' % self.title),
-    self.pages.create(:title => 'Contact', :body => 'The contact details of %s are yet missing.' % self.title)].each do |page|
-      page.user = self.user_ids.first # still could be nil
+    [self.pages.new(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.title),
+    self.pages.new(:title => 'About', :body => 'Want to know more about %s?' % self.title),
+    self.pages.new(:title => 'Contact', :body => 'The contact details of %s are yet missing.' % self.title)].each do |page|
+      page.user_id = self.user_ids.first
       page.save!
     end
     self.root_path = '/pages/' + self.pages.first.permalink
