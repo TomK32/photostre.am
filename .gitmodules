@@ -7,9 +7,6 @@
 [submodule "vendor/plugins/workling"]
 	path = vendor/plugins/workling
 	url = git://github.com/purzelrakete/workling.git
-[submodule "vendor/plugins/permalink_fu"]
-	path = vendor/plugins/permalink_fu
-	url = git://github.com/technoweenie/permalink_fu.git
 [submodule "vendor/plugins/rspec_on_rails_on_crack"]
 	path = vendor/plugins/rspec_on_rails_on_crack
 	url = git://github.com/technoweenie/rspec_on_rails_on_crack.git

@@ -7,7 +7,6 @@ gem 'rack-openid'
 gem 'compass'
 gem 'compass-960-plugin', :require => 'ninesixty'
 
-gem 'system_timer'
 gem 'mongo', '0.20.1'
 gem 'bson_ext', '0.20.1'
 gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :require => 'mongoid'
