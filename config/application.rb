@@ -13,6 +13,7 @@ require "rails/test_unit/railtie"
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 require 'lib/rack/domain_dispatcher'
 require 'lib/rack/theme_static'
+require 'lib/string_ext'
 
 module DasPhotowall
   class Application < Rails::Application
