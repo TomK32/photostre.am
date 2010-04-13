@@ -20,8 +20,7 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     return @parent if @parent
     if params[:website_id]
       @parent ||= @website = Website.find(params[:website_id])
-    else
-      @website Website.where(:"#{parent_}")
+    end
   end
   def owner_required
     website = parent.is_a?(Website) ? parent : parent.website
