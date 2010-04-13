@@ -1,7 +1,7 @@
 - title(t(:'.page_title'))
 
 %h2= t(:'.login_via_flickr')
-%p= textilize t(:'.flickr_info')
+%p= raw textilize(t(:'.flickr_info'))
 - form_tag session_path do
   = hidden_field_tag :flickr, true
   %p.submit
