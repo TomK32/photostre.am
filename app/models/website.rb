@@ -46,7 +46,7 @@ class Website
   end
 
   def url(domain = nil)
-    'http://' + (domain || self.domains.first)
+    ['http://', (domain || self.domains.first)].join
   end
 
   def tag_list=(new_tags)
