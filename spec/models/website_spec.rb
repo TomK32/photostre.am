@@ -32,6 +32,11 @@ describe Website do
       @website.domains = []
       @website.should_not be_valid
     end
+    it "should not validate duplicate domain names" do
+      website2 = Factory(:website, :domains => @website.domains)
+      website2.domains.should ==(@website.domains)
+      website2.should_not be_valid
+    end
 
 # NOTE There's a default value for status and mongoid just ignores my nil!
 #    it "should validate for presence of status" do

@@ -29,10 +29,10 @@ class Website
   scope :active, :where => {:status => %w(active)}
   after_create :create_default_pages
 
-  def validate
-    result = [domains.empty?]
-    result << domains.collect {|domain| Website.where(:domains => domain).count > 0 }
-    errors[:domains].add t(:'.unique') if result.flatten.include?(true)
+  validate do
+    domains.each do |domain|
+      errors.add(:domains, '%s is duplicate' % domain) if Website.where(:domains => domain, :id.ne => id).count > 0
+    end
   end
 
   STATUSES = %w(inactive active system deleted)
