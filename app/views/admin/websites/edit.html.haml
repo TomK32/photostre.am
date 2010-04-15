@@ -3,7 +3,7 @@
 
 = error_messages_for :website
 
-- form_for resource, {:url => resource_path(resource), :method => :put} do |form|
+= form_for resource, {:url => resource_path(resource), :method => :put} do |form|
   = render 'form', :form => form
   
   %p.submit= submit_tag t(:'.save'), :name => nil

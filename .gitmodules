@@ -1,3 +1,6 @@
 [submodule "vendor/plugins/workling"]
 	path = vendor/plugins/workling
 	url = git://github.com/purzelrakete/workling.git
+[submodule "vendor/plugins/dynamic_form"]
+	path = vendor/plugins/dynamic_form
+	url = git://github.com/rails/dynamic_form.git

@@ -5,7 +5,7 @@ class Admin::PhotosController < Admin::ApplicationController
   def update
     update! do |format|
       format.js { render :json => {:success => true}}
-      format.html { redirect_to object_path }
+      format.html { redirect_to resource_path }
     end
   end
   def index

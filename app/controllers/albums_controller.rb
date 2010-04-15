@@ -2,8 +2,8 @@ class AlbumsController < ApplicationController
   inherit_resources
   actions :all
   def show
-    render '404' if current_object.nil?
-    @photos = current_object.photos.published.paginate(pagination_defaults)
+    render '404' if resource.nil?
+    @photos = resource.photos.published.paginate(pagination_defaults)
     show!
   end
 

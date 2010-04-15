@@ -1,5 +1,5 @@
-= error_messages_for :album, :object => resource
+= error_messages_for :album
 
-- form_for resource||@website.albums.new, :url => admin_website_albums_path(@website) do |form|
-  = render :partial => 'form', :object => form
+= form_for resource||@website.albums.new, :url => admin_website_albums_path(@website) do |form|
+  = render :partial => 'form', :form => form
   %p.submit= submit_tag t(:'.submit')

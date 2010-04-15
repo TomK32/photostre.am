@@ -1,7 +1,7 @@
 
 = error_messages_for :website
 
-- form_for :website, resource||current_user.websites.new, :url => collection_path do |form|
+= form_for resource||current_user.websites.new, :url => collection_path do |form|
   = render 'form', :form => form
   
   %p.submit= submit_tag t(:'.create'), :name => nil

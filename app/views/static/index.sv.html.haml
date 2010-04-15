@@ -23,7 +23,7 @@
       = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
       för att behandla din websida.
   - else
-    - form_tag sessions_path do
+    = form_tag sessions_path do
       = hidden_field_tag :flickr, true
       %p.submit
         = submit_tag 'gå med grattis', :name => nil, :class => 'flickr'
@@ -31,8 +31,8 @@
 
 .column_1_3
   %h3 Senast webbsida
-  = render :partial => 'websites', :object => @websites
+  = render :partial => 'websites', :websites => @websites
 
 .column_2_3
   %h3 Senast albums
-  = render :partial => 'albums', :object => @albums
+  = render :partial => 'albums', :albums => @albums

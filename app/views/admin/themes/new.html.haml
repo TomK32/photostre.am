@@ -1,9 +1,7 @@
 
 = error_messages_for :theme
 
-- form_for(:theme, :url => objects_path) do |form|
-  = render :partial => "form", :object => form
+= form_for(:theme, :url => collection_path) do |form|
+  = render :partial => "form", :form => form
   %p.submit
     = submit_tag t(:'.create')
-
-= link_to 'Back', objects_path

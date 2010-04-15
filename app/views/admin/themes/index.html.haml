@@ -1,8 +1,8 @@
 - content_for :subnavigation do
-  %li= link_to t(:'.new'), new_object_path
+  %li= link_to t(:'.new'), new_resource_path
 
 %ul
-  - current_objects.each do |theme|
-    %li= link_to theme.name, object_path(theme)
+  - collection.each do |theme|
+    %li= link_to theme.name, resource_path(theme)
       
-= will_paginate(current_objects)
+= will_paginate(collection)

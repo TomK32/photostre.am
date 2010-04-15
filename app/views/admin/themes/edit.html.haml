@@ -1,6 +1,6 @@
 = error_messages_for :theme
 
-- form_for(:theme, :url => object_path, :html => { :method => :put }) do |form|
-  = render :partial => "form", :object => form
+= form_for(:theme, :url => resource_path, :html => { :method => :put }) do |form|
+  = render :partial => "form", :form => form
   %p.submit
     = submit_tag t(:'.save')

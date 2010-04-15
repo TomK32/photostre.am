@@ -1,25 +1,6 @@
-= error_messages_for :source
 = form.hidden_field :source_type, :value => 'Source::FlickrAccount'
 %p
   = t(:'.flickr')
 %p
   = form.label :username, t(:'.username')
   = form.text_field :username
-
-/
-  %p
-    = form.select :source_type, Source::ACTIVE_TYPES
-  
-  %p
-    For flickr it is enough to type in your username. You will then be redirected to
-    flickr to allow access to your data.
-  
-  %p
-    = form.label :username
-    = form.text_field :username
-
-  - unless form.object.new_record?
-    %p
-      = form.check_box :active
-      = form.label :active
-

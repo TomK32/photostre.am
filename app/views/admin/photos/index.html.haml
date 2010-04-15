@@ -31,7 +31,8 @@
 
   .column_2_2
     #info_draggable= render :partial => 'info_draggable'
-    #info_remove= render :partial => 'info_remove'
+    - if @website || @album
+      #info_remove= render :partial => 'info_remove'
     /#info.delete= render :partial => 'info_delete'
 
 %h2

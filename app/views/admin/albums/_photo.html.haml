@@ -1,2 +1,2 @@
 %div[photo]
-  = link_to image_tag(photo.photo_url(:thumbnail)), photo_url_with_host(photo, :album => current_object)
+  = link_to image_tag(photo.photo_url(:thumbnail)), photo_url_with_host(photo, :album => resource)

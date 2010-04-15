@@ -1,5 +1,5 @@
 
-- form_for :source, resource, :url => collection_path do |form|
-  = render :partial => 'form', :object => form
+= form_for resource, :url => collection_path do |form|
+  = render :partial => 'form', :form => form
   %p
     = submit_tag t(:'.add_source'), :name => nil

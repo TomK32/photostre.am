@@ -39,7 +39,7 @@ class Admin::SourcesController < Admin::ApplicationController
       if ! resource.authenticated?
         send("build_" + source_type.demodulize.underscore)
       else
-        redirect_to object_url(resource)
+        redirect_to resource_path(resource)
       end
     else
       flash[:error] = t(:'admin.sources.create.error')
@@ -89,10 +89,10 @@ class Admin::SourcesController < Admin::ApplicationController
         source.save!
         redirect_to dashboard_url and return
       end
-      redirect_to objects_url and return
+      redirect_to collection_path and return
     end
     flash[:error] = "Can't verify your account with flickr. Please retry"
-    redirect_to objects_url and return
+    redirect_to collection_path and return
   end
 
   private
@@ -103,8 +103,12 @@ class Admin::SourcesController < Admin::ApplicationController
     end
   end
 
+  def resource
+    @source ||= current_user.sources.find(params[:id])
+  end
+
   def collection
-    @resources ||= current_user.sources.find(:all)
+    @sources ||= current_user.sources.find(:all)
   end
 
   def build_flickr_account
