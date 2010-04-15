@@ -24,6 +24,7 @@ gem 'inherited_resources'
 gem 'capistrano'
 gem 'haml', :require => 'haml'
 gem 'RedCloth'
+gem 'will_paginate', :branch => 'rails3'
 
 gem 'tomk32-flickr_fu', :require => 'flickr_fu'
 
@@ -31,7 +32,7 @@ gem "rspec", :git => 'git://github.com/rspec/rspec.git'
 gem "rspec-rails", :git => 'git://github.com/rspec/rspec-rails.git'
 gem "rspec-mocks", :git => 'git://github.com/rspec/rspec-mocks.git'
 gem "factory_girl", :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
-gem "shoulda", :git => 'git://github.com/thoughtbot/shoulda.git', :branch => 'rails3', :group => :test
+gem "shoulda", :git => 'git://github.com/TomK32/shoulda.git'
 gem "webrat"
 gem "rspec-core", :git => 'git://github.com/rspec/rspec-core.git'
 gem "rspec-expectations", :git => 'git://github.com/rspec/rspec-expectations.git'

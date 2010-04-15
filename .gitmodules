@@ -1,24 +1,3 @@
-[submodule "vendor/plugins/will_paginate"]
-	path = vendor/plugins/will_paginate
-	url = git://github.com/mislav/will_paginate.git
 [submodule "vendor/plugins/workling"]
 	path = vendor/plugins/workling
 	url = git://github.com/purzelrakete/workling.git
-[submodule "vendor/plugins/rspec_on_rails_on_crack"]
-	path = vendor/plugins/rspec_on_rails_on_crack
-	url = git://github.com/technoweenie/rspec_on_rails_on_crack.git
-[submodule "vendor/plugins/rspec-on-rails-matchers"]
-	path = vendor/plugins/rspec-on-rails-matchers
-	url = git://github.com/ohammersmith/rspec-on-rails-matchers.git
-[submodule "vendor/rails"]
-	path = vendor/rails
-	url = git://github.com/rails/rails.git
-[submodule "vendor/plugins/webrat"]
-	path = vendor/plugins/webrat
-	url = git://github.com/brynary/webrat.git
-[submodule "vendor/plugins/rspec"]
-	path = vendor/plugins/rspec
-	url = git://github.com/dchelimsky/rspec.git
-[submodule "vendor/plugins/rspec-rails"]
-	path = vendor/plugins/rspec-rails
-	url = git://github.com/dchelimsky/rspec-rails.git
