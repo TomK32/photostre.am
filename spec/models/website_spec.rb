@@ -14,11 +14,15 @@ describe Website do
       @website.user_ids.first.should be_a(String)
       User.find(@website.user_ids[0]).id.should ==(@website.user_ids[0])
     end
-    it "should have a theme" do
-      @website.theme.should be_a(Theme)
+    it "should embed a theme" do
+      association = Website.associations['theme']
+      association.klass.should ==(Theme)
+      association.association.should ==(Mongoid::Associations::EmbedsOne)
     end
-    it "should have many albums" do
-      @website.albums.new.should be_a(Albums)
+    it "should embed many albums" do
+      association = Website.associations['albums']
+      association.klass.should ==(Album)
+      association.association.should ==(Mongoid::Associations::EmbedsMany)
     end
   end
   describe "validations" do

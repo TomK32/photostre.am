@@ -6,14 +6,18 @@ class Website
   field :status, :type => String, :default => 'active', :required => true
   field :user_ids, :type => Array, :default => []
   field :domains, :type => Array, :default => []
+  index :domains
   field :description, :type => String
   field :tracking_code, :type => String
-  field :root_path, :type => String
+  field :root_path, :type => String, :default => '/pages/home'
   field :tags, :type => Array
   field :related_photos, :type => Array
   embed_many :related_photos
+  alias_attribute :photos, :related_photos
 
-#  alias_attribute :related_photos, :photos
+  validates_presence_of :title
+  validates_presence_of :domains
+  validates_presence_of :status
 
   embed_many :pages
   embed_many :albums
@@ -27,7 +31,7 @@ class Website
 
   def validate
     result = [domains.empty?]
-    result << domains.collect {|domain| Website.where(:domains => domain).size > 0 }
+    result << domains.collect {|domain| Website.where(:domains => domain).count > 0 }
     errors[:domains].add t(:'.unique') if result.flatten.include?(true)
   end
 
@@ -54,9 +58,9 @@ class Website
 
   def create_default_pages
     return if self.system?
-    [self.pages.new(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.title),
-    self.pages.new(:title => 'About', :body => 'Want to know more about %s?' % self.title),
-    self.pages.new(:title => 'Contact', :body => 'The contact details of %s are yet missing.' % self.title)].each do |page|
+    [self.pages.build(:title => 'Home', :body => 'Welcome to the photo portfolio of %s' % self.title),
+    self.pages.build(:title => 'About', :body => 'Want to know more about %s?' % self.title),
+    self.pages.build(:title => 'Contact', :body => 'The contact details of %s are yet missing.' % self.title)].each do |page|
       page.user_id = self.user_ids.first
       page.save!
     end
