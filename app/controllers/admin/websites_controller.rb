@@ -4,6 +4,8 @@ class Admin::WebsitesController < Admin::ApplicationController
 
   before_filter :owner_required, :except => [:create, :new, :index]
   def create
+    resource = build_resource
+
     resource.user_ids << current_user.id
 
     # TODO rewrite to allow multiple domains
