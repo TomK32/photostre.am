@@ -13,6 +13,10 @@ class Photo
   field :photo_urls, :type => Hash
   field :title, :type => String
   field :source_id, :type => String
+  field :remote_id, :type => String
+  field :web_url, :type => String
+  field :taken_at, :type => DateTime
+  field :tags, :type => Array, :default => []
 
   scope :ordered, :order_by => 'created_at DESC, id DESC'
   scope :published, :where => {:public => true}
@@ -25,7 +29,7 @@ class Photo
   validates_presence_of :photo_urls
 
   def source(args)
-    self.user.sources.find source_id
+    self.user.sources.find(self.source_id)
   end
 
 

@@ -13,7 +13,7 @@ class Source
 #  index [:username, :_type], :unique => true
 
   ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', 'Source::FlickrAccount']]
-
+  STATUSES = %w(inactive active deleted updating)
 
 #  validates_presence_of :title
 #  validates_length_of :title, :minimum => 3

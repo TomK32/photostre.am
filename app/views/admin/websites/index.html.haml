@@ -1,13 +1,11 @@
 - content_for :info do
   = raw textilize(t(:'.info', :domain_faq_link => faq_url(:action => 'domains')))
+- content_for :subnavigation do
+  = link_to t(:'.new'), new_resource_path
 
 - if collection.empty?
   %p.error= t(:'.no_websites')
   = t(:'.add_new_website', :link => link_to(t(:'.new_website'), new_admin_website_url))
 - else
-  / TODO subscription limit
-  You may add a
-  = link_to(t(:'.new'), new_admin_website_path) + '.'
-
   = render :partial => 'website', :collection => collection
-  
+

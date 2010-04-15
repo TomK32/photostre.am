@@ -5,18 +5,18 @@
   = form.label :tags, t(:'.tags')
   = form.text_field :tag_list
 %p
-  = form.label :description, t(:'.description')
+  = form.label :description, raw(t(:'.description'))
   = form.text_field :description
 - if form.object.new_record?
   %p
     = form.label :subdomain, t(:'.subdomain')
     = text_field_tag :subdomain, params[:subdomain], :class => 'small'
     = '.'
-    = select_tag :domain, options_for_select(Website.system.all.collect(&:domains).collect{|d|[d,d]})
+    = select_tag :domain, options_for_select(Website.system.all.collect(&:domains).flatten.collect{|d|[d,d]})
 - else
   %p.info= t(:'.change_domain')
 %p
-  = form.label :root_path, t(:'.root_path')
+  = form.label :root_path, raw(t(:'.root_path'))
   = form.text_field :root_path, :value => form.object.root_path || '/photos'
 %p
   = form.label :tracking_code, t(:'.tracking_code')

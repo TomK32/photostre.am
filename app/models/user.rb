@@ -3,6 +3,7 @@ class User
   include Mongoid::Timestamps
 
   field :email, :type => String
+  field :login, :type => String
 
   has_many_related :photos
   embed_many :sources
