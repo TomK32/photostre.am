@@ -1,7 +1,5 @@
-- title(current_object.title)
-
-%div[current_object]
-  .body= current_object.body_html
+%div[resource]
+  .body= resource.body_html
 
   #photos
     - @photos.each do |photo|

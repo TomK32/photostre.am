@@ -5,6 +5,8 @@ sv:
         website_manager: "webbsida adminstratör"
         photo_manager: "foto administratör"
   admin:
+    dashboard:
+      page_title: 'Instrumäntbräda'
     albums:
       new:
         page_title: 'Add an album "{{domain}}"'

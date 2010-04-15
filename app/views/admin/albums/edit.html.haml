@@ -1,5 +1,3 @@
-- title(t(:'.page_title', :album => resource.title))
-
 = error_messages_for :album
 
 - form_for(:album, :url => admin_website_album_path(@album.website, @album), :html => { :method => :put }) do |form|
