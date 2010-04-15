@@ -3,8 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Album do
   before :each do
     @website = Factory(:website)
-    @album = @website.albums.build(Factory(:album).attributes)
-    @album.save
+    @album = @website.albums.build(Factory.build(:album).attributes)
+    @album.save!
   end
   it "should be valid" do
     @album.should be_valid
@@ -15,11 +15,13 @@ describe Album do
     it { should validate_presence_of(:body) }
     it { should validate_presence_of(:body_html) }
   end
+  
   describe "associations" do
     it "should be embedded in a website" do
       association = Page.associations['website']
       association.klass.should ==(Website)
       association.association.should ==(Mongoid::Associations::EmbeddedIn)
+      association.inverse_of.should ==(:pages)
     end
   end
   describe "status" do
@@ -44,7 +46,21 @@ describe Album do
       @album.save
       @album.permalink.should ==('my-album-0')
     end
-    it "should have a scope on the permalink"
+    it "should not validate duplicate permalinks" do
+      album_with_duplicate_title = @website.albums.build(Factory.build(:album, :title => @album.title, :permalink => @album.permalink).attributes)
+      album_with_duplicate_title.should_not be_valid
+    end
+    it "should append an index to duplicate permalinks" do
+      @website.albums.collect(&:permalink).should ==(@website.albums.collect(&:permalink).uniq)
+      @album.permalink.should_not be_blank
+      album_with_duplicate_title = @website.albums.build(Factory.build(:album, :title => @album.title).attributes)
+      album_with_duplicate_title.save
+      
+      @album.permalink.should_not ==(album_with_duplicate_title.permalink)
+      @album.title.should ==(album_with_duplicate_title.title)
+      @website.albums.collect(&:permalink).should ==(@website.albums.collect(&:permalink).uniq)
+    end
+    
   end
   
   it "should set body_html" do

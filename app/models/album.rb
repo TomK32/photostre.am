@@ -8,12 +8,12 @@ class Album
   field :body_html, :type => String
   field :status, :type => String, :required => true, :default => 'published'
   field :key_photo_id, :type => String
-  field :parent_id, :type => String
+  field :parent_id, :type => String, :default => nil
 
   scope :published, :where => {:status => 'published'}
   scope :latest, :order_by => [:updated_at, 'desc']
   scope :for_select, :select => 'id, title'
-  scope :roots, :where => {:parent_id => nil}
+  scope :roots, where({:parent_id => nil})
   embed_many :related_photos
   alias_attribute :photos, :related_photos
 
@@ -26,13 +26,19 @@ class Album
   before_validate :set_key_photo
   before_validate :set_permalink
 
-  validates_presence_of :title
-  validates_uniqueness_of :permalink
+  validates_presence_of :title, :permalink
 
   STATUSES = %w(published draft deleted)
   STATUSES.each do |s|
     define_method("#{s}?".to_sym) { status == s}
     scope s.to_sym, :where => {:status => s}
+  end
+
+  validate(:status) do
+    errors.add(:status, 'invalid') if ! STATUSES.include?(self.status.to_s)
+    if website.albums.collect(&:permalink) != website.albums.collect(&:permalink).uniq
+      errors.add(:permalink, 'duplicate')
+    end
   end
 
   def key_photo
@@ -46,6 +52,13 @@ class Album
     key_photo.photo_url(default) || default
   end
 
+  def parent=(other_album)
+    self.parent_id = other_album.id
+  end
+  def parent
+    website.albums.find(parent_id) if parent_id
+  end
+
   def denormalize_body
     self.body_html = textilize(html_escape(self.body))
   end
@@ -56,7 +69,16 @@ class Album
     end
   end
   def set_permalink
-    self.permalink = self.title.to_permalink if self.title and self.permalink.blank?
+    if self.title and self.permalink.blank?
+      permalink = self.title.to_permalink.strip
+      permalink_index = nil
+      permalinks = website.albums.collect(&:permalink)
+      while permalinks.include?([permalink, permalink_index].join('-'))
+        permalink_index ||= 0
+        permalink_index += 1
+      end
+      self.permalink = [permalink, permalink_index].join('-')
+    end
   end
 
 end
