@@ -8,10 +8,10 @@ module ApplicationHelper
 
   def page_title(string = nil)
     string ||= :"#{controller_name}.#{action_name}.page_title"
-    if @title.blank? and defined?(resource) and resource.respond_to?(:title)
+    if @title.blank? and params[:id] and defined?(resource) and resource.respond_to?(:title)
       @title = t(string, :title => resource.title, :default => resource.title)
     else
-      @title = t(string, :default => @title)
+      @title = t(string, :default => @title||'')
     end
     [@title, (current_website.title || t(:'app.title'))].reject{|a|a.blank?}.compact.join(' // ')
   end
