@@ -33,7 +33,10 @@ class Photo
   end
 
 
-  def photo_url(size = :medium, default_file = 'default.png')
+  def photo_url(size = :m, default_file = 'default.png')
+    available_sizes = {:original => :o, :medium => :m, :thumbnail => :t, :small => :s, :icon => :i}
+    size = available_sizes[size] if available_sizes[size.to_sym]
+    size = :m if !available_sizes.values.include?(size.to_sym)
     photo_urls[size.to_s] || photo_urls.values.first || default_file
   end
 
@@ -44,6 +47,12 @@ class Photo
     self.tags = new_tags.to_s.split(/, /).uniq
   end
   def tag_list
+    [self.tags].flatten.join(', ')
+  end
+  def machine_tag_list=(new_tags)
+    self.tags = new_tags.to_s.split(/, /).uniq
+  end
+  def machine_tag_list
     [self.tags].flatten.join(', ')
   end
 

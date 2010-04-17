@@ -96,46 +96,44 @@ class Source::FlickrAccount < Source
     logger.debug "updating data for %s: %s" % [source_title, username]
     page = 1
     per_page = 200
-    TagList.delimiter = ' '
     while (page <= (person.photo_count / per_page) + 1)
-      logger.info "updating page %i for %s" % [page, self.title]
-      logger.debug "getting image %s to %s for %s" % [page * per_page, (page+1) * per_page, username]
+      puts "updating page %s for %s of %s" % [page, self.title, (person.photo_count / per_page + 1)]
+      puts "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
       # TODO change to use search with min_date and also to get private photos
       #      with extras url_o
       # flickr_photos = flickr.photos.search(:user_id => self.flickr_nsid, :min_upload_date => self.photos.first(:))
       flickr_photos = person.public_photos(:per_page => per_page, :page => page)
-      existing_photos = Photo.find(:all, :conditions => {:remote_id => flickr_photos.collect{|p| p.id }}, :select => :remote_id).collect{|p| p.remote_id }
-      flickr_photos.reject!{|p| existing_photos.include?(p.id)}
+      existing_photos = Photo.where(:source_id => self.id, :remote_id.in => flickr_photos.collect{|p| p.id }).only(:remote_id).collect{|p| p.remote_id.to_i }
+      flickr_photos.reject!{|p| existing_photos.include?(p.id.to_i)}
       flickr_photos.each do |photo|
 
         next if photo.media != 'photo'
-        local_photo = self.photos.find_by_remote_id(photo.id) || self.photos.new
-        next unless local_photo.new_record?
-        local_photo.attributes = {
+        photo_attr = {
           :title => photo.title,
           :remote_id => photo.id,
           :taken_at => photo.taken_at,
           :created_at => photo.uploaded_at,
           :updated_at => photo.updated_at,
           :description => photo.description,
-          :tag_list => TagList.new(photo.tags, {:parse => true}),
-          :machine_tag_list => TagList.new(photo.machine_tags, {:parse => true}),
+          :tag_list => photo.tags,
+          :machine_tag_list => photo.machine_tags,
           :web_url => photo.url_photopage,
-          :photo_url => photo.url(:original) || photo.url(:medium),
-          :thumbnail_url => photo.url(:thumbnail),
-          :medium_url => photo.url(:medium),
-          :icon_url => photo.url(:square),
+          :photo_urls => {
+              # Don't request :original unless you really need, it's an extra request!
+              # :o => photo.url(:original) || photo.url(:medium),
+              :t => photo.url(:thumbnail),
+              :m => photo.url(:medium),
+              :i => photo.url(:square)
+            },
           :username => photo.owner_name,
+          :public => photo.is_public == '1',
           :user_id => self.user.id,
-          :public => photo.is_public == '1'
+          :source_id => self.id
         }
-        unless local_photo.save(false)
-          logger.debug("Couldn't save photo %s: %s" % [photo.id, photo.url_photopage])
-          errors << local_photo.errors
-        end
+        local_photo = Photo.new(photo_attr)
+        local_photo.save(false)
       end
       page += 1
     end
-    return errors
   end
 end
