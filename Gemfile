@@ -26,7 +26,7 @@ gem 'haml', :require => 'haml'
 gem 'RedCloth'
 gem 'will_paginate', :branch => 'rails3'
 
-gem 'tomk32-flickr_fu', :require => 'flickr_fu'
+gem 'tomk32-flickr_fu', :require => 'flickr_fu', :git => 'git://github.com/TomK32/flickr_fu.git'
 
 gem "rspec", :git => 'git://github.com/rspec/rspec.git'
 gem "rspec-rails", :git => 'git://github.com/rspec/rspec-rails.git'

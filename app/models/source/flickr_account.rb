@@ -41,9 +41,10 @@ class Source::FlickrAccount < Source
   end
 
   def flickr(token = nil)
+    return @flickr if @flickr
     options = FLICKR_CONFIG
     options.merge!({:token => Flickr::Auth::Token.new(token)}) unless token.blank?
-    @flickr ||= Flickr.new(options)
+    @flickr = Flickr.new(options)
   end
   
   def photostream_url
@@ -97,12 +98,12 @@ class Source::FlickrAccount < Source
     page = 1
     per_page = 200
     while (page <= (person.photo_count / per_page) + 1)
-      puts "updating page %s for %s of %s" % [page, self.title, (person.photo_count / per_page + 1)]
-      puts "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
-      # TODO change to use search with min_date and also to get private photos
-      #      with extras url_o
-      # flickr_photos = flickr.photos.search(:user_id => self.flickr_nsid, :min_upload_date => self.photos.first(:))
-      flickr_photos = person.public_photos(:per_page => per_page, :page => page)
+      logger.debug "updating page %s for %s of %s" % [page, self.title, (person.photo_count / per_page + 1)]
+      logger.debug "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
+
+      flickr.photos.extras.merge!({:url_o => :original_url})
+      flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
+          :user_id => 'me', :auth_token => self.token)
       existing_photos = Photo.where(:source_id => self.id, :remote_id.in => flickr_photos.collect{|p| p.id }).only(:remote_id).collect{|p| p.remote_id.to_i }
       flickr_photos.reject!{|p| existing_photos.include?(p.id.to_i)}
       flickr_photos.each do |photo|
@@ -119,14 +120,14 @@ class Source::FlickrAccount < Source
           :machine_tag_list => photo.machine_tags,
           :web_url => photo.url_photopage,
           :photo_urls => {
-              # Don't request :original unless you really need, it's an extra request!
-              # :o => photo.url(:original) || photo.url(:medium),
+              :o => photo.url(:original) || photo.url(:medium),
               :t => photo.url(:thumbnail),
               :m => photo.url(:medium),
               :i => photo.url(:square)
             },
-          :username => photo.owner_name,
           :public => photo.is_public == '1',
+          :friend => photo.is_friend == '1',
+          :private => photo.is_private == '1',
           :user_id => self.user.id,
           :source_id => self.id
         }

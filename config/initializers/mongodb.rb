@@ -8,3 +8,9 @@ Mongoid.configure do |config|
   host = @settings["host"]
   config.master = Mongo::Connection.new(host, 27017, :logger => Rails.logger).db(name)
 end
+
+module Mongoid::Document
+  def logger
+    Rails.logger
+  end
+end
