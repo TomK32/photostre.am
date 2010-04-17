@@ -5,7 +5,7 @@ class Admin::SourcesController < Admin::ApplicationController
   actions :all
 
   def show
-    @photos = resource.photos.find(:all, :limit => 16, :order => 'created_at DESC')
+    @photos = resource.photos.paginate(pagination_defaults)
     show!
   end
 
@@ -62,6 +62,7 @@ class Admin::SourcesController < Admin::ApplicationController
         source.username = source.flickr.auth.token.username
         source.flickr_nsid = source.flickr.auth.token.user_id
         source.token = source.flickr.auth.token.token
+        source.is_pro = source.flickr.auth.token.is_pro
 
         # no user, let's create one on the fly. super fly.
         user = User.new(:login => (source.username || source.flickr_nsid),
@@ -85,7 +86,7 @@ class Admin::SourcesController < Admin::ApplicationController
         user.sources << source
         source.update_attributes(:username => source.flickr.auth.token.username,
           :flickr_nsid => source.flickr.auth.token.user_id,
-          :token => source.flickr.auth.token.token)
+          :token => source.flickr.auth.token.token, :is_pro => source.flickr.auth.token.is_pro)
         source.save!
         redirect_to dashboard_url and return
       end

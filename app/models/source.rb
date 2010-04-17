@@ -7,6 +7,7 @@ class Source
   field :username, :type => String
   field :authenticated_at, :type => DateTime
   field :last_updated_at, :type => DateTime
+  field :is_pro
 
   has_many_related :photos
   embedded_in :user, :inverse_of => :sources

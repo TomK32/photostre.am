@@ -48,6 +48,6 @@ class Admin::PhotosController < Admin::ApplicationController
       conditions = {:tags => params[:tags].split(/ ,/)}
     end
     params[:per_page] = 16 if params[:per_page].blank?
-    @photos ||= scope.paginate(pagination_defaults(:conditions => conditions))
+    @photos ||= scope.order_by(['created_at', :desc]).paginate(pagination_defaults(:conditions => conditions))
   end
 end
