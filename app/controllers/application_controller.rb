@@ -42,8 +42,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme_path
-    @current_theme_path ||= File.join(Rails.root, 'themes', current_website.theme.directory)
+    @current_theme_path ||= Rails.root.join('themes', current_website.theme.directory)
+    config.assets_dir = @current_theme_path.join('public')
+    @current_theme_path
   end
+  helper_method :current_theme_path
 
   def current_album
     return if params[:album_id].nil?

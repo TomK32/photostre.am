@@ -1,9 +1,8 @@
 - content_for :subnavigation do
   %li= link_to t(:'.show'), resource_path
-
 = error_messages_for :website
 
-= form_for resource, {:url => resource_path(resource), :method => :put} do |form|
+= form_for resource, {}, :url => admin_website_path(resource), :html => { :method => :put} do |form|
   = render 'form', :form => form
   
   %p.submit= submit_tag t(:'.save'), :name => nil

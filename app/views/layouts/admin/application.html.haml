@@ -3,13 +3,13 @@
   %head
     = render :partial => "shared/meta_head"
     = render :partial => "shared/head"
-    = javascript_include_tag(%w(jquery jrails jquery-ui admin admin/photo_manager))
-    = stylesheet_link_tag %w(admin/admin admin/forms admin/photos admin/websites admin/albums)
+    = javascript_include_tag %w(jquery jrails jquery-ui admin admin/photo_manager)
+    = stylesheet_link_tag %w(admin/admin admin/forms admin/photos admin/websites admin/albums), :cache => 'cache/admin'
   %body
     #container
       #header
         #title
-          = link_to h(current_website.title), '/', :title => t(:'layout.links.back_to_homepage')
+          = link_to h(current_website.title), dashboard_path, :title => t(:'layout.links.back_to_homepage')
         #navigation
         - content_for :subnavigation do
           %li= link_to t(:'.photo_manager'), admin_photos_path
