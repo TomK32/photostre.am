@@ -6,21 +6,24 @@ set :git_enable_submodules, 1
 set :deploy_via, :remote_cache
 set :deploy_to, "/var/www/#{application}"
 
-role :web, "ananasblau.com"
-role :app, "ananasblau.com"
-role :db,  "ananasblau.com", :primary => true
+role :web, "photostre.am"
+role :app, "photostre.am"
+role :db,  "photostre.am", :primary => true
 
 after "deploy:update_code", "deploy:link_shared_files"
+after "deploy:update_code", "bundle:pack"
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+namespace :bundle do
+  desc "pack"
+  task :pack do
+    run "cd #{release_path}; bundle pack"
+  end
+end
 
 namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
-
   desc "link shared files"
   task :link_shared_files, :roles => [:app] do
     %w(
