@@ -1,0 +1,24 @@
+flickr: &id001 !ruby/object:Flickr::Base 
+  api_key: 5e9b87e2f053331353d2259144850005
+  api_secret: 3840c260ae9ac464
+  auth: !ruby/object:Flickr::Auth 
+    flickr: *id001
+    token: 
+  people: !ruby/object:Flickr::People 
+    flickr: *id001
+  token: 
+  token_cache: 
+icon_farm: "1"
+icon_server: "23"
+is_admin: false
+is_pro: true
+location: Vienna, Austria
+mbox_sha1sum: ""
+nsid: 99884191@N00
+photo_count: 1525
+photo_first_taken: 1961-11-25 17:31:56 +01:00
+photo_first_upload: 2007-06-14 19:26:08 +02:00
+photos_url: http://www.flickr.com/photos/tomk32/
+profile_url: http://www.flickr.com/people/tomk32/
+realname: Thomas R. Koll
+username: TomK32
