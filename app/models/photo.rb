@@ -17,6 +17,9 @@ class Photo
   field :web_url, :type => String
   field :taken_at, :type => DateTime
   field :tags, :type => Array, :default => []
+  field :public, :type => Boolean
+  field :friends, :type => Boolean
+  field :family, :type => Boolean
 
   scope :ordered, :order_by => 'created_at DESC, id DESC'
   scope :published, :where => {:public => true}

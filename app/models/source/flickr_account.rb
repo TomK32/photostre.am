@@ -98,7 +98,6 @@ class Source::FlickrAccount < Source
     page = 1
     per_page = 200
     while (page <= (person.photo_count / per_page) + 1)
-      logger.debug "updating page %s for %s of %s" % [page, self.title, (person.photo_count / per_page + 1)]
       logger.debug "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
 
       flickr.photos.extras.merge!({:url_o => :original_url})
@@ -125,14 +124,13 @@ class Source::FlickrAccount < Source
               :m => photo.url(:medium),
               :i => photo.url(:square)
             },
-          :public => photo.is_public == '1',
-          :friend => photo.is_friend == '1',
-          :private => photo.is_private == '1',
+          :public => photo.public?,
+          :friend => photo.friend?,
+          :family => photo.family?,
           :user_id => self.user.id,
           :source_id => self.id
         }
-        local_photo = Photo.new(photo_attr)
-        local_photo.save(false)
+        Photo.create(photo_attr)
       end
       page += 1
     end
