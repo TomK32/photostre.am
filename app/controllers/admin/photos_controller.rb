@@ -37,8 +37,7 @@ class Admin::PhotosController < Admin::ApplicationController
       scope = @album.related_photos
       conditions ||= {:include => 'related_photos.photo'}
     else
-      scope ||= Photo
-      conditions = {:user_id => current_user.id}
+      scope ||= current_user.photos
     end
 
     if ! params[:search].blank?
