@@ -56,20 +56,23 @@ class Admin::SourcesController < Admin::ApplicationController
       source = Source::FlickrAccount.new
       source.authenticate(params[:frob])
       user = User.where(:'sources.flickr_nsid' => source.flickr.auth.token.user_id).first
+      if user
+        self.current_user=(user)
+        redirect_to dashboard_path and return
+      end
 
       # no user, create one
-      if ! user
-        source.username = source.flickr.auth.token.username
-        source.flickr_nsid = source.flickr.auth.token.user_id
-        source.token = source.flickr.auth.token.token
-        source.is_pro = source.person.is_pro
+      source.username = source.flickr.auth.token.username
+      source.flickr_nsid = source.flickr.auth.token.user_id
+      source.token = source.flickr.auth.token.token
+      source.is_pro = source.person.is_pro
 
-        # no user, let's create one on the fly. super fly.
-        user = User.new(:login => (source.username || source.flickr_nsid),
-            :name => source.flickr.auth.token.user_real_name || source.username)
-        user.sources << source
-        source.save!
-      end
+      # no user, let's create one on the fly. super fly.
+      user = User.new(:login => (source.username || source.flickr_nsid),
+          :name => source.flickr.auth.token.user_real_name || source.username)
+      user.sources << source
+      source.save
+
       if user.save
         self.current_user=(user)
         redirect_to dashboard_path and return
