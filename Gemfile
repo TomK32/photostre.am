@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :ref => '03aa7877f7b3a0eb5ed1bb48a30be74194c4177a'
 gem 'rack'
 gem 'rack-openid'
 
@@ -8,7 +8,7 @@ gem 'rack-openid'
 gem 'mongo', '0.20.1'
 gem 'bson_ext', '0.20.1'
 #gem 'builder'
-gem 'mongoid', :git => 'git://github.com/durran/mongoid.git'
+gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :ref => 'faa503603e09a77c4d1c0a9287cf5e48886c2ba2'
 
 # For background processes
 gem 'navvy', :git => 'git://github.com/jeffkreeftmeijer/navvy.git'
