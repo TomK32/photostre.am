@@ -10,9 +10,6 @@ gem 'bson_ext', '0.20.1'
 #gem 'builder'
 gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :ref => 'faa503603e09a77c4d1c0a9287cf5e48886c2ba2'
 
-# For background processes
-gem 'navvy', :git => 'git://github.com/jeffkreeftmeijer/navvy.git'
-
 # Deployment
 gem 'capistrano'
 

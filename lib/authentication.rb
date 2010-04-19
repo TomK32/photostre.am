@@ -16,7 +16,9 @@ module Authentication
 
   def current_user
     return nil if session[:user_id].blank?
-    @current_user ||= User.find(session[:user_id])
+    @current_user ||= User.where(:id => session[:user_id]).first
+    session[:user_id] = nil if @current_user.nil?
+    @current_user
   end
 
   def current_user=(user)
