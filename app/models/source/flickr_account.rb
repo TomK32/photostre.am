@@ -6,7 +6,7 @@ class Source::FlickrAccount < Source
   field :flickr_nsid, :type => String
 
 #  validates_presence_of :flickr_nsid
-  after_create :call_worker
+#  after_create :call_worker
   before_validate :set_title
   
   def validate_on_create
