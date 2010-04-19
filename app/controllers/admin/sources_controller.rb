@@ -70,9 +70,14 @@ class Admin::SourcesController < Admin::ApplicationController
         user.sources << source
         source.save!
       end
-
-      self.current_user=(user)
-      redirect_to dashboard_path and return
+      if user.save
+        self.current_user=(user)
+        redirect_to dashboard_path and return
+      else
+        @user = user
+        flash[:error] = 'Some error with your user'
+        render 'users/new' and return
+      end
     else
       # already logged in, let see if he already got that account authenticate
       source = Source::FlickrAccount.new
@@ -83,10 +88,11 @@ class Admin::SourcesController < Admin::ApplicationController
         old_source.update_attributes(:token => source.flickr.auth.token.token)
       else
         # store the new one in the user
-        user.sources << source
-        source.update_attributes(:username => source.flickr.auth.token.username,
-          :flickr_nsid => source.flickr.auth.token.user_id,
-          :token => source.flickr.auth.token.token, :is_pro => source.flickr.person.is_pro)
+        current_user.sources << source
+        source.username    = source.flickr.auth.token.username
+        source.flickr_nsid = source.flickr.auth.token.user_id
+        source.token       = source.flickr.auth.token.token
+        source.is_pro      = source.person.is_pro
         source.save!
         redirect_to dashboard_url and return
       end

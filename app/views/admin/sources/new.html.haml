@@ -1,5 +1,6 @@
 
-= form_for resource, :url => collection_path do |form|
-  = render :partial => 'form', :form => form
-  %p
-    = submit_tag t(:'.add_source'), :name => nil
+%p= t(:'.info')
+= form_tag session_path do
+  = hidden_field_tag :flickr, true
+  %p.submit
+    = submit_tag t(:'.submit_flickr'), :name => nil, :class => 'flickr'
