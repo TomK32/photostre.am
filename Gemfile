@@ -8,7 +8,7 @@ gem 'rack-openid'
 gem 'mongo', '0.20.1'
 gem 'bson_ext', '0.20.1'
 #gem 'builder'
-gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :ref => 'faa503603e09a77c4d1c0a9287cf5e48886c2ba2'
+gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :ref => '9ae4036c69a87db579c7885f69c274e7eb8d4367'
 
 # Deployment
 gem 'capistrano'
