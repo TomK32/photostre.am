@@ -86,7 +86,7 @@ class Admin::SourcesController < Admin::ApplicationController
         user.sources << source
         source.update_attributes(:username => source.flickr.auth.token.username,
           :flickr_nsid => source.flickr.auth.token.user_id,
-          :token => source.flickr.auth.token.token, :is_pro => source.flickr.auth.token.is_pro)
+          :token => source.flickr.auth.token.token, :is_pro => source.flickr.person.is_pro)
         source.save!
         redirect_to dashboard_url and return
       end
