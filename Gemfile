@@ -4,30 +4,32 @@ gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rack'
 gem 'rack-openid'
 
+# Database
+gem 'mongo', '0.20.1'
+gem 'bson_ext', '0.20.1'
+#gem 'builder'
+gem 'mongoid', :git => 'git://github.com/durran/mongoid.git'
+
+# For background processes
+gem 'navvy', :git => 'git://github.com/jeffkreeftmeijer/navvy.git'
+
+# Deployment
+gem 'capistrano'
+
+# Views and controller related
+gem 'haml', :require => 'haml'
+gem 'RedCloth'
 gem 'compass'
 gem 'compass-960-plugin', :require => 'ninesixty'
 
-gem 'mongo', '0.20.1'
-gem 'bson_ext', '0.20.1'
-gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :require => 'mongoid'
-
-gem 'transitions'
-
-gem 'ruby-openid', :require => 'openid'
 gem 'inherited_resources'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-#gem 'rcov'
-gem 'capistrano'
-gem 'haml', :require => 'haml'
-gem 'RedCloth'
 gem 'will_paginate', :branch => 'rails3'
 
-gem 'tomk32-flickr_fu', :require => 'flickr_fu', :git => 'git://github.com/TomK32/flickr_fu.git'
+gem 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
 
+# Testing
+gem "cucumber"
+gem "cucumber-rails"
 gem "rspec", :git => 'git://github.com/rspec/rspec.git'
 gem "rspec-rails", :git => 'git://github.com/rspec/rspec-rails.git'
 gem "rspec-mocks", :git => 'git://github.com/rspec/rspec-mocks.git'
@@ -36,3 +38,7 @@ gem "shoulda", :git => 'git://github.com/TomK32/shoulda.git'
 gem "webrat"
 gem "rspec-core", :git => 'git://github.com/rspec/rspec-core.git'
 gem "rspec-expectations", :git => 'git://github.com/rspec/rspec-expectations.git'
+
+# Other
+gem 'tomk32-flickr_fu', :require => 'flickr_fu', :git => 'git://github.com/TomK32/flickr_fu.git'
+gem 'ruby-openid', :require => 'openid'
