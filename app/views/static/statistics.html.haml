@@ -2,7 +2,10 @@
   = javascript_include_tag %w(raphael/raphael-min.js raphael/g.raphael-min.js raphael/g.pie-min.js raphael/g.line-min.js)
 
 = User.count
-users have imported
+users (of which
+= User.where('sources.is_pro' => 'true').count
+are pro users at flickr)
+have imported
 = Photo.count
 photos and created
 = Website.count
