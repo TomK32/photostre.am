@@ -1,0 +1,21 @@
+
+%h2 We are sorry, but this domain is not registered yet with us.
+%p
+  Maybe this domain existed in our system but someone switched it off,
+  or it's just not registered with us.
+
+%h2 Register this domain
+%p
+  If you've just pointed the name server entry to us and are now ready
+  to fill this domain with content, please proceed to the
+  = raw link_to('website_manager', new_admin_website_url(:website => {:domain => request.host}, :host => current_website.domains.first))
+  and create your website.
+
+%h2 What is this?
+%p
+  You are here at a nice flickr application that allows you to create portfolio website
+  from your existing flickr photostream. In just a few minutes this empty domain
+  could be just one of those portfolios, or a photoblog, or an electric, photographic rollercoaster.
+  Learn more
+  = raw link_to('about', static_url('about', :host => current_website.domains.first))
+  us.

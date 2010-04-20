@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   include Authentication
   before_filter :set_theme, :set_locale
+  before_filter :domain_not_found
   helper_method :parent
 
 
@@ -27,18 +28,20 @@ class ApplicationController < ActionController::Base
       @current_website ||= Website.active_or_system.where(:domains => host).first
     end
     if @current_website.nil?
-      flash.now[:error] = 'There is no domain %s registered with us or not active.' % request.host
+      @current_website = Website.where(:status => 'system').first
+      @domain_not_found = true
     end
-    @current_website ||= Website.where(:status => 'system').first
     return @current_website
   end
   helper_method :current_website
 
+  def domain_not_found
+    render 'static/domain_not_found', :status => '404' and return if @domain_not_found
+  end
+
   def set_theme
-    return if current_website.nil?
-    # use the websites theme for views
+    # use the websites theme to look for additional views templates
     self.prepend_view_path File.join(current_theme_path, 'views')
-#    ActionView::Helpers::AssetTagHelper::STYLESHEETS_DIR.replace(File.join(current_theme_path, 'public', 'stylesheets'))
   end
 
   def current_theme_path
