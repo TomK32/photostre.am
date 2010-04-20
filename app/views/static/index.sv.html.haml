@@ -23,7 +23,7 @@
       = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
       för att behandla din websida.
   - else
-    = form_tag sessions_path do
+    = form_tag session_path do
       = hidden_field_tag :flickr, true
       %p.submit
         = submit_tag 'gå med grattis', :name => nil, :class => 'flickr'
