@@ -7,7 +7,7 @@
     #container
       #header
         #title
-          = link_to h(current_website.title), root_path, :title => t(:'layout.links.back_to_homepage')
+          = link_to h(current_website.title), root_url(:host => current_website.domains.first), :title => t(:'layout.back_to_homepage')
           .subtitle= current_website.description
         #navigation
           = render :partial => 'shared/navigation' if %w(static dashboard sessions websites).include?(controller_name)

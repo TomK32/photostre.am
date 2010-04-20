@@ -1,7 +1,7 @@
 #footer
   %p
     Copyright (C) 2009
-    = link_to(h(current_website.title), root_path) << '.'
+    = link_to(h(current_website.title), root_url(:host => current_website.domains.first)) << '.'
     All photos displayed are copyrighted by their respective owners.
     A product by <a href="http://www.ananasblau.com">ananasblau</a>.
   %p#help_navigation

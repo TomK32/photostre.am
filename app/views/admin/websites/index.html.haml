@@ -5,7 +5,7 @@
 
 - if collection.empty?
   %p.error= t(:'.no_websites')
-  = t(:'.add_new_website', :link => link_to(t(:'.new_website'), new_admin_website_url))
+  = raw t(:'.add_new_website', :link => link_to(t(:'.new_website'), new_admin_website_url))
 - else
   = render :partial => 'website', :collection => collection
 
