@@ -62,10 +62,10 @@ class Admin::SourcesController < Admin::ApplicationController
       end
 
       # no user, create one
-      source.username = source.flickr.auth.token.username
+      source.username    = source.flickr.auth.token.username
       source.flickr_nsid = source.flickr.auth.token.user_id
-      source.token = source.flickr.auth.token.token
-      source.is_pro = source.person.is_pro
+      source.token       = source.flickr.auth.token.token
+      source.is_pro      = true if source.person.is_pro
 
       # no user, let's create one on the fly. super fly.
       user = User.new(:login => (source.username || source.flickr_nsid),
@@ -95,7 +95,7 @@ class Admin::SourcesController < Admin::ApplicationController
         source.username    = source.flickr.auth.token.username
         source.flickr_nsid = source.flickr.auth.token.user_id
         source.token       = source.flickr.auth.token.token
-        source.is_pro      = source.person.is_pro
+        source.is_pro      = true if source.person.is_pro
         source.save!
         redirect_to dashboard_url and return
       end
