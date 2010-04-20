@@ -4,12 +4,15 @@
 @font-face
   font-family: TitilliumMaps26
   src: url(/fonts/TitilliumMaps26L003.otf) format("opentype")
+h1, h2, h3, #title, strong
+  font-family: TitilliumMaps26
+
 
 body
   :background-color = !color_background
   :color = !color_text
   :font-size x-small
-  font-family: TitilliumMaps26, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"
+  font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"
 #container
   :font-size 160%
 
@@ -22,8 +25,9 @@ a
     border: none
 
 p
-  :font-size 110%
-  :line-height 1.3em
+  font-size: 110%
+  line-height: 1.3em
+  margin: 0.5em 0px
 
 ul
   :margin 0 0 0 20px
