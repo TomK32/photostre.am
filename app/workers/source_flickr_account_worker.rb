@@ -1,22 +1,14 @@
-class SourceFlickrAccountWorker < Workling::Base
-  def update_data(options)
-    source = Source::FlickrAccount.find(options[:id])
-    if source.updating?
-      return
-    else
-      source.update_attribute(:state, 'updating')
-      begin
-        puts 'updating'
-        source.update_data
-        puts 'done with updating'
-        source.update_attributes(:state => 'active', :updated_at => Time.now)
-      rescue RuntimeError => ex
-        # possibly run out of memory, root knows
-        # but just let's kick another workling
-        source.update_attribute(:state, 'active')
-        puts ex
-        source.call_worker
-      end
+class SourceFlickrAccountWorker
+  def self.update_data(options)
+    source = User.where({'sources._id' => options[:id]}).first.sources.find(options[:id])
+    return if source.updating?
+    begin
+      source.update_data
+    rescue RuntimeError => ex
+      # possibly run out of memory, root knows
+      # but just let's kick another workling
+      source.update_attributes(:status => 'active')
+      source.call_worker
     end
   end
 end

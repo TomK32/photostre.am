@@ -15,6 +15,10 @@ class Source
 
   ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', 'Source::FlickrAccount']]
   STATUSES = %w(inactive active deleted updating)
+  STATUSES.each do |s|
+    define_method("#{s}?".to_sym) { status == s}
+    scope s.to_sym, :where => {:status => s}
+  end
 
 #  validates_presence_of :title
 #  validates_length_of :title, :minimum => 3

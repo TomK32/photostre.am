@@ -26,10 +26,11 @@ class Photo
   scope :recent, :order_by => 'id DESC'
   scope :search, lambda {|term| {:where => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
 
-  validates_uniqueness_of :remote_id, :scope => :source_id
   validates_presence_of :source_id
   validates_presence_of :web_url
   validates_presence_of :photo_urls
+
+  index [[:source_id], [:remote_id]], :unique => true
 
   def source(args)
     self.user.sources.find(self.source_id)

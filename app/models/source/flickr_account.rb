@@ -5,8 +5,8 @@ class Source::FlickrAccount < Source
   field :token, :type => String
   field :flickr_nsid, :type => String
 
-#  validates_presence_of :flickr_nsid
-#  after_create :call_worker
+  validates_presence_of :flickr_nsid
+  after_create :call_worker
   before_validate :set_title
   
   def validate_on_create
@@ -84,27 +84,28 @@ class Source::FlickrAccount < Source
   end
   
   def call_worker
-    return if self.deleted?
+#    return if self.deleted?
     return unless self.authenticated?
-    self.update_attribute(:status, 'active') if self.updating?
-    SourceFlickrAccountWorker.asynch_update_data(:id => self.id) rescue nil
+    Navvy::Job.enqueue(SourceFlickrAccountWorker, :update_data, {:id => self.id})
   end
 
   # TODO import and create albums
   def update_data
     return unless authenticated?
-    errors = []
-    logger.debug "updating data for %s: %s" % [source_title, username]
+#    logger.debug "updating data for %s: %s" % [source_title, username]
     page = 1
     per_page = 200
     while (page <= (person.photo_count / per_page) + 1)
-      logger.debug "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
+#      logger.debug "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
 
       flickr.photos.extras.merge!({:url_o => :original_url})
       flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
           :user_id => 'me', :auth_token => self.token)
-      existing_photos = Photo.where(:source_id => self.id, :remote_id.in => flickr_photos.collect{|p| p.id }).only(:remote_id).collect{|p| p.remote_id.to_i }
-      flickr_photos.reject!{|p| existing_photos.include?(p.id.to_i)}
+      existing_photos = Photo.where(:source_id => self.id,
+          :remote_id.in => flickr_photos.collect{|p| p.id }
+        ).only(:remote_id).collect{|p| p.remote_id.to_s }
+      flickr_photos.reject!{|p| existing_photos.include?(p.id.to_s) }
+
       flickr_photos.each do |photo|
 
         next if photo.media != 'photo'
