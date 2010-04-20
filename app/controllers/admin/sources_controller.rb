@@ -99,10 +99,10 @@ class Admin::SourcesController < Admin::ApplicationController
         source.save!
         redirect_to dashboard_url and return
       end
-      redirect_to collection_path and return
+      redirect_to dashboard_url and return
     end
     flash[:error] = "Can't verify your account with flickr. Please retry"
-    redirect_to collection_path and return
+    render 'new' and return
   end
 
   private
