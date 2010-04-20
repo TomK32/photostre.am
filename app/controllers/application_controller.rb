@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password").
   protected
 
+  rescue_from Mongoid::Errors::DocumentNotFound do |exception|
+    render 'static/404', :status => 404
+    return
+  end
+
+
   def pagination_defaults(args = {})
     {:page => params[:page], :per_page => params[:per_page]}.merge(args)
   end

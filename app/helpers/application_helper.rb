@@ -8,8 +8,9 @@ module ApplicationHelper
 
   def page_title(string = nil)
     string ||= :"#{controller_name}.#{action_name}.page_title"
-    if @title.blank? and params[:id] and defined?(resource)
-      @title = t(string, :title => resource.title, :default => resource.title)
+    if @title.blank? and params[:id]
+      object = resource rescue nil
+      @title = t(string, :title => object.title, :default => object.title) if object
     else
       @title = t(string, :default => @title||'')
     end
@@ -17,7 +18,7 @@ module ApplicationHelper
   end
 
   def meta_tags(object = nil)
-    object ||= resource if params[:id] and defined?(resource)
+    object ||= resource if params[:id] and defined?(resource) rescue nil
     return if object.nil?
     [:meta_geourl, :meta_keywords, :meta_description].each do |method|
       if object.respond_to?(method) and ! object.send(method).blank?

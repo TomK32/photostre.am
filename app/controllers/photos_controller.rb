@@ -3,11 +3,6 @@ class PhotosController < ApplicationController
   inherit_resources
   actions :show, :index
 
-  def show
-    render 'static/404', :status => 404 and return if resource.nil?
-    show!
-  end
-
   def index
     @photos = parent.related_photos.paginate(pagination_defaults)
   end

@@ -4,7 +4,6 @@ class AlbumsController < ApplicationController
   actions :show, :index
 
   def show
-    render 'static/404', :status => 404 and return if resource.nil?
     @photos = resource.photos.published.paginate(pagination_defaults)
     show!
   end
