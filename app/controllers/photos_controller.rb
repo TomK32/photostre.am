@@ -4,8 +4,6 @@ class PhotosController < ApplicationController
   actions :show, :index
 
   def show
-    @photo = parent.related_photos.where(:permalink => params[:id]).first
-    @photo ||=  parent.related_photos.where(:_id => params[:id]).first
     render 'static/404', :status => 404 and return if resource.nil?
     show!
   end
@@ -15,6 +13,9 @@ class PhotosController < ApplicationController
   end
 
   private
+  def resource
+    @photo = parent.related_photos.where(:permalink => params[:id]).first
+  end
   def parent
     return @parent if @parent
     %w(Album Website Page).each do |klass|
