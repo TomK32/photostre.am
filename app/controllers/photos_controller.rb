@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
 
-  inherited_resources
+  inherit_resources
   actions :show, :index
 
   def show
