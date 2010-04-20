@@ -1,6 +1,12 @@
 class PagesController < ApplicationController
+
   inherit_resources
   actions :show, :index
+
+  def show
+    render 'static/404', :status => 404 and return if @page.nil?
+    show!
+  end
 
   private
   def resource

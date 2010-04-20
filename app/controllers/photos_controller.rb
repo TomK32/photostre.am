@@ -1,9 +1,13 @@
 class PhotosController < ApplicationController
 
+  inherited_resources
+  actions :show, :index
+
   def show
     @photo = parent.related_photos.where(:permalink => params[:id]).first
     @photo ||=  parent.related_photos.where(:_id => params[:id]).first
-    redirect_to :action => :index if @photo.nil?
+    render 'static/404', :status => 404 and return if resource.nil?
+    show!
   end
 
   def index
