@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def meta_tags(object = nil)
-    object ||= resource if defined?(resource) and !resource.nil?
+    object ||= resource if defined?(resource) and params[:id] and !resource.nil?
     return if object.nil?
     [:meta_geourl, :meta_keywords, :meta_description].each do |method|
       if object.respond_to?(method) and ! object.send(method).blank?
