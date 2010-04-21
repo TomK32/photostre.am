@@ -1,5 +1,5 @@
 
 = form_for(:photo, :url => resource_path, :html => { :method => :put }) do |form|
   = form.error_messages_for
-  = render :partial => "form", :form => form
+  = render "form", :form => form
   %p= submit_tag t(:'.submit')

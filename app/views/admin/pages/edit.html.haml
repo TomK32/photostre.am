@@ -3,4 +3,4 @@
 = form_for(:page, :url => resource_url, :html => { :method => :put }) do |form|
   = render "form", :form => form
 
-  %p= submit_tag t(:'.submit')
+  %p.submit= submit_tag t(:'.submit'), :name => nil

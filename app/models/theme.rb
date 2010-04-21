@@ -11,7 +11,8 @@ class Theme
   field :version, :type => String
 
   belongs_to_related :author, :class_name => 'User'
-  validates_uniqueness_of :directory
+  embedded_in :website, :inverse_of => :theme
+
   validates_presence_of :author_id, :name, :directory
 
   STATUSES = %w(draft deleted public private paid)
