@@ -55,8 +55,11 @@ en:
         edit: 'Edit'
         see_online: 'See online'
         website: 'Back to website'
+        tags: 'Tags'
+        no_tags: 'No tags'
       edit:
         page_title: 'Edit "{{title}}"'
+        submit: 'Save page'
     photos:
       error:
         no_photos_yet: No photos yet

@@ -7,5 +7,5 @@
 - else
   %ul#pages
     - collection.each do |page|
-      %ul[page]= link_to page.title, edit_admin_website_page_path(page.website_id, page)
+      %ul[page]= link_to page.title, resource_path(page)
 

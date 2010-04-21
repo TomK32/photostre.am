@@ -5,13 +5,16 @@
     %li= link_to t(:'.see_online'), page_path(resource.permalink, :host => resource.website.domains.first)
 
 - unless resource.published?
-  .notice= t(:'.not_published', :edit_link => link_to(t(:'.edit'), edit_admin_website_page_path(resource.website.id, resource.id)))
+  .notice= raw t(:'.not_published', :edit_link => link_to(t(:'.edit'), edit_resource_path))
 
 
 %div[resource]
   %p.body
-    = resource.body_html
+    = raw resource.body_html
 
-  %p#tags
-    %strong Tags
-    = h resource.tags.join(', ')
+  %h3= t(:'.tags')
+  %p.tags
+    - if resource.tags.empty?
+      = t(:'.no_tags')
+    - else
+      = h resource.tags.join(', ')

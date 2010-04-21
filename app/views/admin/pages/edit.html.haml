@@ -1,5 +1,6 @@
 = error_messages_for :page
 
 = form_for(:page, :url => resource_url, :html => { :method => :put }) do |form|
-  = render :partial => "form", :form => form
-  %p= submit_tag "Update"
+  = render "form", :form => form
+
+  %p= submit_tag t(:'.submit')
