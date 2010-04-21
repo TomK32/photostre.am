@@ -16,7 +16,7 @@ after "deploy:update_code", "bundle:pack"
 namespace :bundle do
   desc "pack"
   task :pack do
-    run "cd #{release_path}; bundle pack"
+    run "cd #{release_path}; bundle install; bundle pack"
   end
 end
 
@@ -27,9 +27,10 @@ namespace :deploy do
   desc "link shared files"
   task :link_shared_files, :roles => [:app] do
     %w(
-      config/database.yml
+      config/database.mongo.yml
       config/flickr.yml
-      themes/websites
+      public/themes
+      log
     ).each do |f|
       run "ln -nsf #{shared_path}/#{f} #{release_path}/#{f}"
     end
