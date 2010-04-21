@@ -3,7 +3,7 @@
 
 = User.count
 users (of which
-= User.where('sources.is_pro' => 'true').count
+= User.where('sources.is_pro' => true).count
 are pro users at flickr)
 have imported
 = Photo.count
