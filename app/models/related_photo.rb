@@ -15,7 +15,7 @@ class RelatedPhoto
   scope :published, :where => {:status => 'published'}
 
   def method_missing(method, *args, &block)
-    self.photo.send(method, args, &block)
+    self.photo.send(method, *args, &block)
   end
 
   def set_permalink

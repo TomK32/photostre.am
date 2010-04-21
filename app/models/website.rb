@@ -42,7 +42,7 @@ class Website
   end
 
   def theme
-    attributes[:theme] || Theme.new(:directory => :default)
+    @theme || Theme.new(:directory => 'default')
   end
 
   def url(domain = nil)
