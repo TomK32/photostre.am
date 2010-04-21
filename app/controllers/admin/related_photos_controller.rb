@@ -8,8 +8,8 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
       flash[:error] = t(:'related_photos.not_allowed')
       redirect_to dashboard_path and return
     end
-    parent.related_photos.build(params[:related_photo])
-    parent.save!
+    related_photo = parent.related_photos.build(params[:related_photo])
+    related_photo.save!
     respond_to do |format|
       format.js { render :json => :success, :layout => false }
     end
