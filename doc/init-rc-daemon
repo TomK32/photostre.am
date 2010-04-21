@@ -1,0 +1,84 @@
+#!/bin/sh -e
+### BEGIN INIT INFO
+# Provides:          photostream worker
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop photostream workers
+### END INIT INFO
+#
+
+ENV="env -i RAILS_ENV=production LANG=C PATH=/usr/local/bin:/usr/bin:/bin"
+
+set -e
+. /lib/lsb/init-functions
+
+ROOT="/var/www/photostre.am/current/"
+
+PID=$ROOT"log/" 
+WORKERS=1 # number of workers to create
+
+test -f /etc/default/rcS && . /etc/default/rcS
+
+LIST=$(echo $WORKERS | awk '{for (i=0;i<$1;i++) { print i; } }')
+
+WORKER_stop() {
+        for W in $LIST; do
+                WORKER=$PID"WORKER"$W".pid" 
+                if [ -e $WORKER ]; then
+                        if kill `cat $WORKER`; then
+                                success=0
+                        else
+                                success=1
+                        fi
+                #else
+                #       log_failure_msg "Unable to find WORKER's PID. Please make sure that this WORKER is running, and pid file is in /var/run/starling.pid"
+                #       return 1
+                fi
+        done
+        return $success
+}
+
+workling_start() {
+        for W in $LIST; do
+                START_COMMAND="cd $ROOT; bundle exec rake navvy:start"
+                $START_COMMAND
+        done
+}
+
+# Stupid hack to keep lintian happy. (Warrk! Stupidhack!).
+case $1 in
+  start)
+    log_daemon_msg "Starting worker" "huzzah!"
+    if workling_start; then
+      log_end_msg 0
+    else
+      log_end_msg 1
+    fi
+  ;;
+  stop)
+    log_daemon_msg "Stopping worker" "BooYaa!"
+    if workling_stop; then
+      log_end_msg 0
+    else
+      log_end_msg 1
+    fi
+  ;;
+  restart)
+    log_daemon_msg "Restarting worker" "HiYaa!"
+    if ! workling_stop; then
+      log_end_msg 1 || true
+    fi
+    sleep 2
+    if workling_start; then
+      log_end_msg 0
+    else
+      log_end_msg 1
+    fi
+  ;;
+  *)
+    log_success_msg "Usage: /etc/init.d/workling {start|stop|restart}"
+    exit 1
+  ;;
+esac
