@@ -41,9 +41,10 @@ class Website
     scope s.to_sym, :where => {:status => s}
   end
 
-  def theme
-    @theme || Theme.new(:directory => 'default')
+  def theme_with_default
+    theme_without_default || Theme.new(:directory => 'default')
   end
+  alias_method_chain :theme, :default
 
   def url(domain = nil)
     ['http://', (domain || self.domains.first)].join
