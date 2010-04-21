@@ -75,7 +75,7 @@ en:
       index:
         page_title: 'Photo manager'
         websites: Websites
-        new_album: 'new album'
+        new_album: 'New album'
         photos: Photos
         info: 'To assign a photo to one of your websites simple drag and drop it'
         for_website: 'on {{website}}'
@@ -85,6 +85,9 @@ en:
         no_photos: 'No photos found.'
         maybe_reset: 'Maybe a {{link}} will help'
         reset: 'reset'
+        items:
+          one: 'One item'
+          other: '{{count}} items'
       photo:
         unassigned: 'Not on any website'
         edit: 'Edit'
@@ -165,7 +168,7 @@ en:
         new_website: "new website"
         no_websites: "You didn't setup a website yet."
         info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
-        new: 'new website'
+        new: 'New website'
       website:
         goto_domain: 'Open this website as seen by the public'
         show_website_details: 'Show details about this website'

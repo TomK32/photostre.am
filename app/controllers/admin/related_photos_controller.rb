@@ -11,7 +11,7 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     related_photo = parent.related_photos.build(params[:related_photo])
     related_photo.save!
     respond_to do |format|
-      format.js { render :json => :success, :layout => false }
+      format.js { render :text => t(:'admin.photos.index.items', :count => parent.related_photos.count), :layout => false }
     end
   end
 

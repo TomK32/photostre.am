@@ -1,6 +1,6 @@
 %div.droppable[website]
   %span.title= link_to website.title, admin_photos_path({:website_id => website.id})
-  %span.small
-    = t(:'.photos', :count => website.related_photos.count)
+  %small.count
+    = t(:'admin.photos.index.items', :count => website.related_photos.count)
 %ul.info.albums
   = render :partial => 'album', :collection => website.albums.published

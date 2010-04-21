@@ -39,6 +39,7 @@ var PhotoManager = {
       data: '_method=post&related_photo[photo_id]=' + photo_id + '&' + droppable_class + '_id=' + droppable_id,
       success: function(html){
         $(photo).removeClass('selected');
+        $('.count', droppable).html(html);
       },
       error: function(html){
         alert('Photo could not be added to ' + droppable_class)

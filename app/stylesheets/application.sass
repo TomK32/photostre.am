@@ -58,7 +58,7 @@ h2, h3
       &:hover, &:active
         :color = !color_link_active
 
-#navigation, #subnavigation
+#navigation, #subnavigation, #section_navigation
   :margin 0
   :padding 0
   li
@@ -67,13 +67,14 @@ h2, h3
     :text-decoration none
     &:hover, &:active
       :color = !color_link_active
-#subnavigation
+#subnavigation, #section_navigation
   li
     :display inline
     :margin 0px 20px 0px 0px
     a:hover, a:active
       :color = !color_link_active
-
+#section_navigation
+  font-size: 1.3em
 #footer
   border-top: 1px solid #999
   margin-top: 15px

@@ -11,9 +11,9 @@
         #title
           = link_to h(current_website.title), dashboard_path, :title => t(:'layout.links.back_to_homepage')
         #navigation
-        - content_for :subnavigation do
-          %li= link_to t(:'.photo_manager'), admin_photos_path
-          %li= link_to t(:'.website_manager'), admin_websites_path
+      %ul#section_navigation
+        %li= link_to t(:'.photo_manager'), admin_photos_path
+        %li= link_to t(:'.website_manager'), admin_websites_path
       = render :partial => 'shared/navigation'
     
 

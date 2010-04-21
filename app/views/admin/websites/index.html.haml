@@ -1,7 +1,7 @@
 - content_for :info do
   = raw textilize(t(:'.info', :domain_faq_link => faq_url(:action => 'domains')))
 - content_for :subnavigation do
-  = link_to t(:'.new'), new_resource_path
+  %li= link_to t(:'.new'), new_resource_path
 
 - if collection.empty?
   %p.error= t(:'.no_websites')
