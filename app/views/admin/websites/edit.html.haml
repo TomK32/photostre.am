@@ -2,7 +2,7 @@
   %li= link_to t(:'.show'), resource_path
 = error_messages_for :website
 
-= form_for resource, {}, :url => admin_website_path(resource), :html => { :method => :put} do |form|
+= form_for(:website, :url => resource_path, :html => { :method => :put}) do |form|
   = render 'form', :form => form
   
   %p.submit= submit_tag t(:'.save'), :name => nil

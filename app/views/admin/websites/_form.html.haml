@@ -7,7 +7,7 @@
 %p
   = form.label :description, raw(t(:'.description'))
   = form.text_field :description
-- if form.object.new_record?
+- if resource.new_record?
   %p
     = form.label :subdomain, t(:'.subdomain')
     = text_field_tag :subdomain, params[:subdomain], :class => 'small'
@@ -17,7 +17,7 @@
   %p.info= t(:'.change_domain')
 %p
   = form.label :root_path, raw(t(:'.root_path'))
-  = form.text_field :root_path, :value => form.object.root_path || '/photos'
+  = form.text_field :root_path, :value => resource.root_path || '/photos'
 %p
   = form.label :tracking_code, t(:'.tracking_code')
   = form.text_area :tracking_code

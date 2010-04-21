@@ -31,7 +31,7 @@ class Website
 
   validate do
     domains.each do |domain|
-      errors.add(:domains, '%s is duplicate' % domain) if Website.where(:domains => domain, :id.ne => id).count > 0
+      errors.add(:domains, '%s is duplicate' % domain) if Website.where(:domains => domain).where(:_id.ne => id).count > 0
     end
   end
 
