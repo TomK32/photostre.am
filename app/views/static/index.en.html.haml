@@ -37,7 +37,7 @@
       = hidden_field_tag :flickr, true
       %p.submit
         = submit_tag 'Signup for free', :name => nil, :class => 'flickr'
-  %p{:style=>'margin-top: 6em'}
+  %p{:style=>'margin-top: 4em'}
     = image_tag('http://farm1.static.flickr.com/23/buddyicons/99884191@N00.jpg', :style => 'float:right; margin-left: 2px')
     This is Thomas, he runs the whole show.
   %p
@@ -46,6 +46,12 @@
     = link_to('portfolio', 'http://photolog.at')
     or make friends with him on
     = link_to('flickr', 'http://flickr.com/people/tomk32') + '.'
-
+  %p.statistics{:style=>'margin-top: 4em'}
+    = User.count
+    users have signed up here, imported
+    = Photo.count
+    photos and created
+    = Website.count
+    websites.
 %h3 Newest websites
 = render :partial => 'websites', :websites => @websites
