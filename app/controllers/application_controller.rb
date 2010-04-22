@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
 
   def pagination_defaults(args = {})
-    {:page => params[:page], :per_page => params[:per_page]}.merge(args)
+    {:page => params[:page] || 1, :per_page => params[:per_page] || 20}.merge(args)
   end
 
   def current_website
