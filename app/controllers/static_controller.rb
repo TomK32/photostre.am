@@ -1,8 +1,7 @@
 class StaticController < ApplicationController
   before_filter :is_system
   def index
-    @websites = Website.latest.active.limit( 5 )
-    @albums = Album.latest.published.limit( 5)
+    @websites = Website.where(:screenshot_filename.ne => nil).limit(6)
   end
   def statistics
     redirect_to root_path unless logged_in? and current_user.login == 'TomK32'

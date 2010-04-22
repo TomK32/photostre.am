@@ -9,13 +9,18 @@ h1, h2, h3, #title, strong
 
 
 body
-  :background-color = !color_background
-  :color = !color_text
-  :font-size x-small
+  background-color = !color_background + #111
+  background-image: url(/images/stripes.png)
+  background-repeat: no-repeat
+  color = !color_text
+  padding: 0
+  margin: 0
+  font-size: x-small
   font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"
 #container
   :font-size 160%
-
+.clear
+  clear: both
 a
   :color = !color_link
   &:hover, &:active
@@ -50,6 +55,7 @@ h2, h3
       :color = !color_link_active
 #header
   border-bottom: 1px solid #999
+  border-color= !color_orange
   #title
     a
       :font-size 4em
@@ -76,9 +82,10 @@ h2, h3
 #section_navigation
   font-size: 1.3em
 #footer
-  border-top: 1px solid #999
+  border-top: 1px solid
+  border-color= !color_blue
   margin-top: 15px
-  padding-top: 10px
+  padding: 10px 0
   p
     font-size: 85%
     text-align: center
@@ -121,3 +128,25 @@ h2, h3
 #photos .photo, #albums .album
   display: inline
   margin: 5px
+
+ul#websites.screenshots
+  list-style-type: none
+  padding: 0
+  margin: 0
+  li
+    padding: 0
+    width: 204px
+    margin-right: 5px
+    float: left
+    display: block
+    background-color: black
+    border: 1px solid
+    border-color= !color_green
+    .link a
+      color = !color_orange
+      text-decoration: none
+      font-weight: bold
+      display: block
+      margin: 0 4px 2px 4px
+    img
+      margin: 2px 2px 0 2px
