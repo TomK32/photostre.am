@@ -98,7 +98,8 @@ class Source::FlickrAccount < Source
     while (page <= (person.photo_count / per_page) + 1)
 #      logger.debug "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
 
-      flickr.photos.extras.merge!({:url_o => :original_url})
+      flickr.photos.extras.merge!({:url_o => :original_url, :description => :description,
+          :original_secret => :original_secret, :url_photopage => :url_photopage})
       flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
           :user_id => 'me', :auth_token => self.token)
       existing_photos = Photo.where(:source_id => self.id,
@@ -128,6 +129,7 @@ class Source::FlickrAccount < Source
           :public => photo.public?,
           :friend => photo.friend?,
           :family => photo.family?,
+          :original_secret => photo.original_secret,
           :user_id => self.user.id,
           :source_id => self.id
         }
