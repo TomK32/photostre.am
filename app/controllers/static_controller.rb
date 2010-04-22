@@ -6,6 +6,7 @@ class StaticController < ApplicationController
   end
   def statistics
     redirect_to root_path unless logged_in? and current_user.login == 'TomK32'
+    @users = User.order_by(['created_at', :desc]).paginate(pagination_defaults)
   end
 
   def is_system

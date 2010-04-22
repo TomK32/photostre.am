@@ -12,11 +12,12 @@ photos and created
 websites.
 %h2 Newest users
 %ul
-- User.limit(10).order_by(['created_at', :desc]).each do |user|
+- @users.each do |user|
   %li
     = "%s (%s, %s photos): " % [user.login, user.created_at.to_s(:short), user.photos.count]
     - user.sources.each do |source|
       = link_to source.username, source.photostream_url
+= will_paginate @users
 
 - user_photos_counter = {}
 - User.only(:id).each do |user|
