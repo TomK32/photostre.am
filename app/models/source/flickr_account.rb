@@ -86,6 +86,7 @@ class Source::FlickrAccount < Source
   def call_worker
 #    return if self.deleted?
     return unless self.authenticated?
+    self.update_attributes(:status => 'updating')
     Navvy::Job.enqueue(SourceFlickrAccountWorker, :update_data, {:id => self.id})
   end
 
