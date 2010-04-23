@@ -21,6 +21,7 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     if params[:website_id]
       @parent ||= @website = Website.find(params[:website_id])
     end
+    return @parent
   end
   def owner_required
     website = parent.is_a?(Website) ? parent : parent.website

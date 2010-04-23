@@ -6,6 +6,8 @@ class PagesController < ApplicationController
   private
   def resource
     @page = current_website.pages.where(:permalink => params[:id]).first
+    raise Mongoid::Errors::DocumentNotFound.new(Page, params[:id]) and return if @page.nil?
+    @page
   end
 
   def collection

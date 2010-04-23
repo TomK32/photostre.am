@@ -15,8 +15,9 @@ class AlbumsController < ApplicationController
   end
 
   def resource
-    return @resource if @resource
-    return false if params[:id].blank?
-    @resource ||= current_website.albums.published.where(:permalink => params[:id]).first
+    return @album if @album
+    @album = current_website.albums.published.where(:permalink => params[:id]).first
+    raise Mongoid::Errors::DocumentNotFound.new(Album, params[:id]) and return if @album.nil?
+    @album
   end
 end

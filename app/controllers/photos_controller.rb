@@ -10,6 +10,8 @@ class PhotosController < ApplicationController
   private
   def resource
     @photo = parent.related_photos.where(:permalink => params[:id]).first
+    raise Mongoid::Errors::DocumentNotFound.new(Photo, params[:id]) and return if @photo.nil?
+    return @photo
   end
   def parent
     return @parent if @parent
