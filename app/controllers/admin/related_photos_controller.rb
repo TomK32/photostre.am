@@ -8,7 +8,9 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
       flash[:error] = t(:'related_photos.not_allowed')
       redirect_to dashboard_path and return
     end
-    related_photo = parent.related_photos.build(params[:related_photo])
+    related_photo = RelatedPhoto.new(params[:related_photo])
+    parent.related_photos ||= []
+    parent.related_photos << related_photo
     related_photo.save!
     respond_to do |format|
       format.js { render :text => t(:'admin.photos.index.items', :count => parent.related_photos.count), :layout => false }
@@ -20,6 +22,12 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     return @parent if @parent
     if params[:website_id]
       @parent ||= @website = Website.find(params[:website_id])
+    elsif params[:album_id]
+      @website = Website.where('albums._id' => params[:album_id]).first
+      @parent = @website.albums.find(params[:album_id])
+    elsif params[:page_id]
+      @website = Website.where('pages._id' => params[:page_id]).first
+      @parent = @website.pages.find(params[:page_id])
     end
     return @parent
   end
