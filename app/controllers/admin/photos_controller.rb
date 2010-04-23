@@ -41,12 +41,22 @@ class Admin::PhotosController < Admin::ApplicationController
     end
 
     if ! params[:search].blank?
-      scope = scope.search(params[:search])
+      term = Regexp.new(split_search_term(params[:search]), Regexp::IGNORECASE)
+      scope = scope.where(:title => term)
     end
     if ! params[:tags].blank?
-      conditions = {:tags => params[:tags].split(/ ,/)}
+      scope = scope.where(:tags.all => params[:tags].split(' '))
     end
     params[:per_page] = 16 if params[:per_page].blank?
     @photos ||= scope.order_by(['created_at', :desc]).paginate(pagination_defaults(:conditions => conditions))
+  end
+
+  private
+  def split_search_term(term)
+    term = term.split(' ')
+    if term.size > 1
+      term = '(' + term.join('|') + ')'
+    end
+    return term.to_s
   end
 end

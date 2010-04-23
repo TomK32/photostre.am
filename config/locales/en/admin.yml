@@ -110,7 +110,7 @@ en:
         edit: 'Edit'
         index: 'All photos'
       filter:
-        search: 'Search title and description'
+        search: 'Search title'
         tags: 'Matching all tags'
         per_page: 'Photos per page'
         submit: 'Apply filter'
