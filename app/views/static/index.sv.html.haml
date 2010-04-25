@@ -29,10 +29,5 @@
         = submit_tag 'gå med grattis', :name => nil, :class => 'flickr'
       %p.small Denna bekräftelse kommer ta dig till flickr. 
 
-.column_1_3
-  %h3 Senast webbsida
-  = render :partial => 'websites', :websites => @websites
-
-.column_2_3
-  %h3 Senast albums
-  = render :partial => 'albums', :albums => @albums
+%h3 Senast webbsida
+= render :partial => 'websites', :websites => @websites
