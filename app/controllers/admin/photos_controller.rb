@@ -31,7 +31,8 @@ class Admin::PhotosController < Admin::ApplicationController
     if ! params[:website_id].blank?
       @website ||= current_user.websites.where(:_id => params[:website_id]).first
       scope = @website.related_photos
-    elsif ! params[:album_id].blank?
+    end
+    if ! params[:album_id].blank?
       @website ||= current_user.websites.where(:'albums.id' => params[:album_id]).first
       @album ||= @website.albums.where(:_id => params[:album_id]).first
       scope = @album.related_photos
