@@ -6,7 +6,7 @@
 %div[resource]
   - if ! resource.published?
     %p.notice= t(:'.unpublished', :editlink => link_to(t(:'.edit'), edit_resource_path))
-  .body= raw resource.body_html
+  .description= raw resource.description_html
 
   %h3= t(:'.photos')
   #key_photo

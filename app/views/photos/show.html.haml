@@ -8,7 +8,7 @@
       = t(:'.tagged')
       = @photo.tags.join(', ')
     - if @photo.source
-      %li= t(:'.from_source', |
+      %li= raw t(:'.from_source', |
         :source => link_to(@photo.source.username, @photo.source.profile_url), |
         :web_url => link_to(@photo.source.source_title, @photo.web_url)) |
 

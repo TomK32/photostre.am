@@ -5,8 +5,8 @@
   = form.label :permalink, t(:'.permalink')
   = form.text_field :permalink
 %p
-  = form.label :body, t(:'.body')
-  = form.text_area :body
+  = form.label :description, t(:'.description')
+  = form.text_area :description
 %p
   = form.label :status, t(:'.status')
   = form.select :status, Album::STATUSES.collect{|s| [t(:"#{resource.class.name.downcase}.statuses.#{s}"), s.to_s]}

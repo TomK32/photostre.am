@@ -4,8 +4,8 @@ class Album
 
   field :title, :type => String, :required => true
   field :permalink, :type => String, :required => true
-  field :body, :type => String
-  field :body_html, :type => String
+  field :description, :type => String
+  field :description_html, :type => String
   field :status, :type => String, :required => true, :default => 'published'
   field :key_photo_id, :type => String
   field :parent_id, :type => String, :default => nil
@@ -22,7 +22,7 @@ class Album
 
   embedded_in :website, :inverse_of => :albums
 
-  before_validate :denormalize_body
+  before_validate :denormalize_description
   before_validate :set_key_photo
   before_validate :set_permalink
 
@@ -44,7 +44,6 @@ class Album
   def key_photo
     @key_photo = self.related_photos.find(key_photo_id) if self.key_photo_id
     @key_photo ||= self.related_photos.first
-    @key_photo ||= @key_photo.photo if @key_photo and @key_photo.photo
     @key_photo
   end
   def key_photo_url(size, default = 'album.png')
@@ -59,8 +58,8 @@ class Album
     website.albums.find(parent_id) if parent_id
   end
 
-  def denormalize_body
-    self.body_html = textilize(html_escape(self.body))
+  def denormalize_description
+    self.description_html = textilize(html_escape(self.description))
   end
 
   def set_key_photo

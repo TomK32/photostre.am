@@ -34,6 +34,6 @@
 
   - if ! @photos.empty?
     - @photos.each do |photo|
-      .photo= link_to image_tag(photo.photo_url(:icon)), admin_photo_path(photo)
+      .photo= link_to image_tag(photo.photo_url(:square)), admin_photo_path(photo)
   - elsif ! @sources.empty?
     .notice att vanligtvis tar det lite tid att importera fotona, om du inte redan har dem på flickr. Ge det nügra sekunders tid och ladda om denna sida för att kunna se dina foton.

@@ -48,11 +48,11 @@ class Source::FlickrAccount < Source
   end
   
   def photostream_url
-    "http://flickr.com/photos/%s" % flickr_nsid
+    "http://www.flickr.com/photos/%s" % flickr_nsid
   end
 
   def profile_url
-    "http://flickr.com/people/%s" % flickr_nsid
+    "http://www.flickr.com/people/%s" % flickr_nsid
   end
 
   def person
@@ -100,7 +100,7 @@ class Source::FlickrAccount < Source
 #      logger.debug "getting image %s to %s for %s" % [(page-1) * per_page, page * per_page, username]
 
       flickr.photos.extras.merge!({:url_o => :original_url, :description => :description,
-          :original_secret => :original_secret, :url_photopage => :url_photopage})
+          :original_secret => :original_secret})
       flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
           :user_id => 'me', :auth_token => self.token)
       existing_photos = Photo.where(:source_id => self.id,
@@ -122,10 +122,8 @@ class Source::FlickrAccount < Source
           :machine_tag_list => photo.machine_tags,
           :web_url => photo.url_photopage,
           :photo_urls => {
-              :o => photo.url(:original) || photo.url(:medium),
-              :t => photo.url(:thumbnail),
+              :o => photo.url(:original),
               :m => photo.url(:medium),
-              :i => photo.url(:square)
             },
           :public => photo.public?,
           :friend => photo.friend?,

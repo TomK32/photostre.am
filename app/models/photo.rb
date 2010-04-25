@@ -12,6 +12,7 @@ class Photo
 #TODO fields
   field :photo_urls, :type => Hash
   field :title, :type => String
+  field :description, :type => String
   field :source_id, :type => String
   field :remote_id, :type => String
   field :web_url, :type => String
@@ -21,10 +22,13 @@ class Photo
   field :friends, :type => Boolean
   field :family, :type => Boolean
 
+  index :title
+  index :tags
+  index :description
+
   scope :ordered, :order_by => 'created_at DESC, id DESC'
   scope :published, :where => {:public => true}
   scope :recent, :order_by => 'id DESC'
-  scope :search, lambda {|term| {:where => 'title LIKE "%%%s%%" OR description LIKE "%%%s%%"' % [term, term] }}
 
   validates_presence_of :source_id
   validates_presence_of :web_url

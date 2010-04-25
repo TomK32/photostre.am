@@ -14,7 +14,7 @@ en:
         submit: 'Create album'
       form:
         title: 'Title'
-        body: 'Description of your album.'
+        description: 'Description of your album.'
         permalink: 'Permalink (will be set automatically and can be changed)'
         status: 'Status'
         parent: 'Parent album'
