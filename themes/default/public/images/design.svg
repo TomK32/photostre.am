@@ -10,12 +10,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
+   width="744.09448"
+   height="1352.36"
    id="svg3789"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="Neues Dokument 8">
+   sodipodi:docname="design.svg"
+   inkscape:export-filename="/Users/tomk32/Arbeit/das-photowall/das-photowall/themes/default/public/images/stripes.png"
+   inkscape:export-xdpi="26"
+   inkscape:export-ydpi="26">
   <defs
      id="defs3791">
     <inkscape:perspective
@@ -86,7 +89,7 @@
        x2="275.875"
        y2="1604.8772"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(54.879554,-926.66793)" />
+       gradientTransform="translate(-25.93265,-712.51559)" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient3718">
@@ -108,7 +111,7 @@
        x2="165.625"
        y2="1884.8439"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(54.879554,-1126.6658)" />
+       gradientTransform="translate(-25.93265,-912.51346)" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient3702">
@@ -130,7 +133,7 @@
        x2="330.96875"
        y2="1558.4102"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(54.879554,-926.66793)" />
+       gradientTransform="translate(-25.93265,-712.51559)" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient3726">
@@ -170,29 +173,214 @@
        x2="220.75"
        y1="1398.663"
        x1="197.84378"
-       gradientTransform="translate(54.879554,-926.66793)"
+       gradientTransform="translate(-25.93265,-712.51559)"
        gradientUnits="userSpaceOnUse"
        id="linearGradient3787"
        xlink:href="#linearGradient3710"
        inkscape:collect="always" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3710"
+       id="linearGradient5160"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-25.93265,-712.51559)"
+       x1="197.84378"
+       y1="1398.663"
+       x2="220.75"
+       y2="1644.877" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3726"
+       id="linearGradient5162"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-25.93265,-712.51559)"
+       x1="308.0625"
+       y1="1351.5424"
+       x2="330.96875"
+       y2="1558.4102" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3702"
+       id="linearGradient5164"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-25.93265,-912.51346)"
+       x1="142.71875"
+       y1="1765.8839"
+       x2="165.625"
+       y2="1884.8439" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3718"
+       id="linearGradient5166"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-25.93265,-712.51559)"
+       x1="252.95312"
+       y1="1153.0957"
+       x2="275.875"
+       y2="1604.8772" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3718"
+       id="linearGradient5173"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-817.57145)"
+       x1="252.95312"
+       y1="1153.0957"
+       x2="275.875"
+       y2="1604.8772" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3702"
+       id="linearGradient5176"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-1017.5693)"
+       x1="142.71875"
+       y1="1765.8839"
+       x2="165.625"
+       y2="1884.8439" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3726"
+       id="linearGradient5179"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-817.57145)"
+       x1="308.0625"
+       y1="1351.5424"
+       x2="330.96875"
+       y2="1558.4102" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3710"
+       id="linearGradient5182"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-817.57145)"
+       x1="197.84378"
+       y1="1398.663"
+       x2="220.75"
+       y2="1644.877" />
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask5227">
+      <rect
+         style="opacity:0.77678576;fill:#e6e6e6;fill-opacity:1;stroke:none;filter:url(#filter3736)"
+         id="rect5229"
+         width="648.51794"
+         height="1054.5992"
+         x="-228.92827"
+         y="-807.9115"
+         transform="matrix(1.550456,0,0,1.3904936,364.52182,819.6346)"
+         inkscape:export-xdpi="26"
+         inkscape:export-ydpi="26"
+         inkscape:export-filename="/Users/tomk32/Arbeit/das-photowall/das-photowall/themes/default/public/images/stripes.png" />
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask5231">
+      <rect
+         style="opacity:0.77678576;fill:#e6e6e6;fill-opacity:1;stroke:none;filter:url(#filter3736)"
+         id="rect5233"
+         width="648.51794"
+         height="1054.5992"
+         x="-228.92827"
+         y="-807.9115"
+         transform="matrix(1.550456,0,0,1.3904936,364.52182,819.6346)"
+         inkscape:export-xdpi="26"
+         inkscape:export-ydpi="26"
+         inkscape:export-filename="/Users/tomk32/Arbeit/das-photowall/das-photowall/themes/default/public/images/stripes.png" />
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask5235">
+      <rect
+         style="opacity:0.77678576;fill:#e6e6e6;fill-opacity:1;stroke:none;filter:url(#filter3736)"
+         id="rect5237"
+         width="648.51794"
+         height="1054.5992"
+         x="-228.92827"
+         y="-807.9115"
+         transform="matrix(1.550456,0,0,1.3904936,364.52182,819.6346)"
+         inkscape:export-xdpi="26"
+         inkscape:export-ydpi="26"
+         inkscape:export-filename="/Users/tomk32/Arbeit/das-photowall/das-photowall/themes/default/public/images/stripes.png" />
+    </mask>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3710"
+       id="linearGradient5245"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-817.57145)"
+       x1="197.84378"
+       y1="1398.663"
+       x2="220.75"
+       y2="1644.877" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3702"
+       id="linearGradient5247"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-1017.5693)"
+       x1="142.71875"
+       y1="1765.8839"
+       x2="165.625"
+       y2="1884.8439" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3718"
+       id="linearGradient5249"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-817.57145)"
+       x1="252.95312"
+       y1="1153.0957"
+       x2="275.875"
+       y2="1604.8772" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3710"
+       id="linearGradient5258"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-817.57145)"
+       x1="197.84378"
+       y1="1398.663"
+       x2="220.75"
+       y2="1644.877" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3702"
+       id="linearGradient5260"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-1017.5693)"
+       x1="142.71875"
+       y1="1765.8839"
+       x2="165.625"
+       y2="1884.8439" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3718"
+       id="linearGradient5262"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-17.85143,-817.57145)"
+       x1="252.95312"
+       y1="1153.0957"
+       x2="275.875"
+       y2="1604.8772" />
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.24748737"
-     inkscape:cx="1319.7464"
-     inkscape:cy="520"
+     inkscape:cx="668.03699"
+     inkscape:cy="681.62441"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1239"
      inkscape:window-height="785"
-     inkscape:window-x="-1"
-     inkscape:window-y="0"
+     inkscape:window-x="29"
+     inkscape:window-y="7"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3794">
@@ -209,30 +397,57 @@
   <g
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(0,299.99782)">
     <path
-       style="fill:url(#linearGradient3787);fill-opacity:1;stroke:none"
-       d="m 275.62956,-182.75951 c -15.51413,12.1708 -30.85273,24.56185 -45.71875,37.49995 l -0.0937,903.43764 45.71875,0 0.0937,-940.93759 z"
-       id="rect3668" />
+       style="fill:url(#linearGradient5182);fill-opacity:1;stroke:none"
+       d="m 202.89858,-73.663029 c -15.51413,12.1708 -30.85273,24.56185 -45.71875,37.49995 l -0.0937,903.437679 45.71875,0 0.0937,-940.937629 z"
+       id="rect3668"
+       mask="url(#mask5235)" />
     <path
-       style="fill:url(#linearGradient3732);fill-opacity:1;stroke:none"
-       d="m 385.84831,-345.60326 c -12.90446,8.18937 -25.23719,17.2737 -45.6875,33 l -0.125,990.81254 45.71875,0 0.0937,-1023.81254 z"
-       id="rect3670" />
+       style="fill:url(#linearGradient5176);fill-opacity:1;stroke:none"
+       d="m 147.77358,12.21192 c -12.27752,11.1762 -28.50297,27.1283 -45.71875,44.8126 l -0.0937,850.25012 45.71875,0 0.0937,-895.06272 z"
+       id="rect3672"
+       mask="url(#mask5231)" />
     <path
-       style="fill:url(#linearGradient3708);fill-opacity:1;stroke:none"
-       d="m 220.50456,-96.884556 c -12.27752,11.1762 -28.50297,27.1283 -45.71875,44.8126 l -0.0937,850.250036 45.71875,0 0.0937,-895.062636 z"
-       id="rect3672" />
-    <path
-       style="fill:url(#linearGradient3724);fill-opacity:1;stroke:none"
-       d="m 330.75456,-265.35326 c -1.81019,1.40031 -3.21997,2.46813 -5.15625,3.96875 -13.49134,10.45579 -27.07403,20.80705 -40.5625,31.28125 l -0.125,948.28134 0,0.031 45.71875,0 0.125,-983.56254 z"
-       id="rect3674" />
+       style="fill:url(#linearGradient5173);fill-opacity:1;stroke:none"
+       d="m 258.02358,-156.25678 c -1.81019,1.40031 -3.21997,2.46813 -5.15625,3.96875 -13.49134,10.45579 -27.07403,20.80705 -40.5625,31.28125 l -0.125,948.28138 0,0.031 45.71875,0 0.125,-983.56258 z"
+       id="rect3674"
+       mask="url(#mask5227)" />
+    <g
+       id="g5253"
+       transform="translate(15.977241,0.05112187)"
+       inkscape:export-filename="/Users/tomk32/Arbeit/das-photowall/das-photowall/themes/default/public/images/favico.png"
+       inkscape:export-xdpi="26"
+       inkscape:export-ydpi="26">
+      <path
+         transform="matrix(1,0,0,0.31993633,1014.1932,-332.53887)"
+         style="fill:url(#linearGradient5258);fill-opacity:1;stroke:none"
+         d="m 202.89858,-73.663029 c -15.51413,12.1708 -30.85273,24.56185 -45.71875,37.49995 l -0.0937,903.437679 45.71875,0 0.0937,-940.937629 z"
+         id="path5239"
+         mask="url(#mask5235)" />
+      <path
+         transform="matrix(1,0,0,0.31993633,1014.1932,-332.53887)"
+         style="fill:url(#linearGradient5260);fill-opacity:1;stroke:none"
+         d="m 147.77358,12.21192 c -12.27752,11.1762 -28.50297,27.1283 -45.71875,44.8126 l -0.0937,850.25012 45.71875,0 0.0937,-895.06272 z"
+         id="path5241"
+         mask="url(#mask5231)" />
+      <path
+         transform="matrix(1,0,0,0.31993633,1014.1932,-332.53887)"
+         style="fill:url(#linearGradient5262);fill-opacity:1;stroke:none"
+         d="m 258.02358,-156.25678 c -1.81019,1.40031 -3.21997,2.46813 -5.15625,3.96875 -13.49134,10.45579 -27.07403,20.80705 -40.5625,31.28125 l -0.125,948.28138 0,0.031 45.71875,0 0.125,-983.56258 z"
+         id="path5243"
+         mask="url(#mask5227)" />
+    </g>
     <rect
-       style="opacity:0.4880839;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3736)"
-       id="rect3734"
-       width="648.51794"
-       height="1054.5992"
-       x="-228.92827"
-       y="-807.9115"
-       transform="matrix(2.7654093,0,0,1.5897273,788.12092,746.24243)" />
+       style="opacity:0.77678575999999999;fill:none;fill-opacity:1;stroke:none"
+       id="rect5251"
+       width="384.37222"
+       height="387.89859"
+       x="1017.9767"
+       y="-406.29813"
+       inkscape:export-filename="/Users/tomk32/Arbeit/das-photowall/das-photowall/themes/default/public/images/favico.png"
+       inkscape:export-xdpi="26"
+       inkscape:export-ydpi="26" />
   </g>
 </svg>
