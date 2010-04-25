@@ -10,8 +10,8 @@ class AlbumsController < ApplicationController
 
   private
   def collection
-    return @collection if @collection
-    @collection ||= current_website.albums.published.paginate(pagination_defaults)
+    return @albums if @albums
+    @albums ||= current_website.albums.published.paginate(pagination_defaults)
   end
 
   def resource

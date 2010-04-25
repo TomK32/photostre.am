@@ -1,6 +1,4 @@
 class Admin::RelatedPhotosController < Admin::ApplicationController
-  inherit_resources
-  belongs_to :website, :album
   before_filter :owner_required
 
   def create
@@ -9,11 +7,10 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
       redirect_to dashboard_path and return
     end
     related_photo = RelatedPhoto.new(params[:related_photo])
-    parent.related_photos ||= []
     parent.related_photos << related_photo
     related_photo.save!
     respond_to do |format|
-      format.js { render :text => t(:'admin.photos.index.items', :count => parent.related_photos.count), :layout => false }
+      format.js { render :text => t(:'admin.photos.index.items', :count => parent.related_photos.count), :layout => false and return }
     end
   end
 
@@ -34,8 +31,7 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
   def owner_required
     website = parent.is_a?(Website) ? parent : parent.website
     if ! website.user_ids.include?(current_user.id)
-      flash[:error] = t(:'related_photos.not_allowed')
-      redirect_to dashboard_path and return
+      render(:text => t(:'admin.not_owner'), :success => false) and return
     end
   end
 end
