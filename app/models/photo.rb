@@ -36,16 +36,17 @@ class Photo
 
   index [[:source_id], [:remote_id]], :unique => true
 
-  def source(args)
-    self.user.sources.find(self.source_id)
+  def source
+    @source ||= User.where(:_id => self.user_id).only(:sources).first.sources.find(self.source_id)
   end
 
 
   def photo_url(size = :m, default_file = 'default.png')
-    available_sizes = {:original => :o, :medium => :m, :thumbnail => :t, :small => :s, :icon => :i}
-    size = available_sizes[size] if available_sizes[size.to_sym]
-    size = :m if !available_sizes.values.include?(size.to_sym)
-    photo_urls[size.to_s] || photo_urls.values.first || default_file
+    available_sizes = {:original => :o, :small => :sm, :medium => :m, :thumbnail => :t, :square => :s, :big => :b}
+    size = :medium if !available_sizes.keys.include?(size.to_sym)
+    return photo_urls[available_sizes[size.to_sym].to_s] if photo_urls[available_sizes[size.to_sym].to_s]
+    available_sizes[:small] = :m
+    photo_urls['m'].gsub(/(\.(png|jpg|jpeg|gif))$/, '_' + available_sizes[size.to_sym].to_s + '\1')
   end
 
   def validate

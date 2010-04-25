@@ -117,10 +117,10 @@ class Source::FlickrAccount < Source
           :taken_at => photo.taken_at,
           :created_at => photo.uploaded_at,
           :updated_at => photo.updated_at,
-          :description => photo.description,
           :tag_list => photo.tags,
+          :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.username, photo.id],
           :machine_tag_list => photo.machine_tags,
-          :web_url => photo.url_photopage,
+          :description => photo.description,
           :photo_urls => {
               :o => photo.url(:original),
               :m => photo.url(:medium),

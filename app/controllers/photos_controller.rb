@@ -15,11 +15,12 @@ class PhotosController < ApplicationController
   end
   def parent
     return @parent if @parent
-    %w(Album Website Page).each do |klass|
-      if ! params["#{klass.downcase}_id"].blank?
+    @parent_model = 'Website'
+    @parent = current_website
+    %w(Album Page).each do |klass|
+      if ! (@parent_id = params["#{klass.downcase}_id"]).blank?
         @parent_model = klass
-        # TODO status
-        @parent = klass.constantize.find(params["#{klass.downcase}_id"])
+        @parent = current_website.send(@parent_model.to_sym).published.where(:permalink => @parent_id)
       end
     end
     @parent || current_website

@@ -42,7 +42,8 @@ WORKER_stop() {
 
 workling_start() {
         for W in $LIST; do
-                START_COMMAND="cd $ROOT; bundle exec rake navvy:start"
+                cd $ROOT
+                START_COMMAND="bundle exec rake navvy:work"
                 $START_COMMAND
         done
 }
