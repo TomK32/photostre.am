@@ -6,7 +6,7 @@ module Rspec # :nodoc:
     #
     #   it { should belong_to_related(:musician) }
     #
-    def belongs_to_related(name)
+    def belong_to_related(name)
       AssociationMatcher.new(:belongs_to_related, name)
     end
 
@@ -150,8 +150,14 @@ module Rspec # :nodoc:
       end
 
       def inverse_of?
-        reflection.options[:inverse_of]
+        puts reflection.options
+        reflection.options.inverse_of
       end
+
+      def inverse_exists?
+        inverse_of?
+      end
+
 
       def reflection
         @reflection ||= model_class.associations[@name.to_s]

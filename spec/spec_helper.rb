@@ -7,7 +7,6 @@ require 'rails/test_help'
 require 'rspec/rails'
 require 'shoulda'
 require 'shoulda/active_model'
-require 'shoulda/active_model/matchers'
 require 'mongoid'
 require 'webrat'
 require 'rspec/expectations'
@@ -20,18 +19,17 @@ Rspec.configure do |config|
   config.include Rspec::Matchers
   config.include Shoulda::ActiveModel::Matchers
   
+  config.filter_run :focus => true
+  config.run_all_when_everything_filtered = true
   
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
+  
   config.mock_with :rspec
-#  config.before(:each) do
+  config.before(:each) do
+    User.delete_all
+    Website.delete_all
+    Photo.delete_all
 #    Mongoid.master.collections.each(&:drop)
-#  end
+  end
 
 end
 

@@ -1,11 +1,10 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
-describe "photos/index" do
+describe "photos/index.html.haml" do
   before :each do
     @website = Factory(:website_with_photos)
     @photos = @website.photos.paginate(:per_page => 5, :page => 1)
-    template.stub(:current_objects).and_return(@photos)
-    render
+    assign :photos, @photos
   end
   it "should display photos" do
     response.should be_success
@@ -19,11 +18,12 @@ describe "photos/index" do
   end
 end
 
-describe "photos/show" do
+describe "photos/show.html.haml" do
   before :each do
     @website = Factory(:website_with_photos)
     @photo = @website.photos[4]
-    template.stub(:current_object).and_return(@photo)
+    puts @photo.source.inspect
+    assign :photo, @photo
     render
   end
   it "should display photo" do

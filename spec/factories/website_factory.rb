@@ -11,5 +11,5 @@ Factory.define :website_system, :parent => :website do |website|
 end
 
 Factory.define :website_with_photos, :parent => :website do |website|
-  website.related_photos { 20.times{ Factory.build(:related_photo) } }
+  website.related_photos { (0..20).collect{ Factory.build(:related_photo) } }
 end
