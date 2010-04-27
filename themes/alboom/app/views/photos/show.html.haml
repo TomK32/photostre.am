@@ -1,8 +1,6 @@
-
-%div.photo
+.photo
   = image_tag(@photo.photo_url(:medium))
   %h2= @photo.title
   .meta
+    = @photo.description
     = source_link(@photo)
-
-  

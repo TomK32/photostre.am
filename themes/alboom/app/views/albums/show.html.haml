@@ -2,10 +2,13 @@
   %h1= @album.title
   .description= raw @album.description_html
   .large
-    = render 'photo', :photo => @album.key_photo if @album.key_photo
+    - if @photo = @album.key_photo
+      = render :template => 'photos/show'
+  .clear
   #photos
-    .clear
     - @photos.each do |photo|
       .photo= link_to image_tag(photo.photo_url(:square)), album_photo_path(@album.permalink, photo.permalink)
     = will_paginate(@photos)
+    .clear
+
 = javascript_dom_ready("$.remoteGallery('.large', '#photos .photo a', function(){ fitContentSize('.large') })")

@@ -27,8 +27,11 @@ a img {
   list-style-type: none;
 }
 
-#photos, #albums {
-  height: 100px;
+#content {
+  padding-bottom: 10px;
+}
+.pagination {
+  margin: 5px 0 0 0;
 }
 #photos, #albums, .album, .photo {
   text-align: center;
