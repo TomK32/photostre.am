@@ -27,7 +27,6 @@ class Page
   alias_attribute :meta_keywords, :tags
 
   scope :ordered, :order_by => [:parent_id, :asc, :position, :asc]
-  scope :published, :where => {:public => true}
   scope :roots, where({:parent_id => nil}) # FIXME shouldn't that be nil?
 
   before_validate :denormalize_body_and_excerpt

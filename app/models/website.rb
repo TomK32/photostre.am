@@ -23,7 +23,7 @@ class Website
 
   embed_many :pages
   embed_many :albums
-  embed_one :theme
+  belongs_to_related :theme
   alias_attribute :meta_keywords, :tags
 
   scope :latest, :order_by => [:updated_at, :desc]
@@ -44,7 +44,7 @@ class Website
   end
 
   def theme_with_default
-    theme_without_default || Theme.new(:directory => 'default')
+    theme_without_default || Theme.new(:directory => (system? ? 'system' : 'default'))
   end
   alias_method_chain :theme, :default
 

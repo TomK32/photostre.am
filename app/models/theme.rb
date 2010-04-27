@@ -11,15 +11,14 @@ class Theme
   field :version, :type => String
 
   belongs_to_related :author, :class_name => 'User'
-  embedded_in :website, :inverse_of => :theme
 
   validates_presence_of :author_id, :name, :directory
+  validates_uniqueness_of :directory
 
   STATUSES = %w(draft deleted public private paid)
   STATUSES.each do |s|
     define_method("#{s}?".to_sym) { status == s}
     scope s.to_sym, :where => {:status => s}
   end
-  
 
 end

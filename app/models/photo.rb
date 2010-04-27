@@ -27,7 +27,7 @@ class Photo
   index :description
 
   scope :ordered, :order_by => 'created_at DESC, id DESC'
-  scope :published, :where => {:public => true}
+  scope :published, where({:public => true})
   scope :recent, :order_by => 'id DESC'
 
   validates_presence_of :source_id
