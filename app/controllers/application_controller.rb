@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
 
   def set_theme
     # use the websites theme to look for additional views templates
-    self.prepend_view_path File.join(current_theme_path, 'views')
+    self.prepend_view_path File.join(current_theme_path, 'app', 'views')
   end
 
   def current_theme_path

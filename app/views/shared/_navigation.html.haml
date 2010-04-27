@@ -1,13 +1,6 @@
-%ul#navigation
-
-  - if logged_in?
-    %li= link_to t(:'.dashboard'), dashboard_path
-    %li= link_to t(:'.logout'), logout_path
-  - else
-    %li= link_to t(:'.login'), login_url(:host => current_website.domains.first)
-  %li= link_to t(:'.about'), static_url('about', :host => current_website.domains.first)
-  = yield :navigation
-- if yield :subnavigation
-  %ul#subnavigation
-    = yield :subnavigation
-  
+%ul.pages
+  - current_website.pages.published.roots.each do |page|
+    %li= link_to page.title, page_path(page.permalink)
+%ul.albums
+  - current_website.albums.published.roots.each do |album|
+    %li= link_to album.title, album_path(album.permalink)

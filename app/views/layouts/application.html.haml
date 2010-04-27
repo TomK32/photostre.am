@@ -11,12 +11,8 @@
           - unless current_website.description.blank?
             .subtitle= current_website.description
         #navigation
-          = render :partial => 'shared/navigation' if %w(static dashboard sessions websites).include?(controller_name)
-
-          - if current_website.pages.published.roots
-            #navigation_pages
-              = render current_website.pages.published.roots
-      #content{:class => params[:controller]}
+          = render :partial => 'shared/navigation'
+      #content
         - if @title_in_content
           %h1= @title 
 
