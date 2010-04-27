@@ -46,7 +46,7 @@ class Admin::PhotosController < Admin::ApplicationController
       scope = scope.where(:title => term)
     end
     if ! params[:tags].blank?
-      scope = scope.where(:tags.all => params[:tags].split(' '))
+      scope = scope.where(:tags.in => params[:tags].split(' '))
     end
     params[:per_page] = 16 if params[:per_page].blank?
     @photos ||= scope.order_by(['created_at', :desc]).paginate(pagination_defaults(:conditions => conditions))
