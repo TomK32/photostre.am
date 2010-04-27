@@ -161,6 +161,7 @@ en:
         description: "Description for HTML metatags. E.g. <em>John Doe is a professional photographer from New York City</em>"
         status: "Status"
         root_path: Root path for your domain. E.g. <em>/photos</em> or <em>/pages/homepage</em>
+        theme: 'Theme'
         tracking_code: 'Javascript tracking code. E.g. from Google Analytics'
       index:
         your_websites: "Your websites"

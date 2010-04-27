@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+
+admin = User.first || User.create!(:login => 'admin')
+Theme.create!(:name => 'Alboom', :directory => 'alboom', :author => admin, :status => 'public')

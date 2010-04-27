@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
 
   inherit_resources
+  respond_to :html, :js
   actions :show, :index
 
   def index
@@ -18,9 +19,11 @@ class PhotosController < ApplicationController
     @parent_model = 'Website'
     @parent = current_website
     %w(Album Page).each do |klass|
-      if ! (@parent_id = params["#{klass.downcase}_id"]).blank?
-        @parent_model = klass
-        @parent = current_website.send(@parent_model.to_sym).published.where(:permalink => @parent_id)
+      klass.downcase!
+      if ! (@parent_id = params["#{klass}_id"]).blank?
+        @parent_model = klass.pluralize
+        @parent = current_website.send(@parent_model.to_sym).published.where(:permalink => @parent_id).first
+        break
       end
     end
     @parent || current_website

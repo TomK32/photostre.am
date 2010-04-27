@@ -1,10 +1,11 @@
 class AlbumsController < ApplicationController
 
   inherit_resources
+  respond_to :html, :js
   actions :show, :index
 
   def show
-    @photos = resource.photos.published.paginate(pagination_defaults)
+    @photos = resource.photos.paginate(pagination_defaults)
     show!
   end
 

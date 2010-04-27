@@ -26,4 +26,13 @@ module ApplicationHelper
       end
     end
   end
+  def javascript_dom_ready(js = '')
+    content_for :javascript do
+      javascript_tag(
+        "$(document).ready(function(){\n\t" <<
+        js <<
+        "\n})"
+      )
+    end
+  end
 end
