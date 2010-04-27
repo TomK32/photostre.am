@@ -5,7 +5,7 @@
     = render :partial => "shared/head"
     = javascript_include_tag %w(jquery jrails jquery-ui admin admin/photo_manager)
     = stylesheet_link_tag %w(admin/admin admin/forms admin/photos admin/websites admin/albums), :cache => 'cache/admin'
-  %body
+  %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
     #container
       #header
         #title

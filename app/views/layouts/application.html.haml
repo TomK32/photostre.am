@@ -3,7 +3,7 @@
   %head
     = render :partial => "shared/meta_head"
     = render :partial => "shared/head"
-  %body
+  %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
     #container
       #header
         #title
@@ -23,10 +23,11 @@
         - flash.each do |flash_type, message|
           %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
-        = yield :layout
+        = yield
       - if yield :info
         #sidebar
           #info= yield :info
 
       = render :partial => 'shared/footer'
       .clear
+    = yield :javascript

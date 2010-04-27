@@ -24,16 +24,22 @@ li { margin-left: 30px; }
 
 p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset { margin-bottom: 20px; }
 
-body { background-color: black; color: #eeeeff; font-size: x-small; font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"; }
+@font-face { font-family: TitilliumMaps26; src: url(http://static.photostre.am/fonts/TitilliumMaps26L003.otf) format("opentype"); }
+
+h1, h2, h3, #title, strong { font-family: TitilliumMaps26; }
+
+body { background-color: black; background-image: url(/images/stripes.png); background-repeat: no-repeat; color: #eeeeff; padding: 0; margin: 0; font-size: x-small; font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica sans-serif', Helvetica, Sans-Serif, "Comic Sans MS"; }
 
 #container { font-size: 160%; }
 
+.clear { clear: both; }
+
 a { color: #2b64f8; }
-a:hover, a:active { color: #66dd00; }
+a:hover, a:active { color: #dc6300; }
 
 a img { border: none; }
 
-p { font-size: 110%; line-height: 1.3em; }
+p { font-size: 110%; line-height: 1.3em; margin: 0.5em 0px; }
 
 ul { margin: 0 0 0 20px; padding: 0; }
 ul li { margin: 0; padding: 0; }
@@ -43,27 +49,25 @@ h1 { color: #63dc00; }
 
 h2, h3 { color: #dc6300; clear: both; margin: 5px 0px 5px 0px; }
 h2 a, h3 a { color: #dc6300; text-decoration: none; }
-h2 a:hover, h2 a:active, h3 a:hover, h3 a:active { color: #66dd00; }
+h2 a:hover, h2 a:active, h3 a:hover, h3 a:active { color: #dc6300; }
 
-#header { border-bottom: 1px solid #999; }
-#header #title a { font-size: 4em; text-decoration: none; text-shadow: white 0px 1px 1px; color: #2b64f8; }
-#header #title a:hover, #header #title a:active { color: #66dd00; }
+#header { border-bottom: 1px solid #999; border-color: #dc6300; }
+#header #title a { font-size: 4em; text-decoration: none; color: #2b64f8; }
+#header #title a:hover, #header #title a:active { color: #dc6300; }
 
-#navigation, #subnavigation { margin: 0; padding: 0; }
-#navigation li, #subnavigation li { list-style-type: none; }
-#navigation a, #subnavigation a { text-decoration: none; }
-#navigation a:hover, #navigation a:active, #subnavigation a:hover, #subnavigation a:active { color: #66dd00; }
+#navigation, #subnavigation, #section_navigation { margin: 0; padding: 0; }
+#navigation li, #subnavigation li, #section_navigation li { list-style-type: none; }
+#navigation a, #subnavigation a, #section_navigation a { text-decoration: none; }
+#navigation a:hover, #navigation a:active, #subnavigation a:hover, #subnavigation a:active, #section_navigation a:hover, #section_navigation a:active { color: #dc6300; }
 
-#subnavigation li { display: inline; margin: 0px 20px 0px 0px; }
-#subnavigation li a:hover, #subnavigation li a:active { color: #66dd00; }
+#subnavigation li, #section_navigation li { display: inline; margin: 0px 20px 0px 0px; }
+#subnavigation li a:hover, #subnavigation li a:active, #section_navigation li a:hover, #section_navigation li a:active { color: #dc6300; }
 
-#footer { border-top: 1px solid #999; margin-top: 15px; padding-top: 10px; }
+#section_navigation { font-size: 1.3em; }
+
+#footer { border-top: 1px solid; border-color: #0063dc; margin-top: 15px; padding: 10px 0; }
 #footer p { font-size: 85%; text-align: center; margin: 0; }
 #footer a { text-decoration: none; }
-
-#openid_logo { float: right; margin: 0 0 10px 10px; }
-
-#openid_identifier { width: 322px; margin: 0px; padding: 2px; padding-left: 20px; vertical-align: middle; background-image: url(/images/openid.ico); background-repeat: no-repeat; background-position: 3px 2px; }
 
 .fieldWithErrors { color: red; display: inline; }
 
@@ -82,3 +86,8 @@ h2 a:hover, h2 a:active, h3 a:hover, h3 a:active { color: #66dd00; }
 .submit input.flickr { -moz-border-radius: 2px; -webkit-border-radius: 2px; background-color: #0063dc; color: white; font-weight: bold; font-size: 20px; border: none; }
 
 #photos .photo, #albums .album { display: inline; margin: 5px; }
+
+ul#websites.screenshots { list-style-type: none; padding: 0; margin: 0; }
+ul#websites.screenshots li { padding: 0; width: 204px; margin-right: 5px; float: left; display: block; background-color: black; border: 1px solid; border-color: #63dc00; }
+ul#websites.screenshots li .link a { color: #dc6300; text-decoration: none; font-weight: bold; display: block; margin: 0 4px 2px 4px; }
+ul#websites.screenshots li img { margin: 2px 2px 0 2px; }
