@@ -1,92 +1,126 @@
-/*
- * jQuery Rails Plugin
- *
- * Copyright (c) 2010 Robert Sosinski (http://www.robertsosinski.com)
- * Offical Web Site (http://github.com/robertsosinski/jquery-rails)
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- */
-(function($) {
-  // ensure all ajax requests are of js format
-  $.ajaxSetup({  
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Accept", "text/javascript");
-    }  
-  }); 
+jQuery(function ($) {
+    var csrf_token = $('meta[name=csrf-token]').attr('content'),
+        csrf_param = $('meta[name=csrf-param]').attr('content');
 
-  // reassign $.ajax to prevent recursion during its modification
-  var _ajax = $.ajax;
+    $.fn.extend({
+        /**
+         * Triggers a custom event on an element and returns the event result
+         * this is used to get around not being able to ensure callbacks are placed
+         * at the end of the chain.
+         *
+         * TODO: deprecate with jQuery 1.4.2 release, in favor of subscribing to our
+         *       own events and placing ourselves at the end of the chain.
+         */
+        triggerAndReturn: function (name, data) {
+            var event = new $.Event(name);
+            this.trigger(event, data);
 
-  $.extend({
-    ajax: function(settings) {
-      settings.type = settings.type || "GET";
-    
-      if (!/^(get|post)$/i.test(settings.type)) {
-        settings.data = settings.data || "";
+            return event.result !== false;
+        },
 
-        if (typeof settings.data !== "string") {
-          settings.data = $.param(settings.data);
+        /**
+         * Handles execution of remote calls firing overridable events along the way
+         */
+        callRemote: function () {
+            var el      = this,
+                data    = el.is('form') ? el.serializeArray() : [],
+                method  = el.attr('method') || el.attr('data-method') || 'GET',
+                url     = el.attr('action') || el.attr('href');
+
+            if (url === undefined) {
+              throw "No URL specified for remote call (action or href must be present).";
+            } else {
+                if (el.triggerAndReturn('ajax:before')) {
+                    $.ajax({
+                        url: url,
+                        data: data,
+                        dataType: 'script',
+                        type: method.toUpperCase(),
+                        beforeSend: function (xhr) {
+                            el.trigger('ajax:loading', xhr);
+                        },
+                        success: function (data, status, xhr) {
+                            el.trigger('ajax:success', [data, status, xhr]);
+                        },
+                        complete: function (xhr) {
+                            el.trigger('ajax:complete', xhr);
+                        },
+                        error: function (xhr, status, error) {
+                            el.trigger('ajax:failure', [xhr, status, error]);
+                        }
+                    });
+                }
+
+                el.trigger('ajax:after');
+            }
+        }
+    });
+
+    /**
+     *  confirmation handler
+     */
+    $('a[data-confirm],input[data-confirm]').live('click', function () {
+        var el = $(this);
+        if (el.triggerAndReturn('confirm')) {
+            if (!confirm(el.attr('data-confirm'))) {
+                return false;
+            }
+        }
+    });
+
+
+    /**
+     * remote handlers
+     */
+    $('form[data-remote]').live('submit', function (e) {
+        $(this).callRemote();
+        e.preventDefault();
+    });
+
+    $('a[data-remote],input[data-remote]').live('click', function (e) {
+        $(this).callRemote();
+        e.preventDefault();
+    });
+
+    $('a[data-method]:not([data-remote])').live('click', function (e){
+        var link = $(this),
+            href = link.attr('href'),
+            method = link.attr('data-method'),
+            form = $('<form method="post" action="'+href+'"></form>'),
+            metadata_input = '<input name="_method" value="'+method+'" type="hidden" />';
+
+        if (csrf_param != null && csrf_token != null) {
+          metadata_input += '<input name="'+csrf_param+'" value="'+csrf_token+'" type="hidden" />';
         }
 
-        settings.data += (settings.data ? "&" : "") + "_method=" + settings.type.toLowerCase();
-        settings.type = "POST";
-      }
+        form.hide()
+            .append(metadata_input)
+            .appendTo('body');
 
-      return _ajax(settings);
-    },
+        e.preventDefault();
+        form.submit();
+    });
 
-    put: function(url, data, callback, type) {
-      // shift arguments if data argument was omited
-      if ($.isFunction(data)) {
-        type = type || callback;
-        callback = data;
-        data = null;
-      }
+    /**
+     * disable-with handlers
+     */
+    var disable_with_input_selector = 'input[data-disable-with]';
+    var disable_with_form_selector = 'form[data-remote]:has(' + disable_with_input_selector + ')';
 
-      return jQuery.ajax({
-        type: "PUT",
-        url: url,
-        data: data,
-        success: callback,
-        dataType: type
-      });
-    },
+    $(disable_with_form_selector).live('ajax:before', function () {
+        $(this).find(disable_with_input_selector).each(function () {
+            var input = $(this);
+            input.data('enable-with', input.val())
+                 .attr('value', input.attr('data-disable-with'))
+                 .attr('disabled', 'disabled');
+        });
+    });
 
-    // delete is a reserved word, so appending an underscore
-    delete_: function(url, data, callback, type) {
-      // shift arguments if data argument was omited
-      if ($.isFunction(data)) {
-        type = type || callback;
-        callback = data;
-        data = null;
-      }
-
-      return jQuery.ajax({
-        type: "DELETE",
-        url: url,
-        data: data,
-        success: callback,
-        dataType: type
-      });
-    }
-  });  
-})(jQuery);
+    $(disable_with_form_selector).live('ajax:after', function () {
+        $(this).find(disable_with_input_selector).each(function () {
+            var input = $(this);
+            input.removeAttr('disabled')
+                 .val(input.data('enable-with'));
+        });
+    });
+});
