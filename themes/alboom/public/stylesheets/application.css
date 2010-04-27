@@ -1,0 +1,71 @@
+a {
+  text-decoration: none;
+  color: #049;
+}
+a:hover, a:focus {
+  color: #04F;
+}
+a img {
+  border: none;
+}
+
+.clear {
+  clear: both;
+}
+
+/* content, header, navigation, footer */
+#content, #footer, #title {
+  padding: 0 0 0 10px;
+}
+
+#title a {
+  font-size: 50px;
+  color: #009;
+}
+
+#navigation ul {
+  list-style-type: none;
+}
+
+#photos, #albums {
+  height: 100px;
+}
+#photos, #albums, .album, .photo {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+
+/* albums */
+#albums {
+  margin: 0;
+  padding: 0;
+}
+#albums .album, .album .photo {
+  height: 100px;
+  display: inline;
+  margin: 0 15px 5px 15px;
+}
+.album h1, .album .description {
+  text-align: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.large {
+  display: block;
+  float: none;
+  margin: 0 auto;
+  height: 400px;
+  width: 600px;
+}
+.large .meta {
+  font-size: 11px;
+  text-align: right;
+}
+.large h2 {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}

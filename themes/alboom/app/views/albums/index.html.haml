@@ -1,0 +1,11 @@
+%ul#albums
+  - begin; album = @albums.pop ; end while !album.key_photo
+  - if album
+    .large
+      %li.album.first
+        = link_to image_tag(album.key_photo.photo_url(:large)), album_path(album.permalink)
+  .clear
+  - @albums.each do |album|
+    %li.album
+      = link_to image_tag(album.key_photo.photo_url(:square)), album_path(album.permalink)
+      %span.description= album.description
