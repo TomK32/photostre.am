@@ -18,4 +18,4 @@
     = link_to_unless current_language == :sv, 'Svenska', :language => :sv
     |
     = link_to_unless current_language == :en, 'English', :language => :en
-= current_website.tracking_code
+= raw current_website.tracking_code
