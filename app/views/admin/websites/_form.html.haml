@@ -17,7 +17,10 @@
   %p.info= t(:'.change_domain')
 %p
   = form.label :root_path, raw(t(:'.root_path'))
-  = form.text_field :root_path, :value => resource.root_path || '/photos'
+  = form.text_field :root_path, :value => resource.root_path || '/albums'
+%p
+  = form.label :theme_id, t(:'.theme')
+  = form.select :theme_id, [current_user.themes, Theme.public].flatten.collect{|t| [t.name, t.id]}
 %p
   = form.label :tracking_code, t(:'.tracking_code')
   = form.text_area :tracking_code
