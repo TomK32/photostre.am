@@ -7,18 +7,26 @@ class RelatedPhoto
 
 #  field :position, :type => Integer
   field :permalink, :type => String
+
   before_save :set_permalink
 
   belongs_to_related :photo
   embedded_in :parent, :polymorphic => true, :inverse_of => :related_photos
 
-  scope :published, :where => {:status => 'published'}
-
   def method_missing(method, *args, &block)
     self.photo.send(method, *args, &block)
   end
-
+  
   def set_permalink
-    self.permalink = self.title.to_permalink if self.permalink.blank? && self.title
+    if self.title and self.permalink.blank?
+      permalink = self.title.to_permalink.strip
+      permalink_index = nil
+      permalinks = parent.related_photos.only(:permalink).collect(&:permalink)
+      while permalinks.include?([permalink, permalink_index].compact.join('-'))
+        permalink_index ||= 0
+        permalink_index += 1
+      end
+      self.permalink = [permalink, permalink_index].compact.join('-')
+    end
   end
 end

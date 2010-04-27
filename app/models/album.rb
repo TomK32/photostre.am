@@ -72,11 +72,11 @@ class Album
       permalink = self.title.to_permalink.strip
       permalink_index = nil
       permalinks = website.albums.collect(&:permalink)
-      while permalinks.include?([permalink, permalink_index].join('-'))
+      while permalinks.include?([permalink, permalink_index].compact.join('-'))
         permalink_index ||= 0
         permalink_index += 1
       end
-      self.permalink = [permalink, permalink_index].join('-')
+      self.permalink = [permalink, permalink_index].compact.join('-')
     end
   end
 

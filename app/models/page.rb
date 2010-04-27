@@ -49,8 +49,18 @@ class Page
   end
 
   def set_permalink
-    self.permalink = self.title.to_permalink if self.title and self.permalink.blank?
+    if self.title and self.permalink.blank?
+      permalink = self.title.to_permalink.strip
+      permalink_index = nil
+      permalinks = parent.pages.only(:permalink).collect(&:permalink)
+      while permalinks.include?([permalink, permalink_index].compact.join('-'))
+        permalink_index ||= 0
+        permalink_index += 1
+      end
+      self.permalink = [permalink, permalink_index].compact.join('-')
+    end
   end
+
   def tag_list=(new_tags)
     self.tags = new_tags.to_s.split(/, /).uniq
   end
