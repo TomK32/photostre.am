@@ -144,6 +144,6 @@ class Source::FlickrAccount < Source
       self.save!
       return
     end
-    self.update_attribute(:status => 'active')
+    self.update_attributes(:status => 'active')
   end
 end
