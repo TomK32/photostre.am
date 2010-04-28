@@ -2,9 +2,9 @@
 - if album
   .large
     .album.first
-      = link_to image_tag(album.key_photo.photo_url(:large)), album_path(album.permalink), :title => raw(album.description_html)
+      = link_to image_tag(album.key_photo.photo_url(:large)), album_path(album.permalink), :title => raw(album.description)
 #albums
   .clear
   - @albums.each do |album|
     .album
-      = link_to image_tag(album.key_photo.photo_url(:square)), album_path(album.permalink), :title => raw(album.description_html)
+      = link_to image_tag(album.key_photo.photo_url(:square)), album_path(album.permalink), :title => album.description

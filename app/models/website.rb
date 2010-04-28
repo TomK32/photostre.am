@@ -13,6 +13,7 @@ class Website
   field :screenshot_filename, :type => String
   field :tags, :type => Array
   field :related_photos, :type => Array
+  field :theme_path, :type => String
 
   embed_many :related_photos
   alias_attribute :photos, :related_photos
@@ -20,6 +21,7 @@ class Website
   validates_presence_of :title
   validates_presence_of :domains
   validates_presence_of :status
+  validates_presence_of :theme_path
 
   embed_many :pages
   embed_many :albums
@@ -30,6 +32,7 @@ class Website
   scope :active_or_system, :where => {:status.in => %w(active system)}
   scope :active, :where => {:status => %w(active)}
   after_create :create_default_pages
+  before_validate :set_theme_path
 
   validate do
     domains.each do |domain|
@@ -47,6 +50,10 @@ class Website
     theme_without_default || Theme.new(:directory => (system? ? 'system' : 'default'))
   end
   alias_method_chain :theme, :default
+
+  def set_theme_path
+    self.theme_path = theme.directory
+  end
 
   def url(domain = nil)
     ['http://', (domain || self.domains.first)].join

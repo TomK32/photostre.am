@@ -7,7 +7,7 @@
   .clear
   #photos
     - @photos.each do |photo|
-      .photo= link_to image_tag(photo.photo_url(:square)), album_photo_path(@album.permalink, photo.permalink)
+      .photo= link_to image_tag(photo.photo_url(:square)), album_photo_path(@album.permalink, photo.permalink), :title => photo.title
     = will_paginate(@photos)
     .clear
 
