@@ -17,13 +17,12 @@ class Photo
   field :remote_id, :type => String
   field :web_url, :type => String
   field :taken_at, :type => DateTime
-  field :tags, :type => Array, :default => []
+  field :tags, :type => Array
   field :public, :type => Boolean
   field :friends, :type => Boolean
   field :family, :type => Boolean
 
   index :title
-  index :tags
   index :description
 
   scope :ordered, :order_by => 'created_at DESC, id DESC'

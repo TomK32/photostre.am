@@ -117,9 +117,9 @@ class Source::FlickrAccount < Source
           :taken_at => photo.taken_at,
           :created_at => photo.uploaded_at,
           :updated_at => photo.updated_at,
-          :tag_list => photo.tags,
+          :tags => photo.tags.split(' '),
           :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.username, photo.id],
-          :machine_tag_list => photo.machine_tags,
+          :machine_tags => photo.machine_tags.split(' '),
           :description => photo.description,
           :photo_urls => {
               :o => photo.url(:original),
@@ -132,7 +132,7 @@ class Source::FlickrAccount < Source
           :user_id => self.user.id,
           :source_id => self.id
         }
-        Photo.create(photo_attr)
+        Photo.create!(photo_attr)
       end
       page += 1
     end
