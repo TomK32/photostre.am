@@ -94,46 +94,49 @@ class Source::FlickrAccount < Source
   def update_data
     return unless authenticated?
     begin
-      page = 1
+      page = 0
       per_page = 200
-      while (page <= (person.photo_count / per_page) + 1)
-
+      begin
         flickr.photos.extras.merge!({:url_o => :original_url, :description => :description,
             :original_secret => :original_secret})
-        flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
-            :user_id => 'me', :auth_token => self.token)
-        existing_photos = Photo.where(:source_id => self.id,
-            :remote_id.in => flickr_photos.collect{|p| p.id }
-          ).only(:remote_id).collect{|p| p.remote_id.to_s }
-        flickr_photos.reject!{|p| existing_photos.include?(p.id.to_s) }
+        begin
+          page += 1
+          flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
+              :user_id => 'me', :auth_token => self.token)
+          flickr_photos_count = flickr_photos.size
+          existing_photos = Photo.where(:source_id => self.id,
+              :remote_id.in => flickr_photos.collect{|p| p.id }
+            ).only(:remote_id).collect{|p| p.remote_id.to_s }
+          flickr_photos.reject!{|p| existing_photos.include?(p.id.to_s) }
 
-        flickr_photos.each do |photo|
+          flickr_photos.each do |photo|
 
-          next if photo.media != 'photo'
-          photo_attr = {
-            :title => photo.title,
-            :remote_id => photo.id,
-            :taken_at => photo.taken_at,
-            :created_at => photo.uploaded_at,
-            :updated_at => photo.updated_at,
-            :tags => photo.tags.split(' '),
-            :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.username, photo.id],
-            :machine_tags => photo.machine_tags.split(' '),
-            :description => photo.description,
-            :photo_urls => {
-                :o => photo.original_url,
-                :m => photo.medium_url,
-              },
-            :public => photo.public?,
-            :friend => photo.friend?,
-            :family => photo.family?,
-            :original_secret => photo.original_secret,
-            :user_id => self.user.id,
-            :source_id => self.id
-          }
-          Photo.create(photo_attr)
-        end
-        page += 1
+            next if photo.media != 'photo'
+            photo_attr = {
+              :title => photo.title,
+              :remote_id => photo.id,
+              :taken_at => photo.taken_at,
+              :created_at => photo.uploaded_at,
+              :updated_at => photo.updated_at,
+              :tags => photo.tags.split(' '),
+              :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.username, photo.id],
+              :machine_tags => photo.machine_tags.split(' '),
+              :description => photo.description,
+              :photo_urls => {
+                  :o => photo.original_url,
+                  :m => photo.medium_url,
+                },
+              :public => photo.public?,
+              :friend => photo.friend?,
+              :family => photo.family?,
+              :original_secret => photo.original_secret,
+              :user_id => self.user.id,
+              :source_id => self.id
+            }
+            Photo.create(photo_attr)
+          end
+          puts flickr_photos_count
+        end while flickr_photos_count < per_page
       end
     rescue Flickr::Error => ex
       self.error_messages ||= []

@@ -16,6 +16,8 @@ class Website
   field :theme_path, :type => String
 
   embed_many :related_photos
+  
+  before_validate :set_theme_path
   alias_attribute :photos, :related_photos
 
   validates_presence_of :title
@@ -32,7 +34,6 @@ class Website
   scope :active_or_system, :where => {:status.in => %w(active system)}
   scope :active, :where => {:status => %w(active)}
   after_create :create_default_pages
-  before_validate :set_theme_path
 
   validate do
     domains.each do |domain|
