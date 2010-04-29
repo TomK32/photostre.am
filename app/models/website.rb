@@ -13,7 +13,7 @@ class Website
   field :screenshot_filename, :type => String
   field :tags, :type => Array
   field :related_photos, :type => Array
-  field :theme_path, :type => String
+  field :theme_path, :type => String, :default => 'default'
 
   embed_many :related_photos
   
