@@ -93,6 +93,7 @@ class Source::FlickrAccount < Source
   # TODO import and create albums
   def update_data
     return unless authenticated?
+    return unless active?
     begin
       page = 0
       per_page = 200
