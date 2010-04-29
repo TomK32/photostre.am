@@ -1,0 +1,8 @@
+%li= link_to t(:'.back_to_website'), admin_website_path(@website)
+- if @album
+  %li= link_to t(:'.index'), collection_path
+- if @album && !@album.new_record?
+  - if action_name != 'edit'
+    %li= link_to t(:'.edit'), edit_resource_path(resource)
+- else
+  %li= link_to t(:'.new'), new_resource_path

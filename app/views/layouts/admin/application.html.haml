@@ -3,7 +3,7 @@
   %head
     = render :partial => "shared/meta_head"
     = render :partial => "shared/head"
-    = javascript_include_tag %w(jquery jrails jquery-ui admin admin/photo_manager)
+    = javascript_include_tag %w(jquery jrails jquery-ui rails admin admin/photo_manager)
     = stylesheet_link_tag %w(admin/admin admin/forms admin/photos admin/websites admin/albums), :cache => 'cache/admin'
   %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
     #container
@@ -15,6 +15,14 @@
         %li= link_to t(:'.photo_manager'), admin_photos_path
         %li= link_to t(:'.website_manager'), admin_websites_path
       = render :partial => 'shared/navigation'
+      - if ! yield(:subnavigation).blank?
+        %ul#subnavigation
+          = yield :subnavigation
+      - else
+        - begin
+          %ul#subnavigation= render :partial => 'subnavigation'
+        - rescue ActionView::MissingTemplate => ex;
+
     
 
       #content

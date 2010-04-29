@@ -1,22 +1,17 @@
-- content_for :subnavigation do
-  %li= link_to t(:'.edit'), edit_resource_path
-  %li
-    = link_to t(:'.website'), admin_website_path(resource.website)
-  
 %div[resource]
   - if ! resource.published?
     %p.notice= t(:'.unpublished', :editlink => link_to(t(:'.edit'), edit_resource_path))
   .description= raw resource.description_html
-
+  = link_to t(:'.delete'), resource_path, :method => :delete, :confirm => t(:'.confirm_deletion')
   %h3= t(:'.photos')
-  #key_photo
-    - if resource.key_photo
-      = image_tag(resource.key_photo.photo_url(:medium))
-    - else
-      = t(:'.no_keyphoto')
-    = t(:'.key_photo')
-  #photos
-    = render :partial => 'photo', :collection => @photos
+  - if resource.photos.empty?
+    = raw t(:'.no_photos_yet', :photo_manger_link => link_to(t(:'.photo_manager'), admin_photos_path))
+  - else
+    #key_photo
+      - if resource.key_photo
+        = image_tag(resource.key_photo.photo_url(:medium))
+    #photos
+      = render :partial => 'photo', :collection => @photos
 
 
 - content_for :head do

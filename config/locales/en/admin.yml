@@ -21,18 +21,25 @@ en:
       show:
         edit: 'Edit album'
         unpublished: 'This album is not published yet. {{editlink}}'
-        website: 'Back to website'
         photos: 'Photos in the album'
         key_photo: 'Key photo'
         page_title: 'Album {{title}}'
+        no_photos_yet: 'There are no photos yet in this album, go to the {{photo_manger_link}} to add a few.'
+        photo_manager: 'Photo Manager'
+        delete: 'Delete album'
+        confirm_deletion: 'Are you sure to delete this album?'
       edit:
         page_title: 'Edit "{{title}}"'
         submit: 'Save album'
       index:
         page_title: 'Albums'
-        new: 'New album'
         create_new: 'create a new album'
         no_albums_yet: "You don't have any albums yet, {{album_link}}."
+      subnavigation:
+        back_to_website: 'Back to website'
+        index: 'Back to albums'
+        new: 'New album'
+        edit: 'Edit album'
     pages:
       index:
         page_title: 'Pages'
