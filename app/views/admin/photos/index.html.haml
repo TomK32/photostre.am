@@ -54,7 +54,7 @@
   - if collection.empty?
     = t(:'.no_photos')
     - if @website || @album
-      = t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
+      = raw t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
   - else
     = render :partial => 'photo', :collection => collection
     = will_paginate collection

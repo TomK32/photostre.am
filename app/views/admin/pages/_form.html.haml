@@ -2,11 +2,11 @@
   = form.label :title, t(:'.title')
   = form.text_field :title
 %p
+  = form.label :excerpt, t(:'.excerpt')
+  = form.text_area :excerpt, :rows => 2
+%p
   = form.label :body, t(:'.body')
   = form.text_area :body
-%p
-  = form.label :excerpt, t(:'.excerpt')
-  = form.text_area :excerpt
 %p
   = form.label :tags, t(:'.tags')
   = form.text_field :tag_list

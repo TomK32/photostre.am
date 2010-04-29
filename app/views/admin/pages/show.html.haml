@@ -1,12 +1,8 @@
-- content_for :subnavigation do
-  %li= link_to t(:'.edit'), edit_resource_path
-  %li= link_to t(:'.website'), admin_website_path(resource.website.id)
-  - if resource.published?
-    %li= link_to t(:'.see_online'), page_path(resource.permalink, :host => resource.website.domains.first)
 
 - unless resource.published?
   .notice= raw t(:'.not_published', :edit_link => link_to(t(:'.edit'), edit_resource_path))
 
+= link_to t(:'.delete'), resource_path, :method => :delete, :confirm => t(:'.confirm_deletion')
 
 %div[resource]
   %p.body

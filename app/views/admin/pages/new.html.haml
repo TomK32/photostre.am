@@ -1,5 +1,6 @@
 = error_messages_for :page
 
-= form_for resource, :url => admin_website_pages_path(@parent) do |form|
-  - render 'form', :form => form
-  %p.submit= submit_tag t(:'.submit')
+= form_for resource, :url => collection_path do |form|
+  = form.error_messages
+  = render 'form', :form => form
+  %p.submit= submit_tag t(:'.submit'), :name => nil

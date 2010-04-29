@@ -1,11 +1,9 @@
-- content_for :subnavigation do
-  %li= link_to t(:'.website'), admin_website_path(@parent)
-  %li= link_to t(:'.create_new_page'), new_resource_path
 
 - if collection.empty?
   %p.eror= t(:'.no_pages_yet')
 - else
   %ul#pages
     - collection.each do |page|
-      %ul[page]= link_to page.title, resource_path(page)
+      %ul[page]
+        = link_to page.title, resource_path(page)
 
