@@ -4,6 +4,8 @@ en:
       application:
         website_manager: "Website manager"
         photo_manager: "Photo manger"
+        email_missing: "We are missing your e-mail address {{link}}."
+        edit_user: "edit your account"
 
   admin:
     dashboard:
@@ -216,3 +218,14 @@ en:
       edit:
         save: 'Save'
         page_title: 'Edit {{title}}'
+    users:
+      new:
+        success: 'We successfully authenticated you with your OpenID'
+        information_missing: 'But some information are missing to create an account for you.'
+        submit: 'Create account'
+      edit:
+        submit: 'Update account'
+      form:
+        login: "Loginname (only letters and numbers)"
+        name: "Your real name"
+        email: "Email address"

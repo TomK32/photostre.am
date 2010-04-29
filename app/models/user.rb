@@ -26,8 +26,4 @@ class User
     Website.where({:user_ids => self.id })
   end
 
-  def to_param
-    [id, login] * '-'
-  end
-
 end

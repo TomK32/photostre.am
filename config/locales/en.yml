@@ -21,12 +21,3 @@ en:
       login: 'Login'
       logout: 'Logout'
       about: 'About'
-  users:
-    new:
-      success: 'We successfully authenticated you with your OpenID'
-      information_missing: 'But some information are missing to create an account for you.'
-      create: 'Create account'
-    form:
-      login: "Loginname (only letters and numbers)"
-      name: "Your real name"
-      email: "Email address"

@@ -77,6 +77,8 @@ h2 a:hover, h2 a:active, h3 a:hover, h3 a:active { color: #dc6300; }
 
 .notice { color: black; background-color: #ffff88; border-color: #889911; }
 
+.right { float: right; }
+
 .flickr { color: #0063dc; }
 
 .portfolio { color: #63dc00; }

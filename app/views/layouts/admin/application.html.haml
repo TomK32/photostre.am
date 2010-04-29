@@ -10,7 +10,8 @@
       #header
         #title
           = link_to h(current_website.title), dashboard_path, :title => t(:'layout.links.back_to_homepage')
-        #navigation
+      - if current_user.email.blank?
+        .right= raw t(:'.email_missing', :link => link_to(t(:'.edit_user'), edit_admin_user_path(current_user)))
       %ul#section_navigation
         %li= link_to t(:'.photo_manager'), admin_photos_path
         %li= link_to t(:'.website_manager'), admin_websites_path

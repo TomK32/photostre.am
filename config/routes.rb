@@ -6,7 +6,6 @@ DasPhotowall::Application.routes.draw do |map|
   
   resources :pages
   resources :photos
-  resources :users
   resource :session
   
 
@@ -25,6 +24,7 @@ DasPhotowall::Application.routes.draw do |map|
     end
     resources :related_photos
     resources :photos
+    resources :users
   end
   
   get 'static/:action', :to => 'static', :as => 'static'
