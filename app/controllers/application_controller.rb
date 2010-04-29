@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme_path
-    @current_theme_path ||= Rails.root.join('themes', current_website.theme.directory)
+    @current_theme_path ||= Rails.root.join('themes', current_website.theme_path)
     config.assets_dir = @current_theme_path.join('public')
     @current_theme_path
   end
