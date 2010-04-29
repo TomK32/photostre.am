@@ -11,7 +11,9 @@ module Rack
         [h, h.gsub(/^www\./, ''), 'www.' + h].uniq.each do |host|
           website ||= Website.active_or_system.where(:domains => host).first
         end
-        directory = (website.nil?) ? 'default' : website.theme_path
+        directory = website.theme_path if website.nil?
+        directory ||= 'default'
+
         file_server = Rack::File.new(Rails.root.join('themes', directory, "public"))
         file_server.call(env)
       elsif @urls.any? { |url| path.index(url) == 0 }
