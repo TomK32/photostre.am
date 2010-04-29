@@ -124,7 +124,7 @@ class Source::FlickrAccount < Source
               :description => photo.description,
               :photo_urls => {
                   :o => photo.original_url,
-                  :m => photo.medium_url,
+                  :m => photo.url(:medium),
                 },
               :public => photo.public?,
               :friend => photo.friend?,
@@ -135,8 +135,7 @@ class Source::FlickrAccount < Source
             }
             Photo.create(photo_attr)
           end
-          puts flickr_photos_count
-        end while flickr_photos_count < per_page
+        end while flickr_photos_count == per_page
       end
     rescue Flickr::Error => ex
       self.error_messages ||= []
