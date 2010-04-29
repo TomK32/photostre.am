@@ -3,6 +3,7 @@
   %li= link_to t(:'.online'), resource.url
 
 %div[resource]
+  = link_to t(:'.delete'), resource_path, :method => :delete, :confirm => t(:'.confirm_deletion')
 
   %dl
     %dt= t(:'.root_path')

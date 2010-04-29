@@ -1,5 +1,5 @@
 %li
-  = link_to page.title, admin_website_page_url(page.website.id, page.permalink)
+  = link_to page.title, admin_website_page_url(page.website, page)
   - unless page.children.published.empty?
     %ul
       - page.children.each do |child|

@@ -1,4 +1,6 @@
-= error_messages_for :website
+
+- resource.errors.each do |field, message|
+  .error= "%s %s" % [field, message]
 
 = form_for resource||current_user.websites.new, :url => collection_path do |form|
   = render 'form', :form => form
