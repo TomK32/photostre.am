@@ -1,14 +1,15 @@
-source 'http://rubygems.org'
+source :gemcutter
 
-gem 'rails', :git => 'git://github.com/rails/rails.git', :ref => '03aa7877f7b3a0eb5ed1bb48a30be74194c4177a'
+gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rack'
 gem 'rack-openid'
 
 # Database
-gem 'mongo', '0.20.1'
-gem 'bson_ext', '0.20.1'
+gem 'mongo', '1.0'
+gem 'bson_ext', '1.0'
+gem 'mongo', '1.0'
 #gem 'builder'
-gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :ref => '9ae4036c69a87db579c7885f69c274e7eb8d4367'
+gem 'mongoid', :git => 'git://github.com/durran/mongoid.git'
 
 # For background processes
 gem 'daemons'
