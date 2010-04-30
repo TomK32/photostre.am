@@ -4,3 +4,57 @@ en:
       active: 'Active'
       draft: 'Draft'
       deleted: 'Deleted'
+  admin:
+    websites:
+      access_denied: "You are not allowed to edit this website"
+      album:
+        photos:
+          one: 'One items'
+          other: '{{count}} items'
+      new:
+        create: "Create website"
+      form:
+        title: "Title of your website"
+        domain: "Domain (see our <a href='/faq/domains'>FAQ</a> for details)"
+        subdomain: ""
+        change_domain: "If you want to change the domain of your website, please write us an email."
+        tags: "Keywords for the HTML metatags. Five to ten keywords are best."
+        description: "Description for HTML metatags. E.g. <em>John Doe is a professional photographer from New York City</em>"
+        status: "Status"
+        root_path: Root path for your domain. E.g. <em>/photos</em> or <em>/pages/homepage</em>
+        theme: 'Theme'
+        tracking_code: 'Javascript tracking code. E.g. from Google Analytics'
+      index:
+        your_websites: "Your websites"
+        add_new_website: 'Please configure a new {{link}}.'
+        new_website: "new website"
+        no_websites: "You didn't setup a website yet."
+        info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
+        new: 'New website'
+      website:
+        goto_domain: 'Open this website as seen by the public'
+        show_website_details: 'Show details about this website'
+        edit: "Edit website details"
+        edit_pages: "Edit pages"
+        edit_sets: "Edit sets"
+        active: "Active"
+        inactive: "Inactive"
+        pages: 'published pages'
+        photo: 'photo'
+        album: 'album'
+        photos_in_albums: '{{photos}} in {{albums}}'
+        default_theme: 'Default theme'
+      edit:
+        page_title: "Edit '{{title}}'"
+        save: "Save website"
+      show:
+        edit: 'Edit'
+        online: 'See online'
+        add_page: 'Add page'
+        add_album: 'Add album'
+        domain: 'Domain'
+        root_path: 'Root path (your homepage)'
+        albums: 'Albums'
+        pages: 'Pages'
+        delete: 'Delete website'
+        confirm_deletion: 'Are you sure to delete this website?'

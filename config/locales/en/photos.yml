@@ -6,3 +6,59 @@ en:
       taken_at: 'Taken {{date}}'
       from_source: 'By {{source}} on {{web_url}}'
       tagged: 'Tagged: '
+  admin:    
+    photos:
+      error:
+        no_photos_yet: No photos yet
+        edit_photo: You cannot edit this photo.
+      form:
+        button:
+          update: Update
+        title: Title
+        description: Description
+        tags: 'Tags (flower, car, blue)'
+        public: Visible to all
+        websites: Websites
+      index:
+        page_title: 'Photo manager'
+        websites: Websites
+        new_album: 'New album'
+        photos: Photos
+        info: 'To assign a photo to one of your websites simple drag and drop it'
+        for_website: 'on {{website}}'
+        for_album: 'in album {{album}}'
+        select_all: 'select all'
+        select_none: 'none'
+        no_photos: 'No photos found.'
+        maybe_reset: 'Maybe a {{link}} will help'
+        reset: 'reset'
+        items:
+          one: 'One item'
+          other: '{{count}} items'
+      photo:
+        unassigned: 'Not on any website'
+        edit: 'Edit'
+      website:
+        create_album: 'Create new album'
+        only_website: 'Only photos on this website'
+        photos:
+          one: 'One items'
+          other: '{{count}} items'
+      album:
+        show: 'Show album'
+        only_album: 'Only photos from this album'
+        photos:
+          one: 'One items'
+          other: '{{count}} items'
+      edit:
+        submit: 'Update'
+        page_title: 'Edit photo {{title}}'
+      show:
+        edit: 'Edit'
+        index: 'All photos'
+      filter:
+        search: 'Search title'
+        tags: 'Matching all tags'
+        per_page: 'Photos per page'
+        submit: 'Apply filter'
+        reset: 'Reset filter'

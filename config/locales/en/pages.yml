@@ -8,3 +8,35 @@ en:
     index:
       page_title: 'Sitemap'
       create_new_page: 'Create a new page'
+  admin:
+    pages:
+      subnavigation:
+        back_to_website: 'Back to website'
+        index: 'Back to all pages'
+        edit: 'Edit'
+        see_online: 'See online'
+        new: 'Create a new page'
+      index:
+        page_title: 'Pages'
+        no_pages_yet: 'There are no static pages yet on your website'
+      new:
+        page_title: 'Create a new page'
+        submit: 'Create'
+      form:
+        body: 'Body'
+        excerpt: 'Excerpt'
+        title: 'Title'
+        tags: 'Tags'
+        status: 'Status'
+        permalink: 'Permalink'
+        parent: 'Parent page'
+      show:
+        not_published: 'The page is not published. {{edit_link}} it to change that.'
+        website: 'Back to website'
+        tags: 'Tags'
+        no_tags: 'No tags'
+        delete: 'Delete page'
+        confirm_deletion: 'Are you sure to delete this page?'
+      edit:
+        page_title: 'Edit "{{title}}"'
+        submit: 'Save page'
