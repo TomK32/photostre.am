@@ -1,11 +1,11 @@
-- begin; album = @albums.pop ; end while !album.key_photo
+- begin; album = @albums.pop ; end while album && !album.key_photo
 - if album
   .large
     .album.first
       = link_to image_tag(album.key_photo.photo_url(:large)), album_path(album.permalink), :title => raw(album.description)
-#albums
-  - if ! @albums.empty?
-    .clear
-    - @albums.each do |album|
-      .album
-        = link_to image_tag(album.key_photo.photo_url(:square)), album_path(album.permalink), :title => album.description
+  #albums
+    - if ! @albums.empty?
+      .clear
+      - @albums.each do |album|
+        .album
+          = link_to image_tag(album.key_photo.photo_url(:square)), album_path(album.permalink), :title => album.description
