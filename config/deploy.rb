@@ -15,7 +15,7 @@ after "deploy:update_code", "bundle:pack"
 
 namespace :bundle do
   desc "pack"
-  task :pack do
+  task :pack, :roles => [:app] do
     run "cd #{release_path}; bundle install; bundle pack"
   end
 end
@@ -24,12 +24,17 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+  desc "screenshots"
+  task :screenshots, :roles => [:web] do
+    top.upload(File.expand_path('../../public/screenshots', __FILE__),
+        "#{shared_path}/public/", :via => :scp, :recursive => true, :mode => '0755')
+  end
   desc "link shared files"
   task :link_shared_files, :roles => [:app] do
     %w(
       config/database.mongo.yml
       config/flickr.yml
-      public/themes
+      public/screenshots
       log
     ).each do |f|
       run "ln -nsf #{shared_path}/#{f} #{release_path}/#{f}"
