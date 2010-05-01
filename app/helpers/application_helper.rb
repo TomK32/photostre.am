@@ -7,6 +7,7 @@ module ApplicationHelper
   end
 
   def page_title(string = nil)
+    return current_website.title if request.path == current_website.root_path
     string ||= :"#{controller_name}.#{action_name}.page_title"
     if @title.blank? and params[:id]
       object = resource rescue nil
