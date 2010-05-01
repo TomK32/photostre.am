@@ -1,4 +1,4 @@
-!!!
+!!! 5
 %html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
   %head
     = render :partial => "shared/meta_head"
@@ -26,4 +26,6 @@
 
       = render :partial => 'shared/footer'
       .clear
-    = yield :javascript
+  - if yield :javascript
+    = javascript_tag(yield(:javascript))
+  = raw current_website.tracking_code
