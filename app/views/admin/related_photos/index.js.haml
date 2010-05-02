@@ -1,0 +1,6 @@
+- if collection.empty?
+  $('#related_photos').html("")
+- else
+  $('#related_photos').replaceWith("\
+  = raw(escape_javascript(render :template => 'admin/related_photos/index.html.haml') + "\\")
+  ")

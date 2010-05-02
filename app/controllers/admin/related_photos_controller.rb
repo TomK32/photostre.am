@@ -1,5 +1,9 @@
 class Admin::RelatedPhotosController < Admin::ApplicationController
   before_filter :owner_required
+  inherit_resources
+  actions :index, :show
+  belongs_to :website, :album
+  respond_to :js, :html
 
   def create
     if ! photo = current_user.photos.find(params[:related_photo][:photo_id])

@@ -19,8 +19,13 @@ DasPhotowall::Application.routes.draw do |map|
       end
     end
     resources :websites do
-      resources :pages
-      resources :albums
+      resources :pages do
+        resources :related_photos
+      end
+      resources :albums do
+        resources :related_photos
+      end
+      resources :related_photos
     end
     resources :related_photos
     resources :photos
