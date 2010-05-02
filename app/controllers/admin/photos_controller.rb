@@ -1,13 +1,7 @@
 class Admin::PhotosController < Admin::ApplicationController
 
   inherit_resources
-  actions :index, :show, :edit, :update, :delete
-  def update
-    update! do |format|
-      format.js { render :json => {:success => true}}
-      format.html { redirect_to resource_path }
-    end
-  end
+  actions :index
   def index
     if params[:webiste_id].nil?
       @websites = current_user.websites
@@ -15,14 +9,8 @@ class Admin::PhotosController < Admin::ApplicationController
       @website = current_user.websites.find(params[:website_id])
       @albums = @website.albums
     end
+    
     index!
-  end
-
-  def show
-    show! do |format|
-      format.html
-      format.js { render :action => 'show', :layout => false }
-    end
   end
 
   private
@@ -38,7 +26,7 @@ class Admin::PhotosController < Admin::ApplicationController
       scope = @album.related_photos
       conditions ||= {:include => 'related_photos.photo'}
     else
-      scope ||= current_user.photos
+      scope = current_user.photos
     end
 
     if ! params[:search].blank?

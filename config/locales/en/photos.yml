@@ -21,7 +21,6 @@ en:
         websites: Websites
       index:
         page_title: 'Photo manager'
-        websites: Websites
         new_album: 'New album'
         photos: Photos
         info: 'To assign a photo to one of your websites simple drag and drop it'
@@ -38,6 +37,8 @@ en:
       photo:
         unassigned: 'Not on any website'
         edit: 'Edit'
+      websites:
+        websites: Websites
       website:
         create_album: 'Create new album'
         only_website: 'Only photos on this website'
@@ -50,12 +51,6 @@ en:
         photos:
           one: 'One items'
           other: '{{count}} items'
-      edit:
-        submit: 'Update'
-        page_title: 'Edit photo {{title}}'
-      show:
-        edit: 'Edit'
-        index: 'All photos'
       filter:
         search: 'Search title'
         tags: 'Matching all tags'

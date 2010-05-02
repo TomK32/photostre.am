@@ -67,8 +67,14 @@ var PhotoManager = {
       id = photo.id;
     } else {
       id = photo.attr('id');
-    } 
+    }
     return('/admin/photos/' + extractID(id) + '.js');
+  },
+
+  resizePhotoMananger: function() {
+    width = $(window).width()
+    $('#related_photos').siblings().map(function(index, e){ console.log($(e).width()); width -= $(e).width()});
+    $('#related_photos').css('width', Math.max(400,width));
   },
 
   init: function(options) {
@@ -79,5 +85,6 @@ var PhotoManager = {
     // make the selectable
     $(this.options.draggables).addClass('selectable');
     $(this.options.draggables).click(this.selectElement);
+    this.resizePhotoMananger();
   }
 }

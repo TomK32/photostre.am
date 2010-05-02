@@ -3,4 +3,4 @@
   %small.count
     = t(:'admin.photos.index.items', :count => website.related_photos.count)
 %ul.info.albums
-  = render :partial => 'album', :collection => website.albums.published
+  = render :partial => 'album', :collection => website.albums

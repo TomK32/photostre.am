@@ -3,44 +3,33 @@
   %head
     = render :partial => "shared/meta_head"
     = render :partial => "shared/head"
-    = javascript_include_tag %w(jquery jrails jquery-ui rails admin)
+    = javascript_include_tag %w(jquery jquery-ui rails admin admin/photo_manager)
     = stylesheet_link_tag %w(admin/admin admin/forms admin/websites admin/albums), :cache => 'cache/admin'
+    = stylesheet_link_tag "admin/photos"
   %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
     #container
-      #header
+      #header.small
         #title
           = link_to h(current_website.title), dashboard_path, :title => t(:'layout.links.back_to_homepage')
       - if current_user.email.blank?
         .right= raw t(:'.email_missing', :link => link_to(t(:'.edit_user'), edit_admin_user_path(current_user)))
-      %ul#section_navigation
-        %li= link_to t(:'.photo_manager'), admin_photos_path
-        %li= link_to t(:'.website_manager'), admin_websites_path
-      = render :partial => 'shared/navigation'
-      - if ! yield(:subnavigation).blank?
-        %ul#subnavigation
-          = yield :subnavigation
-      - else
-        - begin
-          %ul#subnavigation= render :partial => 'subnavigation'
-        - rescue ActionView::MissingTemplate => ex;
-
-    
+      %ul#navigation
+        %li= link_to t(:'shared.navigation.dashboard'), dashboard_path
 
       #content
-        %h1= @title
     
         - flash.each do |flash_type, message|
           %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
-
+        .columns#photo_manager
+          #websites=render 'admin/photos/websites'
+          #related_photos
+          #related_photo
+        .clear
         = yield :layout
 
-      - if yield :info
-        #sidebar
-          #info= yield :info
-
-
-      = render :partial => 'shared/footer'
-  - if yield :javascript
-    = javascript_tag(yield(:javascript))
-  = raw current_website.tracking_code
+    = raw current_website.tracking_code
+    - javascript_dom_ready('PhotoManager.init();').inspect
+    - if yield :javascript
+      = javascript_tag(yield(:javascript))
+    

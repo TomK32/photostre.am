@@ -1,5 +1,21 @@
 @import includes.sass
 
+body
+  background-image: none
+#header
+  #title a
+    font-size: 1.2em
+#navigation
+  top: 0
+#container, #header
+  width: 100%
+  margin: 0
+  padding: 0
+#content
+  width: auto
+  padding: 5px
+
+
 #info_draggable, #info_remove, #info_delete
   font-size: 85%
 #drag_arrow
@@ -8,25 +24,48 @@
   position: absolute
   margin: -90px 0 0 -45px
 #photos
+  width: 100%
   .photo, .related_photo
-    :display inline-block
-    :position relative
-    :border 1px solid transparent
+    display: inline-block
+    position: relative
+    border: 1px solid transparent
     margin: 0
     &.selected
-      :border 1px solid
-      :border-color= !color_blue
+      border: 1px solid
+      border-color= !color_blue
     .icon
       margin: 2px
-      :position relative
+      position: relative
     .info
-      :position absolute
-      :width 10em
-      :border-style solid 
-      :border-color = !color_green
-      :border-width 1px
-      :padding 0.2em
-      :background-color black
+      position: absolute
+      width: 10em
+      border-style: solid
+      border-color: = !color_green
+      border-width: 1px
+      padding: 0.2em
+      background-color: black
+  #filter
+    p, label, input, form
+      display: inline
+    input[type="text"]
+      width: 60px
+    label
+      margin-left: 10px
+
+#photo_manager
+  width: 100%
+  clear: both
+  #websites
+    +grid(3,16)
+  #related_photos
+    +grid(10,16)
+  #related_photo
+    +grid(3,16)
+  #websites, #related_photos, #related_photo
+    margin: 0
+    padding: 0
+#photos
+  clear: both
 .website, .album
   &.droppable.hover
-    :background-color #222
+    background-color: #222

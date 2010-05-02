@@ -1,0 +1,6 @@
+%h2= t(:'.websites')
+
+- if current_user.websites.empty?
+  = link_to t(:'.create_website'), new_admin_website_path
+- else
+  = render :partial => 'website', :collection => current_user.websites
