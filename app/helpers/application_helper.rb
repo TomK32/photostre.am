@@ -29,11 +29,9 @@ module ApplicationHelper
   end
   def javascript_dom_ready(js = '')
     content_for :javascript do
-      javascript_tag(
-        "$(document).ready(function(){\n\t" <<
-        js <<
-        "\n})"
-      )
+      "$(document).ready(function(){\n\t" <<
+      js <<
+      "\n})"
     end
   end
   def next_previous_links(collection, separator = " ")
