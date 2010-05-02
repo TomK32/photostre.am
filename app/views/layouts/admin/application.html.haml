@@ -41,6 +41,6 @@
 
 
       = render :partial => 'shared/footer'
-  - if yield :javascript
-    = javascript_tag(yield(:javascript))
-  = raw current_website.tracking_code
+    - if yield :javascript
+      = javascript_tag(yield(:javascript))
+    = raw current_website.tracking_code
