@@ -1,5 +1,6 @@
 class Admin::ApplicationController < ApplicationController
   layout 'admin/application'
+  before_filter :require_system_website
   before_filter :authenticated
   before_filter :update_sources
 
@@ -24,6 +25,12 @@ class Admin::ApplicationController < ApplicationController
         flash[:error] = t(:'admin.not_owner')
         redirect_to :action => :index
       end
+    end
+  end
+
+  def require_system_website
+    if ! current_website.system?
+      redirect_to root_path and return
     end
   end
 end

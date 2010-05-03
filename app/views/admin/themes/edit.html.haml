@@ -1,5 +1,5 @@
-= error_messages_for :theme
 
+= resource.errors
 = form_for(:theme, :url => resource_path, :html => { :method => :put }) do |form|
   = render "form", :form => form
   %p.submit

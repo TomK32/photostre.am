@@ -3,11 +3,10 @@ DasPhotowall::Application.routes.draw do |map|
   resources :albums do
     resources :photos
   end
-  
+
   resources :pages
   resources :photos
   resource :session
-  
 
   namespace :admin do
     resources :sources do
@@ -30,8 +29,10 @@ DasPhotowall::Application.routes.draw do |map|
     resources :related_photos
     resources :photos
     resources :users
+
+    resources :themes
   end
-  
+
   get 'static/:action', :to => 'static', :as => 'static'
   get 'faq/:action', :to => 'static', :as => 'faq'
 
