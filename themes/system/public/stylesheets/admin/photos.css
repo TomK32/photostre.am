@@ -16,7 +16,7 @@ body { background-image: none; }
 
 #photos { clear: both; }
 
-#related_photo input[type=text] { width: 100%; }
+#related_photo input[type=text], #related_photo textarea { width: 100%; }
 
 #photos { width: 100%; }
 #photos .photo, #photos .related_photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; }

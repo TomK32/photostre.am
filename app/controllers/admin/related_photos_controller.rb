@@ -1,8 +1,10 @@
 class Admin::RelatedPhotosController < Admin::ApplicationController
   before_filter :owner_required
   inherit_resources
-  actions :index, :show, :update
-  belongs_to :website, :album
+  actions :index, :show, :update, :destroy
+  belongs_to :website
+  belongs_to :album
+  belongs_to :page
   respond_to :js
 
   def create
@@ -24,20 +26,19 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     end
   end
 
-  private
-  def parent
-    return @parent if @parent
-    if params[:website_id]
-      @parent ||= @website = Website.find(params[:website_id])
-    elsif params[:album_id]
+  protected
+  def begin_of_association_chain
+    if params[:album_id]
       @website = Website.where('albums._id' => params[:album_id]).first
-      @parent = @website.albums.find(params[:album_id])
+      return @website.albums.find(params[:album_id])
     elsif params[:page_id]
       @website = Website.where('pages._id' => params[:page_id]).first
-      @parent = @website.pages.find(params[:page_id])
+      return @website.pages.find(params[:page_id])
+    elsif params[:website_id]
+      return current_user.websites
     end
-    return @parent
   end
+
   def owner_required
     website = parent.is_a?(Website) ? parent : parent.website
     if ! website.user_ids.include?(current_user.id)

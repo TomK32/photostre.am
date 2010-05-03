@@ -68,3 +68,4 @@ en:
       show:
         html:
           submit: 'Update'
+          remove: 'Remove'
