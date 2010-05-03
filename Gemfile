@@ -3,6 +3,7 @@ source :gemcutter
 gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rack'
 gem 'rack-openid'
+gem 'thor'
 
 # Database
 gem 'mongo', '1.0'
