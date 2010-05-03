@@ -1,3 +1,4 @@
 #related_photos
   - collection.each do |related_photo|
-    = link_to(image_tag(related_photo.photo_url(:square)), resource_path(related_photo), :remote => true)
+    %div[related_photo]
+      = link_to(image_tag(related_photo.photo_url(:square)), resource_path(related_photo), :remote => true)
