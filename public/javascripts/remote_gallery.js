@@ -14,9 +14,6 @@ $.remoteGallery = function(target, elements, callback) {
   if(window.location.hash != '' && $(target)) {
     $.remoteGallery.loadRemote(window.location.hash.substr(1));
   }
-
-  $.keyboard_navigation(elements, 0);
-
 }
 
 $.remoteGallery.loadRemote = function (url) {
