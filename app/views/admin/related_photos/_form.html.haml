@@ -1,0 +1,9 @@
+%p
+  = form.label :title
+  = form.text_field :title
+%p
+  = form.label :description
+  = form.text_area :description, :rows => 2
+%p
+  = form.label :permalink
+  = form.text_field :permalink, :value => (form.object.attributes[:title].blank? ? '' : form.object.permalink)

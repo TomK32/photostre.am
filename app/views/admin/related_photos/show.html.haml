@@ -1,2 +1,5 @@
 #related_photo
   = image_tag(resource.photo_url(:thumbnail))
+  = form_for resource, :url => resource_path, :html => {:method => :put}, :remote => true do |form|
+    = render 'form', :form => form
+    = submit_tag t(:'.submit'), :name => nil

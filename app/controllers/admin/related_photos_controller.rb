@@ -1,9 +1,9 @@
 class Admin::RelatedPhotosController < Admin::ApplicationController
   before_filter :owner_required
   inherit_resources
-  actions :index, :show
+  actions :index, :show, :update
   belongs_to :website, :album
-  respond_to :js, :html
+  respond_to :js
 
   def create
     if ! photo = current_user.photos.find(params[:related_photo][:photo_id])
@@ -15,6 +15,12 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     related_photo.save!
     respond_to do |format|
       format.js { render :text => t(:'admin.photos.index.items', :count => parent.related_photos.count), :layout => false and return }
+    end
+  end
+
+  def update
+    update! do
+      redirect_to resource_path(:format => params[:format]) and return
     end
   end
 

@@ -17,3 +17,6 @@ db/mongod.lock
 db/*.[0-9]
 db/*.ns
 .bundle
+config/database.mongo.yml
+coverage
+stats

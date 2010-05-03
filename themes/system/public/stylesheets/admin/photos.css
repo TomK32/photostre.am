@@ -8,9 +8,15 @@ body { background-image: none; }
 
 #content { width: auto; padding: 5px; }
 
-#info_draggable, #info_remove, #info_delete { font-size: 85%; }
+#photo_manager { width: 100%; clear: both; }
+#photo_manager #websites { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 160px; }
+#photo_manager #related_photos { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 580px; }
+#photo_manager #related_photo { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 160px; }
+#photo_manager #websites, #photo_manager #related_photos, #photo_manager #related_photo { margin: 0; padding: 0; }
 
-#drag_arrow { color: #63dc00; font-weight: bold; position: absolute; margin: -90px 0 0 -45px; }
+#photos { clear: both; }
+
+#related_photo input[type=text] { width: 100%; }
 
 #photos { width: 100%; }
 #photos .photo, #photos .related_photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; }
@@ -20,13 +26,5 @@ body { background-image: none; }
 #photos #filter p, #photos #filter label, #photos #filter input, #photos #filter form { display: inline; }
 #photos #filter input[type="text"] { width: 60px; }
 #photos #filter label { margin-left: 10px; }
-
-#photo_manager { width: 100%; clear: both; }
-#photo_manager #websites { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 160px; }
-#photo_manager #related_photos { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 580px; }
-#photo_manager #related_photo { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 160px; }
-#photo_manager #websites, #photo_manager #related_photos, #photo_manager #related_photo { margin: 0; padding: 0; }
-
-#photos { clear: both; }
 
 .website.droppable.hover, .album.droppable.hover { background-color: #222; }

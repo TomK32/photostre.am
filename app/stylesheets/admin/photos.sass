@@ -16,13 +16,26 @@ body
   padding: 5px
 
 
-#info_draggable, #info_remove, #info_delete
-  font-size: 85%
-#drag_arrow
-  color= !color_green
-  font-weight: bold
-  position: absolute
-  margin: -90px 0 0 -45px
+#photo_manager
+  width: 100%
+  clear: both
+  #websites
+    +grid(3,16)
+  #related_photos
+    +grid(10,16)
+  #related_photo
+    +grid(3,16)
+  #websites, #related_photos, #related_photo
+    margin: 0
+    padding: 0
+
+#photos
+  clear: both
+
+#related_photo
+  input[type=text], textarea
+    width: 100%
+
 #photos
   width: 100%
   .photo, .related_photo
@@ -52,20 +65,6 @@ body
     label
       margin-left: 10px
 
-#photo_manager
-  width: 100%
-  clear: both
-  #websites
-    +grid(3,16)
-  #related_photos
-    +grid(10,16)
-  #related_photo
-    +grid(3,16)
-  #websites, #related_photos, #related_photo
-    margin: 0
-    padding: 0
-#photos
-  clear: both
 .website, .album
   &.droppable.hover
     background-color: #222
