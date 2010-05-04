@@ -1,3 +1,10 @@
+
+@font-face {
+  font-family: Sertig
+  src: url(http://static.photostre.am/fonts/Sertig.eof)
+  src: local('Sertig'), local('Sertig'), url(http://static.photostre.am/fonts/Sertig.otf) format("opentype")
+}
+
 a {
   text-decoration: none;
   color: #049;
@@ -18,9 +25,13 @@ a img {
   padding: 0 0 0 10px;
 }
 
+#title, h1, h2 {
+  font-family: Sertig, HelveticaNeue, Helvetica, sans-serif;
+}
 #title a {
   font-size: 50px;
   color: #009;
+  text-decoration: none;
 }
 #title .subtitle {
   display: inline;
