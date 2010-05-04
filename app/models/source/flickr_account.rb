@@ -86,14 +86,14 @@ class Source::FlickrAccount < Source
   def call_worker
 #    return if self.deleted?
     return unless self.authenticated?
+    return unless active?
+    self.update_attributes(:status => 'updating')
     Navvy::Job.enqueue(SourceFlickrAccountWorker, :update_data, {:id => self.id})
   end
 
   # TODO import and create albums
   def update_data
     return unless authenticated?
-    return unless active?
-    self.update_attributes(:status => 'updating')
     begin
       page = 0
       per_page = 200
