@@ -1,0 +1,14 @@
+
+#container {
+  width: 750px;
+  margin: 0 auto;
+}
+#content {
+  padding: 20px 0 0 0;
+  width: 500px;
+  min-height: 300px;
+}
+#navigation_albums {
+  width: 200px;
+  float: right;
+}

@@ -1,15 +1,6 @@
-
-%div[@photo]
-  = link_to image_tag(@photo.photo_url(:medium)), @photo.web_url
-
-  %ul.meta
-    %li= t(:'.taken_at', :date => @photo.taken_at)
-    %li
-      = t(:'.tagged')
-      = @photo.tags.join(', ')
-    - if @photo.source
-      %li= raw t(:'.from_source', |
-        :source => link_to(@photo.source.username, @photo.source.profile_url), |
-        :web_url => link_to(@photo.source.source_title, @photo.web_url)) |
-
-    
+.photo
+  %h1= @photo.title
+  = image_tag(@photo.photo_url(:medium))
+  .meta
+    = @photo.description
+    = source_link(@photo)

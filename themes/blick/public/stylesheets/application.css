@@ -1,0 +1,66 @@
+
+@font-face {
+  font-family: Sertig
+  src: url(http://static.photostre.am/fonts/sertig.eof)
+  src: local('Sertig'), local('Sertig'), url(http://static.photostre.am/fonts/sertig.otf) format("opentype")
+}
+
+
+body {
+  background-color: #ACC;
+  font-family: Sertig, HelveticaNeue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: #600;
+}
+a:hover, a:focus {
+  color: #A00;
+}
+a img {
+  border: none;
+}
+.clear {
+  clear: both;
+}
+
+h1, h2, h3 {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: upper-roman;
+}
+ul li {
+  margin: 0;
+  padding: 0;
+}
+
+
+#title a {
+  font-size: 30px;
+  margin: 10px 0 0 0;
+}
+
+#navigation {
+  list-style-type: none;
+}
+#navigation li {
+  display: inline;
+  margin: 0 20px 0 0;
+}
+
+#albums .album, #photos .photo {
+  display: inline;
+}
+
+.album img, .photo img {
+  max-width: 500px;
+}
+.meta {
+  text-align: right;
+}

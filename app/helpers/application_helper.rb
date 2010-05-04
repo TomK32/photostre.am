@@ -11,7 +11,7 @@ module ApplicationHelper
     string ||= :"#{controller_name}.#{action_name}.page_title"
     if @title.blank? and params[:id]
       object = resource rescue nil
-      @title = t(string, :title => object.title, :default => object.title) if object and object.respond_to?(:title)
+      (@title = t(string, :title => object.title, :default => object.title) if object and object.title) rescue nil
     else
       @title = t(string, :default => @title||'')
     end

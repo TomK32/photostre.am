@@ -8,4 +8,7 @@
 
 
 admin = User.first || User.create!(:login => 'admin')
-Theme.create!(:name => 'Alboom', :directory => 'alboom', :author => admin, :status => 'public')
+Theme.create!(:name => 'Alboom', :directory => 'alboom', :author => admin, :status => 'public',
+  :description => 'Minimalistic white theme.')
+Theme.create!(:name => 'Blick', :directory => 'blick', :author => admin, :status => 'public',
+  :description => 'Vintage green with dark blue headers and links in a minimalistic design.')

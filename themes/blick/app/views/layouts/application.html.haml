@@ -1,0 +1,32 @@
+!!! 5
+%html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
+  %head
+    = render :partial => "shared/meta_head"
+    = render :partial => "shared/head"
+  %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
+    #container
+      #header
+        #title
+          = link_to h(current_website.title), root_url(:host => current_website.domains.first), :title => t(:'layout.back_to_homepage')
+          - unless current_website.description.blank?
+            .subtitle= current_website.description
+      %ul#navigation_albums
+        - current_website.albums.each do |website|
+          %li= link_to website.title, album_path(website.permalink)
+      #content
+        - if @title_in_content
+          %h1= @title 
+
+        - flash.each do |flash_type, message|
+          %p{:class => 'flash ' + flash_type.to_s}= h(message)
+
+        = yield
+
+      #navigation
+        = render :partial => 'shared/navigation'
+
+      = render :partial => 'shared/footer'
+      .clear
+    - if yield :javascript
+      = javascript_tag(yield(:javascript))
+    = raw current_website.tracking_code
