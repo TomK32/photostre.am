@@ -13,13 +13,18 @@ websites.
 = Navvy::Job.count
 jobs outstanding.
 
+%h2 Latest websites
+%ul
+  - @websites.each do |website|
+    %li= link_to website.title, website.domains.first
+
 %h2 Newest users
 %ul
-- @users.each do |user|
-  %li
-    = "%s (%s, %s photos): " % [user.login, user.created_at.to_s(:short), user.photos.count]
-    - user.sources.each do |source|
-      = link_to source.username, source.photostream_url
+  - @users.each do |user|
+    %li
+      = "%s (%s, %s photos): " % [user.login, user.created_at.to_s(:short), user.photos.count]
+      - user.sources.each do |source|
+        = link_to source.username, source.photostream_url
 = will_paginate @users
 
 - user_photos_counter = {}
