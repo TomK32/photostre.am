@@ -37,7 +37,9 @@ class Website
 
   validate do
     domains.each do |domain|
+      domain.downcase!
       errors.add(:domains, '%s is duplicate' % domain) if Website.where(:domains => domain).where(:_id.ne => id).count > 0
+      errors.add(:domains,'%s has wrong format' % domain) if ! domain.match(/^[a-z0-9][a-z0-9-]*$/)
     end
   end
 
