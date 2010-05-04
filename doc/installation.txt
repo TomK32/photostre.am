@@ -4,3 +4,22 @@ Create Website with state system:
   Website.create!(:site_title => 'photostre.am', :domain => 'photostre.am', :state => 'system')
 Start memcache, starling and workling
 
+
+== Apache:
+
+=== modules needed
+* header
+* passenger
+
+<VirtualHost *:80>
+  ServerName photostre.am
+  RailsBaseURI /
+  DocumentRoot /var/www/photostre.am/current/public/
+  PassengerHighPerformance on
+  <Directory /var/www/photostre.am/current/public/>
+    AllowOverride all
+    Options -MultiViews FollowSymlinks
+    # For fotns to work in stupid firefox
+    Header set Access-Control-Allow-Origin "*"
+  </Directory>
+</VirtualHost>
