@@ -12,35 +12,57 @@ body
   margin: 0
   padding: 0
 #content
-  width: auto
-  padding: 5px
+  width: 100%
+  margin: 0
+  padding-bottom: 0
 
-
-#photo_manager
+.columns
   width: 100%
   clear: both
-  #websites
-    +grid(3,16)
-  #related_photos
-    +grid(10,16)
-  #related_photo
-    +grid(3,16)
-  #websites, #related_photos, #related_photo
+  .column_1_3
+    +grid(7,32)
+  .column_2_3
+    +grid(16,32)
+  .column_3_3
+    +grid(9,32)
+  .column_1_3, .column_2_3, .column_3_3
     margin: 0
     padding: 0
+    overflow-x: hidden
+    overflow-y: auto
+    
 
+#websites, #related_photos, #related_photo
+  padding: 10px
+  img
+    margin: 0
+
+#websites
+  h2, h3
+    margin: 0
+#related_photos
+  margin-top: 10px
+  background-color: #222
+  .getting_started, .empty
+    width: 50%
+    min-width: 200px
+    margin: 30px auto
+    font-size: 120%
+
+#related_photo
+  img
+    max-width: 220px
+  input[type=text], textarea
+    width: 220px
+
+#photos, #filter
+  background-color: #222
+  padding: 0 5px
 #photos
   clear: both
-
-#related_photos
-  .related_photo
-    display: inline
-#related_photo
-  input[type=text], textarea
-    width: 100%
-
-#photos
-  width: 100%
+  height: 85px
+  overflow: hidden
+#photos, #related_photos
   .photo, .related_photo
     display: inline-block
     position: relative
@@ -52,21 +74,21 @@ body
     .icon
       margin: 2px
       position: relative
-    .info
-      position: absolute
-      width: 10em
-      border-style: solid
-      border-color: = !color_green
-      border-width: 1px
-      padding: 0.2em
-      background-color: black
-  #filter
-    p, label, input, form
-      display: inline
-    input[type="text"]
-      width: 60px
-    label
-      margin-left: 10px
+#filter
+  padding: 0 5px
+  .box
+    display: inline
+    border: 1px #555 solid
+    padding: 2px 4px
+    margin: 0 3px
+  p, label, input, form
+    display: inline
+  input, select, textarea
+    border-color: black
+  input[type="text"]
+    width: 60px
+  label
+    margin-left: 10px
 
 .website, .album
   &.droppable.hover

@@ -22,9 +22,13 @@
           %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
         .columns#photo_manager
-          #websites=render 'admin/photos/websites'
-          #related_photos
-          #related_photo
+          .column_1_3
+            #websites=render 'admin/photos/websites'
+          .column_2_3
+            #related_photos
+              .getting_started= render 'admin/related_photos/get_started'
+          .column_3_3
+            #related_photo
         .clear
         = yield :layout
 

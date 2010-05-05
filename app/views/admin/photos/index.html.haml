@@ -1,12 +1,12 @@
 
-#photos
-  #filter
-    = raw next_previous_links(collection)
-    = link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
-    = link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
-    = render :partial => 'filter'
-    = raw next_previous_links(collection)
+#filter
+  .box= raw next_previous_links(collection)
+  .box= link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
+  .box= link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
+  = render :partial => 'filter'
+  .box= raw next_previous_links(collection)
 
+#photos
   - if collection.empty?
     = t(:'.no_photos')
     - if @website || @album

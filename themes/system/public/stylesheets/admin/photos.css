@@ -6,27 +6,38 @@ body { background-image: none; }
 
 #container, #header { width: 100%; margin: 0; padding: 0; }
 
-#content { width: auto; padding: 5px; }
+#content { width: 100%; margin: 0; padding-bottom: 0; }
 
-#photo_manager { width: 100%; clear: both; }
-#photo_manager #websites { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 160px; }
-#photo_manager #related_photos { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 580px; }
-#photo_manager #related_photo { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 160px; }
-#photo_manager #websites, #photo_manager #related_photos, #photo_manager #related_photo { margin: 0; padding: 0; }
+.columns { width: 100%; clear: both; }
+.columns .column_1_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 190px; }
+.columns .column_2_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 460px; }
+.columns .column_3_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 250px; }
+.columns .column_1_3, .columns .column_2_3, .columns .column_3_3 { margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; }
 
-#photos { clear: both; }
+#websites, #related_photos, #related_photo { padding: 10px; }
+#websites img, #related_photos img, #related_photo img { margin: 0; }
 
-#related_photos .related_photo { display: inline; }
+#websites h2, #websites h3 { margin: 0; }
 
-#related_photo input[type=text], #related_photo textarea { width: 100%; }
+#related_photos { margin-top: 10px; background-color: #222; }
+#related_photos .getting_started, #related_photos .empty { width: 50%; min-width: 200px; margin: 30px auto; font-size: 120%; }
 
-#photos { width: 100%; }
-#photos .photo, #photos .related_photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; }
-#photos .photo.selected, #photos .related_photo.selected { border: 1px solid; border-color: #0063dc; }
-#photos .photo .icon, #photos .related_photo .icon { margin: 2px; position: relative; }
-#photos .photo .info, #photos .related_photo .info { position: absolute; width: 10em; border-style: solid; border-color: = !color_green; border-width: 1px; padding: 0.2em; background-color: black; }
-#photos #filter p, #photos #filter label, #photos #filter input, #photos #filter form { display: inline; }
-#photos #filter input[type="text"] { width: 60px; }
-#photos #filter label { margin-left: 10px; }
+#related_photo img { max-width: 220px; }
+#related_photo input[type=text], #related_photo textarea { width: 220px; }
+
+#photos, #filter { background-color: #222; padding: 0 5px; }
+
+#photos { clear: both; height: 85px; overflow: hidden; }
+
+#photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; z-index: 20000; }
+#photos .photo.selected, #photos .related_photo.selected, #related_photos .photo.selected, #related_photos .related_photo.selected { border: 1px solid; border-color: #0063dc; }
+#photos .photo .icon, #photos .related_photo .icon, #related_photos .photo .icon, #related_photos .related_photo .icon { margin: 2px; position: relative; }
+
+#filter { padding: 0 5px; }
+#filter .box { display: inline; border: 1px #555 solid; padding: 2px 4px; margin: 0 3px; }
+#filter p, #filter label, #filter input, #filter form { display: inline; }
+#filter input, #filter select, #filter textarea { border-color: black; }
+#filter input[type="text"] { width: 60px; }
+#filter label { margin-left: 10px; }
 
 .website.droppable.hover, .album.droppable.hover { background-color: #222; }

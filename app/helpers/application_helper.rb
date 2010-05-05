@@ -37,10 +37,10 @@ module ApplicationHelper
   def next_previous_links(collection, separator = " ")
     result = []
     if collection.previous_page
-      result << link_to(collection.previous_page, {:page => collection.previous_page}, :class => 'previous')
+      result << link_to('«', {:page => collection.previous_page}, :class => 'previous')
     end
     if collection.next_page
-      result << link_to(collection.next_page, {:page => collection.next_page}, :class => 'next')
+      result << link_to('»', {:page => collection.next_page}, :class => 'next')
     end
     return result.join(separator)
   end

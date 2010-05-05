@@ -72,9 +72,12 @@ var PhotoManager = {
   },
 
   resizePhotoMananger: function() {
-    width = $(window).width()
-    $('#related_photos').siblings().map(function(index, e){ console.log($(e).width()); width -= $(e).width()});
-    $('#related_photos').css('width', Math.max(400,width));
+    width = $(window).width();
+    $('.column_2_3').siblings().map(function(i, e){width = width - $(e).width()});
+    $('.column_2_3').css('width', Math.min(Math.max(400,width), 800), true);
+
+    height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - $('#photos').height();
+    $('.columns').children().height(Math.max(300,height));
   },
 
   init: function(options) {
@@ -85,6 +88,10 @@ var PhotoManager = {
     // make the selectable
     $(this.options.draggables).addClass('selectable');
     $(this.options.draggables).click(this.selectElement);
-    this.resizePhotoMananger();
+    $(this.options.draggables).live('bind', this.selectElement);
+
+    $(window).load(this.resizePhotoMananger);
+    $(window).resize(this.resizePhotoMananger);
+
   }
 }

@@ -39,7 +39,7 @@ a:hover, a:active { color: #dc6300; }
 
 a img { border: none; }
 
-p { font-size: 110%; line-height: 1.3em; margin: 0.5em 0px; }
+p { line-height: 1.3em; margin: 0.5em 0px; }
 
 ul { margin: 0 0 0 20px; padding: 0; }
 ul li { margin: 0; padding: 0; }
