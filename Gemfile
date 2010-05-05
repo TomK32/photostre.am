@@ -10,12 +10,11 @@ gem 'mongo', '1.0'
 gem 'bson_ext', '1.0'
 gem 'mongo', '1.0'
 #gem 'builder'
-gem 'mongoid', :git => 'git://github.com/durran/mongoid.git'
+gem 'mongoid', :git => 'git://github.com/TomK32/mongoid.git'
 
 # For background processes
 gem 'daemons'
 gem 'navvy', :git => 'git://github.com/TomK32/navvy.git'
-
 
 # Deployment
 gem 'capistrano'

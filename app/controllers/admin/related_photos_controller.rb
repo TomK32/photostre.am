@@ -1,7 +1,7 @@
 class Admin::RelatedPhotosController < Admin::ApplicationController
   before_filter :owner_required
   inherit_resources
-  actions :index, :show, :update, :destroy
+  actions :index, :show, :update
   belongs_to :website
   belongs_to :album, :optional => true
   respond_to :js
@@ -24,8 +24,23 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
       redirect_to resource_path(:format => params[:format]) and return
     end
   end
+  
+  def destroy
+    @related_photo = parent.related_photos.where(:_id => params[:id]).first
+    parent.related_photos.where(:_id => params[:id]).first.destroy
+  end
 
   protected
+  def parent
+    if params[:album_id]
+      return website.albums.find(params[:album_id])
+    elsif params[:page_id]
+      return website.pages.find(params[:page_id])
+    else
+      return current_user.websites.find(params[:website_id])
+    end
+  end
+
   def owner_required
     if ! website.user_ids.include?(current_user.id)
       render(:text => t(:'admin.not_owner'), :success => false) and return
