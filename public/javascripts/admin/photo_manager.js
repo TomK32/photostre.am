@@ -74,7 +74,8 @@ var PhotoManager = {
   resizePhotoMananger: function() {
     width = $(window).width();
     $('.column_2_3').siblings().map(function(i, e){width = width - $(e).width()});
-    $('.column_2_3').css('width', Math.min(Math.max(400,width), 800), true);
+    width = (width - (width % 80)) - 54;
+    $('.column_2_3').css('width', Math.min(Math.max(400,width), 826), true);
 
     height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - $('#photos').height();
     $('.columns').children().height(Math.max(300,height));
@@ -87,7 +88,6 @@ var PhotoManager = {
 
     // make the selectable
     $(this.options.draggables).addClass('selectable');
-    $(this.options.draggables).click(this.selectElement);
     $(this.options.draggables).live('bind', this.selectElement);
 
     $(window).load(this.resizePhotoMananger);
