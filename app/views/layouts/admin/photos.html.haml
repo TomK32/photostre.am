@@ -11,8 +11,6 @@
       #header.small
         #title
           = link_to h(current_website.title), dashboard_path, :title => t(:'layout.links.back_to_homepage')
-      - if current_user.email.blank?
-        .right= raw t(:'.email_missing', :link => link_to(t(:'.edit_user'), edit_admin_user_path(current_user)))
       %ul#navigation
         %li= link_to t(:'shared.navigation.dashboard'), dashboard_path
 

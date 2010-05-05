@@ -9,8 +9,8 @@ body { background-image: none; }
 #content { width: 100%; margin: 0; padding-bottom: 0; }
 
 .columns { width: 100%; clear: both; }
-.columns .column_1_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 190px; }
-.columns .column_2_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 460px; }
+.columns .column_1_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 220px; }
+.columns .column_2_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 490px; }
 .columns .column_3_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 250px; }
 .columns .column_1_3, .columns .column_2_3, .columns .column_3_3 { margin-right: 0; margin-left: 0; overflow-x: hidden; overflow-y: auto; }
 
@@ -27,7 +27,7 @@ body { background-image: none; }
 
 #photos, #filter { background-color: #222; padding: 0 5px; }
 
-#photos { clear: both; height: 85px; overflow: hidden; }
+#photos { clear: both; height: 85px !important; white-space: nowrap; overflow: hidden; }
 
 #photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; }
 #photos .photo.selected, #photos .related_photo.selected, #related_photos .photo.selected, #related_photos .related_photo.selected { border: 1px solid; border-color: #0063dc; }

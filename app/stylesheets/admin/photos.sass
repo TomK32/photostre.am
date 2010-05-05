@@ -20,9 +20,9 @@ body
   width: 100%
   clear: both
   .column_1_3
-    +grid(7,32)
+    +grid(8,32)
   .column_2_3
-    +grid(16,32)
+    +grid(17,32)
   .column_3_3
     +grid(9,32)
   .column_1_3, .column_2_3, .column_3_3
@@ -61,7 +61,8 @@ body
   padding: 0 5px
 #photos
   clear: both
-  height: 85px
+  height: 85px !important
+  white-space: nowrap
   overflow: hidden
 #photos, #related_photos
   .photo, .related_photo

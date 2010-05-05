@@ -1,7 +1,7 @@
 var PhotoManager = {
   selected: new Array(),
   options: {draggables:'.draggable', droppables:'.droppable'},
-  dragable_options: { revert: true, stack: { group: 'photos', min: 50 }},
+  draggable_options: { revert: true, stack: { group: 'photos'}, min: 500, helper: 'clone', appendTo: 'body' },
 
   selectElement: function(element) {
     if(element.target) { element = $(element.target).closest('.selectable'); }
@@ -9,7 +9,11 @@ var PhotoManager = {
   },
 
   makeDraggable: function(elements) {
-    $(elements).draggable(this.dragable_options);
+    $(elements).draggable(this.draggable_options);
+  },
+
+  makeSortable: function(elements) {
+    $(elements).sortable(this.sortable_options);
   },
 
   makeDroppable: function(elements) {
