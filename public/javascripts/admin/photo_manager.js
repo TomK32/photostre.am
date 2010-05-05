@@ -1,7 +1,7 @@
 var PhotoManager = {
   selected: new Array(),
   options: {draggables:'.draggable', droppables:'.droppable'},
-  draggable_options: { revert: true, stack: { group: 'photos'}, min: 500, helper: 'clone', appendTo: 'body' },
+  draggable_options: { revert: true, stack: { group: 'photos'}, min: 500, helper: 'clone', appendTo: 'body', containment: 'window' },
 
   selectElement: function(element) {
     if(element.target) { element = $(element.target).closest('.selectable'); }
