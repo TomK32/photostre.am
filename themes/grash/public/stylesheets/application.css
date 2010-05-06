@@ -1,56 +1,56 @@
 
 @font-face {
   font-family: 'QuicksandLight';
-  src: url('fonts/quicksand_light.eot');
-  src: local('QuicksandLight'), local('QuicksandLight-Regular'), url('fonts/quicksand_light.ttf') format('truetype');
+  src: url('http://static.photostre.am/fonts/quicksand_light.eot');
+  src: local('QuicksandLight'), local('QuicksandLight-Regular'), url('http://static.photostre.am/fonts/quicksand_light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'QuicksandBoldOblique';
-  src: url('fonts/quicksand_bold_oblique.eot');
-  src: local('QuicksandBoldOblique'), local('QuicksandBoldOblique-Regular'), url('fonts/quicksand_bold_oblique.ttf') format('truetype');
+  src: url('http://static.photostre.am/fonts/quicksand_bold_oblique.eot');
+  src: local('QuicksandBoldOblique'), local('QuicksandBoldOblique-Regular'), url('http://static.photostre.am/fonts/quicksand_bold_oblique.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'QuicksandBold';
-  src: url('fonts/quicksand_bold.eot');
-  src: local('QuicksandBold'), local('QuicksandBold-Regular'), url('fonts/quicksand_bold.ttf') format('truetype');
+  src: url('http://static.photostre.am/fonts/quicksand_bold.eot');
+  src: local('QuicksandBold'), local('QuicksandBold-Regular'), url('http://static.photostre.am/fonts/quicksand_bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'QuicksandBookOblique';
-  src: url('fonts/quicksand_book_oblique.eot');
-  src: local('QuicksandBookOblique'), local('QuicksandBookOblique-Regular'), url('fonts/quicksand_book_oblique.ttf') format('truetype');
+  src: url('http://static.photostre.am/fonts/quicksand_book_oblique.eot');
+  src: local('QuicksandBookOblique'), local('QuicksandBookOblique-Regular'), url('http://static.photostre.am/fonts/quicksand_book_oblique.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'QuicksandDash';
-  src: url('fonts/quicksand_dash.eot');
-  src: local('QuicksandDash'), local('QuicksandDash-Regular'), url('fonts/quicksand_dash.ttf') format('truetype');
+  src: url('http://static.photostre.am/fonts/quicksand_dash.eot');
+  src: local('QuicksandDash'), local('QuicksandDash-Regular'), url('http://static.photostre.am/fonts/quicksand_dash.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'QuicksandBook';
-  src: url('fonts/quicksand_book.eot');
-  src: local('QuicksandBook'), local('QuicksandBook-Regular'), url('fonts/quicksand_book.ttf') format('truetype');
+  src: url('http://static.photostre.am/fonts/quicksand_book.eot');
+  src: local('QuicksandBook'), local('QuicksandBook-Regular'), url('http://static.photostre.am/fonts/quicksand_book.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'QuicksandLightOblique';
-  src: url('fonts/quicksand_light_oblique.eot');
-  src: local('QuicksandLightOblique'), local('QuicksandLightOblique-Regular'), url('fonts/quicksand_light_oblique.ttf') format('truetype');
+  src: url('http://static.photostre.am/fonts/quicksand_light_oblique.eot');
+  src: local('QuicksandLightOblique'), local('QuicksandLightOblique-Regular'), url('http://static.photostre.am/fonts/quicksand_light_oblique.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
