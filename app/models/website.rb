@@ -9,7 +9,7 @@ class Website
   index :domains
   field :description, :type => String
   field :tracking_code, :type => String
-  field :root_path, :type => String, :default => '/pages/home'
+  field :root_path, :type => String, :default => '/albums'
   field :screenshot_filename, :type => String
   field :tags, :type => Array
   field :related_photos, :type => Array
