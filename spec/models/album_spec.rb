@@ -12,8 +12,8 @@ describe Album do
   
   describe "validations" do
     it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:body) }
-    it { should validate_presence_of(:body_html) }
+    it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:description_html) }
   end
   
   describe "associations" do
@@ -63,10 +63,10 @@ describe Album do
     
   end
   
-  it "should set body_html" do
-    @album.body = 'Hello this is a new body'
+  it "should set description_html" do
+    @album.description = 'Hello this is a new description'
     @album.save
-    @album.body_html.should =='<p>Hello this is a new body</p>'
+    @album.description_html.should =='<p>Hello this is a new description</p>'
   end
   describe "key photo" do
     before :each do

@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Theme do
-  before :each do
+  before :all do
     @theme = Factory(:theme)
   end
   it "@theme should be valid" do
