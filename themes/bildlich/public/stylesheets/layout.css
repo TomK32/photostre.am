@@ -1,0 +1,23 @@
+body, #container {
+  margin: 0;
+  padding: 0;
+}
+#header {
+  margin: 0 0 20px 0;
+}
+
+#sidebar {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+#container {
+  margin: 0 20px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}

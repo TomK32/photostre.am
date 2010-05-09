@@ -1,0 +1,30 @@
+body, #container {
+  margin: 0;
+  padding: 0;
+}
+#header {
+  margin: 0 0 20px 0;
+}
+
+#content, #sidebar {
+  padding: 0 20px;
+  float: left;
+}
+#sidebar {
+  width: 200px;
+}
+#content {
+  margin-left: 220px;
+}
+#navigation {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+
+#footer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}

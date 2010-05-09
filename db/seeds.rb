@@ -14,3 +14,5 @@ Theme.create!(:name => 'Blick', :directory => 'blick', :author => admin, :status
   :description => 'Vintage green with dark blue headers and links in a minimalistic design.')
 Theme.create!(:name => 'Grash', :directory => 'grash', :author => admin, :status => 'public',
   :description => 'Futuristic grey and blue nightmare.')
+Theme.create!(:name => 'Bildlich' , :directory => 'bildlich', :author => admin, :status => 'public')
+Theme.create!(:name => 'Digalog' , :directory => 'digalog', :author => admin, :status => 'public')

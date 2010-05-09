@@ -1,0 +1,6 @@
+
+#albums
+  - @albums.reject{|a| a.key_photo.nil? }.each do |album|
+    .album
+      = link_to( image_tag(album.key_photo.photo_url(:medium)), album_path(album.permalink))
+      = link_to( album.title, album_path(album.permalink))
