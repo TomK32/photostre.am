@@ -78,7 +78,7 @@ class Admin::SourcesController < Admin::ApplicationController
 
       if user.save
         self.current_user=(user)
-        redirect_to dashboard_path and return
+        redirect_to new_admin_website_path and return
       else
         @user = user
         flash[:error] = 'Some error with your user'

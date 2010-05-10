@@ -26,7 +26,8 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
   end
 
   def destroy
-    @related_photo = parent.related_photos.where('_id' => params[:id]).first.destroy
+    @related_photo = parent.related_photos.where('_id' => params[:id]).first
+    @related_photo.destroy
   end
 
   protected
