@@ -12,6 +12,7 @@ class RelatedPhoto
 
   belongs_to_related :photo
   embedded_in :parent, :polymorphic => true, :inverse_of => :related_photos
+  validates_presence_of :permalink
 
   def method_missing_with_photo(method, *args, &block)
     if self.attributes[method.to_s]
@@ -26,6 +27,7 @@ class RelatedPhoto
   end
   alias_method_chain :method_missing, :photo
   def set_permalink
+    self.title ||= 'image'
     if self.title and self.permalink.blank?
       permalink = self.title.to_permalink.strip
       permalink_index = nil
