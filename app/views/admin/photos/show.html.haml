@@ -1,9 +1,0 @@
-- content_for :subnavigation do
-  %li= link_to t(:'.index'), collection_path
-  %li= link_to t(:'.edit'), edit_resource_path(resource)
-
-%div[resource]
-  
-  = link_to image_tag(resource.photo_url(:medium)), resource.photo_url, :rel => 'lightbox'
-  
-  .tags= @photo.tags.join(', ')
