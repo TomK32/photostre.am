@@ -1,5 +1,7 @@
 class Admin::PhotosController < Admin::ApplicationController
 
+  respond_to :js, :html
+
   inherit_resources
   actions :index
   def index
@@ -9,7 +11,7 @@ class Admin::PhotosController < Admin::ApplicationController
       @website = current_user.websites.find(params[:website_id])
       @albums = @website.albums
     end
-    
+
     index!
   end
 
@@ -36,7 +38,7 @@ class Admin::PhotosController < Admin::ApplicationController
     if ! params[:tags].blank?
       scope = scope.where(:tags.in => params[:tags].split(' '))
     end
-    params[:per_page] = 16 if params[:per_page].blank?
+    params[:per_page] = 24 if params[:per_page].blank?
     @photos ||= scope.order_by(['created_at', :desc]).paginate(pagination_defaults(:conditions => conditions))
   end
 

@@ -62,7 +62,7 @@ var PhotoManager = {
       }
     }));
   },
-  
+
   loadRelatedPhotos: function(event) {
     $(PhotoManager.options.droppables).removeClass('current');
     $(event.target).closest(PhotoManager.options.droppables).addClass('current');
@@ -93,6 +93,27 @@ var PhotoManager = {
     $('.columns').children().height(Math.max(300,height));
   },
 
+  movePhotosLeft: function() {
+    PhotoManager.movePhotos(-1);
+  },
+  movePhotosRight: function() {
+    PhotoManager.movePhotos(1);
+  },
+  movePhotos: function(direction) {
+    pixels = $('#photos_container').width() * direction;
+    new_margin = Math.min(0, parseInt($('#photos').css('margin-left')) - pixels);
+
+    $('#photos').css('margin-left', new_margin + 'px');
+
+    // check out if we gotta load moar photoz
+    if($('#photos .photo:last').offset().left < $('#photos_container').width()) {
+      $('#photos_form #page').val(parseInt($('#photos_form #page').val()) + 1);
+      $('#photos_form').append('<input type="hidden" name="mode" value="append" id="mode">');
+      $('#photos_form').callRemote();
+      $('#photos_form #mode').remove();
+    }
+  },
+
   init: function(options) {
     if(options) { this.options = jQuery.merge(this.options, options); }
     this.makeDraggable(this.options.draggables);
@@ -106,6 +127,9 @@ var PhotoManager = {
 
     $(window).load(this.resizePhotoMananger);
     $(window).resize(this.resizePhotoMananger);
+
+    $('.photos_left').click(this.movePhotosLeft);
+    $('.photos_right').click(this.movePhotosRight);
 
   }
 }

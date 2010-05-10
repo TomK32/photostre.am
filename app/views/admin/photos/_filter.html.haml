@@ -1,14 +1,18 @@
+%span.box
+  = link_to ('<<', '#', :class => 'photos_left')
+  = link_to ('>>', '#', :class => 'photos_right')
 
-= form_tag(nil, {:method => :get}) do
+%span.box= link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
+%span.box= link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
+
+= form_tag(admin_photos_path(:format => :js), {:method => :get, :id => 'photos_form', :remote => true}) do
+  = hidden_field_tag :page, params[:page] || 1
   %p
     = label_tag :search, t(:'.search')
     = text_field_tag :search, params[:search]
   %p
     = label_tag :tags, t(:'.tags')
     = text_field_tag :tags, params[:tags]
-  %p
-    = label_tag :per_page, t(:'.per_page')
-    = select_tag :per_page, options_for_select(%w(8 16 40 80), params[:per_page].to_s)
   %p.submit
     = submit_tag t(:'.submit'), :name => nil
-    .box= link_to t(:'.reset'), admin_photos_path
+    %span.box= link_to t(:'.reset'), admin_photos_path

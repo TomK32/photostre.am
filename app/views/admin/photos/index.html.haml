@@ -1,15 +1,6 @@
-
-#filter
-  .box= raw next_previous_links(collection)
-  .box= link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
-  .box= link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
-  = render :partial => 'filter'
-  .box= raw next_previous_links(collection)
-
-#photos
-  - if collection.empty?
-    = t(:'.no_photos')
-    - if @website || @album
-      = raw t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
-  - else
-    = render :partial => 'photo', :collection => collection
+- if collection.empty?
+  = t(:'.no_photos')
+  - if @website || @album
+    = raw t(:'.maybe_reset', :link => link_to(t(:'.reset'), admin_photos_path))
+- else
+  = render :partial => 'photo', :collection => collection

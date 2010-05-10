@@ -28,7 +28,9 @@
           .column_3_3
             #related_photo
         .clear
-        = yield :layout
+        #filter= render 'admin/photos/filter'
+        #photos_container
+          #photos= yield :layout
 
     = raw current_website.tracking_code
     - javascript_dom_ready('PhotoManager.init();').inspect
