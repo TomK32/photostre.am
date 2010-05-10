@@ -30,7 +30,8 @@
         .clear
         #filter= render 'admin/photos/filter'
         #photos_container
-          #photos= yield :layout
+          #photos
+            .please_wait= t(:'.please_wait')
 
     = raw current_website.tracking_code
     - javascript_dom_ready('PhotoManager.init();').inspect

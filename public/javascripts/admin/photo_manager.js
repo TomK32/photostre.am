@@ -15,6 +15,10 @@ var PhotoManager = {
   makeSortable: function(elements) {
     $(elements).sortable(this.sortable_options);
   },
+  makeSelectable: function(elements) {
+    $(elements).addClass('selectable');
+    $(elements).live('click', this.selectElement);
+  },
 
   makeDroppable: function(elements) {
     $(elements).droppable({
@@ -93,43 +97,52 @@ var PhotoManager = {
     $('.columns').children().height(Math.max(300,height));
   },
 
-  movePhotosLeft: function() {
-    PhotoManager.movePhotos(-1);
+  scrollPhotosLeft: function() {
+    PhotoManager.scrollPhotos(-1);
   },
-  movePhotosRight: function() {
-    PhotoManager.movePhotos(1);
+  scrollPhotosRight: function() {
+    PhotoManager.scrollPhotos(1);
   },
-  movePhotos: function(direction) {
-    pixels = $('#photos_container').width() * direction;
+  scrollPhotos: function(direction) {
+    pixels = $('#photos_container').width() * direction - (20 * direction);
     new_margin = Math.min(0, parseInt($('#photos').css('margin-left')) - pixels);
 
     $('#photos').css('margin-left', new_margin + 'px');
 
     // check out if we gotta load moar photoz
     if($('#photos .photo:last').offset().left < $('#photos_container').width()) {
-      $('#photos_form #page').val(parseInt($('#photos_form #page').val()) + 1);
-      $('#photos_form').append('<input type="hidden" name="mode" value="append" id="mode">');
-      $('#photos_form').callRemote();
-      $('#photos_form #mode').remove();
+      PhotoManager.loadPhotos();
     }
+  },
+
+  loadPhotos: function() {
+    $('#photos_form #page').val(parseInt($('#photos_form #page').val()) + 1);
+    $('#photos_form').append('<input type="hidden" name="mode" value="append" id="mode">');
+    $('#photos_form').callRemote();
+    $('#photos .please_wait').remove();
+    $('#photos_form #mode').remove();
   },
 
   init: function(options) {
     if(options) { this.options = jQuery.merge(this.options, options); }
+
     this.makeDraggable(this.options.draggables);
     this.makeDroppable(this.options.droppables);
-
-    // make the selectable
-    $(this.options.draggables).addClass('selectable');
-    $(this.options.draggables).live('click', this.selectElement);
+    this.makeSelectable(this.options.draggables);
 
     $('a', this.options.droppables).live('click', this.loadRelatedPhotos);
 
+    this.resizePhotoMananger();
     $(window).load(this.resizePhotoMananger);
     $(window).resize(this.resizePhotoMananger);
 
-    $('.photos_left').click(this.movePhotosLeft);
-    $('.photos_right').click(this.movePhotosRight);
+    $('.photos_left').click(this.scrollPhotosLeft);
+    $('.photos_right').click(this.scrollPhotosRight);
+    this.loadPhotos();
 
+    $('#photos_form').live('ajax:success', function () {
+      PhotoManager.makeDraggable(PhotoManager.options.draggables);
+      PhotoManager.makeSelectable(PhotoManager.options.draggables);
+    });
   }
 }

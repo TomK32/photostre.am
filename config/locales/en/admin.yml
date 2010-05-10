@@ -6,7 +6,8 @@ en:
         photo_manager: "Photo manger"
         email_missing: "We are missing your e-mail address, please %{link}."
         edit_user: "edit your account"
-
+      photos:
+        please_wait: "Please wait"
   admin:
     dashboard:
       page_title: 'Dashboard'

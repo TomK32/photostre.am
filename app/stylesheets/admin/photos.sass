@@ -61,21 +61,22 @@ body
   padding: 0 5px
 #photos_container
   clear: both
-  height: 110px !important
+  height: 80px !important
   white-space: nowrap
   overflow: hidden
 #photos, #related_photos
   .photo, .related_photo
     display: inline-block
     position: relative
-    border: 1px solid transparent
     margin: 0
-    &.selected
+    padding: 0
+    overflow: hidden
+    img
+      border: 1px solid transparent
+      padding: 0
+    &.selected img
       border: 1px solid
       border-color= !color_blue
-    .icon
-      margin: 2px
-      position: relative
 #filter
   .box
     display: inline

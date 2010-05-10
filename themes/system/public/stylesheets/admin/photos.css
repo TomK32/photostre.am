@@ -19,21 +19,21 @@ body { background-image: none; }
 
 #websites h2, #websites h3 { margin: 0; }
 
-#related_photos { margin-top: 10px; padding-bottom: 5px; background-color: #222; }
+#related_photos { margin-top: 10px; padding-bottom: 5px; background-color: #222222; }
 #related_photos .getting_started, #related_photos .empty { width: 50%; min-width: 200px; margin: 30px auto; font-size: 120%; }
 
 #related_photo img { max-width: 220px; }
 #related_photo input[type=text], #related_photo textarea { width: 220px; }
 
-#photos, #filter { background-color: #222; padding: 0 5px; }
+#photos, #filter { background-color: #222222; padding: 0 5px; }
 
-#photos_container { clear: both; height: 110px !important; white-space: nowrap; overflow: hidden; }
+#photos_container { clear: both; height: 80px !important; white-space: nowrap; overflow: hidden; }
 
-#photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; }
-#photos .photo.selected, #photos .related_photo.selected, #related_photos .photo.selected, #related_photos .related_photo.selected { border: 1px solid; border-color: #0063dc; }
-#photos .photo .icon, #photos .related_photo .icon, #related_photos .photo .icon, #related_photos .related_photo .icon { margin: 2px; position: relative; }
+#photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo { display: inline-block; position: relative; margin: 0; padding: 0; overflow: hidden; }
+#photos .photo img, #photos .related_photo img, #related_photos .photo img, #related_photos .related_photo img { border: 1px solid transparent; padding: 0; }
+#photos .photo.selected img, #photos .related_photo.selected img, #related_photos .photo.selected img, #related_photos .related_photo.selected img { border: 1px solid; border-color: #0063dc; }
 
-#filter .box { display: inline; border: 1px #555 solid; padding: 2px 4px; margin: 0 3px; }
+#filter .box { display: inline; border: 1px #555555 solid; padding: 2px 4px; margin: 0 3px; }
 #filter p, #filter label, #filter input, #filter form { display: inline; }
 #filter input, #filter select, #filter textarea { border-color: black; }
 #filter input[type="text"] { width: 60px; }
@@ -43,4 +43,4 @@ body { background-image: none; }
 #websites li { margin: 0 0 0 5px; }
 #websites .droppable { padding: 0 0 0 0; }
 #websites .droppable a { padding: 2px 4px; }
-#websites .droppable.hover a, #websites .droppable.current a { background-color: #555; }
+#websites .droppable.hover a, #websites .droppable.current a { background-color: #555555; }
