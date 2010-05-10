@@ -12,7 +12,7 @@ class Website
   field :root_path, :type => String, :default => '/albums'
   field :screenshot_filename, :type => String
   field :tags, :type => Array
-  field :related_photos, :type => Array
+  field :related_photos
   field :theme_path, :type => String, :default => 'default'
 
   embed_many :related_photos
