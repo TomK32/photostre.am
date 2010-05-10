@@ -12,7 +12,7 @@ sv:
       openid_info: 'Vi använder "OpenID":http://openid.net/get-an-openid/vad-är-openid/ för att bevisa vilket är enkelt om du redan använder e.g. Yahoo.'
       submit_openid: 'bli medlem via OpenID'
       logout: 'Logga ut'
-      not_current_user: 'Om du är inte {{user}} då snälla {{logout}} och logga in igen.'
+      not_current_user: 'Om du är inte %{user} då snälla %{logout} och logga in igen.'
   shared:
     navigation:
       dashboard: 'Instrumentbräda'

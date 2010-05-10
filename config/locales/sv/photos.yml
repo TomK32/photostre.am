@@ -3,6 +3,6 @@ sv:
     index:
       page_title: 'Foton'
     show:
-      taken_at: 'Tagen {{date}}'
-      from_source: 'Från {{source}}'
+      taken_at: 'Tagen %{date}'
+      from_source: 'Från %{source}'
       tagged: 'Betecknad: '

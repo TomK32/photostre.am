@@ -10,7 +10,7 @@ en:
       album:
         photos:
           one: 'One items'
-          other: '{{count}} items'
+          other: '%{count} items'
       new:
         create: "Create website"
       form:
@@ -26,10 +26,10 @@ en:
         tracking_code: 'Javascript tracking code. E.g. from Google Analytics'
       index:
         your_websites: "Your websites"
-        add_new_website: 'Please configure a new {{link}}.'
+        add_new_website: 'Please configure a new %{link}.'
         new_website: "new website"
         no_websites: "You didn't setup a website yet."
-        info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":{{domain_faq_link}}'
+        info: 'Here you can add new websites. Either you use one of our domains or point your own domain onto our server''s IP address. For more see our "FAQ on domains":%{domain_faq_link}'
         new: 'New website'
       website:
         goto_domain: 'Open this website as seen by the public'
@@ -42,10 +42,10 @@ en:
         pages: 'published pages'
         photo: 'photo'
         album: 'album'
-        photos_in_albums: '{{photos}} in {{albums}}'
+        photos_in_albums: '%{photos} in %{albums}'
         default_theme: 'Default theme'
       edit:
-        page_title: "Edit '{{title}}'"
+        page_title: "Edit '%{title}'"
         save: "Save website"
       show:
         edit: 'Edit'

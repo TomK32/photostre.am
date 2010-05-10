@@ -4,7 +4,7 @@ en:
       application:
         website_manager: "Website manager"
         photo_manager: "Photo manger"
-        email_missing: "We are missing your e-mail address, please {{link}}."
+        email_missing: "We are missing your e-mail address, please %{link}."
         edit_user: "edit your account"
 
   admin:
@@ -23,21 +23,21 @@ en:
       show:
         activated: "Source is currently active."
         reauthenticate: "You need to re-authenticate to make this source working."
-        last_updated: "Last updated at {{time}}"
-        last_photo: "Last photo added at {{time}}"
+        last_updated: "Last updated at %{time}"
+        last_photo: "Last photo added at %{time}"
         latest_photos: "Latest photos"
         edit: "Edit source"
       index:
         reauthenticate: 'You need to re-authenticate'
         active: "active"
         inactive: "inactive"
-        source_info: "{{username}} on {{title}} is {{active}}."
+        source_info: "%{username} on %{title} is %{active}."
         show: "Show details"
         new: "Add a photo source"
         page_title: "Photo sources"
       edit:
         save: "Save source"
-        page_title: "Edit '{{title}}'"
+        page_title: "Edit '%{title}'"
       access_denied: "Access denied to this source"
     themes:
       index:
@@ -49,10 +49,10 @@ en:
         license: 'License'
         status: 'Status'
       show:
-        page_title: 'Theme: {{title}}'
+        page_title: 'Theme: %{title}'
       edit:
         save: 'Save'
-        page_title: 'Edit {{title}}'
+        page_title: 'Edit %{title}'
     users:
       new:
         success: 'We successfully authenticated you with your OpenID'

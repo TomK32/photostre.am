@@ -31,12 +31,12 @@ en:
         permalink: 'Permalink'
         parent: 'Parent page'
       show:
-        not_published: 'The page is not published. {{edit_link}} it to change that.'
+        not_published: 'The page is not published. %{edit_link} it to change that.'
         website: 'Back to website'
         tags: 'Tags'
         no_tags: 'No tags'
         delete: 'Delete page'
         confirm_deletion: 'Are you sure to delete this page?'
       edit:
-        page_title: 'Edit "{{title}}"'
+        page_title: 'Edit "%{title}"'
         submit: 'Save page'

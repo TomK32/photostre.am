@@ -3,8 +3,8 @@ en:
     index:
       page_title: 'Photos'
     show:
-      taken_at: 'Taken {{date}}'
-      from_source: 'By {{source}} on {{web_url}}'
+      taken_at: 'Taken %{date}'
+      from_source: 'By %{source} on %{web_url}'
       tagged: 'Tagged: '
   admin:    
     photos:
@@ -24,16 +24,14 @@ en:
         new_album: 'New album'
         photos: Photos
         info: 'To assign a photo to one of your websites simple drag and drop it'
-        for_website: 'on {{website}}'
-        for_album: 'in album {{album}}'
-        select_all: 'select all'
-        select_none: 'none'
+        for_website: 'on %{website}'
+        for_album: 'in album %{album}'
         no_photos: 'No photos found.'
-        maybe_reset: 'Maybe a {{link}} will help'
+        maybe_reset: 'Maybe a %{link} will help'
         reset: 'reset'
         items:
           one: 'One item'
-          other: '{{count}} items'
+          other: '%{count} items'
       photo:
         unassigned: 'Not on any website'
         edit: 'Edit'
@@ -44,16 +42,18 @@ en:
         only_website: 'Only photos on this website'
         photos:
           one: 'One items'
-          other: '{{count}} items'
+          other: '%{count} items'
       album:
         show: 'Show album'
         only_album: 'Only photos from this album'
         photos:
           one: 'One items'
-          other: '{{count}} items'
+          other: '%{count} items'
       filter:
         search: 'Search title'
         tags: 'Matching all tags'
         per_page: 'Photos per page'
         submit: 'Apply filter'
         reset: 'Reset filter'
+        select_all: 'select all'
+        select_none: 'none'

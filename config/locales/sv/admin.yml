@@ -9,7 +9,7 @@ sv:
       page_title: 'Instrumäntbräda'
     albums:
       new:
-        page_title: 'Add an album "{{domain}}"'
+        page_title: 'Add an album "%{domain}"'
         submit: 'Skapa album'
       form:
         title: 'Titel'
@@ -19,16 +19,16 @@ sv:
         parent: 'huvud album'
       show:
         edit: 'redigera album'
-        unpublished: 'Detta album är inte publicerat. {{editlink}}'
+        unpublished: 'Detta album är inte publicerat. %{editlink}'
         website: 'tillbaka till webbsidan'
         photos: 'foton i albumet'
         key_photo: 'album foto'
-        page_title: '{{album}} på "{{website}}"'
+        page_title: '%{album} på "%{website}"'
       edit:
-        page_title: 'redigera "{{album}}"'
+        page_title: 'redigera "%{album}"'
         submit: 'Spara album'
       index:
-        page_title: 'Albums på "{{website}}"'
+        page_title: 'Albums på "%{website}"'
         new: 'Nytt album'
     pages:
       index:
@@ -48,12 +48,12 @@ sv:
         permalink: 'Permalink'
         parent: 'huvud sida'
       show:
-        not_published: 'Sidan är inte publicerad. {{edit_link}} för att ändra det.'
+        not_published: 'Sidan är inte publicerad. %{edit_link} för att ändra det.'
         edit: 'redigera'
         see_online: 'Se online'
         website: 'tillbaka till webbsidan'
       edit:
-        page_title: 'redigera "{{title}}"'
+        page_title: 'redigera "%{title}"'
     photos:
       error:
         no_photos_yet: Inga foton ännu
@@ -72,8 +72,8 @@ sv:
         new_album: 'nytt album'
         photos: foton
         info: 'För att lägga till ett foto till en utav dina webbsidor markera fotot och droppa'
-        for_website: 'på {{website}}'
-        for_album: 'i album {{album}}'
+        for_website: 'på %{website}'
+        for_album: 'i album %{album}'
         select_all: 'välj alla'
         select_none: 'ingen'
       photo:
@@ -113,21 +113,21 @@ sv:
       show:
         activated: "Källa är för tilfället aktiv."
         reauthenticate: "You need to re-authenticate to make this source working."
-        last_updated: "Last updated at {{time}}"
-        last_photo: "Senaste foto tilllagt på {{time}}"
+        last_updated: "Last updated at %{time}"
+        last_photo: "Senaste foto tilllagt på %{time}"
         latest_photos: "Senaste foton"
         edit: "Redigera källa"
       index:
         reauthenticate: 'Du behöver verifiera'
         active: "aktiv"
         inactive: "inaktiv"
-        source_info: "{{username}} på {{title}} är {{active}}."
+        source_info: "%{username} på %{title} är %{active}."
         show: "Visa detaljer"
         new: "Lägg till foto källa"
         page_title: "Din foto källa"
       edit:
         save: "SPara källa"
-        page_title: "Redigera '{{title}}'"
+        page_title: "Redigera '%{title}'"
       access_denied: "åtkosmt nekad för denna källa"
     websites:
       access_denied: "Du är inte tillåten att redigera denna webbsid"
@@ -144,10 +144,10 @@ sv:
         tracking_code: 'Javascript spårningskod. E.g. från Google Analytics'
       index:
         your_websites: "Din webbsida"
-        add_new_website: 'Snälla konfigurera en ny {{link}}.'
+        add_new_website: 'Snälla konfigurera en ny %{link}.'
         new_website: "ny webbsida"
         no_websites: "Du har inte arrangerat en webbsida ännu."
-        info: 'Här kan du lägga till nya webbsidor. Eller du använder en utav våra domäner eller lägger din egen domän på våran servers IP adress. För mer se våran "FAQ på domäns":{{domain_faq_link}}'
+        info: 'Här kan du lägga till nya webbsidor. Eller du använder en utav våra domäner eller lägger din egen domän på våran servers IP adress. För mer se våran "FAQ på domäns":%{domain_faq_link}'
         new: 'ny webbsida'
       website:
         goto_domain: 'Öppna denna webbsida också offentligt'
@@ -160,9 +160,9 @@ sv:
         pages: 'publiserade sidor'
         photo: 'foto'
         album: 'album'
-        photos_in_albums: '{{photos}} i {{albums}}'
+        photos_in_albums: '%{photos} i %{albums}'
       edit:
-        page_title: "Redigera domän '{{domain}}'"
+        page_title: "Redigera domän '%{domain}'"
         save: "Spara webbsida"
       show:
         edit: 'Redigera'
@@ -183,7 +183,7 @@ sv:
         license: 'License'
         state: 'Status'
       show:
-        page_title: 'Theme: {{theme}}'
+        page_title: 'Theme: %{theme}'
       edit:
         save: 'Save'
         page_title: 'Edit theme'

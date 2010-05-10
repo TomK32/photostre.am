@@ -14,7 +14,7 @@ en:
       openid_info: 'We are using "OpenID":http://openid.net/get-an-openid/what-is-openid/ for authentication which is simple if you already use e.g. Yahoo.'
       submit_openid: 'Sign in via OpenID'
       logout: 'Logout'
-      not_current_user: 'If you are not {{user}} then please {{logout}} and login again.'
+      not_current_user: 'If you are not %{user} then please %{logout} and login again.'
   shared:
     navigation:
       dashboard: 'Dashboard'
