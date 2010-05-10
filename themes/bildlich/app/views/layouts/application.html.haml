@@ -3,10 +3,9 @@
   %head
     = render :partial => "shared/meta_head"
     = render :partial => "shared/head"
-    - if current_website.photos.first
-      %style{:type=>'txt/css', :rel=>'stylesheet'}
-        = "body { background-image: url(%s); }" % current_website.photos.first.photo_url(:big)
-  %body{:class => 'c-%s a-%s' % [controller_name, action_name], :style=> 'background-image: url(http://farm5.static.flickr.com/4009/4545840261_fd5a66c73f_b.jpg)'}
+  %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
+    - if current_website.root_path == request.path && current_website.photos.first
+      #background_image= image_tag current_website.photos.first.photo_url(:big)
     #container
       #header
         #title
