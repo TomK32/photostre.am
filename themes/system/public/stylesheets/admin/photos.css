@@ -27,13 +27,12 @@ body { background-image: none; }
 
 #photos, #filter { background-color: #222; padding: 0 5px; }
 
-#photos { clear: both; height: 85px !important; white-space: nowrap; overflow: hidden; }
+#photos_container { clear: both; height: 110px !important; white-space: nowrap; overflow: hidden; }
 
 #photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo { display: inline-block; position: relative; border: 1px solid transparent; margin: 0; }
 #photos .photo.selected, #photos .related_photo.selected, #related_photos .photo.selected, #related_photos .related_photo.selected { border: 1px solid; border-color: #0063dc; }
 #photos .photo .icon, #photos .related_photo .icon, #related_photos .photo .icon, #related_photos .related_photo .icon { margin: 2px; position: relative; }
 
-#filter { padding: 0 5px; }
 #filter .box { display: inline; border: 1px #555 solid; padding: 2px 4px; margin: 0 3px; }
 #filter p, #filter label, #filter input, #filter form { display: inline; }
 #filter input, #filter select, #filter textarea { border-color: black; }
