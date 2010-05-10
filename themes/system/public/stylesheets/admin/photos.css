@@ -40,4 +40,8 @@ body { background-image: none; }
 #filter input[type="text"] { width: 60px; }
 #filter label { margin-left: 10px; }
 
-.website.droppable.hover, .album.droppable.hover { background-color: #222; }
+#websites ul { list-style-type: none; margin: 0; }
+#websites li { margin: 0 0 0 5px; }
+#websites .droppable { padding: 0 0 0 0; }
+#websites .droppable a { padding: 2px 4px; }
+#websites .droppable.hover a, #websites .droppable.current a { background-color: #555; }

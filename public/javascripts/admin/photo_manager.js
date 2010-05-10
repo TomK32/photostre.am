@@ -20,11 +20,13 @@ var PhotoManager = {
     $(elements).droppable({
       hoverClass: 'hover',
       drop: function(droppable, ui) {
+        // TODO Refactor to retrieve an array of the ids, unique them and then send
+        // them all at once.
         if(droppable.target) { droppable = $(droppable.target).closest('.droppable')[0]; }
-        for(c=0; c < $('.selectable.selected').not(ui.draggable).length; c++) {
+        $(ui.draggable).addClass('selected');
+        for(c=0; c < $('.selectable.selected').length; c++) {
           PhotoManager.addToWebsiteOrAlbum($('.selectable.selected')[c], droppable);
         }
-        PhotoManager.addToWebsiteOrAlbum(ui.draggable, droppable);
       }
     });
   },
@@ -60,6 +62,12 @@ var PhotoManager = {
       }
     }));
   },
+  
+  loadRelatedPhotos: function(event) {
+    $(PhotoManager.options.droppables).removeClass('current');
+    $(event.target).closest(PhotoManager.options.droppables).addClass('current');
+    //event.preventDefault();
+  },
 
   loadInfo: function(element) {
     parent = $(element).closest(".photo");
@@ -92,7 +100,9 @@ var PhotoManager = {
 
     // make the selectable
     $(this.options.draggables).addClass('selectable');
-    $(this.options.draggables).live('bind', this.selectElement);
+    $(this.options.draggables).live('click', this.selectElement);
+
+    $('a', this.options.droppables).live('click', this.loadRelatedPhotos);
 
     $(window).load(this.resizePhotoMananger);
     $(window).resize(this.resizePhotoMananger);

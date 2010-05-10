@@ -92,6 +92,15 @@ body
   label
     margin-left: 10px
 
-.website, .album
-  &.droppable.hover
-    background-color: #222
+#websites
+  ul
+    list-style-type: none
+    margin: 0
+  li
+    margin: 0 0 0 5px
+  .droppable
+    padding: 0 0 0 0
+    a
+      padding: 2px 4px
+    &.hover a, &.current a
+      background-color: #555
