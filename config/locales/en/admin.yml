@@ -69,6 +69,7 @@ en:
         html:
           submit: 'Update'
           remove: 'Remove'
+          original: 'Original source'
       index:
         html:
           empty: 'There are no photos yet in here. Drag and drop some from the bottom row.'
