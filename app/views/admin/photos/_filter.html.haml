@@ -1,6 +1,6 @@
 %span.box
-  = link_to ('<<', '#', :class => 'photos_left')
-  = link_to ('>>', '#', :class => 'photos_right')
+  = link_to('<<', '#', :class => 'photos_left')
+  = link_to('>>', '#', :class => 'photos_right')
 
 %span.box= link_to_function t(:'.select_all'), "$('.selectable').addClass('selected')"
 %span.box= link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
