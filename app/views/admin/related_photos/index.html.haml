@@ -5,4 +5,4 @@
   - else
     - collection.each do |related_photo|
       %div[related_photo]
-        = link_to(image_tag(related_photo.photo_url(:square)), resource_path(related_photo), :remote => true)
+        = link_to(image_tag(related_photo.photo_url(:square)), resource_path(related_photo, "#{parent.class.name.downcase}_id" => parent.id), :remote => true)

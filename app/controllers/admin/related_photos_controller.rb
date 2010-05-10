@@ -49,7 +49,10 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     parent
   end
   def collection
-    end_of_association_chain.paginate(pagination_defaults)
+    @related_photos ||= end_of_association_chain.paginate(pagination_defaults)
+  end
+  def resource
+    @related_photo ||= end_of_association_chain.find(params[:id])
   end
 
   def website
@@ -61,7 +64,6 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     elsif params[:website_id]
       @website ||= current_user.websites.find(params[:website_id]).first
     end
-    params[:website_id] ||= @website.id
     @website
   end
 end
