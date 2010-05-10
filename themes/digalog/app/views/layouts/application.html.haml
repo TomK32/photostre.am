@@ -19,16 +19,14 @@
           %ul
             - current_website.albums.each do |website|
               %li= link_to website.title, album_path(website.permalink)
+        = render :partial => 'shared/footer'
       #content
-        - if @title_in_content
-          %h1= @title 
 
         - flash.each do |flash_type, message|
           %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
         = yield
 
-      = render :partial => 'shared/footer'
       .clear
     - if yield :javascript
       = javascript_tag(yield(:javascript))
