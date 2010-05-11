@@ -121,6 +121,7 @@ var PhotoManager = {
     $('#photos_form').callRemote();
     $('#photos .please_wait').remove();
     $('#photos_form #mode').remove();
+    PhotoManager.resizePhotoMananger();
   },
 
   init: function(options) {
