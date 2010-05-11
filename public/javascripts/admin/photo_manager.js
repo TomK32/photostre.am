@@ -106,7 +106,7 @@ var PhotoManager = {
     PhotoManager.scrollPhotos(1);
   },
   scrollPhotos: function(direction) {
-    if($('#photos .photo:last').offset().left < $(window).width()) {
+    if(direction == 1 && $('#photos .photo:last').offset().left < $(window).width()) {
       return true; // don't scroll if the last photo is visible
     }
     pixels = $('#photos_container').width() * direction - (20 * direction);
