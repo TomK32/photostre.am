@@ -95,7 +95,7 @@ var PhotoManager = {
     width = (width - (width % 80)) - 54;
     $('.column_2_3').css('width', Math.min(Math.max(400,width), 826), true);
 
-    height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - Math.max(80, $('#photos').height());
+    height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - Math.max(79, $('#photos').height());
     $('.columns').children().height(Math.max(300,height));
   },
 
@@ -130,16 +130,6 @@ var PhotoManager = {
     $('#photos_form').append('<input type="hidden" name="mode" value="append" id="mode">');
     $('#photos_form').append('<input type="hidden" name="page" value="' + PhotoManager.current_page + '" id="page">');
     $('#photos_form').callRemote();
-    $('#photos_form').bind('ajax:complete', function() {
-      $('#photos .please_wait').remove();
-      $('#photos_form #mode').remove();
-      $('#photos_form #page').remove();
-      PhotoManager.resizePhotoMananger();
-      // we've reached the end!
-      if($('#photos .photo').size() < (photos_count + parseInt($('#photos_form #per_page').val()))) {
-        $('#filter .photos_right').html($('#filter .photos_right').text());
-      }
-    });
   },
 
   init: function(options) {
@@ -159,9 +149,15 @@ var PhotoManager = {
     $('.photos_right').click(this.scrollPhotosRight);
     this.loadPhotos(0);
 
-    $('#photos_form').live('ajax:success', function () {
+    $('#photos_form').bind('ajax:success', function () {
       PhotoManager.makeDraggable(PhotoManager.options.draggables);
       PhotoManager.makeSelectable(PhotoManager.options.draggables);
+    });
+    $('#photos_form').bind('ajax:complete', function() {
+      $('#photos .please_wait').remove();
+      $('#photos_form #mode').remove();
+      $('#photos_form #page').remove();
+      PhotoManager.resizePhotoMananger();
     });
   }
 }
