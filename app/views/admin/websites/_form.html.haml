@@ -12,7 +12,7 @@
     = form.label :subdomain, t(:'.subdomain')
     = text_field_tag :subdomain, params[:subdomain], :class => 'small'
     = '.'
-    = select_tag :domain, options_for_select(Website.system_domains).reject{|d|d.}.flatten.collect{|d|[d,d]})
+    = select_tag :domain, options_for_select(Website.system_domains).collect{|d|[d,d]}
 - else
   %p.info= t(:'.change_domain')
 %p
