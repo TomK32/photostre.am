@@ -20,7 +20,9 @@ class Admin::WebsitesController < Admin::ApplicationController
       end
     end
 
-    create!
+    create! {
+      redirect_to admin_photos_path and return
+    }
   end
 
   private

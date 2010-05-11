@@ -58,6 +58,9 @@ class Website
     self.theme_path = theme.directory
   end
 
+  def self.system_domains
+    self.system.only('domains').collect{|w| w.domains}.flatten.collect{|d| d.sub(/^www\./, '')}.uniq
+  end
   def url(domain = nil)
     ['http://', (domain || self.domains.first)].join
   end
