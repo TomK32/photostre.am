@@ -8,7 +8,7 @@ class RelatedPhoto
 #  field :position, :type => Integer
   field :permalink, :type => String
 
-  before_save :set_permalink
+  before_validate :set_permalink
 
   belongs_to_related :photo
   embedded_in :parent, :polymorphic => true, :inverse_of => :related_photos
