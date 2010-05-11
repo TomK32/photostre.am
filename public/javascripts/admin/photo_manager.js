@@ -93,7 +93,7 @@ var PhotoManager = {
     width = (width - (width % 80)) - 54;
     $('.column_2_3').css('width', Math.min(Math.max(400,width), 826), true);
 
-    height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - $('#photos').height();
+    height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - Math.max(80, $('#photos').height());
     $('.columns').children().height(Math.max(300,height));
   },
 
@@ -115,13 +115,16 @@ var PhotoManager = {
     }
   },
 
-  loadPhotos: function() {
-    $('#photos_form #page').val(parseInt($('#photos_form #page').val()) + 1);
+  loadPhotos: function(increment) {
+    if(increment == undefined) { increment = 1 };
+    $('#photos_form #page').val(parseInt($('#photos_form #page').val()) + parseInt(increment));
     $('#photos_form').append('<input type="hidden" name="mode" value="append" id="mode">');
     $('#photos_form').callRemote();
-    $('#photos .please_wait').remove();
-    $('#photos_form #mode').remove();
-    PhotoManager.resizePhotoMananger();
+    $('#photos_form').bind('ajax:complete', function() {
+      $('#photos .please_wait').remove();
+      $('#photos_form #mode').remove();
+      PhotoManager.resizePhotoMananger();
+    });
   },
 
   init: function(options) {
@@ -134,12 +137,11 @@ var PhotoManager = {
     $('a', this.options.droppables).live('click', this.loadRelatedPhotos);
 
     this.resizePhotoMananger();
-    $(window).load(this.resizePhotoMananger);
     $(window).resize(this.resizePhotoMananger);
 
     $('.photos_left').click(this.scrollPhotosLeft);
     $('.photos_right').click(this.scrollPhotosRight);
-    this.loadPhotos();
+    this.loadPhotos(0);
 
     $('#photos_form').live('ajax:success', function () {
       PhotoManager.makeDraggable(PhotoManager.options.draggables);
