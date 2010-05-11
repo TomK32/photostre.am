@@ -1,5 +1,7 @@
 var PhotoManager = {
   selected: new Array(),
+  current_page: 0,
+
   options: {draggables:'.draggable', droppables:'.droppable'},
   draggable_options: { revert: true, stack: { group: 'photos'}, min: 500, helper: 'clone', appendTo: 'body', containment: 'window' },
 
@@ -116,19 +118,30 @@ var PhotoManager = {
   },
 
   loadPhotos: function(increment) {
+    photos_count = $('#photos .photo').size();
+    if($('#photos .photo').size() != 00 && photos_count < PhotoManager.current_page * parseInt($('#photos_form #per_page').val())) {
+      return true;
+    }
+    PhotoManager.current_page += 1;
     if(increment == undefined) { increment = 1 };
-    $('#photos_form #page').val(parseInt($('#photos_form #page').val()) + parseInt(increment));
     $('#photos_form').append('<input type="hidden" name="mode" value="append" id="mode">');
+    $('#photos_form').append('<input type="hidden" name="page" value="' + PhotoManager.current_page + '" id="page">');
     $('#photos_form').callRemote();
     $('#photos_form').bind('ajax:complete', function() {
       $('#photos .please_wait').remove();
       $('#photos_form #mode').remove();
+      $('#photos_form #page').remove();
       PhotoManager.resizePhotoMananger();
+      // we've reached the end!
+      if($('#photos .photo').size() < (photos_count + parseInt($('#photos_form #per_page').val()))) {
+        $('#filter .photos_right').html($('#filter .photos_right').text());
+      }
     });
   },
 
   init: function(options) {
     if(options) { this.options = jQuery.merge(this.options, options); }
+    this.current_page = 0;
 
     this.makeDraggable(this.options.draggables);
     this.makeDroppable(this.options.droppables);

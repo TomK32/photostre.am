@@ -6,7 +6,7 @@
 %span.box= link_to_function t(:'.select_none'), "$('.selectable').removeClass('selected')"
 
 = form_tag(admin_photos_path(:format => :js), {:method => :get, :id => 'photos_form', :remote => true}) do
-  = hidden_field_tag :page, params[:page] || 1
+  = hidden_field_tag :per_page, collection.per_page
   %p
     = label_tag :search, t(:'.search')
     = text_field_tag :search, params[:search]
