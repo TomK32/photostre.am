@@ -68,6 +68,7 @@ class Album
     end
   end
   def set_permalink
+    self.title ||= 'image'
     if self.title and self.permalink.blank?
       permalink = self.title.to_permalink.strip
       permalink_index = nil
