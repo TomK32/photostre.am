@@ -114,7 +114,7 @@ p {
 }
 #album #photos {
   white-space: nowrap;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .album img, .photo img {
