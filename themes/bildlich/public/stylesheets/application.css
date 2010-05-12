@@ -1,10 +1,28 @@
 
+@font-face {
+  font-family: 'SansationRegular';
+  src: url('sansation_regular-webfont.eot');
+  src: local('☺'), url('sansation_regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SansationBold';
+  src: url('sansation_bold-webfont.eot');
+  src: local('☺'), url('sansation_bold-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
-  font-family: "Sansation", Georgia, Palatino, 'Palatino Linotype', FreeSerif, serif;
+  font-family: "Sansation", "SansationRegular", Georgia, Palatino, 'Palatino Linotype', FreeSerif, serif;
   font-size: 14px;
   background-repeat: no-repeat;
   padding: 0;
+}
+strong {
+  font-family: "SansationBold", "Sansation", Georgia, Palatino, 'Palatino Linotype', FreeSerif, serif;
 }
 
 a {
@@ -112,16 +130,33 @@ p {
 #albums .album, #photos .photo {
   display: inline;
 }
-#album #photos {
+
+#album {
+  position: fixed;
+  top: 100px;
+  left: 0;
+}
+#album #photos, #photos {
   white-space: nowrap;
   overflow-y: scroll;
+  position: fixed;
+  width: 100%;
+  bottom: 40px;
+}
+
+#albums .album h2, #photos .photo h2 {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  background-color: black;
+  padding: 3px 5px;
 }
 
 .album img, .photo img {
   max-width: 500px;
 }
-.photo h1, .album h1 {
-  margin-top: -1em;
+h1 {
+  margin: 0 0 0 10px;
 }
 .meta {
   text-align: right;

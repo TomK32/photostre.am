@@ -14,7 +14,7 @@ $(document).ready(function(){
   $('#background_image height').width($(window).height());
   $('.photo').live('click', function(){
   });
-  $('#albums, #photos').addClass('horizonalScroll');
+  $('#photos').addClass('horizonalScroll');
   $('.horizonalScroll').live((/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel", horizontalScroll);
   $('.horizonalScroll').css('overflow', 'hidden');
 });
