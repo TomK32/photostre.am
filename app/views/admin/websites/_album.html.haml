@@ -1,4 +1,4 @@
 %div[album]{:class => album.status}
-  = link_to image_tag(album.key_photo_url(:thumbnail)), admin_website_album_path(resource, album), :title => album.title
+  .key_photo= link_to image_tag(album.key_photo_url(:square, 'album_square.png'), :height => 75, :width => 75), admin_website_album_path(resource, album), :title => album.title
   .title= link_to album.title, admin_website_album_path(resource, album)
   .photos= t(:'.photos', :count => album.related_photos.count)

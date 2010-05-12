@@ -19,4 +19,4 @@
     = link_to t(:'.pages'), admin_website_pages_path(resource)
     %span= link_to t(:'.add_page'), new_admin_website_page_path(resource)
   #pages
-    = render :partial => 'page', :collection => resource.pages.published.roots
+    = render :partial => 'page', :collection => resource.pages.roots

@@ -21,7 +21,11 @@ en:
         tags: "Keywords for the HTML metatags. Five to ten keywords are best."
         description: "Description for HTML metatags. E.g. <em>John Doe is a professional photographer from New York City</em>"
         status: "Status"
-        root_path: Root path for your domain. E.g. <em>/photos</em> or <em>/pages/homepage</em>
+        root_path: "Homepage of your website"
+        albums: 'List of albums'
+        pages: 'List of pages (sitemap)'
+        photos: 'Latest photos (like a photoblog)'
+        album: 'Photos of the album %{title}'
         theme: 'Theme'
         tracking_code: 'Javascript tracking code. E.g. from Google Analytics'
       index:
@@ -58,3 +62,7 @@ en:
         pages: 'Pages'
         delete: 'Delete website'
         confirm_deletion: 'Are you sure to delete this website?'
+      page:
+        edit: 'Edit'
+        delete: 'Delete'
+        confirm_deletion: 'Are you sure to delete this page?'

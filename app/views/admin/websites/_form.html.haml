@@ -17,7 +17,21 @@
   %p.info= t(:'.change_domain')
 %p
   = form.label :root_path, raw(t(:'.root_path'))
-  = form.text_field :root_path, :value => resource.root_path || '/albums'
+  %label
+    = form.radio_button :root_path, albums_path
+    = t(:'.albums')
+  %label
+    = form.radio_button :root_path, pages_path
+    = t(:'.pages')
+  %label
+    = form.radio_button :root_path, photos_path
+    = t(:'.photos')
+  - resource.albums.each do |album|
+    %label
+      = form.radio_button :root_path, album_path(album)
+      = t(:'.album', :title => album.title)
+
+
 %p
   = form.label :theme_id, t(:'.theme')
   = form.select :theme_id, [current_user.themes, Theme.public].flatten.collect{|t| [t.name, t.id]}

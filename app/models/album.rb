@@ -48,7 +48,7 @@ class Album
   end
   def key_photo_url(size, default = 'album.png')
     return default if key_photo.nil?
-    key_photo.photo_url(default) || default
+    key_photo.photo_url(size) || default
   end
 
   def parent=(other_album)

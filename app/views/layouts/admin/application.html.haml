@@ -3,7 +3,7 @@
   %head
     = render :partial => "shared/meta_head"
     = render :partial => "shared/head"
-    = javascript_include_tag %w(jquery jrails jquery-ui rails admin)
+    = javascript_include_tag %w(jquery jquery-ui rails admin)
     = stylesheet_link_tag %w(admin/admin admin/forms admin/websites admin/albums), :cache => 'cache/admin'
   %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
     #container
