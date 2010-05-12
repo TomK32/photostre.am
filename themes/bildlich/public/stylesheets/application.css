@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: 'SansationRegular';
-  src: url('sansation_regular-webfont.eot');
+  src: url('http://static.photostre.am/fonts/sansation_regular-webfont.eot');
   src: local('☺'), url('sansation_regular-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'SansationBold';
-  src: url('sansation_bold-webfont.eot');
+  src: url('http://static.photostre.am/fonts/sansation_bold-webfont.eot');
   src: local('☺'), url('sansation_bold-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
