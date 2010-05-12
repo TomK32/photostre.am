@@ -1,7 +1,7 @@
 
 function horizontalScroll(event) {
-  delta = event.detail ? event.detail * (-10) : event.wheelDelta / 10
-  scrollOffset = 10 * (delta / (-100));
+  delta = event.detail ? event.detail * (-50) : event.wheelDelta / 30
+  scrollOffset = 10 * (delta / (-50));
   element = $(event.target).closest('.horizonalScroll');
   $(element).scrollLeft( $(element).scrollLeft() + scrollOffset);
 
@@ -14,7 +14,7 @@ $(document).ready(function(){
   $('#background_image height').width($(window).height());
   $('.photo').live('click', function(){
   });
-  $('#albums, #photos').addClass('horizonalScroll')
-  $('.horizonalScroll').live((/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel", horizontalScroll)
+  $('#albums, #photos').addClass('horizonalScroll');
+  $('.horizonalScroll').live((/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel", horizontalScroll);
   $('.horizonalScroll').css('overflow', 'hidden');
 });

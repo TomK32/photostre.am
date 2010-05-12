@@ -19,12 +19,8 @@ body, #container {
   top: 5px;
 }
 
-#container {
-  margin: 0 20px;
-}
-
 #footer {
   position: absolute;
   bottom: 20px;
-  left: 20px;
+  left: 0;
 }
