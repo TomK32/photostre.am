@@ -15,7 +15,7 @@
         %li= link_to t(:'shared.navigation.dashboard'), dashboard_path
 
       #content
-    
+
         - flash.each do |flash_type, message|
           %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
@@ -27,6 +27,7 @@
               .getting_started= render 'admin/related_photos/get_started'
           .column_3_3
             #related_photo
+          - javascript_dom_ready('PhotoManager.init(); PhotoManager.loadPhotos(0); ')
         .clear
         #filter= render 'admin/photos/filter'
         #photos_container
@@ -34,7 +35,5 @@
             .please_wait= t(:'.please_wait')
 
     = raw current_website.tracking_code
-    - javascript_dom_ready('PhotoManager.init();').inspect
     - if yield :javascript
       = javascript_tag(yield(:javascript))
-    

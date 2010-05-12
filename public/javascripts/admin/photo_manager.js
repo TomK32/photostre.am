@@ -121,12 +121,12 @@ var PhotoManager = {
   },
 
   loadPhotos: function(increment) {
+    if(increment == undefined) { increment = 1 };
     photos_count = $('#photos .photo').size();
     if($('#photos .photo').size() != 00 && photos_count < PhotoManager.current_page * parseInt($('#photos_form #per_page').val())) {
       return true;
     }
-    PhotoManager.current_page += 1;
-    if(increment == undefined) { increment = 1 };
+    PhotoManager.current_page += increment;
     $('#photos_form').append('<input type="hidden" name="mode" value="append" id="mode">');
     $('#photos_form').append('<input type="hidden" name="page" value="' + PhotoManager.current_page + '" id="page">');
     $('#photos_form').callRemote();
@@ -134,7 +134,7 @@ var PhotoManager = {
 
   init: function(options) {
     if(options) { this.options = jQuery.merge(this.options, options); }
-    this.current_page = 0;
+    this.current_page = 1;
 
     this.makeDraggable(this.options.draggables);
     this.makeDroppable(this.options.droppables);
@@ -147,7 +147,6 @@ var PhotoManager = {
 
     $('.photos_left').click(this.scrollPhotosLeft);
     $('.photos_right').click(this.scrollPhotosRight);
-    this.loadPhotos(0);
 
     $('#photos_form').bind('ajax:success', function () {
       PhotoManager.makeDraggable(PhotoManager.options.draggables);
