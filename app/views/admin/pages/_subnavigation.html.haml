@@ -1,0 +1,8 @@
+%li= link_to t(:'.back_to_website'), admin_website_path(@website)
+- if resource
+  %li= link_to t(:'.index'), collection_path
+  - if !resource.new_record?
+    %li= link_to t(:'.edit'), edit_resource_path
+    %li= link_to t(:'.see_online'), page_path(resource.permalink, :host => resource.website.domains.first)
+- if collection
+  %li= link_to t(:'.new'), new_resource_path
