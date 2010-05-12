@@ -1,0 +1,6 @@
+<%= raw "$('#photos').%s(\"" % (params[:mode] == 'append' ? 'append' : 'html') %>\
+<%= raw(escape_javascript(render :template => 'admin/photos/index.html.haml')) %>")
+<% if params[:mode] != 'append' %>
+  $('#photos').css('margin-left', 0);
+  PhotoManager.init();
+<% end %>
