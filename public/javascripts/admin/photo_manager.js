@@ -109,10 +109,11 @@ var PhotoManager = {
     if(direction == 1 && $('#photos .photo:last').offset().left < $(window).width()) {
       return true; // don't scroll if the last photo is visible
     }
-    pixels = $('#photos_container').width() * direction - (20 * direction);
-    new_margin = Math.min(0, parseInt($('#photos').css('margin-left')) - pixels);
 
-    $('#photos').css('margin-left', new_margin + 'px');
+    pixels = $('#photos_container').width() * direction - (20 * direction);
+    left = Math.max(0, $('#photos_container').scrollLeft() + pixels);
+
+    $('#photos_container').scrollLeft(left);
 
     // check out if we gotta load moar photoz
     if($('#photos .photo:last').offset().left < $('#photos_container').width()) {

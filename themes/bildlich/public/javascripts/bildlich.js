@@ -1,6 +1,6 @@
 
 function horizontalScroll(event) {
-  delta = event.detail ? event.detail * (-50) : event.wheelDelta / 30
+  delta = event.detail ? event.detail * (-50) : event.wheelDelta * 20 
   scrollOffset = 10 * (delta / (-50));
   element = $(event.target).closest('.horizonalScroll');
   $(element).scrollLeft( $(element).scrollLeft() + scrollOffset);
