@@ -1,0 +1,6 @@
+en:
+  admin:
+    themes:
+      index:
+        new: 'Create a theme'
+        author: 'By %{author}'

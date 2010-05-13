@@ -1,0 +1,11 @@
+.c-themes.a-index #content { width: 100%; }
+
+h3 { overflow-x: hidden; white-space: nowrap; }
+h3 small { font-size: 10px; }
+h3 small a, h3 small a:hover, h3 small a:visited { color: #2b64f8; }
+h3 small:before { content: "("; }
+h3 small:after { content: ")"; }
+
+#themes { width: 100%; clear: both; }
+#themes .theme { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 220px; display: block; float: left; }
+#themes .theme img { width: 200px; height: 130px; overflow: hidden; }

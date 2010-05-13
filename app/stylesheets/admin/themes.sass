@@ -1,6 +1,8 @@
 @import includes.sass
 
-h2,h3,h4
+.c-themes.a-index #content
+  width: 100%
+h3
   overflow-x: hidden
   white-space: nowrap
   small
@@ -11,16 +13,14 @@ h2,h3,h4
     :content "("
   small:after
     :content ")"
-#albums .album
-  float: left
-  width: 120px
 #themes
+  width: 100%
   clear: both
   .theme
+    +grid(4, 16)
     display: block
     float: left
-    margin: 0 10px 10px 0
-    width: 200px !important
     img
       width: 200px
       height: 130px
+      overflow: hidden

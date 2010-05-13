@@ -1,10 +1,11 @@
-h2 span, h3 span, h4 span { font-size: 50%; }
-h2 span a, h2 span a:hover, h2 span a:visited, h3 span a, h3 span a:hover, h3 span a:visited, h4 span a, h4 span a:hover, h4 span a:visited { color: #2b64f8; }
-h2 span:before, h3 span:before, h4 span:before { content: "("; }
-h2 span:after, h3 span:after, h4 span:after { content: ")"; }
+h2, h3, h4 { overflow-x: hidden; white-space: nowrap; }
+h2 small, h3 small, h4 small { font-size: 10px; }
+h2 small a, h2 small a:hover, h2 small a:visited, h3 small a, h3 small a:hover, h3 small a:visited, h4 small a, h4 small a:hover, h4 small a:visited { color: #2b64f8; }
+h2 small:before, h3 small:before, h4 small:before { content: "("; }
+h2 small:after, h3 small:after, h4 small:after { content: ")"; }
 
 #albums .album { float: left; width: 120px; }
 
 #themes { clear: both; }
-#themes .theme { display: block; float: left; margin: 0 10px 10px 0; }
+#themes .theme { display: block; float: left; margin: 0 10px 10px 0; width: 200px !important; }
 #themes .theme img { width: 200px; height: 130px; }

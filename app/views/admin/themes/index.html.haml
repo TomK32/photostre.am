@@ -1,8 +1,12 @@
-- content_for :subnavigation do
-  %li= link_to t(:'.new'), new_resource_path
+- content_for :head do
+  = stylesheet_link_tag 'admin/themes'
 
-%ul
+#themes
   - collection.each do |theme|
-    %li= link_to theme.name, resource_path(theme)
+    .theme
+      %h3
+        = theme.name
+        %small= t(:'.author', :author => theme.author.name)
+      = image_tag '/themes/%s.png' % theme.directory, :title => theme.description
       
 = will_paginate(collection)
