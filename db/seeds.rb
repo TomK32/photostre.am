@@ -14,5 +14,5 @@ Theme.create!(:name => 'Blick', :directory => 'blick', :author => admin, :status
   :description => 'Vintage green with dark blue headers and links in a minimalistic design.')
 Theme.create!(:name => 'Grash', :directory => 'grash', :author => admin, :status => 'public',
   :description => 'Futuristic grey and blue nightmare.')
-Theme.create!(:name => 'Bildlich' , :directory => 'bildlich', :author => User.where('sources.flickr_nsid' => '37704933@N03').first, :status => 'public')
+Theme.create!(:name => 'Bildlich' , :directory => 'bildlich', :author => User.where('sources.flickr_nsid' => '37704933@N03').first, :status => 'public', :description => 'Best with photos as homepage')
 Theme.create!(:name => 'Digalog' , :directory => 'digalog', :author => User.where('sources.flickr_nsid' => '39052170@N06').first, :status => 'public')

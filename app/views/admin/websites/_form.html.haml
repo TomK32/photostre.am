@@ -15,8 +15,9 @@
     = select_tag :domain, options_for_select(Website.system_domains.collect{|d|[d,d]})
 - else
   %p.info= t(:'.change_domain')
+
+%h3= t(:'.root_path')
 %p
-  = form.label :root_path, raw(t(:'.root_path'))
   %label
     = form.radio_button :root_path, albums_path
     = t(:'.albums')
@@ -32,9 +33,15 @@
       = t(:'.album', :title => album.title)
 
 
-%p
-  = form.label :theme_id, t(:'.theme')
-  = form.select :theme_id, [current_user.themes, Theme.public].flatten.collect{|t| [t.name, t.id]}
+%h3= t(:'.theme')
+%p#themes
+  - [current_user.themes, Theme.public].flatten.each do |theme|
+    %label.theme
+      = form.radio_button :theme_id, theme.id
+      = theme.name
+      %br
+      = image_tag '/themes/%s.png' % theme.directory, :title => theme.description
+.clear
 %p
   = form.label :tracking_code, t(:'.tracking_code')
   = form.text_area :tracking_code
