@@ -38,6 +38,7 @@ DasPhotowall::Application.routes.draw do |map|
 
   get 'static/:action', :to => 'static', :as => 'static'
   get 'faq/:action', :to => 'static', :as => 'faq'
+  get 'themes', :to => 'admin/themes#index'
 
   get 'dashboard', :to => 'admin/dashboard#index'
   get 'login', :to => 'sessions#new'
