@@ -59,6 +59,8 @@ body
 #photos, #filter
   background-color: #222
   padding: 0 5px
+#photos
+  height: 80px
 #photos_container
   clear: both
   height: 80px !important
@@ -74,10 +76,13 @@ body
     img
       border: 1px solid transparent
       padding: 0
+      height: 75
+      width: 75
     &.selected img
       border: 1px solid
       border-color= !color_blue
 #filter
+  font-size: 95%
   .box
     display: inline
     border: 1px #555 solid

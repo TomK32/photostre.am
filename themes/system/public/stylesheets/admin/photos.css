@@ -27,12 +27,15 @@ body { background-image: none; }
 
 #photos, #filter { background-color: #222222; padding: 0 5px; }
 
+#photos { height: 80px; }
+
 #photos_container { clear: both; height: 80px !important; white-space: nowrap; overflow: hidden; }
 
 #photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo { display: inline-block; position: relative; margin: 0; padding: 0; overflow: hidden; }
-#photos .photo img, #photos .related_photo img, #related_photos .photo img, #related_photos .related_photo img { border: 1px solid transparent; padding: 0; }
+#photos .photo img, #photos .related_photo img, #related_photos .photo img, #related_photos .related_photo img { border: 1px solid transparent; padding: 0; height: 75; width: 75; }
 #photos .photo.selected img, #photos .related_photo.selected img, #related_photos .photo.selected img, #related_photos .related_photo.selected img { border: 1px solid; border-color: #0063dc; }
 
+#filter { font-size: 95%; }
 #filter .box { display: inline; border: 1px #555555 solid; padding: 2px 4px; margin: 0 3px; }
 #filter p, #filter label, #filter input, #filter form { display: inline; }
 #filter input, #filter select, #filter textarea { border-color: black; }

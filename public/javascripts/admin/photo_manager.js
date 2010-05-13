@@ -3,7 +3,7 @@ var PhotoManager = {
   current_page: 0,
 
   options: {draggables:'.draggable', droppables:'.droppable'},
-  draggable_options: { revert: true, stack: { group: 'photos'}, min: 500, helper: 'clone', appendTo: 'body', containment: 'window' },
+  draggable_options: { revert: true, min: 500, helper: 'clone', appendTo: 'body', containment: 'window' },
 
   selectElement: function(element) {
     if(element.target) { element = $(element.target).closest('.selectable'); }
