@@ -3,7 +3,7 @@
   %head
     = render :partial => "shared/meta_head"
     = render :partial => "shared/head"
-    = javascript_include_tag %w(jquery jquery-ui rails admin admin/photo_manager)
+    = javascript_include_tag %w(http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js rails admin admin/photo_manager)
     = stylesheet_link_tag %w(admin/admin admin/forms admin/websites admin/albums), :cache => 'cache/admin'
     = stylesheet_link_tag "admin/photos"
   %body{:class => 'c-%s a-%s' % [controller_name, action_name]}
