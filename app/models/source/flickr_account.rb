@@ -1,9 +1,9 @@
 require 'flickr_fu'
 
 class Source::FlickrAccount < Source
-
   field :token, :type => String
   field :flickr_nsid, :type => String
+  embed_many :albums, :class_name => 'Source::FlickrAccount::Album'
 
   validates_presence_of :flickr_nsid
   after_create :call_worker
@@ -136,7 +136,8 @@ class Source::FlickrAccount < Source
             }
             Photo.create(photo_attr)
           end
-        end while flickr_photos_count == per_page
+        return
+        end while page < flickr_photos.page
       end
     rescue Flickr::Error => ex
       self.error_messages ||= []
@@ -149,4 +150,28 @@ class Source::FlickrAccount < Source
     end
     self.update_attributes(:status => 'active')
   end
+
+  def import_albums
+    # TODO this is quite expensive as I think it writes all alubms again on reimport
+    # but otoh we don't do it that often.
+    photosets = flickr.photosets.get_list(:user_id => self.flickr_nsid, :auth_token => self.token)
+    photosets.each do |photoset|
+      album = self.albums.where(:remote_id => photoset.id).first ||
+        Source::FlickrAccount::Album.new({:title => photoset.title, :remote_id => photoset.id.to_i,
+          :description => photoset.description, :remote_photo_ids => []})
+      album.remote_photo_ids = photoset.get_photos(:user_id => self.flickr_nsid, :auth_token => self.token).collect{|p|p.id.to_i}
+      self.albums << album
+    end
+    self.save!
+  end
+end
+
+class Source::FlickrAccount::Album
+  include Mongoid::Document
+  field :title, :type => String
+  field :remote_id, :type => Integer
+  field :description, :type => String
+  field :remote_photo_ids, :type => Array
+  embedded_in :source, :inverse_of => :albums
+  validates_presence_of :remote_id
 end

@@ -8,7 +8,7 @@ class Source
   field :authenticated_at, :type => DateTime
   field :last_updated_at, :type => DateTime
   field :is_pro, :type => Boolean
-  field :error_messages, :type => Array, :default => []
+  field :error_messages, :type => Array
 
   has_many_related :photos
   embedded_in :user, :inverse_of => :sources
