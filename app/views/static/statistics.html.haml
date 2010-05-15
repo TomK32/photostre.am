@@ -4,7 +4,9 @@
 = User.count
 users (of which
 = User.where('sources.is_pro' => true).count
-are pro users at flickr)
+are pro users at flickr and
+= User.where(:email => {'$exists' => true}).count
+given their email address)
 have imported
 = Photo.count
 photos and created
