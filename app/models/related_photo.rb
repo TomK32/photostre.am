@@ -3,7 +3,6 @@
 # objects we have an extra class, rebuilding what in SQL would be a join table
 class RelatedPhoto
   include Mongoid::Document
-  include Mongoid::Timestamps
 
 #  field :position, :type => Integer
   field :permalink, :type => String
