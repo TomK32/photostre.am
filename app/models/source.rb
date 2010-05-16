@@ -62,13 +62,13 @@ class Source
           album.save
         end
         photos_map = {}
-        photos = Photo.where(:source_id => self.id, :remote_id => {'$in' => remote_album.remote_photo_ids})
+        photos = Photo.where(:source_id => self.id, :remote_id => {'$in' => remote_album.remote_photo_ids.flatten}).to_a
         photos.collect{|p| photos_map[p.remote_id] = p.id }
-        remote_album.remote_photo_ids.each do |remote_photo_id|
-
+        remote_album.remote_photo_ids.flatten.each do |remote_photo_id|
           if album.photos.where(:photo_id => photos_map[remote_photo_id]).first.nil?
             related_photo = RelatedPhoto.new(:photo_id => photos_map[remote_photo_id])
             album.photos << related_photo
+            next unless photos_map[remote_photo_id]
             related_photo.set_permalink(photos.select{|p|p.id == photos_map[remote_photo_id]}[0].title.to_permalink)
             related_photo.save!
           end

@@ -157,8 +157,8 @@ class Source::FlickrAccount < Source
         per_page = 500
         begin
           page += 1
-          photoset_photos = photoset.get_photos(:user_id => self.flickr_nsid, :auth_token => self.token, :page => page, :per_page => page)
-          album.remote_photo_ids << photoset_photos.collect{|p|p.id.to_i}
+          photoset_photos = photoset.get_photos(:user_id => self.flickr_nsid, :auth_token => self.token, :page => page, :per_page => per_page)
+          album.remote_photo_ids += photoset_photos.collect{|p|p.id.to_i}
         end while photoset_photos.size == per_page
         album.save
       end
