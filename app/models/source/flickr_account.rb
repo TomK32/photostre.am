@@ -146,11 +146,21 @@ class Source::FlickrAccount < Source
     execute_with_rescue do
       photosets = flickr.photosets.get_list(:user_id => self.flickr_nsid, :auth_token => self.token)
       photosets.each do |photoset|
-        album = self.albums.where(:remote_id => photoset.id).first ||
-          Source::FlickrAccount::Album.new({:title => photoset.title, :remote_id => photoset.id.to_i,
-            :description => photoset.description, :remote_photo_ids => []})
-        album.remote_photo_ids = photoset.get_photos(:user_id => self.flickr_nsid, :auth_token => self.token).collect{|p|p.id.to_i}
-        self.albums << album
+        album = self.albums.where(:remote_id => photoset.id.to_i).first
+        if album.nil?
+          album = Source::FlickrAccount::Album.new({:title => photoset.title,
+            :remote_id => photoset.id.to_i, :description => photoset.description, :remote_photo_ids => []})
+          self.albums << album
+        end
+        album.remote_photo_ids = []
+        page = 0
+        per_page = 500
+        begin
+          page += 1
+          photoset_photos = photoset.get_photos(:user_id => self.flickr_nsid, :auth_token => self.token, :page => page, :per_page => page)
+          album.remote_photo_ids << photoset_photos.collect{|p|p.id.to_i}
+        end while photoset_photos.size == per_page
+        album.save
       end
       self.save!
     end

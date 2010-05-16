@@ -3,6 +3,8 @@ class Admin::WebsitesController < Admin::ApplicationController
   actions :all
 
   before_filter :owner_required, :except => [:create, :new, :index]
+  before_filter :process_source_ids, :only => [:create, :update]
+
   def create
     resource = build_resource
 
@@ -29,4 +31,10 @@ class Admin::WebsitesController < Admin::ApplicationController
   def collection
     @collection ||= current_user.websites
   end
+
+  def process_source_ids
+    params[:website][:source_ids] ||= []
+    params[:website][:source_ids] = params[:website][:source_ids].collect{|k,v| k if v == '1' }.uniq.compact
+  end
+
 end

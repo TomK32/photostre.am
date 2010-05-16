@@ -26,10 +26,11 @@ class RelatedPhoto
     end
   end
   alias_method_chain :method_missing, :photo
-  def set_permalink
+  def set_permalink(permalink = nil)
     title = self.title.strip.blank? ? 'image' : self.title
-    if title and self.permalink.blank?
-      permalink = title.to_permalink.strip
+    if (title and self.permalink.blank?) || permalink
+      permalink ||= title
+      permalink = permalink.to_permalink.strip
       permalink_index = nil
       permalinks = parent.related_photos.only(:permalink).collect(&:permalink)
       while permalinks.include?([permalink, permalink_index].compact.join('-'))

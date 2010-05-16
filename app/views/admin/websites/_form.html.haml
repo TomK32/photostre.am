@@ -16,6 +16,16 @@
 - else
   %p.info= t(:'.change_domain')
 
+- if current_user.sources.count > 0
+  %h3= t(:'.synchronize')
+  .info= t(:'.synchronize_info')
+  %p
+    - current_user.sources.each do |source|
+      %label
+        = form.check_box 'source_ids[%s]' % source.id, :checked => resource.source_ids.include?(source.id)
+        = source.title
+
+
 %h3= t(:'.root_path')
 %p
   %label

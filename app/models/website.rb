@@ -14,6 +14,7 @@ class Website
   field :tags, :type => Array
   field :related_photos
   field :theme_path, :type => String, :default => 'default'
+  field :source_ids, :type => Array
 
   embed_many :related_photos
   
