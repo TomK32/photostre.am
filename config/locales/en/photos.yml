@@ -6,7 +6,7 @@ en:
       taken_at: 'Taken %{date}'
       from_source: 'By %{source} on %{web_url}'
       tagged: 'Tagged: '
-  admin:    
+  admin:
     photos:
       error:
         no_photos_yet: No photos yet
@@ -57,3 +57,5 @@ en:
         reset: 'Reset filter'
         select_all: 'select all'
         select_none: 'none'
+        source_album: 'Original albums'
+        source_album_title: "That means, the photosets on flickr"

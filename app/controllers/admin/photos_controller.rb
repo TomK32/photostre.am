@@ -18,14 +18,9 @@ class Admin::PhotosController < Admin::ApplicationController
   private
   def collection
     return @photos if @photos
-    if ! params[:website_id].blank?
-      @website ||= current_user.websites.where(:_id => params[:website_id]).first
-      scope = @website.related_photos
-    end
-    if ! params[:album_id].blank?
-      @website ||= current_user.websites.where(:'albums.id' => params[:album_id]).first
-      @album ||= @website.albums.where(:_id => params[:album_id]).first
-      scope = @album.related_photos
+    if ! params[:source_album_id].blank?
+      @album ||= current_user.sources.collect{|s| s.albums.find(params[:source_album_id])}.first
+      scope = current_user.photos.where(:remote_id => {'$in' => @album.remote_photo_ids.collect(&:to_s)})
       conditions ||= {:include => 'related_photos.photo'}
     else
       scope = current_user.photos

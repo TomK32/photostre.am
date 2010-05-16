@@ -13,6 +13,9 @@
   %p
     = label_tag :tags, t(:'.tags')
     = text_field_tag :tags, params[:tags]
+  %p{:title => t(:'.source_album_title')}
+    = label_tag :source_album_id, t(:'.source_album')
+    = select_tag :source_album_id, options_for_select([[]] + current_user.sources.collect(&:albums).flatten.collect{|a| [a.title, a.id]})
   %p.submit
     = submit_tag t(:'.submit'), :name => nil
     %span.box= link_to t(:'.reset'), admin_photos_path
