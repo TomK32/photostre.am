@@ -80,7 +80,7 @@ body
       width: 75px
     &.selected img
       border: 1px solid
-      border-color= !color_blue
+      border-color: $color_blue
 #filter
   font-size: 95%
   .box
@@ -96,6 +96,8 @@ body
     width: 60px
   label
     margin-left: 10px
+  select
+    width: 150px
 
 #websites
   ul
@@ -104,6 +106,7 @@ body
   li
     margin: 0 0 0 5px
   .droppable
+    position: relative
     padding: 0 0 0 0
     a
       padding: 2px 4px
