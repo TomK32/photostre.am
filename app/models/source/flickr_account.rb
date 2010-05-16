@@ -120,7 +120,7 @@ class Source::FlickrAccount < Source
               :created_at => photo.uploaded_at,
               :updated_at => photo.updated_at,
               :tags => photo.tags.split(' '),
-              :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.flick_nsid, photo.id],
+              :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.flickr_nsid, photo.id],
               :machine_tags => photo.machine_tags.split(' '),
               :description => photo.description,
               :photo_urls => {
