@@ -15,6 +15,13 @@ websites.
 = Navvy::Job.count
 jobs outstanding.
 
+%h2 Latest errors
+%dl
+  - User.where('source.errors' => {"$exists" => true}).collect(&:sources).flatten.each do |source|
+    %dt= source.photostream_url
+    - source.errors.each do |error|
+      %dd= error
+
 %h2 Latest websites
 %ul
   - @websites.each do |website|
