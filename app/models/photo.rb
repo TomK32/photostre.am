@@ -14,7 +14,7 @@ class Photo
   field :title, :type => String
   field :description, :type => String
   field :source_id, :type => String
-  field :remote_id, :type => String
+  field :remote_id, :type => Integer
   field :web_url, :type => String
   field :taken_at, :type => DateTime
   field :tags, :type => Array

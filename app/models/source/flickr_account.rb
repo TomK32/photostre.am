@@ -114,7 +114,7 @@ class Source::FlickrAccount < Source
           next if photo.media != 'photo'
           photo_attr = {
             :title => photo.title,
-            :remote_id => photo.id,
+            :remote_id => photo.id.to_i,
             :taken_at => photo.taken_at,
             :created_at => photo.uploaded_at,
             :updated_at => photo.updated_at,

@@ -20,7 +20,7 @@ class Admin::PhotosController < Admin::ApplicationController
     return @photos if @photos
     if ! params[:source_album_id].blank?
       @album ||= current_user.sources.collect{|s| s.albums.find(params[:source_album_id])}.first
-      scope = current_user.photos.where(:remote_id => {'$in' => @album.remote_photo_ids.collect(&:to_s)})
+      scope = current_user.photos.where(:remote_id => {'$in' => @album.remote_photo_ids})
       conditions ||= {:include => 'related_photos.photo'}
     else
       scope = current_user.photos
