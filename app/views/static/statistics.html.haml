@@ -18,6 +18,7 @@ jobs outstanding.
 %h2 Latest errors
 %dl
   - User.where('sources.error_messages' => {"$exists" => true}).collect(&:sources).flatten.each do |source|
+    - next if source.error_messages.empty?
     %dt= source.photostream_url
     - source.error_messages.each do |error|
       %dd= error
