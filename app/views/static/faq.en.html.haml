@@ -1,0 +1,31 @@
+- title('FAQ')
+
+%p
+  If you have any questions that are not answered here please
+  = link_to 'send us an email', 'mailto:info@photostre.am'
+
+%h2 General Questions
+%dl
+  %dt
+    Why does
+    = current_website.title
+    need access rights to my photos
+  %dd We need those rights, only the read access, in order to retrieve all your photos from flickr. This also includes those photos set to 'private' or 'only for friends'.
+
+  %dt Will there always be a free service?
+  %dd Yes, and it will offer you plenty of features.
+
+%h2 Domains
+%dl
+  %dt Custom domain
+  %dd
+    In order to have use your own domain you need to point the
+    = link_to 'CNAME', 'http://en.wikipedia.org/wiki/CNAME_record'
+    to
+    %strong= current_website.domains.first
+  %dt Sharing a domain with friends
+  %dd If you want to give your friends subdomains like fred.example.com or betty.example.com you can send a mail to our support with their usernames and requested domains.
+  %dt Subdomains
+  %dd
+    We are offering quite a few domains from which you may pick any subdomain, if available. Our domains for the community are:
+    = Website.system.collect(&:domain).join(', ')

@@ -20,7 +20,7 @@ gem 'navvy', :git => 'git://github.com/TomK32/navvy.git'
 gem 'capistrano'
 
 # Views and controller related
-gem 'haml', :require => 'haml'
+gem 'haml'
 gem 'RedCloth'
 gem 'compass'
 gem 'compass-960-plugin', :require => 'ninesixty'
