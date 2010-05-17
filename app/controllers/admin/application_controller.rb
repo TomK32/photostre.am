@@ -11,7 +11,7 @@ class Admin::ApplicationController < ApplicationController
 
   def update_sources
     if logged_in?
-      unless current_user.sources.active.excludes(:last_updated_at.gt => Time.now - 3.hours).collect(&:call_worker).empty?
+      unless current_user.sources.active.where(:last_updated_at => {'$lt' => Time.now - 12.hours}).collect(&:call_worker).empty?
         flash[:notice] = t(:'admin.sources.updating')
       end
     end
