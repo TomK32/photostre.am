@@ -1,6 +1,6 @@
 %h2
   = link_to website.title, resource_path(website), :title => t(:'.show_website_details')
-  %span= link_to website.domains.join(', '), website.url, :title => t(:'.goto_domain')
+  %small= link_to website.domains.join(', '), website.url, :title => t(:'.goto_domain')
 %ul
   %li= link_to t(:'.edit'), edit_resource_path(website)
   %li= website.active? ? t(:'.active') : t(:'.inactive')

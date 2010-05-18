@@ -17,7 +17,7 @@ class Website
   field :source_ids, :type => Array
 
   embed_many :related_photos
-  
+
   before_validate :set_theme_path
   alias_attribute :photos, :related_photos
 
@@ -35,6 +35,7 @@ class Website
   scope :active_or_system, :where => {:status.in => %w(active system)}
   scope :active, :where => {:status => %w(active)}
   after_create :create_default_pages
+  after_create :call_sync_worker
 
   validate do
     domains.each do |domain|
@@ -82,5 +83,23 @@ class Website
       page.save!
     end
     self.root_path = '/pages/' + self.pages.first.permalink
+  end
+
+  def call_sync_worker
+    return if self.source_ids.empty?
+    Navvy::Job.enqueue(SourceWorker, :sync_website, {:id => self.id})
+  end
+
+  # supposed to be called when a website is created and to be synced
+  def import_albums(albums)
+    albums.each do |remote_album|
+      album = self.albums.where(:remote_id => remote_album.id).first
+      if album.nil?
+        album = Album.new(:title => remote_album.title, :description => remote_album.description, :remote_id => remote_album.remote_id)
+        self.albums << album
+        album.save
+      end
+      album.import_remote(remote_album)
+    end
   end
 end

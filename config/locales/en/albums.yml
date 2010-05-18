@@ -16,6 +16,7 @@ en:
         page_title: 'Add an album on "%{title}"'
         submit: 'Create album'
       form:
+        remote_album: 'Synchronize with this album'
         title: 'Title'
         description: 'Description of your album.'
         permalink: 'Permalink (will be set automatically and can be changed)'

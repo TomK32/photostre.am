@@ -50,30 +50,20 @@ class Source
   def photostream_url; end
   def profile_url; end
 
-  def sync_websites
+  # supposed to be called when the source is updated
+  def sync_albums
     raise 'Source must embed :albums for this to work' if ! self.respond_to?(:albums)
     # First sync all websites, that's creating/updating albums
-    Website.where(:source_ids => self.id).each do |website|
-      self.albums.each do |remote_album|
-        album = website.albums.where(:remote_id => remote_album.remote_id).first
-        if album.nil?
-          album = Album.new(:title => remote_album.title, :description => remote_album.description, :remote_id => remote_album.remote_id)
-          website.albums << album
-          album.save
-        end
-        photos_map = {}
-        photos = Photo.where(:source_id => self.id, :remote_id => {'$in' => remote_album.remote_photo_ids.flatten}).to_a
-        photos.collect{|p| photos_map[p.remote_id] = p.id }
-        remote_album.remote_photo_ids.flatten.each do |remote_photo_id|
-          if album.photos.where(:photo_id => photos_map[remote_photo_id]).first.nil?
-            related_photo = RelatedPhoto.new(:photo_id => photos_map[remote_photo_id])
-            album.photos << related_photo
-            next unless photos_map[remote_photo_id]
-            related_photo.set_permalink(photos.select{|p|p.id == photos_map[remote_photo_id]}[0].title.to_permalink)
-            related_photo.save!
-          end
-        end
-        album.save!
+    Website.where(:source_ids => self.id).only(:albums).each do |website|
+      website.import_albums(self.albums)
+    end
+    self.albums.each do |remote_album|
+      #puts Website.where('albums.remote_id' => remote_album.id, :select => 'albums').to_a.inspect
+
+      Website.where('albums.remote_id' => remote_album.id).only('albums').each do |website|
+        album = website.albums.where(:remote_id => remote_album.id)
+
+        album.import_remote(remote_album)
       end
     end
   end

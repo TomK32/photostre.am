@@ -1,1 +1,1 @@
-a { text-decoration: none; }
+a{text-decoration:none}.menu{position:absolute;top:0;right:0;background-color:black}.menu .handler{background-image:url(/images/menu_closed.png)}.menu.open .handler{background-image:url(/images/menu_closed.png)}

@@ -9,6 +9,7 @@ class Album
   field :status, :type => String, :required => true, :default => 'published'
   field :key_photo_id, :type => String
   field :parent_id, :type => String, :default => nil
+  field :remote_album_id, :type => String
 
   scope :published, :where => {:status => 'published'}
   scope :latest, :order_by => [:updated_at, 'desc']
@@ -81,4 +82,25 @@ class Album
     end
   end
 
+  def remote_album
+    User.where(:'sources.albums._id' => self.remote_album_id).first.albums.find(self.remote_album.id)
+  end
+
+  # supposed to be called when an album is created and to be synced
+  def import_remote(other = nil)
+    other ||= self.remote_album
+    photos_map = {}
+    photos = Photo.where(:source_id => self.id, :remote_id => {'$in' => other.remote_photo_ids.flatten}).to_a
+    photos.collect{|p| photos_map[p.remote_id] = p.id }
+    other.remote_photo_ids.flatten.each do |remote_photo_id|
+      if self.photos.where(:photo_id => photos_map[remote_photo_id]).first.nil?
+        next if photos_map[remote_photo_id].nil?
+        related_photo = RelatedPhoto.new(:photo_id => photos_map[remote_photo_id])
+        self.photos << related_photo
+        related_photo.set_permalink(photos.select{|p|p.id == photos_map[remote_photo_id]}[0].title.to_permalink)
+        related_photo.save!
+      end
+    end
+    self.save!
+  end
 end

@@ -22,25 +22,22 @@
   %p
     - current_user.sources.each do |source|
       %label
-        = form.check_box 'source_ids[%s]' % source.id, :checked => (resource.source_ids ||[]).include?(source.id)
+        = form.check_box 'source_ids[%s]' % source.id, :checked => resource.source_ids.include?(source.id)
         = source.title
-
+      %h3= t(:'.synchronize_albums')
+      .remote_albums
+        - source.albums.each do |remote_album|
+          %p
+            - if ! resource.albums.where(:remote_id => remote_album.id).first
+              = check_box_tag 'remote_albums[%s][%s]' % [source.id, remote_album.id]
+              = remote_album.title
 
 %h3= t(:'.root_path')
 %p
   %label
-    = form.radio_button :root_path, albums_path
-    = t(:'.albums')
-  %label
-    = form.radio_button :root_path, pages_path
-    = t(:'.pages')
-  %label
-    = form.radio_button :root_path, photos_path
-    = t(:'.photos')
-  - resource.albums.each do |album|
-    %label
-      = form.radio_button :root_path, album_path(album)
-      = t(:'.album', :title => album.title)
+    = form.select(:root_path,
+      [[t(:'.albums'), albums_path], [t(:'.pages'), pages_path],
+      [t(:'.photos'), photos_path]] + resource.albums.collect{|a| [a.title, album_path(a)]})
 
 
 %h3= t(:'.theme')
