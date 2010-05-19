@@ -18,9 +18,7 @@ class Photo
   field :web_url, :type => String
   field :taken_at, :type => DateTime
   field :tags, :type => Array
-  field :public, :type => Boolean
-  field :friends, :type => Boolean
-  field :family, :type => Boolean
+  field :status, :type => String, :default => 'public'
 
   index :title
   index :description

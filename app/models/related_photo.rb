@@ -6,6 +6,7 @@ class RelatedPhoto
 
 #  field :position, :type => Integer
   field :permalink, :type => String
+  field :status, :type => String
 
   before_validate :set_permalink
 

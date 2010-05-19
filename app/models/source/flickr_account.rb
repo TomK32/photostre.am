@@ -126,9 +126,7 @@ class Source::FlickrAccount < Source
                 :o => photo.original_url,
                 :m => photo.url(:medium),
               },
-            :public => photo.public?,
-            :friend => photo.friend?,
-            :family => photo.family?,
+            :status => photo.public? ? 'public' : 'private',
             :original_secret => photo.original_secret,
             :user_id => self.user.id,
             :source_id => self.id
