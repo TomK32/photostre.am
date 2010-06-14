@@ -26,16 +26,9 @@ describe Page do
     it "should have a scope on the permalink"
   end
   describe "associations" do
-    it "should be embedded in a website" do
-      association = Page.associations['website']
-      association.klass.should ==(Website)
-      association.association.should ==(Mongoid::Associations::EmbeddedIn)
-    end
-    it "should belong to related user" do
-      association = Page.associations['user']
-      association.klass.should ==(User)
-      association.association.should ==(Mongoid::Associations::BelongsToRelated)
-    end
+    it { should be_embedded_in(:website).as_inverse_of(:pages) }
+    it { should belong_to_related(:user) }
+    it { should embed_many(:related_photos) }
   end
   describe "validations" do
     it { should validate_presence_of(:title) }

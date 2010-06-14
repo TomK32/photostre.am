@@ -10,7 +10,7 @@ gem 'mongo', '1.0'
 gem 'bson_ext', '1.0'
 gem 'mongo', '1.0'
 #gem 'builder'
-gem 'mongoid', :git => 'git://github.com/TomK32/mongoid.git'
+gem 'mongoid'
 
 # For background processes
 gem 'daemons'
@@ -38,7 +38,8 @@ group :development do
   gem "rspec-rails", :git => 'git://github.com/rspec/rspec-rails.git'
   gem "rspec-mocks", :git => 'git://github.com/rspec/rspec-mocks.git'
   gem "factory_girl", :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
-  gem "shoulda", :git => 'git://github.com/TomK32/shoulda.git'
+  gem "shoulda"
+  gem "mongoid-rspec", :git => "http://github.com/evansagge/mongoid-rspec.git"
   gem "webrat"
   gem "rspec-core", :git => 'git://github.com/rspec/rspec-core.git'
   gem "rspec-expectations", :git => 'git://github.com/rspec/rspec-expectations.git'

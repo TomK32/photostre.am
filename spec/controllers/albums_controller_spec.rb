@@ -1,8 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PhotosController do
-  
-  before :each do
+  def setup
     @website = Factory(:website, :domains => %w(tomk32.de))
     @album = @website.albums.build(Factory.build(:album).attributes)
     @album.save

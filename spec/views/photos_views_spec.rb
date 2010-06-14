@@ -5,7 +5,7 @@ describe "photos/index.html.haml" do
     @website = Factory(:website_with_photos)
     @photos = @website.photos.paginate(:per_page => 5, :page => 1)
     assigns[:photos] = @photos
-#    template.stub(:collection).and_return(@photos)
+#    view.stub(:collection).and_return(@photos)
     render
   end
   it "should display photos" do
@@ -26,7 +26,7 @@ describe "photos/show.html.haml" do
     @photo = @website.photos.first
     @photo.should_not be_nil
     assigns[:photo] = @photo
-#    template.stub(:resource).and_return(@photo)
+#    view.stub(:resource).and_return(@photo)
     render
   end
   it "should display photo" do

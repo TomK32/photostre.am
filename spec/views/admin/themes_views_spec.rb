@@ -5,14 +5,13 @@ describe "admin/themes/new" do
     @theme = Factory(:theme)
   end
   before :each do
-    template.stub(:current_object).and_return(Theme.new)
-    template.stub(:objects_path).and_return('/admin/themes')
+    view.stub(:resource).and_return(Theme.new)
+    view.stub(:collection_path).and_return('/admin/themes')
     render
   end
   it "should have fields" do
     response.should be_success
     response.should have_form_posting_to('/admin/themes') do
-      puts y form
       with_text_field_for :theme, :nam
       with_text_field_for :theme, :directory
       with_text_field_for :theme, :license

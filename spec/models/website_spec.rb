@@ -2,7 +2,6 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Website do
   before(:each) do
-    Website.delete_all
     @website = Factory(:website)
   end
   it "@website should be valid" do
@@ -14,17 +13,10 @@ describe Website do
       @website.user_ids.first.should be_a(String)
       User.find(@website.user_ids[0]).id.should ==(@website.user_ids[0])
     end
-    it "should embed a theme" do
-      association = Website.associations['theme']
-      association.klass.should ==(Theme)
-      association.association.should ==(Mongoid::Associations::EmbedsOne)
-    end
-    it "should embed many albums" do
-      association = Website.associations['albums']
-      association.klass.should ==(Album)
-      association.association.should ==(Mongoid::Associations::EmbedsMany)
-    end
+    it { should belong_to_related(:theme) }
+    it { should embed_many(:albums) }
   end
+
   describe "validations" do
     it "should validate for presence of domain" do
       @website.domains = nil
@@ -32,11 +24,12 @@ describe Website do
       @website.domains = []
       @website.should_not be_valid
     end
-    it "should not validate duplicate domain names" do
+    it "should not validate duplicate domain names"
+=begin
       website2 = Factory(:website, :domains => @website.domains)
       website2.domains.should ==(@website.domains)
       website2.should_not be_valid
-    end
+=end
 
 # NOTE There's a default value for status and mongoid just ignores my nil!
 #    it "should validate for presence of status" do
@@ -67,7 +60,7 @@ describe Website do
       new_website.pages.count.should be(3)
       new_website.pages.collect(&:permalink).sort.should == %w(about contact home)
       new_website.pages.collect(&:status).sort.should == %w(published published published)
-      new_website.root_path.should ==('/pages/home')
+      new_website.root_path.should ==('/albums')
     end
     it "should not create standard pages for system websites"
   end

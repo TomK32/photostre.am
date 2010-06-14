@@ -7,9 +7,10 @@ describe Admin::PhotosController do
     @website = Factory(:website)
     @photos = (0..20).collect { Factory(:photo) }
     @user.websites << @website
+    @system_website = Website.system.first || Factory(:website_system)
   end
   before :each do
-    request.host = Factory(:website_system).domains.first
+    request.host = @system_website.domains.first
     request.session[:user_id] = @user.id
     request.session[:user_id] = @user.id
   end
@@ -27,7 +28,7 @@ describe Admin::PhotosController do
         assigns[:website].should == @website
       end
       it "by album_id" do
-        album = Factory(:album, :website_id => @website.id)
+        album = Factory(:album)
         album.photos << @photos[2..9]
         get :index, {:album_id => album.id}
         assigns[:album].should == album

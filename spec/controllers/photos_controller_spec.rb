@@ -1,11 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PhotosController do
-  before :each do
+  def setup
     @website = Factory(:website)
-    request.host = @website.domains.first
     @website.photos = (0..20).collect { Factory(:photo) }
     @photos = @website.photos
+  end
+  before :each do
+    request.host = @website.domains.first
   end
 
   describe "GET to :index" do

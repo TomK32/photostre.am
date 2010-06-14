@@ -1,16 +1,18 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "admin/websites/new" do
-  before :each do
-    assigns[:current_user] = @user = Factory(:user)
-    Factory(:website_system)
+  before :all do
+    @user = Factory(:user)
     @website = Factory(:website, :domains => ['user.com'], :user_ids => [@user.id])
+  end
+  before :each do
+    assigns[:current_user] = @user
     @photos = @website.photos.paginate(:per_page => 5, :page => 1)
-    template.stub(:objects_path).and_return('/admin/websites')
-    template.stub(:current_object).and_return(Website.new)
+    view.stub(:objects_path).and_return('/admin/websites')
+    view.stub(:current_object).and_return(Website.new)
   end
   it "should have fields for existing website" do
-    template.stub(:current_object).and_return(Factory(:website))
+    view.stub(:current_object).and_return(@website)
     render
     response.should be_success
     response.should have_form_posting_to('/admin/websites')
@@ -25,7 +27,7 @@ describe "admin/websites/new" do
     response.should_not have_tag('select#domain')
   end
   it "should have fields for new website" do
-    template.stub(:current_object).and_return(Website.new)
+    view.stub(:current_object).and_return(Website.new)
     render
     response.should have_tag('input#subdomain')
     response.should have_tag('select#domain')

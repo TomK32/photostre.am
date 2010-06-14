@@ -4,8 +4,8 @@ describe "admin/sources/new" do
   before :each do
     @user = Factory(:user)
     @source = Factory(:source_flickr_account, :user_id => @user.id)
-    template.stub(:current_object).and_return(Source.new)
-    template.stub(:objects_path).and_return('/admin/sources')
+    view.stub(:current_object).and_return(Source.new)
+    view.stub(:objects_path).and_return('/admin/sources')
     render
   end
   it "should have fields" do

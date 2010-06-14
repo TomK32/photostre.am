@@ -8,11 +8,18 @@ describe User do
     @user.should be_valid
   end
   describe "associations" do
-    it "should have many related :photos"
-    it "should have many :websites"
-    it "should embed one :subscription"
-    it "should embed many :old_subscriptions"
-    it "should embed many :features"
+    it { should have_many_related(:photos) }
+    it { should have_many(:websites) }
+    it { should embed_one(:subscription) }
+    it { should embed_many(:old_subscriptions) }
+    it { should embed_many(:features) }
+    it { should embed_many(:sources) }
+  end
+  describe "fields" do
+    
+  end
+  describe "validations" do
+    
   end
   
   describe "features and subscriptions" do

@@ -11,19 +11,18 @@ describe RelatedPhoto do
   end
 
   describe "associations" do
-    it "should belong to a related photo" do
-      association = RelatedPhoto.associations['photo']
-      association.klass.should ==(Photo)
-      association.association.should ==(Mongoid::Associations::BelongsToRelated)
-    end
-    it "should be embedded in a polymorphic parent" do
-      association = RelatedPhoto.associations['parent']
-      association.should be_polymorphic
-      association.inverse_of.should ==(:related_photos)
-    end
+    it { should belong_to_related :photo }
+    it { should be_embedded_in(:parent) }
+  end
+  describe "fields" do
+    it { should have_field(:permalink) }
+  end
+  
+  describe "validations" do
+    it { should validate_presence_of(:permalink) }
   end
 
-  it "should have a permalink from the photo" do
+  it "should have a permalink based on the photo's title" do
     @related_photo.permalink.should ==(@related_photo.photo.title.to_permalink)
   end
   it "should not change the permalink if the photo's title changes" do
@@ -33,5 +32,4 @@ describe RelatedPhoto do
     related_photo = @website.reload.related_photos.find(@related_photo.id)
     related_photo.should_not ==(@photo.title.to_permalink)
   end
-
 end

@@ -4,7 +4,7 @@ describe Admin::WebsitesController do
 
   before do
     @user = Factory(:user)
-    @website = Factory(:website_system).domains.first
+    @website = Website.system.first.domains.first || Factory(:website_system).domains.first
   end
   before :each do
 

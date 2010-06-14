@@ -8,9 +8,10 @@ describe Admin::DashboardController do
     @user.sources << @source = Factory(:source)
     @user.photos << (0..7).collect{ Factory(:photo, :user_id => @user.id, :source_id => @source.id)}
     @user.reload
+    @system_website = Website.system.first || Factory(:website_system)
   end
   before :each do
-    request.host = Factory(:website_system).domains.first
+    request.host = @system_website.domains.first
   end
   describe "as not logged in user" do
     it "should not let me in" do

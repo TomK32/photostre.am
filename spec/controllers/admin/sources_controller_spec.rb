@@ -3,9 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe Admin::SourcesController do
   def setup
     @user = Factory(:user, :login => 'TomK32', :email => 'tomk32@gmx.de')
+    @system_website = Factory(:website_system)
   end
   before :each do
-    request.host = Factory(:website_system).domains.first
+    request.host = @system_website.domains.first
     request.session[:user_id] = @user.id
   end
   it "should only work for logged in users" do
