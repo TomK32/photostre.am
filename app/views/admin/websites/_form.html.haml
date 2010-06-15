@@ -22,7 +22,7 @@
   %p
     - current_user.sources.each do |source|
       %label
-        = form.check_box 'source_ids[%s]' % source.id, :checked => resource.source_ids.include?(source.id)
+        = form.check_box 'source_ids[%s]' % source.id, :checked => form.object.source_ids && resource.source_ids.include?(source.id)
         = source.title
       %h3= t(:'.synchronize_albums')
       .remote_albums
