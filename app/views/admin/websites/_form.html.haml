@@ -22,15 +22,9 @@
   %p
     - current_user.sources.each do |source|
       %label
-        = form.check_box 'source_ids[%s]' % source.id, :checked => form.object.source_ids && resource.source_ids.include?(source.id)
+        = form.check_box 'source_ids[%s]' % source.id, :checked => form.object && form.object.source_ids.include?(source.id)
         = source.title
-      %h3= t(:'.synchronize_albums')
-      .remote_albums
-        - source.albums.each do |remote_album|
-          %p
-            - if ! resource.albums.where(:remote_id => remote_album.id).first
-              = check_box_tag 'remote_albums[%s][%s]' % [source.id, remote_album.id]
-              = remote_album.title
+      = select_tag 'remote_albums[%s]' % source.id, options_for_select(source.albums.collect{|a| [a.title, a.id]}, resource.albums.collect(&:remote_album_id)), :multiple => true, :size => 10
 
 %h3= t(:'.root_path')
 %p

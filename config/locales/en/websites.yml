@@ -30,7 +30,7 @@ en:
         theme: 'Theme'
         tracking_code: 'Javascript tracking code. E.g. from Google Analytics'
         synchronize: 'Which sources to synchronize?'
-        synchronize_info: "Syncronize means that whenever new data is imported the albums from the source are mirrored on this website. Nota bene, it won't remove photos that you e.g. removed from a photoset on flickr."
+        synchronize_info: "Syncronize means that whenever new data is imported the albums from the source are mirrored on this website. Nota bene, it won't remove photos that you e.g. removed from a photoset on flickr. You can also synchronize of a few selected albums if you wish."
       index:
         your_websites: "Your websites"
         add_new_website: 'Please configure a new %{link}.'
@@ -54,6 +54,7 @@ en:
       edit:
         page_title: "Edit '%{title}'"
         save: "Save website"
+        show: 'Show'
       show:
         edit: 'Edit'
         online: 'See online'
