@@ -55,7 +55,7 @@ var PhotoManager = {
       url: '/admin/related_photos.js',
       data: '_method=post&related_photo[photo_id]=' + photo_id + '&' + droppable_class + '_id=' + droppable_id,
       success: function(html){
-        $('photo_' + photo_id).removeClass('selected');
+        $('#photo_' + photo_id).removeClass('selected');
         $('.count', droppable).html(html);
       },
       error: function(html){
