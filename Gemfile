@@ -1,6 +1,6 @@
 source :gemcutter
 
-gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :ref => '9e081caee74e6d08035a8835899dcc566536a871'
 gem 'rack'
 #gem 'rack-test'
 #gem 'rack-openid'
