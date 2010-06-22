@@ -1,1 +1,247 @@
-@font-face{font-family:TitilliumMaps26;src:url(http://static.photostre.am/fonts/titilliummaps26l003.eot);src:local("TitilliumMaps26"), local("TitilliumMaps26"), url(http://static.photostre.am/fonts/titilliummaps26l003.otf) format("opentype")}h1,h2,h3,#title,strong{font-family:TitilliumMaps26}body{background-color:black;background-image:url(/images/stripes.png);background-repeat:no-repeat;color:#eeeeff;padding:0;margin:0;font-size:x-small;font-family:HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", "Helvetica sans-serif", Helvetica, Sans-Serif, "Comic Sans MS"}#container{font-size:160%}.clear{clear:both}a{color:#2b64f8}a:hover,a:active{color:#dc6300}a img{border:none}p{line-height:1.3em;margin:0.5em 0px}ul{margin:0 0 0 20px;padding:0}ul li{margin:0;padding:0}ul ul{margin-bottom:0}h1{color:#63dc00}h2,h3{color:#dc6300;clear:both;margin:5px 0px 5px 0px}h2 a,h3 a{color:#dc6300;text-decoration:none}h2 a:hover,h2 a:active,h3 a:hover,h3 a:active{color:#dc6300}#header{border-bottom:1px solid #999;border-color:#dc6300}#header #title a{font-size:4em;text-decoration:none;color:#2b64f8}#header #title a:hover,#header #title a:active{color:#dc6300}#navigation,#subnavigation,#section_navigation{margin:0;padding:0}#navigation li,#subnavigation li,#section_navigation li{list-style-type:none}#navigation a,#subnavigation a,#section_navigation a{text-decoration:none}#navigation a:hover,#navigation a:active,#subnavigation a:hover,#subnavigation a:active,#section_navigation a:hover,#section_navigation a:active{color:#dc6300}#subnavigation li,#section_navigation li{display:inline;margin:0px 20px 0px 0px}#subnavigation li a:hover,#subnavigation li a:active,#section_navigation li a:hover,#section_navigation li a:active{color:#dc6300}#section_navigation{font-size:1.3em}#footer{border-top:1px solid;border-color:#0063dc;margin-top:15px;padding:10px 0}#footer p{font-size:85%;text-align:center;margin:0}#footer a{text-decoration:none}.fieldWithErrors{color:red;display:inline}.error,.notice{border:2px solid;padding:5px 10px}.error{color:#000;background-color:#f88;border-color:#881111}.notice{color:#000;background-color:#ff8;border-color:#891}.right{float:right}.flickr{color:#0063dc}.portfolio{color:#63dc00}.photoblog{color:#dc6300}.submit input.flickr{-moz-border-radius:2px;-webkit-border-radius:2px;background-color:#0063dc;color:#fff;font-weight:bold;font-size:20px;border:none}#photos .photo,#albums .album{display:inline}ul#websites.screenshots{list-style-type:none;padding:0;margin:0}ul#websites.screenshots li{padding:0;width:204px;margin-right:5px;float:left;display:block;background-color:#000;border:1px solid;border-color:#63dc00}ul#websites.screenshots li .link a{color:#dc6300;text-decoration:none;font-weight:bold;display:block;margin:0 4px 2px 4px}ul#websites.screenshots li img{margin:2px 2px 0 2px}
+@font-face {
+  font-family: TitilliumMaps26;
+  src: url(http://static.photostre.am/fonts/titilliummaps26l003.eot);
+  src: local("TitilliumMaps26"), local("TitilliumMaps26"), url(http://static.photostre.am/fonts/titilliummaps26l003.otf) format("opentype");
+}
+
+/* line 8, ../../../../app/stylesheets/application.sass */
+h1, h2, h3, #title, strong {
+  font-family: TitilliumMaps26;
+}
+
+/* line 12, ../../../../app/stylesheets/application.sass */
+body {
+  background-color: white;
+  background-image: url(/images/stripes.png);
+  background-repeat: no-repeat;
+  color: black;
+  padding: 0;
+  margin: 0;
+  font-size: x-small;
+  font-family: HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", "Helvetica sans-serif", Helvetica, Sans-Serif, "Comic Sans MS";
+}
+
+/* line 21, ../../../../app/stylesheets/application.sass */
+#container {
+  font-size: 160%;
+}
+
+/* line 23, ../../../../app/stylesheets/application.sass */
+.clear {
+  clear: both;
+}
+
+/* line 25, ../../../../app/stylesheets/application.sass */
+a {
+  color: #2b64f8;
+}
+/* line 27, ../../../../app/stylesheets/application.sass */
+a:hover, a:active {
+  color: #dc6300;
+}
+
+/* line 30, ../../../../app/stylesheets/application.sass */
+a img {
+  border: none;
+}
+
+/* line 33, ../../../../app/stylesheets/application.sass */
+p {
+  line-height: 1.3em;
+  margin: 0.5em 0px;
+}
+
+/* line 37, ../../../../app/stylesheets/application.sass */
+ul {
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+/* line 40, ../../../../app/stylesheets/application.sass */
+ul li {
+  margin: 0;
+  padding: 0;
+}
+/* line 43, ../../../../app/stylesheets/application.sass */
+ul ul {
+  margin-bottom: 0;
+}
+
+/* line 45, ../../../../app/stylesheets/application.sass */
+h1 {
+  color: #63dc00;
+}
+
+/* line 47, ../../../../app/stylesheets/application.sass */
+h2, h3 {
+  color: #dc6300;
+  clear: both;
+  margin: 5px 0px 5px 0px;
+}
+/* line 51, ../../../../app/stylesheets/application.sass */
+h2 a, h3 a {
+  color: #dc6300;
+  text-decoration: none;
+}
+/* line 54, ../../../../app/stylesheets/application.sass */
+h2 a:hover, h2 a:active, h3 a:hover, h3 a:active {
+  color: #dc6300;
+}
+
+/* line 56, ../../../../app/stylesheets/application.sass */
+#header {
+  border-bottom: 1px solid #999999;
+  border-color: #dc6300;
+}
+/* line 60, ../../../../app/stylesheets/application.sass */
+#header #title a {
+  font-size: 4em;
+  text-decoration: none;
+  color: #2b64f8;
+}
+/* line 64, ../../../../app/stylesheets/application.sass */
+#header #title a:hover, #header #title a:active {
+  color: #dc6300;
+}
+
+/* line 67, ../../../../app/stylesheets/application.sass */
+#navigation, #subnavigation, #section_navigation {
+  margin: 0;
+  padding: 0;
+}
+/* line 70, ../../../../app/stylesheets/application.sass */
+#navigation li, #subnavigation li, #section_navigation li {
+  list-style-type: none;
+}
+/* line 72, ../../../../app/stylesheets/application.sass */
+#navigation a, #subnavigation a, #section_navigation a {
+  text-decoration: none;
+}
+/* line 74, ../../../../app/stylesheets/application.sass */
+#navigation a:hover, #navigation a:active, #subnavigation a:hover, #subnavigation a:active, #section_navigation a:hover, #section_navigation a:active {
+  color: #dc6300;
+}
+
+/* line 77, ../../../../app/stylesheets/application.sass */
+#subnavigation li, #section_navigation li {
+  display: inline;
+  margin: 0px 20px 0px 0px;
+}
+/* line 80, ../../../../app/stylesheets/application.sass */
+#subnavigation li a:hover, #subnavigation li a:active, #section_navigation li a:hover, #section_navigation li a:active {
+  color: #dc6300;
+}
+
+/* line 82, ../../../../app/stylesheets/application.sass */
+#section_navigation {
+  font-size: 1.3em;
+}
+
+/* line 84, ../../../../app/stylesheets/application.sass */
+#footer {
+  border-top: 1px solid;
+  border-color: #0063dc;
+  margin-top: 15px;
+  padding: 10px 0;
+}
+/* line 89, ../../../../app/stylesheets/application.sass */
+#footer p {
+  font-size: 85%;
+  text-align: center;
+  margin: 0;
+}
+/* line 93, ../../../../app/stylesheets/application.sass */
+#footer a {
+  text-decoration: none;
+}
+
+/* line 96, ../../../../app/stylesheets/application.sass */
+.fieldWithErrors {
+  color: red;
+  display: inline;
+}
+
+/* line 100, ../../../../app/stylesheets/application.sass */
+.error, .notice {
+  border: 2px solid;
+  padding: 5px 10px;
+}
+
+/* line 103, ../../../../app/stylesheets/application.sass */
+.error {
+  color: black;
+  background-color: #ff8888;
+  border-color: #881111;
+}
+
+/* line 107, ../../../../app/stylesheets/application.sass */
+.notice {
+  color: black;
+  background-color: #ffff88;
+  border-color: #889911;
+}
+
+/* line 112, ../../../../app/stylesheets/application.sass */
+.right {
+  float: right;
+}
+
+/* line 117, ../../../../app/stylesheets/application.sass */
+.flickr {
+  color: #0063dc;
+}
+
+/* line 119, ../../../../app/stylesheets/application.sass */
+.portfolio {
+  color: #63dc00;
+}
+
+/* line 121, ../../../../app/stylesheets/application.sass */
+.photoblog {
+  color: #dc6300;
+}
+
+/* line 124, ../../../../app/stylesheets/application.sass */
+.submit input.flickr {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  background-color: #0063dc;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+}
+
+/* line 133, ../../../../app/stylesheets/application.sass */
+#photos .photo, #albums .album {
+  display: inline;
+}
+
+/* line 136, ../../../../app/stylesheets/application.sass */
+ul#websites.screenshots {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+/* line 140, ../../../../app/stylesheets/application.sass */
+ul#websites.screenshots li {
+  padding: 0;
+  width: 204px;
+  margin-right: 5px;
+  float: left;
+  display: block;
+  background-color: white;
+  border: 1px solid;
+  border-color: #63dc00;
+}
+/* line 149, ../../../../app/stylesheets/application.sass */
+ul#websites.screenshots li .link a {
+  color: #dc6300;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  margin: 0 4px 2px 4px;
+}
+/* line 155, ../../../../app/stylesheets/application.sass */
+ul#websites.screenshots li img {
+  margin: 2px 2px 0 2px;
+}
