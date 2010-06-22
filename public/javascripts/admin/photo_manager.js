@@ -5,9 +5,12 @@ var PhotoManager = {
   options: {draggables:'.draggable', droppables:'.droppable'},
   draggable_options: { revert: true, min: 500, helper: 'clone', appendTo: 'body', containment: 'window' },
 
-  selectElement: function(element) {
-    if(element.target) { element = $(element.target).closest('.selectable'); }
-    element.toggleClass('selected');
+  selectElement: function(event) {
+    if(event.target) {
+      console.log(event);
+      $(event.target).closest('.selectable').toggleClass('selected');
+      return false;
+    }
   },
 
   makeDraggable: function(elements) {
@@ -29,16 +32,18 @@ var PhotoManager = {
         // TODO Refactor to retrieve an array of the ids, unique them and then send
         // them all at once.
         if(droppable.target) { droppable = $(droppable.target).closest('.droppable')[0]; }
-        $(ui.draggable).addClass('selected');
-        for(c=0; c < $('.selectable.selected').length; c++) {
-          PhotoManager.addToWebsiteOrAlbum($('.selectable.selected')[c], droppable);
-        }
+        $(ui.draggable).closest('.selectable').addClass('selected');
+        photo_ids = $('.selectable.selected').map(function() {
+          return extractID($(this).attr('id'));
+        });
+        $.unique(photo_ids).map(function(){
+          PhotoManager.addToWebsiteOrAlbum(this, droppable);
+        });
       }
     });
   },
 
-  addToWebsiteOrAlbum: function(photo, droppable) {
-    photo_id = extractID($(photo).attr('id'));
+  addToWebsiteOrAlbum: function(photo_id, droppable) {
     var droppable_class = '';
     $.map(['album', 'website'], function(c) {
       if($(droppable).hasClass(c))
@@ -50,7 +55,7 @@ var PhotoManager = {
       url: '/admin/related_photos.js',
       data: '_method=post&related_photo[photo_id]=' + photo_id + '&' + droppable_class + '_id=' + droppable_id,
       success: function(html){
-        $(photo).removeClass('selected');
+        $('photo_' + photo_id).removeClass('selected');
         $('.count', droppable).html(html);
       },
       error: function(html){
@@ -72,7 +77,7 @@ var PhotoManager = {
   loadRelatedPhotos: function(event) {
     $(PhotoManager.options.droppables).removeClass('current');
     $(event.target).closest(PhotoManager.options.droppables).addClass('current');
-    //event.preventDefault();
+    event.preventDefault();
   },
 
   loadInfo: function(element) {
@@ -93,7 +98,7 @@ var PhotoManager = {
     width = $(window).width();
     $('.column_2_3').siblings().map(function(i, e){width = width - $(e).width()});
     width = (width - (width % 80)) - 54;
-    $('.column_2_3').css('width', Math.min(Math.max(400,width), 826), true);
+    $('.column_2_3').css('width', Math.min(Math.max(260,width), 826), true);
 
     height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - Math.max(79, $('#photos').height());
     $('.columns').children().height(Math.max(300,height));
