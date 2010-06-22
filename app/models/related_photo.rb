@@ -8,10 +8,10 @@ class RelatedPhoto
   field :permalink, :type => String
   field :status, :type => String
 
-  before_validate :set_permalink
 
   belongs_to_related :photo
   embedded_in :parent, :polymorphic => true, :inverse_of => :related_photos
+  before_validate :set_permalink
   validates_presence_of :permalink
 
   def method_missing_with_photo(method, *args, &block)

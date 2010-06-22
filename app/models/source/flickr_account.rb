@@ -135,6 +135,7 @@ class Source::FlickrAccount < Source
         end
       end while page < flickr_photos.pages
     end
+    self.update_attributes(:last_updated_at => Time.now)
     self.update_attributes(:status => 'active')
   end
 

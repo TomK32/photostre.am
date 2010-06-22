@@ -8,9 +8,6 @@ class Admin::WebsitesController < Admin::ApplicationController
     resource = build_resource
     process_remote_albums
     resource.user_ids << current_user.id
-
-    # TODO rewrite to allow multiple domains
-    # combine params subdomain and domain to params[:website][:domain]
     if !(params[:subdomain].blank? or params[:domain].blank?) && params[:website][:domain].blank?
       if !Website.system.where(:domains => params[:domain]).empty?
         resource.domains << params[:subdomain] + '.' + params[:domain]
@@ -45,10 +42,10 @@ class Admin::WebsitesController < Admin::ApplicationController
     return if params[:remote_albums].blank?
     params[:remote_albums].each do |source_id, remote_albums|
       remote_albums.each do |remote_album_id, value|
-        album = resource.albums.where(:remote_id => remote_album_id).first
+        album = resource.albums.where(:remote_album_id => remote_album_id).first
         if album.nil?
           remote_album = current_user.sources.find(source_id).albums.find(remote_album_id)
-          album = Album.new(:title => remote_album.title, :description => remote_album.description, :remote_id => remote_album.id)
+          album = Album.new(:title => remote_album.title, :description => remote_album.description, :remote_album_id => remote_album.id)
           resource.albums << album
           album.save
           Navvy::Job.enqueue(SourceWorker, :update_data, {:id => self.id})
