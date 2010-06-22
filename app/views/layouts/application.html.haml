@@ -12,17 +12,18 @@
             .subtitle= current_website.description
         #navigation
           = render :partial => 'shared/navigation'
-      #content
-        - if @title_in_content
-          %h1= @title 
+      #content_container
+        #content
+          - if @title_in_content
+            %h1= @title
 
-        - flash.each do |flash_type, message|
-          %p{:class => 'flash ' + flash_type.to_s}= h(message)
+          - flash.each do |flash_type, message|
+            %p{:class => 'flash ' + flash_type.to_s}= h(message)
 
-        = yield
-      - if yield :info
-        #sidebar
-          #info= yield :info
+          = yield
+        - if yield :info
+          #sidebar
+            #info= yield :info
 
       = render :partial => 'shared/footer'
       .clear

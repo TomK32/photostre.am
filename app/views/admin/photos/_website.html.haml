@@ -1,7 +1,7 @@
-%div.droppable[website]
-  %span.title= link_to website.title, admin_related_photos_path({:website_id => website.id}), :remote => true
-  %small.count
-    = t(:'admin.photos.index.items', :count => website.related_photos.count)
+%div
+  .droppable.title[website]
+    = link_to website.title, admin_related_photos_path({:website_id => website.id}), :remote => true
+    %small.count= t(:'admin.photos.index.items', :count => website.related_photos.count)
   %ul.info.albums
     = render :partial => 'album', :collection => website.albums
     /= link_to t(:'.create_album'), new_admin_website_album_path
