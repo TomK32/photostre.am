@@ -11,7 +11,7 @@ class RelatedPhoto
 
   belongs_to_related :photo
   embedded_in :parent, :polymorphic => true, :inverse_of => :related_photos
-  before_validate :set_permalink
+  before_validation :set_permalink
   validates_presence_of :permalink
 
   def method_missing_with_photo(method, *args, &block)

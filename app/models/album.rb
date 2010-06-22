@@ -23,9 +23,9 @@ class Album
 
   embedded_in :website, :inverse_of => :albums
 
-  before_validate :denormalize_description
-  before_validate :set_key_photo
-  before_validate :set_permalink
+  before_validation :denormalize_description
+  before_validation :set_key_photo
+  before_validation :set_permalink
 
   validates_presence_of :title, :permalink
 

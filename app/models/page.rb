@@ -29,8 +29,8 @@ class Page
   scope :ordered, :order_by => [:parent_id, :asc, :position, :asc]
   scope :roots, where({:parent_id => ''}) # FIXME shouldn't that be nil?
 
-  before_validate :denormalize_body_and_excerpt
-  before_validate :set_permalink
+  before_validation :denormalize_body_and_excerpt
+  before_validation :set_permalink
 
   validates_presence_of :title, :body, :permalink
   validates_uniqueness_of :permalink

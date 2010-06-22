@@ -7,7 +7,7 @@ class Source::FlickrAccount < Source
 
   validates_presence_of :flickr_nsid
   after_create :call_worker
-  before_validate :set_title
+  before_validation :set_title
 
   def validate_on_create
     errors.add 'username', 'not a flickr account' unless set_nsid

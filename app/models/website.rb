@@ -18,7 +18,7 @@ class Website
 
   embed_many :related_photos
 
-  before_validate :set_theme_path
+  before_validation :set_theme_path
   alias_attribute :photos, :related_photos
 
   validates_presence_of :title

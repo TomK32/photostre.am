@@ -2,15 +2,16 @@ source :gemcutter
 
 gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rack'
-gem 'rack-openid'
+#gem 'rack-test'
+#gem 'rack-openid'
 gem 'thor'
 
 # Database
-gem 'mongo', '1.0'
-gem 'bson_ext', '1.0'
-gem 'mongo', '1.0'
+gem 'mongo'
+gem 'bson_ext'
+
 #gem 'builder'
-gem 'mongoid'
+gem 'mongoid', :git => 'git://github.com/durran/mongoid.git'
 
 # For background processes
 gem 'daemons'
