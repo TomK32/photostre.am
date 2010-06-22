@@ -1,0 +1,278 @@
+@font-face {
+  font-family: "SansationRegular";
+  src: url("http://static.photostre.am/fonts/sansation_regular-webfont.eot");
+  src: local("☺"), url("sansation_regular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SansationBold";
+  src: url("http://static.photostre.am/fonts/sansation_bold-webfont.eot");
+  src: local("☺"), url("sansation_bold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 19, ../../app/stylesheets/application.sass */
+h1, h2, h3, #title, strong {
+  font-family: TitilliumMaps26;
+}
+
+/* line 22, ../../app/stylesheets/application.sass */
+body {
+  background-color: white;
+  background-image: url(/images/pattern-blue.png);
+  color: black;
+  padding: 0;
+  margin: 0;
+  font-size: x-small;
+  font-family: Sansation, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", "Helvetica sans-serif", Helvetica, Sans-Serif, "Comic Sans MS";
+}
+
+/* line 31, ../../app/stylesheets/application.sass */
+p, ul {
+  font-family: HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", "Helvetica sans-serif", Helvetica, Sans-Serif, "Comic Sans MS";
+}
+
+/* line 33, ../../app/stylesheets/application.sass */
+#container {
+  font-size: 160%;
+}
+
+/* line 36, ../../app/stylesheets/application.sass */
+p span {
+  font-family: Sansation;
+}
+
+/* line 39, ../../app/stylesheets/application.sass */
+.clear {
+  clear: both;
+}
+
+/* line 42, ../../app/stylesheets/application.sass */
+a {
+  color: #2b64f8;
+}
+/* line 44, ../../app/stylesheets/application.sass */
+a:hover, a:active {
+  color: #dc6300;
+}
+
+/* line 48, ../../app/stylesheets/application.sass */
+a img {
+  border: none;
+}
+
+/* line 51, ../../app/stylesheets/application.sass */
+p {
+  line-height: 1.3em;
+  margin: 0.5em 0px;
+}
+
+/* line 55, ../../app/stylesheets/application.sass */
+ul {
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+/* line 58, ../../app/stylesheets/application.sass */
+ul li {
+  margin: 0;
+  padding: 0;
+}
+/* line 61, ../../app/stylesheets/application.sass */
+ul ul {
+  margin-bottom: 0;
+}
+
+/* line 64, ../../app/stylesheets/application.sass */
+h1 {
+  color: #63dc00;
+}
+
+/* line 67, ../../app/stylesheets/application.sass */
+h2, h3 {
+  font-family: Sansation;
+  color: #dc6300;
+  clear: both;
+  margin: 5px 0px 5px 0px;
+}
+/* line 72, ../../app/stylesheets/application.sass */
+h2 a, h3 a {
+  color: #dc6300;
+  text-decoration: none;
+}
+/* line 75, ../../app/stylesheets/application.sass */
+h2 a:hover, h2 a:active, h3 a:hover, h3 a:active {
+  color: #dc6300;
+}
+
+/* line 78, ../../app/stylesheets/application.sass */
+#header {
+  background-image: url(/images/header.png);
+  background-repeat: repeat-x;
+  font-family: Sansation;
+}
+/* line 82, ../../app/stylesheets/application.sass */
+#header #title {
+  font-family: SansationBold, Sansation, sans-serif;
+  width: 960px;
+  margin: 0 auto;
+}
+/* line 86, ../../app/stylesheets/application.sass */
+#header #title a {
+  font-size: 40px;
+  line-height: 100px;
+  text-decoration: none;
+  color: #dc6300;
+  text-shadow: #ffaa55 1px 1px 2px;
+  letter-spacing: 0.1em;
+}
+/* line 93, ../../app/stylesheets/application.sass */
+#header #title a:hover, #header #title a:active {
+  color: #dc6300;
+}
+
+/* line 96, ../../app/stylesheets/application.sass */
+#navigation, #subnavigation, #section_navigation {
+  margin: 0;
+  padding: 0;
+  font-family: Sansation;
+}
+/* line 100, ../../app/stylesheets/application.sass */
+#navigation li, #subnavigation li, #section_navigation li {
+  list-style-type: none;
+}
+/* line 102, ../../app/stylesheets/application.sass */
+#navigation a, #subnavigation a, #section_navigation a {
+  text-decoration: none;
+}
+/* line 104, ../../app/stylesheets/application.sass */
+#navigation a:hover, #navigation a:active, #subnavigation a:hover, #subnavigation a:active, #section_navigation a:hover, #section_navigation a:active {
+  color: #dc6300;
+}
+
+/* line 108, ../../app/stylesheets/application.sass */
+#subnavigation li, #section_navigation li {
+  display: inline;
+  margin: 0px 20px 0px 0px;
+}
+/* line 111, ../../app/stylesheets/application.sass */
+#subnavigation li a:hover, #subnavigation li a:active, #section_navigation li a:hover, #section_navigation li a:active {
+  color: #dc6300;
+}
+
+/* line 114, ../../app/stylesheets/application.sass */
+#section_navigation {
+  font-size: 1.2em;
+}
+
+/* line 117, ../../app/stylesheets/application.sass */
+#footer {
+  background-image: url(/images/footer.png);
+  background-repeat: repeat-x;
+  font-family: Sansation;
+}
+/* line 121, ../../app/stylesheets/application.sass */
+#footer p {
+  width: 960px;
+  font-size: 85%;
+  margin: 0 auto;
+}
+/* line 125, ../../app/stylesheets/application.sass */
+#footer a {
+  text-decoration: none;
+}
+
+/* line 129, ../../app/stylesheets/application.sass */
+.fieldWithErrors {
+  color: red;
+  display: inline;
+}
+
+/* line 133, ../../app/stylesheets/application.sass */
+.error, .notice {
+  border: 2px solid;
+  padding: 5px 10px;
+  font-family: Sansation;
+}
+
+/* line 138, ../../app/stylesheets/application.sass */
+.error {
+  color: black;
+  background-color: #ff8888;
+  border-color: #881111;
+}
+
+/* line 143, ../../app/stylesheets/application.sass */
+.notice {
+  color: black;
+  background-color: #ffff88;
+  border-color: #889911;
+}
+
+/* line 148, ../../app/stylesheets/application.sass */
+.right {
+  float: right;
+}
+
+/* line 152, ../../app/stylesheets/application.sass */
+.color1, .flickr {
+  color: #0063dc;
+}
+
+/* line 155, ../../app/stylesheets/application.sass */
+.color2 {
+  color: #63dc00;
+}
+
+/* line 158, ../../app/stylesheets/application.sass */
+.color3 {
+  color: #dc6300;
+}
+
+/* line 161, ../../app/stylesheets/application.sass */
+.submit input.flickr {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  background-color: #0063dc;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+}
+
+/* line 170, ../../app/stylesheets/application.sass */
+#photos .photo, #albums .album {
+  display: inline;
+}
+
+/* line 173, ../../app/stylesheets/application.sass */
+ul#websites.screenshots {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+/* line 177, ../../app/stylesheets/application.sass */
+ul#websites.screenshots li {
+  padding: 0;
+  width: 204px;
+  margin-right: 5px;
+  float: left;
+  display: block;
+  background-color: white;
+  border: 1px solid;
+  border-color: #63dc00;
+}
+/* line 186, ../../app/stylesheets/application.sass */
+ul#websites.screenshots li .link a {
+  color: #dc6300;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  margin: 0 4px 2px 4px;
+}
+/* line 192, ../../app/stylesheets/application.sass */
+ul#websites.screenshots li img {
+  margin: 2px 2px 0 2px;
+}

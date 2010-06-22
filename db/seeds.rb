@@ -6,8 +6,11 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-Website.create!(:site_title => 'photostre.am', :domain => 'photostre.am', :state => 'system')
 admin = User.first || User.create!(:login => 'admin')
+Website.create!(:site_title => 'photostre.am', :domain => 'photostre.am', :state => 'system', :user_ids => [admin.id])
+
+Theme.create!(:name => '365shots.net' , :directory => 'system-365', :author => admin, :status => 'system')
+
 Theme.create!(:name => 'Alboom', :directory => 'alboom', :author => admin, :status => 'public',
   :description => 'Minimalistic white theme.')
 Theme.create!(:name => 'Blick', :directory => 'blick', :author => admin, :status => 'public',

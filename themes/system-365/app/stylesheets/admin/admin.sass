@@ -1,0 +1,21 @@
+@import includes.sass
+
+a
+  text-decoration: none
+
+.menu
+  position: absolute
+  top: 0
+  right: 0
+  background-color: $color_background
+  .handler
+    background-image: url(/images/menu_closed.png)
+  &.open .handler
+    background-image: url(/images/menu_closed.png)
+
+#navigation
+  top: 5px
+#section_navigation, #subnavigation
+  +grid-container
+  padding: 5px 0 0 5px
+  margin: 0 auto

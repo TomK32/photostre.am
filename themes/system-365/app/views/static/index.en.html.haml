@@ -1,0 +1,56 @@
+%p{:style => 'font-size: 200%;'}
+  You are on a 
+  %span.color1 photographic mission?
+  %br
+  A
+  %span.color2 daily photo
+  for a whole year is no easy task.
+  %br
+  At least we can help you
+  %span.color3 present the results.
+%p
+  Shooting a photo every day is easy and uploading it to
+  %span.flickr flickr
+  is too,
+  %br
+  but let us help you creating a decent portfolio with your 365 experience.
+%p{:style => 'font-size: 200%;'}
+  Refurbish your flickr stream.
+%ul
+  %li Choose a design from our <a href="/themes">themes</a>
+  %li No software installation necessary
+  %li No duplicate uploads to your websites and photoblog
+  %li And you're still part of the flickr community
+
+- content_for :info do
+  - if logged_in?
+    %p
+      Welcome back, go straight to your
+      = link_to t(:'shared.navigation.dashboard').downcase, dashboard_path
+      to manage your websites.
+  - else
+    = form_tag session_path do
+      %p.small
+        This signup will take you to flickr so you can allow
+        photostre.am to read your photos from flickr.
+      = hidden_field_tag :flickr, true
+      %p.submit
+        = submit_tag 'Signup for free', :name => nil, :class => 'flickr'
+  %p{:style=>'margin-top: 4em'}
+    = image_tag('http://farm1.static.flickr.com/23/buddyicons/99884191@N00.jpg', :style => 'float:right; margin-left: 2px')
+    This is Thomas, he runs the whole show.
+  %p
+    = link_to('Say hi', 'mailto:info@photostre.am?body=Hi Thomas,')
+    to him, have a look at his own
+    = link_to('portfolio', 'http://photolog.at')
+    or make friends with him on
+    = link_to('flickr', 'http://flickr.com/people/tomk32') + '.'
+  %p.statistics{:style=>'margin-top: 4em'}
+    = User.count
+    users have signed up here, imported
+    = Photo.count
+    photos and created
+    = Website.count
+    websites.
+%h3 Newest websites
+= render :partial => 'websites', :websites => @websites

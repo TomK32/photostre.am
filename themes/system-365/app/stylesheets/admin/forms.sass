@@ -1,0 +1,26 @@
+@import includes.sass
+@import 960/grid.sass
+
+label
+  display: block
+.checkbox label
+  display: inline
+input[type=submit], input[type=text], textarea, select
+  border-style: solid
+  border-color: $color_text
+  border-width: 1px
+  font-size: 1.1em
+  margin-top: 0.3em
+
+input[type=text], textarea
+  -moz-border-radius: 2px
+  -webkit-border-radius: 2px
+  +grid-width(8)
+  &.small
+    +grid-width(4)
+textarea
+  height: 6em
+
+#sidebar
+  input[type=text], textarea
+    width: 100%

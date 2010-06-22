@@ -1,0 +1,115 @@
+/* line 3, ../../app/stylesheets/layout.sass */
+#container {
+  width: 100%;
+}
+
+/* line 5, ../../app/stylesheets/layout.sass */
+#content_container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* line 9, ../../app/stylesheets/layout.sass */
+#navigation {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+  display: inline;
+}
+
+/* line 15, ../../app/stylesheets/layout.sass */
+#header {
+  height: 100px;
+  width: 100%;
+}
+
+/* line 19, ../../app/stylesheets/layout.sass */
+#sidebar {
+  float: right;
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 220px;
+  margin-right: 0;
+  font-size: 0.9em;
+  padding-top: 4em;
+}
+
+/* line 25, ../../app/stylesheets/layout.sass */
+#content {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 700px;
+  margin-left: 0;
+}
+
+/* line 29, ../../app/stylesheets/layout.sass */
+#footer {
+  width: 100%;
+  padding: 15px 0 5px 0;
+  bottom: 0;
+  position: fixed;
+}
+
+/* line 35, ../../app/stylesheets/layout.sass */
+.columns {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+}
+
+/* line 37, ../../app/stylesheets/layout.sass */
+.column_1_2 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 520px;
+  margin-left: 0;
+}
+
+/* line 40, ../../app/stylesheets/layout.sass */
+.column_2_2 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 160px;
+  margin-right: 0;
+}
+
+/* line 43, ../../app/stylesheets/layout.sass */
+.column_1_3 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 220px;
+  margin-left: 0;
+}
+
+/* line 46, ../../app/stylesheets/layout.sass */
+.column_2_3 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 220px;
+}
+
+/* line 48, ../../app/stylesheets/layout.sass */
+.column_3_3 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 220px;
+  margin-right: 0;
+}

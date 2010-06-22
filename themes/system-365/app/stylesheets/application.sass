@@ -1,0 +1,193 @@
+@import includes.sass
+
+@font-face
+  font-family: 'SansationRegular'
+  src: url('http://static.photostre.am/fonts/sansation_regular-webfont.eot')
+  src: local('☺'), url('sansation_regular-webfont.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+
+@font-face
+  font-family: 'SansationBold'
+  src: url('http://static.photostre.am/fonts/sansation_bold-webfont.eot')
+  src: local('☺'), url('sansation_bold-webfont.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+
+h1, h2, h3, #title, strong
+  font-family: TitilliumMaps26
+
+body
+  background-color: $color_background
+  background-image: url(/images/pattern-blue.png)
+  color: $color_text
+  padding: 0
+  margin: 0
+  font-size: x-small
+  font-family: Sansation, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", "Helvetica sans-serif", Helvetica, Sans-Serif, "Comic Sans MS"
+
+p, ul
+  font-family: HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", "Helvetica sans-serif", Helvetica, Sans-Serif, "Comic Sans MS"
+#container
+  font-size: 160%
+
+p span
+  font-family: Sansation
+
+.clear
+  clear: both
+
+a
+  color: $color_link
+  &:hover, &:active
+    color: $color_link_active
+
+a
+  img
+    border: none
+
+p
+  line-height: 1.3em
+  margin: 0.5em 0px
+
+ul
+  margin: 0 0 0 20px
+  padding: 0
+  li
+    margin: 0
+    padding: 0
+  ul
+    margin-bottom: 0
+
+h1
+  color: $color_green
+
+h2, h3
+  font-family: Sansation
+  color: $color_orange
+  clear: both
+  margin: 5px 0px 5px 0px
+  a
+    color: $color_orange
+    text-decoration: none
+    &:hover, &:active
+      color: $color_link_active
+
+#header
+  background-image: url(/images/header.png)
+  background-repeat: repeat-x
+  font-family: Sansation
+  #title
+    font-family: SansationBold, Sansation, sans-serif
+    width: 960px
+    margin: 0 auto
+    a
+      font-size: 40px
+      line-height: 100px
+      text-decoration: none
+      color: $color_orange
+      text-shadow: #fa5 1px 1px 2px
+      letter-spacing: 0.1em
+      &:hover, &:active
+        color: $color_link_active
+
+#navigation, #subnavigation, #section_navigation
+  margin: 0
+  padding: 0
+  font-family: Sansation
+  li
+    list-style-type: none
+  a
+    text-decoration: none
+    &:hover, &:active
+      color: $color_link_active
+
+#subnavigation, #section_navigation
+  li
+    display: inline
+    margin: 0px 20px 0px 0px
+    a:hover, a:active
+      color: $color_link_active
+
+#section_navigation
+  font-size: 1.2em
+
+#footer
+  background-image: url(/images/footer.png)
+  background-repeat: repeat-x
+  font-family: Sansation
+  p
+    width: 960px
+    font-size: 85%
+    margin: 0 auto
+  a
+    text-decoration: none
+
+
+.fieldWithErrors
+  color: red
+  display: inline
+
+.error, .notice
+  border: 2px solid
+  padding: 5px 10px
+  font-family: Sansation
+
+.error
+  color: $color_text
+  background-color: $color_error + #777777
+  border-color: $color_error
+
+.notice
+  color: black
+  background-color: $color_notice + #777777
+  border-color: $color_notice
+
+.right
+  float: right
+  &.notice
+
+.color1, .flickr
+  color: $color_blue
+
+.color2
+  color: $color_green
+
+.color3
+  color: $color_orange
+
+.submit input.flickr
+  -moz-border-radius: 2px
+  -webkit-border-radius: 2px
+  background-color: $color_blue
+  color: white
+  font-weight: bold
+  font-size: 20px
+  border: none
+
+#photos .photo, #albums .album
+  display: inline
+
+ul#websites.screenshots
+  list-style-type: none
+  padding: 0
+  margin: 0
+  li
+    padding: 0
+    width: 204px
+    margin-right: 5px
+    float: left
+    display: block
+    background-color: $color_background
+    border: 1px solid
+    border-color: $color_green
+    .link a
+      color: $color_orange
+      text-decoration: none
+      font-weight: bold
+      display: block
+      margin: 0 4px 2px 4px
+    img
+      margin: 2px 2px 0 2px

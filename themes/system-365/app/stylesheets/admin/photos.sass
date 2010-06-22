@@ -1,0 +1,119 @@
+@import includes.sass
+
+body
+  overflow: hidden
+.columns
+  width: 100%
+  clear: both
+  .column_1_3
+    +grid(9,32)
+    border-right: 1px solid #999
+  .column_2_3
+    +grid(16,32)
+    border-right: 1px solid #999
+  .column_3_3
+    +grid(9,32)
+  .column_1_3, .column_2_3, .column_3_3
+    +omega
+    +alpha
+    overflow-x: hidden
+    overflow-y: auto
+
+#content
+  width: 100%
+#footer
+  width: 100%
+#header
+  height: 24px
+  border-bottom: 1px solid $color_text
+  #title
+    width: 100%
+    a
+      padding: 0 0 0 5px
+      font-size: 1.3em
+      line-height: 1.4em
+      color: $color_background
+
+#websites, #related_photos, #related_photo
+  padding: 10px
+  img
+    margin: 0
+
+#websites
+  h2, h3
+    margin: 0
+#related_photos
+  margin-top: 10px
+  padding-bottom: 5px
+  .getting_started, .empty
+    width: 50%
+    min-width: 200px
+    margin: 30px auto
+    font-size: 120%
+
+#related_photo
+  img
+    max-width: 220px
+  input[type=text], textarea
+    width: 220px
+
+#photos, #filter
+  padding: 0 5px
+#photos
+  height: 80px
+#photos_container
+  clear: both
+  height: 80px !important
+  white-space: nowrap
+  overflow: hidden
+#photos, #related_photos
+  .photo, .related_photo
+    display: inline-block
+    position: relative
+    margin: 0
+    padding: 0
+    overflow: hidden
+    img
+      border: 1px solid transparent
+      padding: 0
+      height: 75px
+      width: 75px
+    &.selected img
+      border: 1px solid
+      border-color: $color_blue
+#photos
+  border-top: 1px solid #999
+  .please_wait
+    line-height: 80px
+#filter
+  border-top: 1px solid #999
+  font-size: 95%
+  .box
+    display: inline
+    border: 1px #555 solid
+    padding: 2px 4px
+    margin: 0 3px
+  p, label, input, form
+    display: inline
+  input, select, textarea
+    border-color: black
+  input[type="text"]
+    width: 60px
+  label
+    margin-left: 10px
+  select
+    width: 150px
+
+#websites
+  ul
+    list-style-type: none
+    margin: 0
+  li
+    margin: 0 0 0 5px
+  .droppable
+    position: relative
+    padding: 0 0 0 0
+    a
+      padding: 2px 4px
+    &.hover a, &.current a
+      font-weight: bold

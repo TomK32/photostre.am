@@ -1,0 +1,31 @@
+@import includes.sass
+
+h2,h3,h4
+  overflow-x: hidden
+  white-space: nowrap
+  small
+    font-size: 10px
+    a, a:hover, a:visited
+      color: $color_link
+  small:before
+    :content "("
+  small:after
+    :content ")"
+#albums .album
+  float: left
+  width: 120px
+
+form
+  .remote_albums
+    max-height: 15em
+    overflow-y: scroll
+#themes
+  clear: both
+  .theme
+    display: block
+    float: left
+    margin: 0 10px 10px 0
+    width: 200px !important
+    img
+      width: 200px
+      height: 130px

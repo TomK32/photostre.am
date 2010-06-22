@@ -1,0 +1,39 @@
+/* line 4, ../../../app/stylesheets/admin/forms.sass */
+label {
+  display: block;
+}
+
+/* line 6, ../../../app/stylesheets/admin/forms.sass */
+.checkbox label {
+  display: inline;
+}
+
+/* line 8, ../../../app/stylesheets/admin/forms.sass */
+input[type=submit], input[type=text], textarea, select {
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  font-size: 1.1em;
+  margin-top: 0.3em;
+}
+
+/* line 15, ../../../app/stylesheets/admin/forms.sass */
+input[type=text], textarea {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  width: 620px;
+}
+/* line 19, ../../../app/stylesheets/admin/forms.sass */
+input[type=text].small, textarea.small {
+  width: 300px;
+}
+
+/* line 21, ../../../app/stylesheets/admin/forms.sass */
+textarea {
+  height: 6em;
+}
+
+/* line 25, ../../../app/stylesheets/admin/forms.sass */
+#sidebar input[type=text], #sidebar textarea {
+  width: 100%;
+}

@@ -1,0 +1,26 @@
+@import includes.sass
+
+.c-themes.a-index #content
+  width: 100%
+h3
+  overflow-x: hidden
+  white-space: nowrap
+  small
+    font-size: 10px
+    a, a:hover, a:visited
+      color: $color_link
+  small:before
+    :content "("
+  small:after
+    :content ")"
+#themes
+  width: 100%
+  clear: both
+  .theme
+    +grid(4, 16)
+    display: block
+    float: left
+    img
+      width: 200px
+      height: 130px
+      overflow: hidden
