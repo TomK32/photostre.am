@@ -22,7 +22,7 @@
   %p
     - current_user.sources.each do |source|
       %label
-        = form.check_box 'source_ids[%s]' % source.id, :checked => form.object && form.object.source_ids.include?(source.id)
+        = form.check_box 'source_ids[%s]' % source.id, :checked => resource.source_ids && resource.source_ids.include?(source.id)
         = source.title
       = select_tag 'remote_albums[%s]' % source.id, options_for_select(source.albums.collect{|a| [a.title, a.id]}, resource.albums.collect(&:remote_album_id)), :multiple => true, :size => 10
 
