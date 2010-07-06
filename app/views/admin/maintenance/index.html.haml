@@ -1,2 +1,25 @@
+%h2 Statistics
+= User.count
+users (of which
+- pro_count = User.where('sources.is_pro' => true).count
+= "%s or %.2f%% " % [pro_count, pro_count.to_f / User.count]
+are pro users at flickr and
+= User.where(:email => {'$exists' => true}).count
+given their email address)
+have imported
+= Photo.count
+photos and created
+= Website.count
+websites.
+
+%h2 Other data
+%ul
+  %li= link_to 'Users', :action => :users
+  %li= link_to 'Websites', :action => :websites
+  %li= link_to 'Errors on sources', :action => :errors
+
+%h2 Maintenance
+
 %p= button_to 'Delete all %i pending jobs' % Navvy::Job.count, admin_maintenance_delete_jobs_path, :method => :delete
-%p= button_to 'Reset all "updating" sources to "active"', admin_maintenance_reset_sources_path, :method => :put
+%p= button_to 'Reset all %i "updating" sources to "active"' % User.where('sources.status' => 'updating').count, admin_maintenance_reset_sources_path, :method => :put
+%p= button_to 'Update all active sources', admin_maintenance_update_active_sources_path, :method => :post

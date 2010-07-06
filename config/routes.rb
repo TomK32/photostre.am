@@ -41,6 +41,10 @@ DasPhotowall::Application.routes.draw do |map|
     namespace 'maintenance' do
       delete 'delete_jobs'
       put 'reset_sources'
+      post 'update_active_sources'
+      get 'errors'
+      get 'users'
+      get 'websites'
     end
   end
 

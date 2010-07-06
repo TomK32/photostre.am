@@ -1,0 +1,7 @@
+
+%h2 Latest errors
+%dl
+  - @sources.flatten.each do |source|
+    - next if source.error_messages.empty?
+    %dt= link_to source.title, source.photostream_url
+    %dd= source.error_messages.last

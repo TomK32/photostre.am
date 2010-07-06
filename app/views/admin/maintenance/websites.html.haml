@@ -1,0 +1,8 @@
+
+%h2 Websites
+%ul
+  - @websites.each do |website|
+    %li
+      = link_to website.title, website.url
+      = website.created_at.to_formatted_s(:short)
+= will_paginate @websites
