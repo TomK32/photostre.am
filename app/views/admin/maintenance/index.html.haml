@@ -2,7 +2,7 @@
 = User.count
 users (of which
 - pro_count = User.where('sources.is_pro' => true).count
-= "%s or %.2f%% " % [pro_count, pro_count.to_f / User.count]
+= "%s or %i%% " % [pro_count, pro_count.to_f / User.count * 100]
 are pro users at flickr and
 = User.where(:email => {'$exists' => true}).count
 given their email address)
@@ -16,7 +16,7 @@ websites.
 %ul
   %li= link_to 'Users', :action => :users
   %li= link_to 'Websites', :action => :websites
-  %li= link_to 'Errors on sources', :action => :errors
+  %li= link_to 'Errors on %i sources' % User.where('sources.status' => 'inactive').count, :action => :errors
 
 %h2 Maintenance
 
