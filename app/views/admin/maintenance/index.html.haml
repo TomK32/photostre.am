@@ -1,0 +1,2 @@
+%p= button_to 'Delete all %i pending jobs' % Navvy::Job.count, admin_maintenance_delete_jobs_path, :method => :delete
+%p= button_to 'Reset all "updating" sources to "active"', admin_maintenance_reset_sources_path, :method => :put

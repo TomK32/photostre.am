@@ -5,6 +5,7 @@ class User
   field :name,  :type => String
   field :email, :type => String
   field :login, :type => String
+  field :roles, :type => Array
 
   has_many_related :photos
   has_many_related :themes
@@ -26,4 +27,11 @@ class User
     Website.where({:user_ids => self.id })
   end
 
+  def has_role?(role)
+    self.roles.is_a?(Array) and self.roles.include?(role.to_s.capitalize)
+  end
+
+  def is_admin?
+    self.has_role?(:admin)
+  end
 end

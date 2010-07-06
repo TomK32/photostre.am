@@ -34,7 +34,16 @@ DasPhotowall::Application.routes.draw do |map|
     resources :users
 
     resources :themes
+
   end
+  namespace 'admin' do
+    get 'maintenance', :to => 'maintenance#index'
+    namespace 'maintenance' do
+      delete 'delete_jobs'
+      put 'reset_sources'
+    end
+  end
+
 
   get 'static/:action', :to => 'static', :as => 'static'
   get 'faq/:action', :to => 'static', :as => 'faq'
