@@ -38,6 +38,7 @@ namespace :deploy do
       log
     ).each do |f|
       run "ln -nsf #{shared_path}/#{f} #{release_path}/#{f}"
+      run "cd #{release_path}; /etc/init.d/photostream-worker restart"
     end
   end
 end

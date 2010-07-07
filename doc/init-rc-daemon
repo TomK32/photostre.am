@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DAEMON=script/navvy
+DAEMON=bundle exec ./script/navvy
 APP_DIR="/var/www/photostre.am/current/"
 RAILS_ENV=production
 
@@ -8,7 +8,7 @@ case "$1" in
     start)
         echo -n "Starting navvy "
         cd $APP_DIR
-        $DAEMON start
+        $DAEMON start -- $RAILS_ENV
         ;;
     stop)
         echo -n "Shutting down navvy "
