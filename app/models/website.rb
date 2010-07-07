@@ -86,7 +86,7 @@ class Website
   end
 
   def call_sync_worker
-    return if self.source_ids.empty?
+    return if self.source_ids.nil? || self.source_ids.empty?
     Navvy::Job.enqueue(SourceWorker, :sync_website, {:id => self.id})
   end
 

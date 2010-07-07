@@ -9,7 +9,7 @@ class Album
   field :status, :type => String, :required => true, :default => 'published'
   field :key_photo_id, :type => String
   field :parent_id, :type => String, :default => nil
-  field :remote_album_id, :type => String
+  field :source_album_id, :type => String
 
   scope :published, :where => {:status => 'published'}
   scope :latest, :order_by => [:updated_at, 'desc']
@@ -82,12 +82,14 @@ class Album
     end
   end
 
-  def remote_album
-    User.where(:'sources.albums._id' => self.remote_album_id).first.albums.find(self.remote_album.id)
+  def source_album
+    User.where(:'sources.albums._id' => self.source_album_id).only(:'sources').first.sources.collect{ |s|
+      s.albums.find(self.source_album.id)
+    }.first
   end
 
   # supposed to be called when an album is created and to be synced
-  def import_remote(other = nil)
+  def import_remote_album(other = nil)
     other ||= self.remote_album
     photos_map = {}
     photos = Photo.where(:source_id => self.id, :remote_id => {'$in' => other.remote_photo_ids.flatten}).to_a

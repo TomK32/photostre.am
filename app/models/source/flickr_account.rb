@@ -105,12 +105,11 @@ class Source::FlickrAccount < Source
             :user_id => 'me', :auth_token => self.token)
         flickr_photos_count = flickr_photos.size
         existing_photos = Photo.where(:source_id => self.id,
-            :remote_id.in => flickr_photos.collect{|p| p.id }
-          ).only(:remote_id).collect{|p| p.remote_id.to_s }
-        flickr_photos.reject!{|p| existing_photos.include?(p.id.to_s) }
+            :remote_id.in => flickr_photos.collect{|p| p.id.to_i }
+          ).only(:remote_id).collect{|p| p.remote_id.to_i }
+        flickr_photos.reject!{|p| existing_photos.include?(p.id.to_i) }
 
         flickr_photos.each do |photo|
-
           next if photo.media != 'photo'
           photo_attr = {
             :title => photo.title,
