@@ -11,10 +11,10 @@ h1, h2, h3, #title, strong {
 
 /* line 12, ../../../../app/stylesheets/application.sass */
 body {
-  background-color: white;
+  background-color: black;
   background-image: url(/images/stripes.png);
   background-repeat: no-repeat;
-  color: black;
+  color: white;
   padding: 0;
   margin: 0;
   font-size: x-small;
@@ -168,14 +168,14 @@ h2 a:hover, h2 a:active, h3 a:hover, h3 a:active {
 
 /* line 103, ../../../../app/stylesheets/application.sass */
 .error {
-  color: black;
+  color: white;
   background-color: #ff8888;
   border-color: #881111;
 }
 
 /* line 107, ../../../../app/stylesheets/application.sass */
 .notice {
-  color: black;
+  color: white;
   background-color: #ffff88;
   border-color: #889911;
 }
@@ -229,7 +229,7 @@ ul#websites.screenshots li {
   margin-right: 5px;
   float: left;
   display: block;
-  background-color: white;
+  background-color: black;
   border: 1px solid;
   border-color: #63dc00;
 }
