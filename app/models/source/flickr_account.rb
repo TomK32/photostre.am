@@ -102,36 +102,31 @@ class Source::FlickrAccount < Source
         page += 1
         flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
             :user_id => 'me', :auth_token => self.token)
-        flickr_photos_count = flickr_photos.size
-        existing_photos = Photo.where(:source_id => self.id,
-            :remote_id.in => flickr_photos.collect{|p| p.id.to_i }
-          ).only(:remote_id).collect{|p| p.remote_id.to_i }
-        flickr_photos.reject!{|p| existing_photos.include?(p.id.to_i) }
 
-        flickr_photos.each do |photo|
-          next if photo.media != 'photo'
-          photo_attr = {
-            :title => photo.title,
-            :remote_id => photo.id.to_i,
-            :taken_at => photo.taken_at,
-            :created_at => photo.uploaded_at,
-            :updated_at => photo.updated_at,
-            :tags => photo.tags.split(' '),
-            :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.flickr_nsid, photo.id],
-            :machine_tags => photo.machine_tags.split(' '),
-            :description => photo.description,
-            :height => photo.height,
-            :width => photo.width,
-            :photo_urls => {
-                :o => photo.original_url,
-                :m => photo.url(:medium)
-              },
-            :status => photo.public? ? 'public' : 'private',
-            :original_secret => photo.original_secret,
-            :user_id => self.user.id,
-            :source_id => self.id
-          }
-          Photo.create(photo_attr)
+        flickr_photos.each do |flickr_photo|
+          photo = Photo.where(:source_id => self.id, :remote_id => flickr_photo.id.to_i).first
+          photo ||= Photo.new
+          
+          next if flickr_photo.media != 'photo'
+          
+          photo.title = flickr_photo.title
+          photo.remote_id = flickr_photo.id.to_i
+          photo.taken_at = flickr_photo.taken_at
+          photo.created_at = flickr_photo.uploaded_at
+          photo.updated_at = flickr_photo.updated_at
+          photo.tags = flickr_photo.tags.split(' ')
+          photo.web_url = 'http://www.flickr.com/photos/%s/%s' % [self.flickr_nsid, flickr_photo.id]
+          photo.machine_tags = flickr_photo.machine_tags.split(' ')
+          photo.description = flickr_photo.description
+          photo.height = flickr_photo.height
+          photo.width = flickr_photo.width
+          photo.photo_urls = { :o => flickr_photo.original_url, :m => flickr_photo.url(:medium)}
+          photo.status = flickr_photo.public? ? 'public' : 'private'
+          photo.original_secret = flickr_photo.original_secret
+          photo.user_id = self.user.id
+          photo.source_id = self.id
+
+          photo.save!
         end
       end while page < flickr_photos.pages
     end
