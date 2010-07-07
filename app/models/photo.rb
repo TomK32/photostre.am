@@ -19,6 +19,8 @@ class Photo
   field :taken_at, :type => DateTime
   field :tags, :type => Array
   field :status, :type => String, :default => 'public'
+  field :height, :type => Integer
+  field :width, :type => Integer
 
   index :title
   index :description
@@ -39,7 +41,10 @@ class Photo
 
 
   def photo_url(size = :m, default_file = 'default.png')
-    available_sizes = {:original => :o, :small => :sm, :medium => :m, :thumbnail => :t, :square => :s, :big => :b}
+    available_sizes = {:original => :o, :small => :sm,
+        :medium => :m, :medium_500 => :m, :medium_640 => :z,
+        :thumbnail => :t, :square => :s, :big => :b
+    }
     size = :medium if !available_sizes.keys.include?(size.to_sym)
     return photo_urls[available_sizes[size.to_sym].to_s] if photo_urls[available_sizes[size.to_sym].to_s]
     available_sizes[:small] = :m

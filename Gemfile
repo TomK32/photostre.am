@@ -47,5 +47,5 @@ group :development do
 end
 
 # Other
-gem 'tomk32-flickr_fu', :require => 'flickr_fu', :git => 'git://github.com/TomK32/flickr_fu.git'
+gem 'tomk32-flickr_fu', '0.3.4', :require => 'flickr_fu', :git => 'git://github.com/TomK32/flickr_fu.git'
 gem 'ruby-openid', :require => 'openid'

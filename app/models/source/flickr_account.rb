@@ -84,7 +84,6 @@ class Source::FlickrAccount < Source
   end
 
   def call_worker
-#    return if self.deleted?
     return unless self.authenticated?
     return unless active?
     self.update_attributes(:status => 'updating')
@@ -98,7 +97,7 @@ class Source::FlickrAccount < Source
       page = 0
       per_page = 200
       flickr.photos.extras.merge!({:url_o => :original_url, :description => :description,
-          :original_secret => :original_secret})
+          :original_secret => :original_secret, :o_dims => :o_dims})
       begin
         page += 1
         flickr_photos = flickr.photos.search(:per_page => per_page, :page => page,
@@ -121,9 +120,11 @@ class Source::FlickrAccount < Source
             :web_url => 'http://www.flickr.com/photos/%s/%s' % [self.flickr_nsid, photo.id],
             :machine_tags => photo.machine_tags.split(' '),
             :description => photo.description,
+            :height => photo.height,
+            :width => photo.width,
             :photo_urls => {
                 :o => photo.original_url,
-                :m => photo.url(:medium),
+                :m => photo.url(:medium)
               },
             :status => photo.public? ? 'public' : 'private',
             :original_secret => photo.original_secret,
