@@ -1,7 +1,11 @@
 
 %h2 Latest errors
 %dl
-  - @sources.flatten.each do |source|
+  - @sources.collect(&:sources).flatten.compact.each do |source|
     - next if source.error_messages.empty?
     %dt= link_to source.title, source.photostream_url
-    %dd= source.error_messages.last
+    - source.error_messages.each do |error|
+      %dd
+        = error["date"]
+        %em= error["msg"]
+= will_paginate @sources

@@ -17,6 +17,7 @@ websites.
   %li= link_to 'Users', :action => :users
   %li= link_to 'Websites', :action => :websites
   %li= link_to 'Errors on %i sources' % User.where('sources.status' => 'inactive').count, :action => :errors
+  %li= link_to 'Jobs', :action => :jobs
 
 %h2 Maintenance
 

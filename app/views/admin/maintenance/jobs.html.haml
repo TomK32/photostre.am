@@ -1,0 +1,11 @@
+%p= button_to 'Delete all %i pending jobs' % Navvy::Job.count, admin_maintenance_delete_jobs_path, :method => :delete
+
+- @jobs.each do |job|
+  %p
+    = job.run_at.to_formatted_s(:short)
+    %br
+    = "%s#%s: %s" % [job.object, job.method_name, job.arguments]
+    - unless job.exception.blank?
+      .notice= job.exception
+
+= will_paginate @jobs

@@ -45,6 +45,7 @@ DasPhotowall::Application.routes.draw do |map|
       get 'errors'
       get 'users'
       get 'websites'
+      get 'jobs'
     end
   end
 

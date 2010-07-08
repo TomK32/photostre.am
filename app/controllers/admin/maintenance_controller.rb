@@ -30,9 +30,6 @@ class Admin::MaintenanceController < Admin::ApplicationController
     end
   end
 
-  def statistics
-  end
-
   def websites
     @websites = Website.order_by([:created_at, :desc]).paginate(pagination_defaults)
   end
@@ -40,7 +37,10 @@ class Admin::MaintenanceController < Admin::ApplicationController
     @users = User.order_by([:created_at, :desc]).paginate(pagination_defaults)
   end
   def errors
-    @sources = User.where('sources.error_messages' => {"$exists" => true}).paginate(pagination_defaults).collect(&:sources).flatten
+    @sources = User.where('sources.error_messages' => {"$exists" => true}).paginate(pagination_defaults)
+  end
+  def jobs
+    @jobs = Navvy::Job.paginate(pagination_defaults)
   end
 
   private
