@@ -1,6 +1,6 @@
 %p
-  = form.label :remote_album, t(:'.remote_album')
-  = form.select :remote_id, [[]] + current_user.sources.collect(&:albums).flatten.collect{|a| [a.title, a.id]}
+  = form.label :source_album, t(:'.remote_album')
+  = form.select :source_album_id, [[]] + current_user.sources.collect(&:albums).flatten.collect{|a| [a.title, a.id]}
 %p
   = form.label :title, t(:'.title')
   = form.text_field :title
