@@ -9,16 +9,30 @@ class Admin::MaintenanceController < Admin::ApplicationController
     redirect_to :action => :index
   end
   def reset_sources
-    User.collection.update({'sources.status' => "updating"}, {'$set' => {'sources.$.status' => 'active'}}, :multi => true)
-    redirect_to :action => :index
+    conditions = {'sources.status' => "updating"}
+    # for a single user we also reactivate the inactive/faulty ones.
+    conditions = {:user_id => params[:user_id]} if params[:user_id]
+    User.collection.update(conditions, {'$set' => {'sources.$.status' => 'active'}}, :multi => true)
+    respond_to do |format|
+      format.html { redirect_to :action => :index }
+      format.js { render :json => :success and return }
+    end
   end
+
   def update_active_sources
-    User.only(:sources).all.map{|u| u.sources.map(&:call_worker)}
-    redirect_to :action => :index
+    scope = User.only(:sources)
+    # Optionally limit to only one user
+    scope = scope.where(:user_id => params[:user_id]) if params[:user_id]
+    scope.all.map{|u| u.sources.map(&:call_worker)}
+    respond_to do |format|
+      format.html { redirect_to :action => :index }
+      format.js { render :json => :success and return }
+    end
   end
 
   def statistics
   end
+
   def websites
     @websites = Website.order_by([:created_at, :desc]).paginate(pagination_defaults)
   end
