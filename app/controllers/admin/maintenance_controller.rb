@@ -22,8 +22,8 @@ class Admin::MaintenanceController < Admin::ApplicationController
   def update_active_sources
     scope = User.only(:sources)
     # Optionally limit to only one user
-    scope = scope.where(:user_id => params[:user_id]) if params[:user_id]
-    scope.all.map{|u| u.sources.map(&:call_worker)}
+    scope = scope.where(:_id => params[:user_id]) if params[:user_id]
+    scope.all.map{|u| puts u.sources.map(&:to_s); u.sources.map(&:call_worker)}
     respond_to do |format|
       format.html { redirect_to :action => :index }
       format.js { render :json => :success and return }

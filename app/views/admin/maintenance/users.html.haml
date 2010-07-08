@@ -6,6 +6,9 @@
       = "%s (%s, %s photos): " % [user.login, user.created_at.to_s(:short), user.photos.count]
       - user.sources.each do |source|
         = link_to source.username, source.photostream_url
-      = link_to '(Update sources)', admin_maintenance_update_active_sources_path(:user_id => user.id), :method => :post, :remote => true
-      = link_to '(Reset sources)', admin_maintenance_reset_sources_path(:user_id => user.id), :method => :put, :remote => true
+        = 'not authenticated!' unless source.authenticated?
+      = '~'
+      = link_to 'Update sources', admin_maintenance_update_active_sources_path(:user_id => user.id), :method => :post, :remote => true
+      = '~'
+      = link_to 'Reset sources', admin_maintenance_reset_sources_path(:user_id => user.id), :method => :put, :remote => true
 = will_paginate @users
