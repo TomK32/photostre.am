@@ -11,12 +11,11 @@ role :app, "photostre.am"
 role :db,  "photostre.am", :primary => true
 
 after "deploy:update_code", "deploy:link_shared_files"
-after "deploy:update_code", "bundle:pack"
 
 namespace :bundle do
   desc "pack"
   task :pack, :roles => [:app] do
-    run "cd #{release_path}; bundle install; bundle pack"
+    run "cd #{shared_path}/cached-copy; bundle install; bundle pack"
   end
 end
 
