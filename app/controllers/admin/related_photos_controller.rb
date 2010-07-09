@@ -62,7 +62,7 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
     elsif params[:page_id]
       @website ||= Website.where('pages._id' => params[:page_id]).first
     elsif params[:website_id]
-      @website ||= current_user.websites.find(params[:website_id]).first
+      @website ||= current_user.websites.where(:_id => params[:website_id]).first
     end
     @website
   end

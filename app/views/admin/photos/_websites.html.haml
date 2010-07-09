@@ -4,3 +4,4 @@
   = link_to t(:'.create_website'), new_admin_website_path
 - else
   = render :partial => 'website', :collection => current_user.websites
+  - javascript_dom_ready "PhotoManagerMenu.init();"
