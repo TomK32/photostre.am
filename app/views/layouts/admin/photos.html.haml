@@ -33,7 +33,7 @@
           #photos
             .please_wait= t(:'.please_wait')
 
-    = javascript_include_tag %w(http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js rails admin admin/photo_manager)
+    = javascript_include_tag %w(http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js rails admin admin/photo_manager admin/photo_manager_menu)
     = raw current_website.tracking_code
     - if yield :javascript
       = javascript_tag(yield(:javascript))

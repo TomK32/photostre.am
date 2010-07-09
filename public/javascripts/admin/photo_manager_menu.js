@@ -18,7 +18,7 @@ var PhotoManagerMenu = {
       $('#' + menu_id).append('<li><a href="javascript:PhotoManagerMenu.showMenuItem($(\'#' + $(this).closest('[id!=""]').attr('id') + '\'));">' + $(this).text() + '</a></li>');
     });
     $('#' + menu_id).hide();
-    $(menu_items, parent).live('click', PhotoManagerMenu.showMenuSelector);
+    $(menu_items, parent).live('hover', PhotoManagerMenu.showMenuSelector);
   },
   init: function(options) {
     $('#websites').addClass('menu');

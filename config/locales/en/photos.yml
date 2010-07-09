@@ -38,11 +38,14 @@ en:
       websites:
         websites: Websites
       website:
-        create_album: 'Create new album'
+        create_album: 'Create album'
         only_website: 'Only photos on this website'
         photos:
           one: 'One items'
           other: '%{count} items'
+        edit_website: 'Edit website'
+        pages: 'View %{count} pages'
+        albums: '%{count} albums'
       album:
         show: 'Show album'
         only_album: 'Only photos from this album'

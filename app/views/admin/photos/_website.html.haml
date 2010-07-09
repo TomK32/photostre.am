@@ -1,9 +1,13 @@
 %div[website]
   .droppable.title= link_to website.title, admin_related_photos_path({:website_id => website.id}), :remote => true
-  %ul.statistics
-    .photos_count= t(:'admin.photos.index.items', :count => website.related_photos.count)
+  %ul.data
+    %li.photos_count= t(:'admin.photos.index.items', :count => website.related_photos.count)
+    %li.domains= website.domains.join(', ')
   %ul.actions
-    %li= link_to t(:'.create_album'), new_admin_website_album_path(website)
-  %h4= t(:'.albums')
-  %ul.albums
+    %li= link_to t(:'.edit_website'), edit_admin_website_path(website)
+    %li= link_to t(:'.pages', :count => website.pages.count), admin_website_pages_path(website)
+  %h4= t(:'.albums', :count => website.albums.count)
+  .albums
+    %ul.actions
+      %li= link_to t(:'.create_album'), new_admin_website_album_path(website)
     = render :partial => 'album', :collection => website.albums

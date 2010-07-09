@@ -33,23 +33,23 @@ var PhotoManager = {
         // them all at once.
         if(droppable.target) { droppable = $(droppable.target).closest('.droppable')[0]; }
         $(ui.draggable).closest('.selectable').addClass('selected');
-        photo_ids = $('.selectable.selected').map(function() {
-          return extractID($(this).attr('id'));
+        photo_ids = Array();
+        $('.selectable.selected').map(function() {
+          photo_ids.push(extractID($(this).attr('id')));
         });
-        $.unique(photo_ids).map(function(){
-          PhotoManager.addToWebsiteOrAlbum(this, droppable);
-        });
+        PhotoManager.addToWebsiteOrAlbum(this, droppable);
       }
     });
   },
 
-  addToWebsiteOrAlbum: function(photo_id, droppable) {
+  addToWebsiteOrAlbum: function(photo_ids, droppable) {
+    droppable_target = $(droppable).closest('[id!=""]')[0];
     var droppable_class = '';
     $.map(['album', 'website'], function(c) {
-      if($(droppable).hasClass(c))
+      if($(droppable_target).hasClass(c))
         droppable_class = c;
     });
-    droppable_id = extractID(droppable.id);
+    droppable_id = extractID(droppable_target.id);
     $.ajax({
       type: 'post',
       url: '/admin/related_photos.js',
