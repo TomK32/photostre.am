@@ -2,19 +2,3 @@
 a {
   text-decoration: none;
 }
-
-/* line 6, ../../../../../app/stylesheets/admin/admin.sass */
-.menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: black;
-}
-/* line 11, ../../../../../app/stylesheets/admin/admin.sass */
-.menu .handler {
-  background-image: url(/images/menu_closed.png);
-}
-/* line 13, ../../../../../app/stylesheets/admin/admin.sass */
-.menu.open .handler {
-  background-image: url(/images/menu_closed.png);
-}

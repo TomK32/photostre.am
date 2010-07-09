@@ -191,7 +191,3 @@ body {
 #websites .droppable a {
   padding: 2px 4px;
 }
-/* line 113, ../../../../../app/stylesheets/admin/photos.sass */
-#websites .droppable.hover a, #websites .droppable.current a {
-  background-color: #555555;
-}
