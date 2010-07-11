@@ -27,11 +27,11 @@ module ApplicationHelper
       end
     end
   end
-  def javascript_dom_ready(js = '')
+  def javascript_dom_ready(js = "")
     content_for :javascript do
       "$(document).ready(function(){\n\t" <<
       js <<
-      "\n})"
+      "\n});\n"
     end
   end
 end
