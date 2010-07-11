@@ -18,6 +18,7 @@ class Photo
   field :web_url, :type => String
   field :taken_at, :type => DateTime
   field :tags, :type => Array
+  field :machine_tags, :type => Array
   field :status, :type => String, :default => 'public'
   field :height, :type => Integer
   field :width, :type => Integer
