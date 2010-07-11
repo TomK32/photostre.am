@@ -120,12 +120,14 @@ class Source::FlickrAccount < Source
           photo.description = flickr_photo.description
           photo.height = flickr_photo.height
           photo.width = flickr_photo.width
-          photo.photo_urls = { :o => flickr_photo.original_url, :m => flickr_photo.url(:medium)}
+          photo.photo_urls = { "o" => flickr_photo.original_url, "m" => flickr_photo.url(:medium)}
           photo.status = flickr_photo.public? ? 'public' : 'private'
           photo.original_secret = flickr_photo.original_secret
           photo.user_id = self.user.id
           photo.source_id = self.id
 
+          # stupid mongoid would update this updated_at even if nothing else changed
+          next if photo.changed == ['updated_at']
           photo.save!
         end
       end while page < flickr_photos.pages
