@@ -19,6 +19,7 @@ class Photo
   field :taken_at, :type => DateTime
   field :tags, :type => Array
   field :machine_tags, :type => Array
+  field :original_secret, :type => Array
   field :status, :type => String, :default => 'public'
   field :height, :type => Integer
   field :width, :type => Integer
