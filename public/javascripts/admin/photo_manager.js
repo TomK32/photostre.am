@@ -28,12 +28,11 @@ var PhotoManager = {
     $(elements).droppable({
       hoverClass: 'hover',
       drop: function(droppable, ui) {
-        // TODO Refactor to retrieve an array of the ids, unique them and then send
-        // them all at once.
-        if(droppable.target) { var droppable = $(droppable.target).closest('.droppable')[0]; }
+        if(droppable.target) { droppable = $(droppable.target).closest('.droppable')[0]; }
         $(ui.draggable).closest('.selectable').addClass('selected');
         var photo_ids = Array();
         $('.selectable.selected').map(function() {
+          var photo_id;
           if(photo_ids.indexOf(photo_id = extractID($(this).attr('id'))) == -1) {
             photo_ids.push(photo_id);
           }
@@ -54,10 +53,12 @@ var PhotoManager = {
     $.ajax({
       type: 'post',
       url: '/admin/related_photos.js',
+      dataType: 'text',
       data: '_method=post&photo_ids[]=' + photo_ids.join('&photo_ids[]=') + '&' + droppable_class + '_id=' + droppable_id,
       success: function(response, textStatus, XMLHttpRequest) {
+        console.log($('.data .photos_count', $(droppable_target)));
         $('.selectable.selected').removeClass('selected');
-        $('.data .photos_count', $(droppable_target)).html(response);
+        $('.photos_count:first', $(droppable_target)).html(response);
       },
       error: function(response, textStatus, XMLHttpRequest) {
         alert('Photo could not be added to ' + droppable_class);
@@ -130,7 +131,7 @@ var PhotoManager = {
 
   loadPhotos: function(increment) {
     if(increment === undefined) { increment = 1; }
-    photos_count = $('#photos .photo').size();
+    var photos_count = $('#photos .photo').size();
     if(photos_count !== 0 && photos_count < (PhotoManager.current_page * parseInt($('#photos_form #per_page').val(), 10))) {
       return true;
     }

@@ -47,5 +47,5 @@ body { background-image: none; }
 #websites h4 { padding: 5px 0 0 5px; margin: 0; }
 #websites ul { list-style-type: none; margin: 0; }
 #websites li { margin: 0 0 0 5px; }
-#websites .droppable { position: relative; padding: 0 0 0 0; }
 #websites .droppable a { padding: 2px 4px; }
+#websites .droppable.hover { font-weight: bold; }
