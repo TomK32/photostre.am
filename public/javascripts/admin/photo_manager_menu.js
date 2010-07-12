@@ -4,8 +4,10 @@ var PhotoManagerMenu = {
     $(element).closest('.menu').children('.menu_item').hide(); // hides all sibs with a menuItem
     $(element).closest('.menu').show();
     $(element).closest('.menu').children('.menu_selector').hide();
-    $('.menu > .menu_item:first', element).show();
     $(element).show();
+    if($('.menu > .menu_item:visible', element).size() == 0) {
+      $('.menu > .menu_item:first', element).show();
+    }
   },
   showMenuSelector: function(event) {
     $(event.target).closest('.menu').children('.menu_selector').show();
@@ -31,8 +33,8 @@ var PhotoManagerMenu = {
     $('#websites .albums').addClass('menu');
     $('#websites .albums .album').addClass('menu_item');
     $('#websites .albums').map(function(){
-      parent_id = $(this).closest('[id!=""]').attr('id')
-      parent = parent_id + ' > .menu';
+      var parent_id = $(this).closest('[id!=""]').attr('id')
+      var parent = parent_id + ' > .menu';
       PhotoManagerMenu.initMenu('#' + parent, '.album > .title', parent_id + '_album_selector');
     });
 

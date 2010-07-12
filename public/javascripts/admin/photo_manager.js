@@ -1,5 +1,5 @@
 var PhotoManager = {
-  selected: new Array(),
+  selected: [],
   current_page: 0,
 
   options: {draggables:'.draggable', droppables:'.droppable'},
@@ -30,9 +30,9 @@ var PhotoManager = {
       drop: function(droppable, ui) {
         // TODO Refactor to retrieve an array of the ids, unique them and then send
         // them all at once.
-        if(droppable.target) { droppable = $(droppable.target).closest('.droppable')[0]; }
+        if(droppable.target) { var droppable = $(droppable.target).closest('.droppable')[0]; }
         $(ui.draggable).closest('.selectable').addClass('selected');
-        photo_ids = Array();
+        var photo_ids = Array();
         $('.selectable.selected').map(function() {
           if(photo_ids.indexOf(photo_id = extractID($(this).attr('id'))) == -1) {
             photo_ids.push(photo_id);
@@ -45,23 +45,22 @@ var PhotoManager = {
   },
 
   addToWebsiteOrAlbum: function(photo_ids, droppable) {
-    droppable_target = $(droppable).closest('[id!=""]')[0];
+    var droppable_target = $(droppable).closest('[id!=""]')[0];
     var droppable_class = '';
     $.map(['album', 'website'], function(c) {
-      if($(droppable_target).hasClass(c))
-        droppable_class = c;
+      if($(droppable_target).hasClass(c)) { droppable_class = c; }
     });
-    droppable_id = extractID(droppable_target.id);
+    var droppable_id = extractID(droppable_target.id);
     $.ajax({
       type: 'post',
       url: '/admin/related_photos.js',
       data: '_method=post&photo_ids[]=' + photo_ids.join('&photo_ids[]=') + '&' + droppable_class + '_id=' + droppable_id,
-      success: function(html){
-        $('#photo_' + photo_id).removeClass('selected');
-        $('.count', droppable).html(html);
+      success: function(response, textStatus, XMLHttpRequest) {
+        $('.selectable.selected').removeClass('selected');
+        $('.data .photos_count', $(droppable_target)).html(response);
       },
-      error: function(html){
-        alert('Photo could not be added to ' + droppable_class)
+      error: function(response, textStatus, XMLHttpRequest) {
+        alert('Photo could not be added to ' + droppable_class);
       }
     });
   },
@@ -83,12 +82,13 @@ var PhotoManager = {
   },
 
   loadInfo: function(element) {
-    parent = $(element).closest(".photo");
+    var parent = $(element).closest(".photo");
     parent.children(".info").load(this.photoPath(parent) + '.js .photo *');
     parent.children(".info").show();
   },
   photoPath: function(photo) {
-    if(photo.id != undefined) {
+    var id;
+    if(photo.id !== undefined) {
       id = photo.id;
     } else {
       id = photo.attr('id');
@@ -97,12 +97,12 @@ var PhotoManager = {
   },
 
   resizePhotoMananger: function() {
-    width = $(window).width();
-    $('.column_2_3').siblings().map(function(i, e){width = width - $(e).width()});
+    var width = $(window).width();
+    $('.column_2_3').siblings().map(function(i, e){width = width - $(e).width(); });
     width = (width - (width % 80)) - 54;
     $('.column_2_3').css('width', Math.min(Math.max(260,width), 826), true);
 
-    height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - Math.max(79, $('#photos').height());
+    var height = $(window).height() - $('#photo_manager').offset().top - $('#filter').height() - Math.max(79, $('#photos').height());
     $('.columns').children().height(Math.max(300,height));
   },
 
@@ -117,8 +117,8 @@ var PhotoManager = {
       return true; // don't scroll if the last photo is visible
     }
 
-    pixels = $('#photos_container').width() * direction - (20 * direction);
-    left = Math.max(0, $('#photos_container').scrollLeft() + pixels);
+    var pixels = $('#photos_container').width() * direction - (20 * direction);
+    var left = Math.max(0, $('#photos_container').scrollLeft() + pixels);
 
     $('#photos_container').scrollLeft(left);
 
@@ -129,9 +129,9 @@ var PhotoManager = {
   },
 
   loadPhotos: function(increment) {
-    if(increment == undefined) { increment = 1 };
+    if(increment === undefined) { increment = 1; }
     photos_count = $('#photos .photo').size();
-    if($('#photos .photo').size() != 00 && photos_count < PhotoManager.current_page * parseInt($('#photos_form #per_page').val())) {
+    if(photos_count !== 0 && photos_count < (PhotoManager.current_page * parseInt($('#photos_form #per_page').val(), 10))) {
       return true;
     }
     PhotoManager.current_page += increment;
@@ -167,4 +167,4 @@ var PhotoManager = {
       PhotoManager.resizePhotoMananger();
     });
   }
-}
+};
