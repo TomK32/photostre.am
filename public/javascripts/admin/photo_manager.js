@@ -7,7 +7,6 @@ var PhotoManager = {
 
   selectElement: function(event) {
     if(event.target) {
-      console.log(event);
       $(event.target).closest('.selectable').toggleClass('selected');
       return false;
     }
@@ -35,9 +34,12 @@ var PhotoManager = {
         $(ui.draggable).closest('.selectable').addClass('selected');
         photo_ids = Array();
         $('.selectable.selected').map(function() {
-          photo_ids.push(extractID($(this).attr('id')));
+          if(photo_ids.indexOf(photo_id = extractID($(this).attr('id'))) == -1) {
+            photo_ids.push(photo_id);
+          }
         });
-        PhotoManager.addToWebsiteOrAlbum(this, droppable);
+
+        PhotoManager.addToWebsiteOrAlbum(photo_ids, droppable);
       }
     });
   },
@@ -53,7 +55,7 @@ var PhotoManager = {
     $.ajax({
       type: 'post',
       url: '/admin/related_photos.js',
-      data: '_method=post&related_photo[photo_id]=' + photo_id + '&' + droppable_class + '_id=' + droppable_id,
+      data: '_method=post&photo_ids[]=' + photo_ids.join('&photo_ids[]=') + '&' + droppable_class + '_id=' + droppable_id,
       success: function(html){
         $('#photo_' + photo_id).removeClass('selected');
         $('.count', droppable).html(html);

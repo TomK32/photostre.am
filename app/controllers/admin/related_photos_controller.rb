@@ -7,13 +7,20 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
   respond_to :js
 
   def create
-    if ! photo = current_user.photos.find(params[:related_photo][:photo_id])
-      flash[:error] = t(:'related_photos.not_allowed')
-      redirect_to dashboard_path and return
+    # can come in both flavours, on single id and and plenty
+    photo_ids = []
+    photo_ids << params[:related_photo][:photo_id] if params[:related_photo] and params[:related_photo][:photo_id]
+    photo_ids += params[:photo_ids] if params[:photo_ids] and params[:photo_ids].is_a?(Array)
+
+    photo_ids.each do |photo_id|
+      if ! photo = current_user.photos.find(photo_id)
+        flash[:error] = t(:'related_photos.not_allowed')
+      end
+      related_photo = RelatedPhoto.new(params[:related_photo])
+      related_photo.photo = photo
+      parent.related_photos << related_photo
     end
-    related_photo = RelatedPhoto.new(params[:related_photo])
-    parent.related_photos << related_photo
-    related_photo.save!
+    parent.save!
     respond_to do |format|
       format.js { render :text => t(:'admin.photos.index.items', :count => parent.related_photos.count), :layout => false and return }
     end
