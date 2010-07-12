@@ -1,4 +1,7 @@
-/* line 3, ../../../../../app/stylesheets/admin/admin.sass */
-a {
-  text-decoration: none;
-}
+a { text-decoration: none; }
+
+.icon { background: url(/images/icons-green-black-background-16.png) no-repeat; width: 16px; height: 16px; overflow: hidden; }
+
+.icon { float: right; vertical-align: bottom; }
+.icon.arrow_down { background-position: 0px 0px; }
+.icon span { display: none; }

@@ -2,3 +2,5 @@
   .droppable.title= link_to album.title, admin_related_photos_path(:album_id => album.id), :remote => true
   %ul.statistics
     %li.photos_count= t(:'admin.photos.index.items', :count => album.related_photos.count)
+  %ul.actions
+    %li= link_to t(:'.edit'), edit_admin_website_album_path(album.website, album)

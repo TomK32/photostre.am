@@ -1,193 +1,51 @@
-/* line 3, ../../../../../app/stylesheets/admin/photos.sass */
-body {
-  background-image: none;
-}
+body { background-image: none; }
 
-/* line 6, ../../../../../app/stylesheets/admin/photos.sass */
-#header #title a {
-  font-size: 1.2em;
-}
+#header #title a { font-size: 1.2em; }
 
-/* line 8, ../../../../../app/stylesheets/admin/photos.sass */
-#navigation {
-  top: 0;
-}
+#navigation { top: 0; }
 
-/* line 10, ../../../../../app/stylesheets/admin/photos.sass */
-#container, #header {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
+#container, #header { width: 100%; margin: 0; padding: 0; }
 
-/* line 14, ../../../../../app/stylesheets/admin/photos.sass */
-#content {
-  width: 100%;
-  margin: 0;
-  padding-bottom: 0;
-}
+#content { width: 100%; margin: 0; padding-bottom: 0; }
 
-/* line 19, ../../../../../app/stylesheets/admin/photos.sass */
-.columns {
-  width: 100%;
-  clear: both;
-}
-/* line 22, ../../../../../app/stylesheets/admin/photos.sass */
-.columns .column_1_3 {
-  display: inline;
-  float: left;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 250px;
-}
-/* line 24, ../../../../../app/stylesheets/admin/photos.sass */
-.columns .column_2_3 {
-  display: inline;
-  float: left;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 460px;
-}
-/* line 26, ../../../../../app/stylesheets/admin/photos.sass */
-.columns .column_3_3 {
-  display: inline;
-  float: left;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 250px;
-}
-/* line 28, ../../../../../app/stylesheets/admin/photos.sass */
-.columns .column_1_3, .columns .column_2_3, .columns .column_3_3 {
-  margin-right: 0;
-  margin-left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
+.columns { width: 100%; clear: both; }
+.columns .column_1_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 250px; }
+.columns .column_2_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 460px; }
+.columns .column_3_3 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 250px; }
+.columns .column_1_3, .columns .column_2_3, .columns .column_3_3 { margin-right: 0; margin-left: 0; overflow-x: hidden; overflow-y: auto; }
 
-/* line 35, ../../../../../app/stylesheets/admin/photos.sass */
-#websites, #related_photos, #related_photo {
-  padding: 10px;
-}
-/* line 37, ../../../../../app/stylesheets/admin/photos.sass */
-#websites img, #related_photos img, #related_photo img {
-  margin: 0;
-}
+#websites, #related_photos, #related_photo { padding: 10px; }
+#websites img, #related_photos img, #related_photo img { margin: 0; }
 
-/* line 41, ../../../../../app/stylesheets/admin/photos.sass */
-#websites h2, #websites h3 {
-  margin: 0;
-}
+#websites h2, #websites h3 { margin: 0; }
 
-/* line 43, ../../../../../app/stylesheets/admin/photos.sass */
-#related_photos {
-  margin-top: 10px;
-  padding-bottom: 5px;
-  background-color: #222222;
-}
-/* line 47, ../../../../../app/stylesheets/admin/photos.sass */
-#related_photos .getting_started, #related_photos .empty {
-  width: 50%;
-  min-width: 200px;
-  margin: 30px auto;
-  font-size: 120%;
-}
+#related_photos { margin-top: 10px; padding-bottom: 5px; background-color: #222222; }
+#related_photos .getting_started, #related_photos .empty { width: 50%; min-width: 200px; margin: 30px auto; font-size: 120%; }
 
-/* line 54, ../../../../../app/stylesheets/admin/photos.sass */
-#related_photo img {
-  max-width: 220px;
-}
-/* line 56, ../../../../../app/stylesheets/admin/photos.sass */
-#related_photo input[type=text], #related_photo textarea {
-  width: 220px;
-}
+#related_photo img { max-width: 220px; }
+#related_photo input[type=text], #related_photo textarea { width: 220px; }
 
-/* line 59, ../../../../../app/stylesheets/admin/photos.sass */
-#photos, #filter {
-  background-color: #222222;
-  padding: 0 5px;
-}
+#photos, #filter { background-color: #222222; padding: 0 5px; }
 
-/* line 62, ../../../../../app/stylesheets/admin/photos.sass */
-#photos {
-  height: 80px;
-}
+#photos { height: 80px; }
 
-/* line 64, ../../../../../app/stylesheets/admin/photos.sass */
-#photos_container {
-  clear: both;
-  height: 80px !important;
-  white-space: nowrap;
-  overflow: hidden;
-}
+#photos_container { clear: both; height: 80px !important; white-space: nowrap; overflow: hidden; }
 
-/* line 70, ../../../../../app/stylesheets/admin/photos.sass */
-#photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo {
-  display: inline-block;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-/* line 76, ../../../../../app/stylesheets/admin/photos.sass */
-#photos .photo img, #photos .related_photo img, #related_photos .photo img, #related_photos .related_photo img {
-  border: 1px solid transparent;
-  padding: 0;
-  height: 75px;
-  width: 75px;
-}
-/* line 81, ../../../../../app/stylesheets/admin/photos.sass */
-#photos .photo.selected img, #photos .related_photo.selected img, #related_photos .photo.selected img, #related_photos .related_photo.selected img {
-  border: 1px solid;
-  border-color: #0063dc;
-}
+#photos .photo, #photos .related_photo, #related_photos .photo, #related_photos .related_photo { display: inline-block; position: relative; margin: 0; padding: 0; overflow: hidden; }
+#photos .photo img, #photos .related_photo img, #related_photos .photo img, #related_photos .related_photo img { border: 1px solid transparent; padding: 0; height: 75px; width: 75px; }
+#photos .photo.selected img, #photos .related_photo.selected img, #related_photos .photo.selected img, #related_photos .related_photo.selected img { border: 1px solid; border-color: #0063dc; }
 
-/* line 84, ../../../../../app/stylesheets/admin/photos.sass */
-#filter {
-  font-size: 95%;
-}
-/* line 86, ../../../../../app/stylesheets/admin/photos.sass */
-#filter .box {
-  display: inline;
-  border: 1px #555555 solid;
-  padding: 2px 4px;
-  margin: 0 3px;
-}
-/* line 91, ../../../../../app/stylesheets/admin/photos.sass */
-#filter p, #filter label, #filter input, #filter form {
-  display: inline;
-}
-/* line 93, ../../../../../app/stylesheets/admin/photos.sass */
-#filter input, #filter select, #filter textarea {
-  border-color: black;
-}
-/* line 95, ../../../../../app/stylesheets/admin/photos.sass */
-#filter input[type="text"] {
-  width: 60px;
-}
-/* line 97, ../../../../../app/stylesheets/admin/photos.sass */
-#filter label {
-  margin-left: 10px;
-}
-/* line 99, ../../../../../app/stylesheets/admin/photos.sass */
-#filter select {
-  width: 150px;
-}
+#filter { font-size: 95%; }
+#filter .box { display: inline; border: 1px #555555 solid; padding: 2px 4px; margin: 0 3px; }
+#filter p, #filter label, #filter input, #filter form { display: inline; }
+#filter input, #filter select, #filter textarea { border-color: black; }
+#filter input[type="text"] { width: 60px; }
+#filter label { margin-left: 10px; }
+#filter select { width: 150px; }
 
-/* line 103, ../../../../../app/stylesheets/admin/photos.sass */
-#websites ul {
-  list-style-type: none;
-  margin: 0;
-}
-/* line 106, ../../../../../app/stylesheets/admin/photos.sass */
-#websites li {
-  margin: 0 0 0 5px;
-}
-/* line 108, ../../../../../app/stylesheets/admin/photos.sass */
-#websites .droppable {
-  position: relative;
-  padding: 0 0 0 0;
-}
-/* line 111, ../../../../../app/stylesheets/admin/photos.sass */
-#websites .droppable a {
-  padding: 2px 4px;
-}
+#websites h2, #websites h3, #websites h4 { border-bottom: 1px solid #444444; }
+#websites h4 { padding: 5px 0 0 5px; margin: 0; }
+#websites ul { list-style-type: none; margin: 0; }
+#websites li { margin: 0 0 0 5px; }
+#websites .droppable { position: relative; padding: 0 0 0 0; }
+#websites .droppable a { padding: 2px 4px; }

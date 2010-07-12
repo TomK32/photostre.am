@@ -18,8 +18,10 @@ var PhotoManagerMenu = {
       $('#' + menu_id).append('<li><a href="javascript:PhotoManagerMenu.showMenuItem($(\'#' + $(this).closest('[id!=""]').attr('id') + '\'));">' + $(this).text() + '</a></li>');
     });
     $('#' + menu_id).hide();
-    $(menu_items, parent).map(function(){ $(this).append('<a class="handler" href="#">^</a>'); });
-    $('.handler', $(menu_items, parent)).live('click', PhotoManagerMenu.showMenuSelector);
+    if($(menu_items, parent).length > 1) {
+      $(menu_items, parent).map(function(){ $(this).append('<a class="handler icon arrow_down" href="#"><span>^</span></a>'); });
+      $('.handler', $(menu_items, parent)).live('click', PhotoManagerMenu.showMenuSelector);
+    }
   },
   init: function(options) {
     $('#websites').addClass('menu');

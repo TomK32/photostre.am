@@ -44,10 +44,16 @@ en:
           one: 'One items'
           other: '%{count} items'
         edit_website: 'Edit website'
-        pages: 'View %{count} pages'
-        albums: '%{count} albums'
+        pages:
+          one: 'One page'
+          other: '%{count} pages'
+        create_page: 'Create a page'
+        albums:
+          one: 'One album'
+          other: '%{count} albums'
       album:
         show: 'Show album'
+        edit: 'Edit'
         only_album: 'Only photos from this album'
         photos:
           one: 'One items'

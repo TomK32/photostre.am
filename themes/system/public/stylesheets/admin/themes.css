@@ -1,48 +1,11 @@
-/* line 3, ../../../../../app/stylesheets/admin/themes.sass */
-.c-themes.a-index #content {
-  width: 100%;
-}
+.c-themes.a-index #content { width: 100%; }
 
-/* line 5, ../../../../../app/stylesheets/admin/themes.sass */
-h3 {
-  overflow-x: hidden;
-  white-space: nowrap;
-}
-/* line 8, ../../../../../app/stylesheets/admin/themes.sass */
-h3 small {
-  font-size: 10px;
-}
-/* line 10, ../../../../../app/stylesheets/admin/themes.sass */
-h3 small a, h3 small a:hover, h3 small a:visited {
-  color: #2b64f8;
-}
-/* line 12, ../../../../../app/stylesheets/admin/themes.sass */
-h3 small:before {
-  content: "(";
-}
-/* line 14, ../../../../../app/stylesheets/admin/themes.sass */
-h3 small:after {
-  content: ")";
-}
+h3 { overflow-x: hidden; white-space: nowrap; }
+h3 small { font-size: 10px; }
+h3 small a, h3 small a:hover, h3 small a:visited { color: #2b64f8; }
+h3 small:before { content: "("; }
+h3 small:after { content: ")"; }
 
-/* line 16, ../../../../../app/stylesheets/admin/themes.sass */
-#themes {
-  width: 100%;
-  clear: both;
-}
-/* line 19, ../../../../../app/stylesheets/admin/themes.sass */
-#themes .theme {
-  display: inline;
-  float: left;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 220px;
-  display: block;
-  float: left;
-}
-/* line 23, ../../../../../app/stylesheets/admin/themes.sass */
-#themes .theme img {
-  width: 200px;
-  height: 130px;
-  overflow: hidden;
-}
+#themes { width: 100%; clear: both; }
+#themes .theme { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 220px; display: block; float: left; }
+#themes .theme img { width: 200px; height: 130px; overflow: hidden; }
