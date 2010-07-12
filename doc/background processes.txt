@@ -1,6 +1,0 @@
-The background processes use memcache for storing the commands,
-starling for getting them from and into the store and
-purzelrakete/workling to acutally run them.
-
-apt-get install memcached
-gem install memcache-client startling-starling
