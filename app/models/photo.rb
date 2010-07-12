@@ -36,6 +36,7 @@ class Photo
   validates_presence_of :photo_urls
 
   index [[:source_id, 1], [:remote_id, 1]], :unique => true
+  validates_uniqueness_of :remote_id, :scope => :source_id
 
   def source
     @source ||= User.where(:_id => self.user_id).only(:sources).first.sources.find(self.source_id)
