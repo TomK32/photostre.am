@@ -11,9 +11,9 @@ require "rails/test_unit/railtie"
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
-require 'lib/rack/domain_dispatcher'
-require 'lib/rack/theme_static'
-require 'lib/string_ext'
+require_relative '../lib/rack/domain_dispatcher'
+require_relative '../lib/rack/theme_static'
+require_relative '../lib/string_ext'
 
 module DasPhotowall
   class Application < Rails::Application

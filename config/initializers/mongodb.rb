@@ -15,10 +15,3 @@ Mongoid.configure do |config|
   end
 end
 
-if defined?(PhusionPassenger)
-  PhusionPassenger.on_event(:starting_worker_process) do |forked|
-    if forked
-      Mongoid.configure.master.connection.connect_to_master
-    end
-  end
-end
