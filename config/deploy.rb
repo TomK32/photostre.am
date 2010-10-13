@@ -15,14 +15,14 @@ after "deploy:update_code", "deploy:link_shared_files"
 namespace :bundle do
   desc "pack"
   task :pack, :roles => [:app] do
-    run "cd #{shared_path}/cached-copy; bundle install; bundle pack"
+    run "cd #{shared_path}/cached-copy; bundle pack"
   end
 end
 
 namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "cd #{release_path}; /etc/init.d/photostream-worker restart"
+    run "god -c #{release_path}/config/config.god"
   end
   desc "screenshots"
   task :screenshots, :roles => [:web] do
@@ -31,6 +31,7 @@ namespace :deploy do
   end
   desc "link shared files"
   task :link_shared_files, :roles => [:app] do
+    run "ln -nsf #{shared_path}/cached-copy/vendor/cache #{release_path}/vendor/cache"
     %w(
       config/database.mongo.yml
       config/flickr.yml

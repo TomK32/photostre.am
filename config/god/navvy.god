@@ -3,7 +3,7 @@ God.watch do |w|
   w.interval = 30.seconds # default
   w.start    = "rake navvy:work"
   w.dir      = File.dirname(__FILE__)
-  w.log      = File.join(File.dirname(__FILE__), '..', 'log', 'navvy.log')
+  w.log      = File.join(File.dirname(__FILE__), '..', '..', 'log', 'navvy.log')
 
   # determine the state on startup
   w.transition(:init, { true => :up, false => :start }) do |on|
