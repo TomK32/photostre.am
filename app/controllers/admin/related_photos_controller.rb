@@ -33,7 +33,7 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
   end
 
   def destroy
-    @related_photo = parent.related_photos.where('_id' => params[:id]).first
+    @related_photo = parent.related_photos.where('_id' => BSON::ObjectId(params[:id])).first
     @related_photo.destroy unless @related_photo.nil?
   end
 
@@ -65,11 +65,11 @@ class Admin::RelatedPhotosController < Admin::ApplicationController
   def website
     return @website if @website
     if params[:album_id]
-      @website ||= Website.where('albums._id' => params[:album_id]).first
+      @website ||= Website.where('albums._id' => BSON::ObjectId(params[:album_id])).first
     elsif params[:page_id]
-      @website ||= Website.where('pages._id' => params[:page_id]).first
+      @website ||= Website.where('pages._id' => BSON::ObjectId(params[:page_id])).first
     elsif params[:website_id]
-      @website ||= current_user.websites.where(:_id => params[:website_id]).first
+      @website ||= current_user.websites.where(:_id => BSON::ObjectId(params[:website_id])).first
     end
     @website
   end
