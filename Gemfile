@@ -53,7 +53,3 @@ end
 gem 'tomk32-flickr_fu', :require => 'flickr_fu', :git => 'git://github.com/TomK32/flickr_fu.git'
 gem 'ruby-openid', :require => 'openid'
 
-# some weird mac specific requirement
-group :development do
-  gem 'system_timer'
-end
