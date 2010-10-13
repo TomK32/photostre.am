@@ -1,4 +1,4 @@
-DasPhotowall::Application.routes.draw do |map|
+DasPhotowall::Application.routes.draw do
 
   resources :albums do
     resources :photos

@@ -1,5 +1,7 @@
 require 'navvy'
 require 'navvy/job/mongoid'
 
-Navvy.configuration.logger = Rails.logger
-Navvy.configuration.job_limit = 1
+Navvy.configure do |config|
+  config.logger = Logger.new(Rails.root.join('log', 'navvy.log'))
+  config.job_limit = 1
+end
