@@ -21,7 +21,7 @@ end
 namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "god -c #{release_path}/config/config.god"
+    run "god quit && god -c #{release_path}/config/config.god"
   end
   desc "screenshots"
   task :screenshots, :roles => [:web] do

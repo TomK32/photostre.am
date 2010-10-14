@@ -17,7 +17,6 @@ God.watch do |w|
     on.condition(:process_running) do |c|
       c.running = true
       c.interval = 5.seconds
-      c.notify = 'tomk32'
     end
   
     # failsafe
@@ -31,6 +30,7 @@ God.watch do |w|
   # start if process is not running
   w.transition(:up, :start) do |on|
     on.condition(:process_running) do |c|
+      c.notify = {:contacts => ['developers'], :priority => 1, :category => 'photostre.am'}
       c.running = false
     end
   end
