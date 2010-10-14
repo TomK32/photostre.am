@@ -11,10 +11,11 @@ role :app, "photostre.am"
 role :db,  "photostre.am", :primary => true
 
 after "deploy:update_code", "deploy:link_shared_files"
+after "deploy:update_code", "bundle:install"
 
 namespace :bundle do
   task :install do
-    run "bundle install"
+    run "cd #{release_path}; bundle"
   end
 end
 
