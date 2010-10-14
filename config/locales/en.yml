@@ -2,7 +2,8 @@ en:
   app:
     title: 'photostre.am'
   layout:
-    back_to_homepage: 'Back to homepage'
+    links:
+      back_to_homepage: 'Back to homepage'
   sessions:
     new:
       page_title: 'Login'
