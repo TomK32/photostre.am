@@ -11,7 +11,7 @@ class Admin::MaintenanceController < Admin::ApplicationController
   def reset_sources
     conditions = {'sources.status' => "updating"}
     # for a single user we also reactivate the inactive/faulty ones.
-    conditions = {:user_id => params[:user_id]} if params[:user_id]
+    conditions = {:user_id => BSON::ObjectId(params[:user_id])} if params[:user_id]
     User.collection.update(conditions, {'$set' => {'sources.$.status' => 'active'}}, :multi => true)
     respond_to do |format|
       format.html { redirect_to :action => :index }
@@ -22,7 +22,7 @@ class Admin::MaintenanceController < Admin::ApplicationController
   def update_active_sources
     scope = User.only(:sources)
     # Optionally limit to only one user
-    scope = scope.where(:_id => params[:user_id]) if params[:user_id]
+    scope = scope.where(:_id => BSON::ObjectId(params[:user_id])) if params[:user_id]
     scope.all.map{|u| puts u.sources.map(&:to_s); u.sources.map(&:call_worker)}
     respond_to do |format|
       format.html { redirect_to :action => :index }
