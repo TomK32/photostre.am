@@ -15,6 +15,7 @@ after "deploy:update_code", "deploy:link_shared_files"
 namespace :bundle do
   task :install do
     run "bundle install"
+  end
 end
 
 namespace :deploy do
