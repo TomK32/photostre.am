@@ -17,7 +17,7 @@ God.watch do |w|
     on.condition(:process_running) do |c|
       c.running = true
       c.interval = 5.seconds
-      c.notify 'tomk32'
+      c.notify = 'tomk32'
     end
   
     # failsafe
