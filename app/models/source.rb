@@ -13,6 +13,8 @@ class Source
   has_many_related :photos
   embedded_in :user, :inverse_of => :sources
 #  index [:username, :_type], :unique => true
+  index :user_id
+
 
   ACTIVE_TYPES = AVAILABLE_TYPES = [['Flickr.com', 'Source::FlickrAccount']]
   STATUSES = %w(inactive active deleted updating)

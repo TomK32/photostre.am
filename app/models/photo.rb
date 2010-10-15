@@ -39,6 +39,8 @@ class Photo
   validates_presence_of :photo_urls
 
   index [[:source_id, 1], [:remote_id, 1]], :unique => true
+  index :user_id
+
   validates_uniqueness_of :remote_id, :scope => :source_id
 
   def source

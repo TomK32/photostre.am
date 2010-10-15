@@ -17,6 +17,9 @@ class Website
   field :source_ids, :type => Array
 
   index 'albums.remote_id'
+  index :status
+  index :user_id
+  index :domains
 
   embed_many :related_photos
 
