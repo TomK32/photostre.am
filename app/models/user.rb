@@ -17,6 +17,10 @@ class User
 
   validates_uniqueness_of :login
 
+  index :created_at
+  index 'source.flickr_nsid'
+  index 'source.status'
+
   def validate
     if !self.new_record?
       errors.add :email if email.blank?

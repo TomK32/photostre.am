@@ -16,6 +16,8 @@ class Website
   field :theme_path, :type => String, :default => 'default'
   field :source_ids, :type => Array
 
+  index 'albums.remote_id'
+
   embed_many :related_photos
 
   before_validation :set_theme_path

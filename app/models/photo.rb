@@ -26,10 +26,13 @@ class Photo
 
   index :title
   index :description
+  index :remote_id
+  index :created_at
+  index :public
 
   scope :ordered, :order_by => 'created_at DESC, id DESC'
   scope :published, where({:public => true})
-  scope :recent, :order_by => 'id DESC'
+  scope :recent, :order_by => 'created_at DESC'
 
   validates_presence_of :source_id
   validates_presence_of :web_url
