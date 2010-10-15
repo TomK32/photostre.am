@@ -1,0 +1,5 @@
+0.1 / 2010-10-15
+================
+* Rails 3.0.0 compat
+* latest Mongoid
+* MongoDB 1.6.3
