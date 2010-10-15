@@ -48,7 +48,7 @@ class Admin::WebsitesController < Admin::ApplicationController
           album = Album.new(:title => remote_album.title, :description => remote_album.description, :remote_id => remote_album.id)
           resource.albums << album
           album.save
-          Navvy::Job.enqueue(SourceWorker, :import_album, {:id => album.source.id})
+          Navvy::Job.enqueue(SourceWorker, :import_album, {:id => album.id})
         end
       end
     end
