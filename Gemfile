@@ -28,6 +28,7 @@ gem 'RedCloth'
 gem 'compass'
 gem 'compass-960-plugin', :require => 'ninesixty'
 
+gem 'dynamic_form', :git => 'git://github.com/rails/dynamic_form.git'
 gem 'inherited_resources'
 gem 'will_paginate', :branch => 'rails3'
 
